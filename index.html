@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Trip 🎂">
+<meta name="theme-color" content="#1f5aa8">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAMK0lEQVR4nO3deXAb1R0H8NWublmSJd/3ObaT2LmIk0AuGo5J2wApodBwFAKEZsK0UyhT0oHSTulQAmE6DHQ4yqRNIW0CQyAcocSYK2kgJCROTBzfjuOD2JZly5ZkXbvbPwzGOH62drVrSZvvZ/hHYt/u72W+3kv73qrybt5NAUyGjnYBELsQDiBCOIAI4QAihAOIEA4gQjiACOEAIoQDiBAOIEI4gAjhACKEA4gQDiBCOIAI4QAihAOIEA4gQjiACOEAIoQDiBAOIEI4gAjhACKEA4gQDiBCOIBIHe0C5GXUhLKtI9kWb7bVm5rgsxsCifqA3RBINAR0ak7LjP7H0ioqxKlCHO0L0i6/1uXT9Hl03UPGziFDk8Pc4LAM+TXR7koUKCocWoYrsrtLU4ZKk4fKUoaK7cN2YyDstryW4YwaatImLc6EIx3JH7elft6RzHIqSauOXSoljbLfuqrutvltsm7COaJ9sy77lZqCHrde1g3FApxzCGM3BO68pPXAxg9/u+KMWReKdjnyQjjEUNP87Qtb9936yYLMgWjXIiOEQ7y0BN/O9Z/9qKQ72oXIBeGICEPz29bUXFF0PtqFyALhiBSt4v9y9cncRE+0C5EewiEBkzb00OWno12F9BAOaSzP65ufobSTU4RDMjfNbY92CRJT1B3SSY0EmdO91rMDCe2DpvZBY9eQ0RNQe4Jqb4AJcrRREzJq2Fyrp9DuXpzTvyKvz6QVefdiVX4vreI5Xjn3T5UZjpEg879zKV922Y932870Wae44T3s1wz7NT1u/dGupD21eTqGu7Gi/Z7FzXZDuPfdx1j1weKk4UaHJbLaY4iiwuEJqPc3Zh5oyjh4NsUXYkSswc/SL9cUvNeY+ew1xyrSB4U2L7K7EY4Y9cxnJZKsx+HV3f3GktdvOZht8QpqmJbgk6SAGIET0sm5A+rHPp4jtJXo85XYhHAQHTqb4vRqBTXhFXQ2SiEcU2B5VbPTLKiJy6eoZ4IQjqkMjgjbcwwIXD7GIRxTsRv9gpY/3WuVqZKoQDiIGJovsrvDX945om0fNMlXz8xDOIhW5PfahNwKq2rOkK+YqEA4JmfShraurBPUZFdNvjy1RA3CMQm7MfD8dUdzrALugL1dn9XiTJCvpKhQ1B3SyBk07I0V7Xdd0pok5FS016MXcccs9l284aBVvF7N6jWcTR/ITfQU2DxLchyLspx6NStoPS6fZsu+SkWOeroownHv0sYtS5rkWHOPW7/lrcr6PuX82DbeRREOmexvyHz0o3JF7jNGIRyC8RT1aVvqi0eLa762RbsWeSEcAtSeT3y/KaOqJb3TZYx2LTMBl7IC5Nk8xUnDRXa3muajXctMwJ5DAIsuuG5257rZnd3DhpeOFu2tywmySv7rUnLf5JNpHnlk9Vf7b/+4Mqs/2rXICOEQL9M8smP9kV9f1kCrlHmUQTgiQqv4TZXNf1hdq6gnwL6FcEjghvKO32E4JJDcMu/sqoLeaFchMUVN+ySIhuEMatagYRP1gTybJy/RMy99cGmOw6AR9tvKmB63/tqXV7kDyrkAVE5PhAqydJClh/yaHre+4duRSBqGW57Xt6myeZ7wEU1pCb715ed2Hi+UuNDowWHle4Is/VFr2s17lt2/f6FH+D5gw9x2JZ2ZIhyTe78pY8OeZcMCf1TLsXrnK2iWMISDqMWZ8FDVXKGtFmY65SgmKhCOqVS3pNcJHG2wQEFTuCAc03inIVPQ8oKePI1xCMc02gQ+NmzVC57YI2YhHNPo9+oELW/RB2WqZOYhHNNIFDjFDy5lLyL5AicYFXF3JGYhHNNYW9YlaHklDbRXQjgWZA786cpTGeYRyde8Mr93rsD76K0Dyhn3poR9oJrm1s/puLas6636rJ3HC6Ualpib6Hns6pNCWylpDIsSwjFKw3Dr53RcP6fj83PJe0/nfNCSHojgAc+V+b3b1tRYdIIvPQ63p4jeaKxRTjhGqSjq0lzHpbmOYb/6k7a06ta0Ix3J4c/GRKv4S7Kc91Q2X5brELH1Xo++tkc587coLRxjzLrQ2rKutWVdPEU1OSy1PdZGh6VtwNTj1vd7dSNBJsDSWoYzatkEbTDH6i2weWanulbk94qYnnbMq7W5mME4nqgoqiR5qCR5SO4NDfk1u0/lyb2VmaSEq5UY8cxnJUq6jqUQDql80pb6n5P50a5CYgiHBJr6zQ++P195Y1cQjkg1OCwbX18q9JmxuKD8E1JZ7W/IfKR67khQzBsaYh/CIZLDq3vy4Kx36rOiXYiMlDBuhVHxS3Md183qvKKoR+iMXiK4fJp/n8z/5/FCJQ1RmZQSwjHGpA1dVXz+x6Vdi7KcWoaTfP01X9veOpP1dn2WN6jwWIxSVDjG6NXsgsyBJdn9S3Icc9JcTASj4B1e3Ylu2+FzKYfOpnQPGyQsMvYpMxzj6Rguz+YutHnybe5CuzvD7EvQhkzaoEnLmjQhhuZDnCrI0v4Q7fJrXD6tc0TbPWTodBnbB01n+qx9HmGPCSqJ8nePfpZudFiU9Oq1GYP7HECEcAARwgFECAcQIRxAhHAAEcIBRAgHECEcQIRwABHCAUQIBxAhHECEcAARwgFECAcQIRxAhHAAEcIBRAgHECEcQIRwABHCAUQIBxAhHECEcAARwgFE0oyVXTordffDPxj/zdaXju7+qFVEQ4qiQiwfYjmvP+TyBPpcvnM97tq2gU9PnW87Pyx0VZueOlR1fJKZ7c/uumn8x/ue+/yNQ+3TVjvt5kgCQa7kjtembitVr8P8lw9HLA6kVjMqNcPotYzdrCtINy8uTblhZQFFUV/U921/tfaLhr7wV/XATRXVJ7o5Pg4mc5Ow11KJp8PK4rKUPb9fvXXDPFXYkwSXZluvW5YrZ1GyE9FrqcRTOCiKUqmozWvL/rxxUfhN7r+hQs3EWTcnENFrScTcYWX0kMnQKqtJm5eWsKw87dYri9Nt35tS55Yriho6XP+qagpnhTkppg2rC1+uapan3u9EcrCXvNeSiNE/KZbjncP+E839z75Zd/n97154tvjgz+baEsKdS/pX6+YYtHEwG6S0vY5cjIZjPF+A/c3zRw7Wnh//pUmvvvOHpWGuISVRf8eaEhlKk1HkvY5cHISDoiiO5x99pWbCNcfVi6aZA7Tqy+8uYjevLbMY42ySYXG9llB8hIOiqMZOV33H4PhvSrOtyVb9FE2e3nvaF/hmWlKrSbv5mlnylScTEb2WUMydkE6hpsU5Kzdx/DdZSUaHy0davmdwZOeBpl+sLRv9uHFNyY7/Nk6x/Hi1f7/ePG5Ps+Xpw/u/6Ji6yeN3Vz5+d+Wk/+uhHcd2VbeEs90LCe21hOJmz0FRVP8F/yI28zTzQD739plh7zfvaTNomV+umy1LZXIS0WupxFM4aFrwbaBBd+CFd+vHPt68uig7xSRpUbIT0WvJNh2tDYuQZJn4F+Mc9k/basd73x1KNGr6vvXl0lcmJ3G9lkQ8nXPMK0qa8E2XwzttK68/9Oy+uj/+fOHox58sz3vhnfqpm4gj4S9e44nrtSTiZs8xKzexLOd7b+Vs6HT1D4V1XraruqWz75tX0tMq1QM/rZC+PnlE0uvIxceeg6FVj9y2YMKXB46F+5b5YIj76+tfPbV5yejHcG4VVGzaK6hCOUTY68jFwZ7DqFM/fe/SS2enjv/S4wvteK8h/JW8cai9sdMldWkykqTXEYrRPQetUllMmvx088qK9FuvLEpNnPgui227Tw24BbwdmOP57a/VvnjfcknLlJjkvY6QXOGY4o4QRVF3bT9YfaJbRMNRu6pbRPw4eeBYV01z//ziied3UhHd5WnbjhLX60jEwWFlPJbjt+0+9fA/jolr/sSrtdLWMzMi7LVoMXpYuRDH8x+e+Ppv++pONPeLXsnh0z2HvupZXp4mYWGykqTXosViOFiOZ1l+9FHb3kHfuV53bZvzg+PdY5ejkXhiz6nl5VdFvh7JydprcZT/Gi8QLc7OOWAmIRxAhHAAEcIBRAgHECEcQIRwABHCAUQIBxAhHECEcAARwgFECAcQIRxAhHAAEcIBRAgHECEcQIRwABHCAUQIBxAhHECEcAARwgFECAcQIRxAhHAAEcIBRAgHECEcQIRwABHCAUQIBxAhHECEcAARwgFE/wcTC2QwvUCv0QAAAABJRU5ErkJggg==">
+<title>London &amp; Edinburgh · 17–25 Oct · Aariv turns 3 🎂</title>
+<style>
+  :root{
+    --ink:#1d2733; --muted:#5b6b7c; --line:#e3e8ee;
+    --accent:#1f5aa8; --accent-soft:#eaf1fb;
+    --gold:#b07d1e; --gold-soft:#fdf3df;
+    --bg:#f4f7fa; --card:#ffffff; --nav-h:58px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e8edf3; --muted:#9fadbd; --line:#2a3543;
+      --accent:#7fb0ec; --accent-soft:#16283e;
+      --gold:#e3b35c; --gold-soft:#33260e;
+      --bg:#0f151c; --card:#161e27;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding-bottom:calc(var(--nav-h) + 18px)}
+  .wrap{max-width:760px;margin:0 auto;padding:14px 12px 0}
+  /* header */
+  .apphead{padding:14px 4px 10px}
+  .apphead h1{font-size:21px;line-height:1.2}
+  .apphead .sub{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:11.5px;color:var(--muted)}
+  .chip b{color:var(--ink)}
+  .chip.bday{background:var(--gold-soft);border-color:var(--gold);color:var(--gold)}
+  /* bottom nav */
+  nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:var(--card);border-top:1px solid var(--line);display:flex;z-index:50;padding-bottom:env(safe-area-inset-bottom)}
+  nav button{flex:1;border:0;background:none;color:var(--muted);font-size:10.5px;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  nav button .ni{font-size:19px;line-height:1}
+  nav button.on{color:var(--accent);font-weight:700}
+  /* pages */
+  .page{display:none}
+  .page.on{display:block;animation:fade .18s ease}
+  @keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+  h2{font-size:16px;margin:18px 2px 10px}
+  h3.qhead{font-size:12px;margin:16px 2px 8px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+  /* day cards */
+  details.day{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+  details.day summary{list-style:none;cursor:pointer;padding:13px 14px;display:flex;align-items:center;gap:10px}
+  details.day summary::-webkit-details-marker{display:none}
+  .dn{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 8px;white-space:nowrap}
+  .dt{font-size:14.5px;font-weight:650;flex:1;line-height:1.25}
+  .dd{font-size:11px;color:var(--muted);white-space:nowrap}
+  .arrow{color:var(--muted);font-size:12px;transition:transform .15s}
+  details[open] .arrow{transform:rotate(90deg)}
+  .dbody{padding:2px 14px 13px;border-top:1px dashed var(--line)}
+  .dbody p{font-size:13.5px;margin:8px 0}
+  .tip{font-size:12.5px;color:var(--muted);border-left:3px solid var(--accent);padding:2px 0 2px 10px;margin:8px 0}
+  .wear{background:var(--accent-soft);border-radius:10px;padding:9px 12px;font-size:12.5px;margin:8px 0}
+  .wear b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+  .spend{background:var(--gold-soft);border-radius:10px;padding:9px 12px;font-size:12.5px;margin:8px 0}
+  .spend b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+  .routes{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 2px}
+  .routes .rlbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:-2px}
+  .rbtn{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1.5px solid var(--accent);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:650;color:var(--accent);text-decoration:none;white-space:nowrap}
+  .rbtn:active{background:var(--accent-soft)}
+  .rbtn.walk{border-color:#2e8b57;color:#2e8b57}
+  .rbtn.taxi{border-color:var(--gold);color:var(--gold)}
+  details.bday{border:2px solid var(--gold);background:linear-gradient(0deg,var(--gold-soft),var(--card) 70%)}
+  details.bday .dn{color:var(--gold);background:var(--gold-soft);border:1px solid var(--gold)}
+  details.bday .wear{background:var(--gold-soft)}
+  details.bday .wear b{color:var(--gold)}
+  a{color:var(--accent)}
+  /* quick cards */
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px}
+  .qcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 11px;text-decoration:none;color:var(--ink)}
+  .qcard:active{background:var(--accent-soft)}
+  .qe{font-size:17px;display:block}
+  .qt{font-size:13px;font-weight:650;line-height:1.25;display:block;margin-top:2px}
+  .qs{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+  .qm{font-size:11px;color:var(--accent);font-weight:700;display:block;margin-top:4px}
+  /* tables */
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+  th{text-align:left;padding:9px 12px;background:var(--accent-soft);color:var(--accent);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
+  td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+  td:first-child{white-space:nowrap;font-weight:600}
+  /* panels + packing */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:10px}
+  .panel h4{font-size:13.5px;margin-bottom:6px}
+  .panel p,.panel li{font-size:13px}
+  .panel ul{padding-left:18px}
+  .panel li{margin-bottom:5px}
+  label.ck{display:flex;gap:9px;align-items:flex-start;padding:7px 4px;font-size:13.5px;border-bottom:1px dashed var(--line);cursor:pointer}
+  label.ck:last-child{border-bottom:0}
+  label.ck input{margin-top:2px;accent-color:var(--accent);width:16px;height:16px;flex-shrink:0}
+  .note{font-size:12px;color:var(--muted);margin:8px 2px}
+  .tkt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin-bottom:9px}
+  .tkt .th{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .tkt .tn{font-size:13.5px;font-weight:700;flex:1}
+  .tkt .td2{font-size:11px;color:var(--muted);white-space:nowrap}
+  .tkt .tr{font-size:12px;color:var(--muted);margin-top:3px}
+  .tkt .tr b{color:var(--ink)}
+  .tkt .tb{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .bk{display:inline-flex;align-items:center;gap:5px;background:var(--accent);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:#fff;text-decoration:none}
+  .bk.alt{background:none;border:1.5px solid var(--accent);color:var(--accent)}
+  .bk.urgent{background:#c0392b}
+  .tkt.pend{border-left:4px solid var(--gold)}
+  .tkt.done{border-left:4px solid #2e8b57}
+  footer{margin-top:22px;color:var(--muted);font-size:11px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="apphead">
+  <h1>London &amp; Edinburgh 🇬🇧</h1>
+  <div class="sub">17–25 Oct 2026 · Aviral, Chhavi &amp; Aariv · everything booked ✓</div>
+  <div class="chips">
+    <span class="chip">✈️ + 🚄 + 🏨 <b>done</b></span>
+    <span class="chip bday">🎂 <b>Aariv turns 3 — Fri 23 Oct</b></span>
+  </div>
+</div>
+
+<!-- ============ PAGE: DAYS ============ -->
+<section class="page on" id="pg-days">
+
+<details class="day" open>
+  <summary><span class="dn">SAT 17</span><span class="dt">✈️ Fly Delhi → London</span><span class="dd">Day 1</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p><b>IndiGo 6E3</b> · DEL 11:10 → LHR 18:10 · seats 14A/B/C · 30kg bags each. Taxi/pre-booked cab to <b>Holiday Inn Bloomsbury, Coram St</b> (conf. 5882.748.000, PIN 9456, £30 deposit). Bedtime = jet-lag reset.</p>
+    <div class="spend"><b>💰 Today ~£75 (₹9,700)</b>🚕 Airport taxi £45–60 + light dinner. Carry £40 cash + printed visas.</div>
+    <div class="wear"><b>👕 Wear</b> Comfy layers for the plane + slip-on shoes. Landing in ~12° evening: keep jackets for all three in the cabin bag. Aariv: soft joggers + hoodie + jacket on top.</div>
+    <div class="routes"><span class="rlbl">🧭 Heathrow → hotel</span>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+2&destination=Holiday+Inn+London+Bloomsbury&travelmode=transit">🚇 Piccadilly ~55 min</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+2&destination=Holiday+Inn+London+Bloomsbury&travelmode=driving">🚕 ~50 min · £45–60</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Russell+Square+Station+London&destination=Holiday+Inn+London+Bloomsbury&travelmode=walking">🚶 Russell Sq → hotel 4 min</a>
+    </div>
+  </div>
+</details>
+
+<details class="day">
+  <summary><span class="dn">SUN 18</span><span class="dt">🏴‍☠️ Pirate playground &amp; parks</span><span class="dd">Day 2</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p><b>AM:</b> Kensington Gardens — <b>Diana Memorial Playground</b> (pirate ship, free). <b>PM:</b> hotel nap, then Hyde Park ducks + early dinner. Keep it light — jet lag day.</p>
+    <div class="spend"><b>💰 Today ~£65 (₹8,400)</b>Playground free · 🚇 ~£12 tube · 🍽️ ~£50 meals. Carry £20–30 cash.</div>
+    <div class="wear"><b>👕 Wear</b> Park day, ~13°: warm layer + <b>waterproof jacket</b>, trainers everyone. Aariv: fleece under jacket, spare socks &amp; full change of clothes in the daypack (playground puddles are a certainty).</div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → Diana Playground</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Diana+Memorial+Playground+London&travelmode=walking">🚶 ~55 min via Hyde Park</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Diana+Memorial+Playground+London&travelmode=transit">🚇 ~25 min · via Holborn</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Diana+Memorial+Playground+London&travelmode=driving">🚕 ~20 min</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Russell+Square+Station+London&travelmode=walking">🚶 hotel → Russell Sq 4 min</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Queensway+Station+London&destination=Diana+Memorial+Playground+London&travelmode=walking">🚶 Queensway → playground 5 min</a>
+    </div>
+  </div>
+</details>
+
+<details class="day">
+  <summary><span class="dn">MON 19</span><span class="dt">🦖 Dinosaurs — museum day</span><span class="dd">Day 3</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p><b>AM:</b> <b>Natural History Museum</b> at 10:00 (free, pre-book slot) — T. rex first. <b>PM:</b> <b>Science Museum</b> next door — The Garden play zone for under-6s. Rest stop between if he's flagging.</p>
+    <div class="spend"><b>💰 Today ~£65 (₹8,400)</b>Both museums free · 🚇 ~£12 · 🍽️ ~£55. Carry £20–30 cash.</div>
+    <div class="wear"><b>👕 Wear</b> Museums run warm: light layers you can shed, comfiest trainers (8,000+ steps today). Aariv: t-shirt under a zip hoodie — easy on/off indoors.</div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → Natural History Museum</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Natural+History+Museum+London&travelmode=walking">🚶 ~55 min</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Natural+History+Museum+London&travelmode=transit">🚇 15 min · Piccadilly direct</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Natural+History+Museum+London&travelmode=driving">🚕 ~20 min</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Russell+Square+Station+London&travelmode=walking">🚶 hotel → Russell Sq 4 min</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=South+Kensington+Station+London&destination=Natural+History+Museum+London&travelmode=walking">🚶 South Ken → museum 5 min</a>
+    </div>
+  </div>
+</details>
+
+<details class="day">
+  <summary><span class="dn">TUE 20</span><span class="dt">🐻 Paddington + SEA LIFE + Eye</span><span class="dd">Day 4</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p>All in one building (County Hall): <b>AM</b> Paddington Bear Experience (pre-book) → <b>midday</b> SEA LIFE aquarium → <b>PM</b> London Eye rotation (under-3s free — he still qualifies!) + Big Ben photo from Westminster Bridge.</p>
+    <div class="spend"><b>💰 Today ~£240 (₹31,000) — priciest day</b>🐻 Paddington ~£85 + 🎡 Eye+SEA LIFE combo ~£95 (Aariv free) · 🚌 £3.50 · 🍽️ ~£55. Book combos online = cheaper. Carry £20–30 cash.</div>
+    <div class="wear"><b>👕 Wear</b> Riverside = windier than it looks: windproof jacket over a warm layer, trainers. Aariv: jacket zipped + hat for the bridge photos.</div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → County Hall (South Bank)</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=County+Hall+London&travelmode=walking">🚶 ~35 min</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=County+Hall+London&travelmode=transit">🚌 Bus 59/68 ~25 min · top deck!</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=County+Hall+London&travelmode=driving">🚕 ~15 min</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Waterloo+Station+London&destination=County+Hall+London&travelmode=walking">🚶 Waterloo → County Hall 5 min</a>
+    </div>
+  </div>
+</details>
+
+<details class="day">
+  <summary><span class="dn">WED 21</span><span class="dt">🚄 Train to Edinburgh</span><span class="dd">Day 5</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p>Leave big bags with the hotel (returning on the 24th) — go light. <b>King's Cross by 10:40</b>: Platform 9¾ photo, then <b>11:03 LNER</b>, Coach A 55–56 → Waverley 15:34. Check in at <b>Mount Royal, 53 Princes St</b> (conf. 6263.527.000, PIN 7709). Evening: first Royal Mile amble + Grassmarket dinner.</p>
+    <div class="spend"><b>💰 Today ~£80 (₹10,300)</b>Train paid ✓ · 🚕 £10 bags taxi · 🍽️ ~£65 (train lunch + dinner). Carry £30–40 + passports.</div>
+    <div class="wear"><b>👕 Wear</b> Comfy train clothes. Pack Edinburgh's warmer kit in the small bag: hats, gloves, warm layers — it's 3–4° colder up north. Aariv: window seat on the right for sea views.</div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → King's Cross</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Kings+Cross+Station&travelmode=walking">🚶 10 min</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Kings+Cross+Station&travelmode=driving">🚕 5 min · with bags</a>
+    </div>
+    <p class="tip">Flex tickets valid on 09:53–12:13 departures; seats held only on the 11:03.</p>
+  </div>
+</details>
+
+<details class="day">
+  <summary><span class="dn">THU 22</span><span class="dt">🏰 Edinburgh Castle &amp; Old Town</span><span class="dd">Day 6</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p><b>AM:</b> <b>Edinburgh Castle</b> 10:00 slot (cannons! Skip the LOUD 13:00 gun if he's noise-sensitive). <b>PM:</b> Victoria Street, Greyfriars Bobby (rub the nose), free <b>National Museum of Scotland</b> toddler galleries. Arrange tomorrow's cake with the hotel tonight.</p>
+    <div class="spend"><b>💰 Today ~£110 (₹14,200)</b>🏰 Castle £43 (under-5 free) · museum free · 🍽️ ~£55 · optional Camera Obscura ~£45. Carry £20–30 cash.</div>
+    <div class="wear"><b>👕 Wear</b> Coldest, windiest stop of the trip — castle esplanade especially. Warmest jacket + hat + gloves for Aariv, grippy shoes for cobbles. Layers for the museum after.</div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → Edinburgh Castle</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Royal+Hotel+Edinburgh&destination=Edinburgh+Castle&travelmode=walking">🚶 15 min · uphill</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Royal+Hotel+Edinburgh&destination=Edinburgh+Castle&travelmode=driving">🚕 ~7 min</a>
+    </div>
+  </div>
+</details>
+
+<details class="day bday" open>
+  <summary><span class="dn">🎂 FRI 23</span><span class="dt">Aariv turns 3! Zoo day</span><span class="dd">Day 7</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p><b>AM:</b> birthday breakfast + <b>Edinburgh Zoo</b> — penguins, koalas, Penguin Parade (check time on arrival). <b>Wet backup:</b> Dynamic Earth or Camera Obscura's mirror maze. <b>PM:</b> nap, Halloween-y Royal Mile windows, Museum Context Harry Potter shop. <b>Eve:</b> birthday pizza at Civerinos, cake, lamp-lit walk down the Mile.</p>
+    <div class="spend"><b>💰 Today ~£155 (₹20,000) 🎂</b>🦁 Zoo ~£55–65 · 🚌 £4 · birthday dinner + cake ~£80. Carry £40–50 cash for treats.</div>
+    <div class="wear"><b>👕 Wear</b> Zoo is outdoors on a hillside: warm + waterproof + spare socks for everyone. The birthday outfit moment: dress him up for breakfast/cake photos, practical clothes for the zoo — or a birthday t-shirt under the fleece.</div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → Edinburgh Zoo</span>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Royal+Hotel+Edinburgh&destination=Edinburgh+Zoo&travelmode=transit">🚌 26/31/100 ~15 min · tap Infinia</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Royal+Hotel+Edinburgh&destination=Edinburgh+Zoo&travelmode=driving">🚕 ~12 min · £12–15</a>
+    </div>
+  </div>
+</details>
+
+<details class="day">
+  <summary><span class="dn">SAT 24</span><span class="dt">🚄 Back to London</span><span class="dd">Day 8</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p><b>AM:</b> checkout 11:00, bags at reception → <b>Calton Hill</b> view (10-min climb). <b>12:52 Avanti</b> from Waverley — Coach J 18–19, Standard Premium (refreshments incl.) → <b>Euston 18:38</b>. 12-min walk to the Holiday Inn (conf. 5916.896.219, PIN 1680 — sofa-bed room, Aariv on the booking). Collect stored bags, pack for the flight: heavy stuff in the 32kg bag.</p>
+    <div class="spend"><b>💰 Today ~£80 (₹10,300)</b>Train paid ✓ (refreshments incl.) · 🚕 £12 taxis · 🍽️ ~£60. Carry £30–40 + passports.</div>
+    <div class="wear"><b>👕 Wear</b> Comfy travel layers; 5¾ hrs on the train — downloaded cartoons are today's real essential. Keep one warm layer handy for Calton Hill wind.</div>
+    <div class="routes"><span class="rlbl">🧭 Euston → hotel (evening)</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Euston+Station&destination=Holiday+Inn+London+Bloomsbury&travelmode=walking">🚶 12 min</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Euston+Station&destination=Holiday+Inn+London+Bloomsbury&travelmode=driving">🚕 5 min · with bags</a>
+    </div>
+    <p class="tip">Tickets valid ONLY on the 12:52 — be at Waverley by 12:30.</p>
+  </div>
+</details>
+
+<details class="day">
+  <summary><span class="dn">SUN 25</span><span class="dt">✈️ Fly home</span><span class="dd">Day 9</span><span class="arrow">▶</span></summary>
+  <div class="dbody">
+    <p>Clocks <b>fall back 1 hr</b> overnight (bonus sleep — flight time 22:00 is new time). Two ways to spend the morning:</p>
+    <p><b>Option A — 🛍️ Bicester Village</b> (Chhavi's pick!): checkout &amp; leave bags at reception by 8:45 → train from <b>Marylebone ~9:10</b>, arrive 10:00 as boutiques open → shop till ~13:30 → back at Marylebone 14:30, hotel 15:00. Burberry, Coach, Boss &amp; 150 more at 30–60% off. ⚠️ Remember: 1 checked bag each home (one 32kg) — and no VAT refund in the UK anymore, the tag price is final. Kids' play area near the centre for Aariv + Papa while Mumma shops.</p>
+    <p><b>Option B — relaxed:</b> British Museum mummies or Coram's Fields playground. <b>~17:30</b> leave for <b>Heathrow T2</b> — taxi ~50 min, or Piccadilly line direct from Russell Sq. <b>AI-2016</b> 22:00 → DEL 13:15 Mon, seats 23A/B/C, 1 bag each (one upgraded to 32kg). PNR EF3LZT.</p>
+    <div class="spend"><b>💰 Today ~£80 (₹10,300) + shopping</b>🚕 Airport taxi £45–60 · 🍽️ ~£25 · Option A adds ~£55 travel (taxi + trains) + whatever Bicester does to the Infinia 😉. Carry passports + spend coins down.</div>
+    <div class="wear"><b>👕 Wear</b> Plane comfies again; layers off as you head south. Keep printed visas, passports and the ₹/£ receipts pouch in the cabin bag — Indian emigration wants hard copies.</div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → Bicester Village (Option A)</span>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Marylebone+Station+London&travelmode=driving">🚕 to Marylebone ~15 min · £14</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Marylebone+Station+London&destination=Bicester+Village+Station&travelmode=transit">🚆 Chiltern 46 min · ~£25 rtn</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Bicester+Village+Station&destination=Bicester+Village&travelmode=walking">🚶 station → village 2 min</a>
+    </div>
+    <div class="routes"><span class="rlbl">🧭 Hotel → Heathrow T2</span>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Heathrow+Terminal+2&travelmode=transit">🚇 Piccadilly ~55 min · £5.90</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Heathrow+Terminal+2&travelmode=driving">🚕 ~50 min · £45–60</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+London+Bloomsbury&destination=Russell+Square+Station+London&travelmode=walking">🚶 hotel → Russell Sq 4 min</a>
+    </div>
+  </div>
+</details>
+
+<p class="note">Tap any day to expand · 🎂 and Day 1 start open</p>
+</section>
+
+<!-- ============ PAGE: MAPS ============ -->
+<section class="page" id="pg-maps">
+<h2>📍 Tap a card for the map</h2>
+
+<h3 class="qhead">🇬🇧 London base — Bloomsbury</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Holiday+Inn+London+Bloomsbury+Coram+Street+WC1N+1HT"><span class="qe">🏨</span><span class="qt">Holiday Inn Bloomsbury</span><span class="qs">Coram St · +44 871 942 9222</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Russell+Square+Underground+Station+London"><span class="qe">🚇</span><span class="qt">Russell Square</span><span class="qs">Piccadilly line · 4-min walk</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Kings+Cross+Station+London"><span class="qe">🚉</span><span class="qt">King's Cross</span><span class="qs">Train north · 10-min walk</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Euston+Station+London"><span class="qe">🚉</span><span class="qt">Euston</span><span class="qs">Arrive 24 Oct · 12-min walk</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Waitrose+Brunswick+Centre+London"><span class="qe">🛒</span><span class="qt">Waitrose Brunswick</span><span class="qs">Milk for Aariv · 2 min</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Corams+Fields+London"><span class="qe">🎠</span><span class="qt">Coram's Fields</span><span class="qs">Playground · 3 min</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=British+Museum+London"><span class="qe">🏛️</span><span class="qt">British Museum</span><span class="qs">Free · 8-min walk</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/McDonalds/@51.5246,-0.1235,15z"><span class="qe">🍟</span><span class="qt">McDonald's near hotel</span><span class="qs">Fries emergency</span><span class="qm">Search ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/iced+coffee/@51.5246,-0.1235,15z"><span class="qe">🥤</span><span class="qt">Cold coffee near hotel</span><span class="qs">Pret · Costa · Nero</span><span class="qm">Search ↗</span></a>
+</div>
+
+<h3 class="qhead">🎡 London days out</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Diana+Memorial+Playground+London"><span class="qe">🏴‍☠️</span><span class="qt">Diana Playground</span><span class="qs">Kensington Gardens</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Natural+History+Museum+London"><span class="qe">🦖</span><span class="qt">Natural History Museum</span><span class="qs">Free · pre-book slot</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Science+Museum+London"><span class="qe">🔬</span><span class="qt">Science Museum</span><span class="qs">The Garden · free</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Paddington+Bear+Experience+County+Hall+London"><span class="qe">🐻</span><span class="qt">Paddington Experience</span><span class="qs">County Hall</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=London+Eye"><span class="qe">🎡</span><span class="qt">Eye + SEA LIFE</span><span class="qs">Under-3s ride free</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Heathrow+Terminal+2"><span class="qe">✈️</span><span class="qt">Heathrow T2</span><span class="qs">25 Oct · 22:00</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bicester+Village"><span class="qe">🛍️</span><span class="qt">Bicester Village</span><span class="qs">Outlet · 46 min from Marylebone</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edinburgh — Princes Street</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Mount+Royal+Hotel+53+Princes+Street+Edinburgh"><span class="qe">🏨</span><span class="qt">Mount Royal</span><span class="qs">53 Princes St · +44 131 226 8417</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Edinburgh+Waverley+Station"><span class="qe">🚉</span><span class="qt">Waverley</span><span class="qs">5-min flat walk</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Edinburgh+Castle"><span class="qe">🏰</span><span class="qt">Edinburgh Castle</span><span class="qs">10:00 slot, 22 Oct</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Camera+Obscura+Edinburgh"><span class="qe">🌀</span><span class="qt">Camera Obscura</span><span class="qs">Mirror maze</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Victoria+Street+Edinburgh"><span class="qe">🌈</span><span class="qt">Victoria Street</span><span class="qs">+ Museum Context shop</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Greyfriars+Bobby+Statue+Edinburgh"><span class="qe">🐕</span><span class="qt">Greyfriars Bobby</span><span class="qs">Rub his nose!</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=National+Museum+of+Scotland"><span class="qe">🏛️</span><span class="qt">National Museum</span><span class="qs">Free · toddler galleries</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Edinburgh+Zoo"><span class="qe">🦁</span><span class="qt">Edinburgh Zoo 🎂</span><span class="qs">Bus 26/31/100</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Calton+Hill+Edinburgh"><span class="qe">⛰️</span><span class="qt">Calton Hill</span><span class="qs">Postcard view</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Dynamic+Earth+Edinburgh"><span class="qe">🌋</span><span class="qt">Dynamic Earth</span><span class="qs">Rainy-day backup</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Sainsburys+Princes+Street+Edinburgh"><span class="qe">🛒</span><span class="qt">Sainsbury's</span><span class="qs">Milk · 2 min</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/McDonalds/@55.9533,-3.1965,15z"><span class="qe">🍟</span><span class="qt">McDonald's nearby</span><span class="qs">Fries emergency</span><span class="qm">Search ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/iced+coffee/@55.9533,-3.1965,15z"><span class="qe">🥤</span><span class="qt">Cold coffee nearby</span><span class="qs">All along Princes St</span><span class="qm">Search ↗</span></a>
+</div>
+</section>
+
+<!-- ============ PAGE: PACK ============ -->
+<section class="page" id="pg-pack">
+<h2>🎒 Packing</h2>
+<p class="note">Checkboxes are for in-the-moment ticking — they reset if you reload the page.</p>
+
+<div class="panel">
+  <h4>📄 Documents pouch (cabin bag, never checked)</h4>
+  <label class="ck"><input type="checkbox"> Passports ×3 (valid 6+ months)</label>
+  <label class="ck"><input type="checkbox"> Printed UK visas ×3 — hard copies mandatory at Indian emigration</label>
+  <label class="ck"><input type="checkbox"> Flight PNRs: IndiGo VB97QZ · Air India EF3LZT (print both)</label>
+  <label class="ck"><input type="checkbox"> Train tickets: LNER (Trainline MV948056) + Avanti (22343793) on phone + printed</label>
+  <label class="ck"><input type="checkbox"> Hotel confirmations ×3 (5882.748.000 / 6263.527.000 / 5916.896.219)</label>
+  <label class="ck"><input type="checkbox"> Aariv's birth certificate copy + travel insurance</label>
+  <label class="ck"><input type="checkbox"> HDFC Infinia ×2 + one backup card, ~£50 cash</label>
+</div>
+
+<div class="panel">
+  <h4>👕 Adults (30kg each out, 1 bag back — leave shopping room)</h4>
+  <label class="ck"><input type="checkbox"> Waterproof jackets ×2 — worn most days</label>
+  <label class="ck"><input type="checkbox"> Warm mid-layers (fleece/sweater) ×3 each</label>
+  <label class="ck"><input type="checkbox"> T-shirts/tops ×6, jeans/trousers ×3 each</label>
+  <label class="ck"><input type="checkbox"> One warm hat + gloves each (Edinburgh wind is real)</label>
+  <label class="ck"><input type="checkbox"> Trainers (broken-in!) + one evening pair</label>
+  <label class="ck"><input type="checkbox"> Small foldable daypack for days out</label>
+  <label class="ck"><input type="checkbox"> UK plug adapters (Type G) ×2 + power bank</label>
+</div>
+
+<div class="panel">
+  <h4>🧒 Aariv</h4>
+  <label class="ck"><input type="checkbox"> Warm waterproof jacket + fleeces ×2</label>
+  <label class="ck"><input type="checkbox"> Outfits ×6–7 (playground days = 2/day) + birthday outfit 🎂</label>
+  <label class="ck"><input type="checkbox"> Warm hat, gloves, spare socks everywhere</label>
+  <label class="ck"><input type="checkbox"> Walking shoes (grippy, broken-in) + backup pair</label>
+  <label class="ck"><input type="checkbox"> His own sippy cup + snack box + comfort toy</label>
+  <label class="ck"><input type="checkbox"> Kids' paracetamol (Calpol available at Boots too), thermometer, plasters</label>
+  <label class="ck"><input type="checkbox"> Tablet loaded with cartoons for the two long trains ✈️🚄</label>
+  <label class="ck"><input type="checkbox"> Compact carrier for shoulder-ride bursts (no stroller)</label>
+</div>
+
+<div class="panel">
+  <h4>🎂 Birthday kit (hide from Aariv)</h4>
+  <label class="ck"><input type="checkbox"> Small decorations/balloons for the hotel room (ask Mount Royal to help)</label>
+  <label class="ck"><input type="checkbox"> Birthday gift, wrapped, packed flat</label>
+  <label class="ck"><input type="checkbox"> Candles + lighter alternative (ask restaurant)</label>
+</div>
+</section>
+
+<!-- ============ PAGE: TICKETS ============ -->
+<section class="page" id="pg-tickets">
+<h2>🎟️ Tickets &amp; Bookings</h2>
+
+<h3 class="qhead">⏳ Pending — book these</h3>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🛂 UK Visas ×3 — Standard Visitor</span><span class="td2">DO NOW · £135 each</span></div>
+  <div class="tr">Apply on gov.uk only · ~3 weeks after VFS biometrics (Aariv attends, photo only) · carry PRINTED visas</div>
+  <div class="tb"><a class="bk urgent" target="_blank" rel="noopener" href="https://www.gov.uk/standard-visitor/apply-standard-visitor-visa">Apply on gov.uk ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://visa.vfsglobal.com/ind/en/gbr/">VFS centres ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🐻 Paddington Bear Experience</span><span class="td2">Tue 20 Oct AM · ~£85 family</span></div>
+  <div class="tr">Timed entry — book 2–3 weeks out · County Hall, South Bank</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.paddingtonbearexperience.com/">Book ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🎡 London Eye + SEA LIFE combo</span><span class="td2">Tue 20 Oct PM · ~£95 (Aariv free)</span></div>
+  <div class="tr">Combo online is meaningfully cheaper than gate · under-3s free — he qualifies!</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.londoneye.com/tickets-and-prices/">Book Eye combo ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🦖 Natural History Museum slot</span><span class="td2">Mon 19 Oct 10:00 · FREE</span></div>
+  <div class="tr">Free timed ticket · book ~1–2 weeks out</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.nhm.ac.uk/visit.html">Book free slot ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🏰 Edinburgh Castle</span><span class="td2">Thu 22 Oct 10:00 · £43 (2 adults)</span></div>
+  <div class="tr">Timed entry, under-5 free · book the 10:00 slot</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.edinburghcastle.scot/plan-your-visit/tickets">Book ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🦁 Edinburgh Zoo 🎂</span><span class="td2">Fri 23 Oct · ~£55–65</span></div>
+  <div class="tr">Cheaper online · check Penguin Parade time on arrival · birthday morning anchor</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.edinburghzoo.org.uk/tickets/">Book ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🎂 Birthday dinner + cake</span><span class="td2">Fri 23 Oct eve</span></div>
+  <div class="tr">Reserve a table (Civerinos = fun + toddler-proof) · arrange cake with restaurant or Mount Royal</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.civerinos.com/">Civerinos ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://maps.google.com/?q=family+restaurants+near+Princes+Street+Edinburgh">More options ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🛍️ Bicester Village trains (Option A, 25 Oct)</span><span class="td2">Optional · ~£25 rtn pp</span></div>
+  <div class="tr">Chiltern Railways from Marylebone · book advance for cheaper fares · Aariv free · Sunday opening 10:00</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.chilternrailways.co.uk/bicester-village">Book train ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.thebicestercollection.com/bicester-village/en/visit">Village info ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">🍽️ Airline meals</span><span class="td2">2 weeks out</span></div>
+  <div class="tr">AI child meal for Aariv + IndiGo meal pre-order</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.airindia.com/in/en/manage/manage-booking.html">Air India ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.goindigo.in/edit-booking.html">IndiGo ↗</a></div>
+</div>
+
+<div class="tkt pend">
+  <div class="th"><span class="tn">📶 UK eSIM + 🚕 arrival taxi</span><span class="td2">1 week out</span></div>
+  <div class="tr">eSIM ~₹1,000–1,500 for 10 days · pre-book 17 Oct LHR pickup (child seat optional — taxis exempt)</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.airalo.com/united-kingdom-esim">Airalo ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.addisonlee.com/">Addison Lee ↗</a></div>
+</div>
+
+<h3 class="qhead">✅ Booked — refs &amp; manage links</h3>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">✈️ IndiGo 6E3 · DEL → LHR</span><span class="td2">Sat 17 Oct · 11:10 → 18:10</span></div>
+  <div class="tr">Seats 14A/B/C · 30kg each · Booking.com <b>40-1069523777</b> · PIN <b>1331</b> · ref <b>VB97QZ</b></div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.goindigo.in/edit-booking.html">Manage ↗</a></div>
+</div>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">🚄 LNER · King's Cross → Waverley</span><span class="td2">Wed 21 Oct · 11:03 → 15:34</span></div>
+  <div class="tr">Coach A, seats <b>55–56</b> · Flex (valid 09:53–12:13) · Trainline <b>MV948056</b></div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.thetrainline.com/my-bookings">My bookings ↗</a></div>
+</div>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">🚄 Avanti · Waverley → Euston</span><span class="td2">Sat 24 Oct · 12:52 → 18:38</span></div>
+  <div class="tr">Coach J, seats <b>18–19</b> · Std Premium · booking <b>22343793</b> / NRS <b>DU983394</b> · ONLY the 12:52</div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.avantiwestcoast.co.uk/help/contact-us">Avanti ↗</a></div>
+</div>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">✈️ Air India AI-2016 · LHR T2 → DEL</span><span class="td2">Sun 25 Oct · 22:00 → 13:15 +1</span></div>
+  <div class="tr">Seats 23A/B/C · 1 bag each (one <b>32kg</b>) · PNR <b>EF3LZT</b> · EMT169387829</div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.airindia.com/in/en/manage/manage-booking.html">Manage ↗</a></div>
+</div>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">🏨 Holiday Inn Bloomsbury</span><span class="td2">17–21 Oct · 4 nights</span></div>
+  <div class="tr">Standard King · conf <b>5882.748.000</b> · PIN <b>9456</b> · free cancel till 16 Oct 16:00 · ⚠️ add Aariv + ask luggage storage</div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://secure.booking.com/myreservations.html">Booking.com ↗</a></div>
+</div>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">🏨 Mount Royal, Edinburgh</span><span class="td2">21–24 Oct · 3 nights</span></div>
+  <div class="tr">Superior King castle view · conf <b>6263.527.000</b> · PIN <b>7709</b> · free cancel till 19 Oct 23:59 · ⚠️ confirm cot + birthday 🎂</div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://secure.booking.com/myreservations.html">Booking.com ↗</a></div>
+</div>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">🏨 Holiday Inn Bloomsbury (return)</span><span class="td2">24–25 Oct · 1 night</span></div>
+  <div class="tr">Double + sofa bed · Aariv on booking ✓ · conf <b>5916.896.219</b> · PIN <b>1680</b> · free cancel till 16 Oct 23:59</div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://secure.booking.com/myreservations.html">Booking.com ↗</a></div>
+</div>
+</section>
+
+<!-- ============ PAGE: COSTS ============ -->
+<section class="page" id="pg-costs">
+<h2>💰 Costs (₹)</h2>
+<div class="tblwrap"><table>
+  <tr><th>Item</th><th>Amount</th><th>Status</th></tr>
+  <tr><td>✈️ Flights out — IndiGo 6E3</td><td>₹95,549</td><td>✅ Paid</td></tr>
+  <tr><td>✈️ Flights back — AI-2016</td><td>₹150,073</td><td>✅ Paid</td></tr>
+  <tr><td>🚄 Trains — London ⇄ Edinburgh</td><td>≈ ₹62,950</td><td>✅ Paid (both directions, premium seats back)</td></tr>
+  <tr><td>🏨 Holiday Inn ×4 nights</td><td>₹146,296</td><td>💷 Pay at hotel (£1,136)</td></tr>
+  <tr><td>🏨 Mount Royal ×3 nights</td><td>₹89,593</td><td>💷 Pay at hotel (£695.70)</td></tr>
+  <tr><td>🏨 Holiday Inn ×1 night</td><td>₹35,048</td><td>💷 Pay at hotel (£272.15)</td></tr>
+  <tr><td><b>Σ Booked so far</b></td><td><b>≈ ₹5,79,500</b></td><td><b>✅ ₹3,08,570 paid</b> · 💷 ₹2,70,937 at hotels</td></tr>
+  <tr><td>🛂 Visas ×3 (£135 each)</td><td>≈ ₹52,000</td><td>⏳ Upcoming</td></tr>
+  <tr><td>🎟️ Attractions</td><td>≈ ₹35–45,000</td><td>📊 Estimate · under-5 mostly free</td></tr>
+  <tr><td>🍽️ Meals (9 days)</td><td>≈ ₹90,000–1,15,000</td><td>📊 Estimate</td></tr>
+  <tr><td>🚕 Transport &amp; airport runs</td><td>≈ ₹20–25,000</td><td>📊 Estimate</td></tr>
+  <tr><td><b>Σ Likely total (excl. 🛍️)</b></td><td><b>≈ ₹7.8–8.2 lakh</b></td><td>💱 GBP at ~₹129/£</td></tr>
+</table></div>
+
+<h2>👛 Daily wallet &amp; bag — what to carry</h2>
+<div class="panel">
+  <h4>Every single day (the base kit)</h4>
+  <ul>
+    <li>💳 One <b>Infinia each</b> (never both cards in one wallet — if one bag is lost, the other still pays)</li>
+    <li>💷 <b>£30–40 cash total</b> between you (a £20 + a £10 + coins) — 90% of days you won't touch it</li>
+    <li>🪪 <b>Phone photos of passports + visas</b> — the real ones stay in the hotel safe except on travel days</li>
+    <li>🔑 Hotel key card · 📱 phone + power bank · 🎒 Aariv's snack box, sippy cup, wipes, one spare outfit</li>
+  </ul>
+</div>
+<div class="tblwrap"><table>
+  <tr><th>Day</th><th>💷 Cash on you</th><th>🛂 Passports?</th><th>Extra that day</th></tr>
+  <tr><td>✈️ Sat 17</td><td>£40</td><td><b>YES — all 3</b> + printed visas</td><td>Infinia ×2, arrival taxi is card-payable</td></tr>
+  <tr><td>🏴‍☠️ Sun 18</td><td>£20–30</td><td>No — safe</td><td>Playground snacks; everything else taps</td></tr>
+  <tr><td>🦖 Mon 19</td><td>£20–30</td><td>No — safe</td><td>Museums free; card for lunch</td></tr>
+  <tr><td>🐻 Tue 20</td><td>£20–30</td><td>No — safe</td><td>Pre-booked tickets on phone</td></tr>
+  <tr><td>🚄 Wed 21</td><td>£30–40</td><td><b>YES — all 3</b> (hotel check-in)</td><td>Train tickets on phone + printed; card used at Mount Royal check-in must be the one you'll pay with</td></tr>
+  <tr><td>🏰 Thu 22</td><td>£20–30</td><td>No — safe</td><td>Castle tickets on phone</td></tr>
+  <tr><td>🎂 Fri 23</td><td><b>£40–50</b></td><td>No — safe</td><td>Birthday buffer: cake pickup, treats, zoo extras, a small tip for any birthday fuss</td></tr>
+  <tr><td>🚄 Sat 24</td><td>£30–40</td><td><b>YES — all 3</b> (hotel check-in)</td><td>Both train tickets + Holiday Inn conf. handy</td></tr>
+  <tr><td>✈️ Sun 25</td><td>Spend it down</td><td><b>YES — all 3</b> + printed visas</td><td>Use leftover coins at Boots/WHSmith at Heathrow; keep ~£10 for surprises</td></tr>
+</table></div>
+<p class="note">Why so little cash? The UK is near-cashless — your own hotel refuses cash. Tips: restaurants auto-add 12.5% service (check the bill, don't double-tip); taxis just round up. Exchange ~£100 in India before flying and you'll likely bring some home.</p>
+
+<div class="panel" style="margin-top:10px">
+  <h4>💳 Money rules of thumb</h4>
+  <ul>
+    <li>💳 Tap the <b>Infinia</b> everywhere (2% markup, ~3.3% back in points — you net ahead). Always choose <b>"pay in GBP"</b>, never INR (DCC rip-off), especially at hotel checkouts.</li>
+    <li>🚇 Tube: tap in/out, same card per person. Zones 1–2 single £3.10 off-peak, <b>daily cap £8.90</b>. Heathrow via Piccadilly £5.90. Aariv free everywhere.</li>
+    <li>🚌 Buses £1.75 flat (cap £5.25) — cheaper + Aariv loves the top deck.</li>
+    <li>🚕 Taxis only for: both airport runs (Uber ~£45–60) + tired-toddler emergencies (~£8–10). Budget ₹20–25k.</li>
+    <li>💷 Euros do NOT work in the UK — pounds only. Keep just ~£50 cash; your hotel doesn't even take cash.</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ PAGE: INFO ============ -->
+<section class="page" id="pg-info">
+<h2>ℹ️ Bookings &amp; Info</h2>
+
+<div class="tblwrap"><table>
+  <tr><th>Booking</th><th>Detail</th><th>Ref</th></tr>
+  <tr><td>✈️ Out · Sat 17</td><td>IndiGo 6E3 · DEL 11:10 → LHR 18:10 · 14A/B/C · 30kg each</td><td>Booking.com 40-1069523777 · PIN 1331 · VB97QZ</td></tr>
+  <tr><td>🚄 Wed 21</td><td>LNER 11:03 KGX → Waverley 15:34 · Coach A 55–56 · Flex (09:53–12:13 valid)</td><td>Trainline MV948056</td></tr>
+  <tr><td>🚄 Sat 24</td><td>Avanti 12:52 Waverley → Euston 18:38 · Coach J 18–19 · Std Premium</td><td>22343793 / DU983394</td></tr>
+  <tr><td>✈️ Back · Sun 25</td><td>AI-2016 · LHR T2 22:00 → DEL 13:15 (+1) · 23A/B/C · 1 bag each, one 32kg</td><td>PNR EF3LZT · EMT169387829</td></tr>
+  <tr><td>🏨 17–21</td><td>Holiday Inn Bloomsbury · Standard King · kids under 13 eat free · £30 deposit</td><td>5882.748.000 · PIN 9456</td></tr>
+  <tr><td>🏨 21–24</td><td>Mount Royal, 53 Princes St · Superior King castle view · cot requested</td><td>6263.527.000 · PIN 7709</td></tr>
+  <tr><td>🏨 24–25</td><td>Holiday Inn Bloomsbury · Double + sofa bed · Aariv on booking ✓</td><td>5916.896.219 · PIN 1680</td></tr>
+</table></div>
+
+<h2>🌦️ Weather</h2>
+<div class="tblwrap"><table>
+  <tr><th></th><th>London</th><th>Edinburgh</th></tr>
+  <tr><td>🌡️ Day high</td><td>13–15 °C</td><td>10–12 °C</td></tr>
+  <tr><td>🌙 Night</td><td>8–10 °C</td><td>4–7 °C</td></tr>
+  <tr><td>🌧️ Rain</td><td>Showers 2–3 of your days</td><td>Wetter, windier 💨 — hats essential</td></tr>
+  <tr><td>🌅 Daylight</td><td>~07:35–17:50</td><td>~08:00–17:45</td></tr>
+</table></div>
+<p class="note">Outdoor anchors in the mornings; light fades by ~5:45pm. Clocks go back on your final morning (25 Oct). Check the live forecast around 12–14 Oct before packing. Museums &amp; the Tube run warm — layers over thickness.</p>
+
+<h2>✅ Still to do</h2>
+<div class="panel">
+  <label class="ck"><input type="checkbox"> <b>UK visas ×3</b> — apply on gov.uk NOW (£135 each, ~3 weeks, biometrics at VFS; Aariv attends, photo only)</label>
+  <label class="ck"><input type="checkbox"> Message Holiday Inn: add Aariv to the 17–21 booking + luggage storage 21–24</label>
+  <label class="ck"><input type="checkbox"> Message Mount Royal: confirm cot, note child guest (2 at check-in, 3 mid-stay 🎂), birthday touch</label>
+  <label class="ck"><input type="checkbox"> Send leave email to Tanuj sir (draft ready in Gmail: 19, 21, 22, 23, 26 Oct)</label>
+  <label class="ck"><input type="checkbox"> ~2 wks out: WB-free plan needs nothing, but book Paddington Experience, NHM slot, Edinburgh Castle 10:00 (22 Oct), zoo tickets</label>
+  <label class="ck"><input type="checkbox"> Book birthday dinner table + cake for 23 Oct</label>
+  <label class="ck"><input type="checkbox"> AI child meal via Manage Booking + IndiGo meals</label>
+  <label class="ck"><input type="checkbox"> Airport taxi pre-book for 17 Oct arrival (child seat optional — taxis exempt)</label>
+</div>
+
+<h2>🧭 Route-card convention (how every day is built)</h2>
+<div class="panel">
+  <ul>
+    <li>Every day card ends with ONE route bar, always in the same order: <b>🚶 walk (green)</b> · <b>🚇/🚌 tube-bus (blue)</b> · <b>🚕 taxi (gold)</b>, each pill showing time (+ cost where it matters).</li>
+    <li>Tube/bus days also get green <b>micro-legs</b>: 🚶 hotel → nearest station, and 🚶 destination station → venue — so the walking bits at each end are one tap too.</li>
+    <li>Every pill opens Google Maps in its matching travel mode, in a new tab.</li>
+    <li>Base stations: London = <b>Russell Square</b> (Piccadilly, 4 min from hotel) · Edinburgh = <b>Waverley</b> (5 min flat). Buses: 59/68 → Waterloo · 26/31/100 → zoo.</li>
+    <li>📌 Whenever the itinerary changes, rebuild the day card with this exact pattern: plan → 👕 wear → 💰 spend → route bar with micro-legs.</li>
+  </ul>
+</div>
+
+<h2>🧒 Toddler playbook</h2>
+<div class="panel">
+  <ul>
+    <li>⚓ One anchor activity + 😴 nap per day. Mornings out, afternoons slow.</li>
+    <li>🚶 Aariv walks ~1–2 km per outing — carrier/shoulders for the rest. Old Town is hilly.</li>
+    <li>🆓 Under-5s free: all transport, most attractions. London Eye free under 3 — he qualifies until the 23rd!</li>
+    <li>🥛 Milk: whole milk (blue cap) at Waitrose Brunswick / Sainsbury's Princes St; kettles in both hotel rooms; UHT cartons for trains; babyccinos at any café.</li>
+    <li>🍟 Fries: every kids' menu, McDonald's cards on the Maps page. Kids under 13 eat free at the Holiday Inn restaurant.</li>
+    <li>🍛 Ghar ka khana: Drummond Street (10 min from London hotel) is a classic Indian food street.</li>
+    <li>💊 Boots pharmacies everywhere for nappies/Calpol/anything forgotten.</li>
+    <li>🚨 Emergency: 999 (or 112). NHS non-emergency advice: 111.</li>
+  </ul>
+</div>
+
+<footer>Updated 13 Aug 2026 · Aviral, Chhavi &amp; Aariv · 🎂 Fri 23 Oct, Edinburgh</footer>
+</section>
+
+</div>
+
+<nav>
+  <button class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
+  <button data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
+  <button data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
+  <button data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
+  <button data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
+  <button data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
+</nav>
+
+<script>
+  const btns = document.querySelectorAll('nav button');
+  const pages = document.querySelectorAll('.page');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('on'));
+    pages.forEach(p => p.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.pg).classList.add('on');
+    window.scrollTo({top: 0});
+  }));
+</script>
+</body>
+</html>
