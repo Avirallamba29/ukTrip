@@ -39,7 +39,7 @@
   .chip.bday{background:var(--gold-soft);border-color:var(--gold);color:var(--gold)}
   /* bottom nav */
   nav{position:fixed;bottom:0;left:0;right:0;width:100%;height:calc(var(--nav-h) + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);display:flex;z-index:999;padding-bottom:max(env(safe-area-inset-bottom),6px);box-shadow:0 -4px 16px rgba(0,0,0,.08);transform:translateZ(0)}
-  nav button{flex:1;border:0;background:none;color:var(--muted);font-size:10.5px;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  nav button{flex:1;border:0;background:none;color:var(--muted);font-size:10.5px;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;padding:0;min-height:44px}
   nav button .ni{font-size:19px;line-height:1}
   nav button.on{color:var(--accent);font-weight:700}
   /* pages */
@@ -413,8 +413,8 @@
 <h3 class="qhead">⏳ Pending — book these</h3>
 
 <div class="tkt pend">
-  <div class="th"><span class="tn">🛂 UK Visas — biometrics MON 18 AUG, 3:00 PM</span><span class="td2">VFS Connaught Place · Premium Lounge</span></div>
-  <div class="tr">All 3 booked ✓ — Aviral GWF089842284 · Chhavi GWF089843429 · Aariv GWF089844138 · 27 Kasturba Gandhi Marg, CP, New Delhi<br>⚠️ BEFORE Monday: self-upload all documents (incl. colour scans of EVERY passport page, even blanks) on the VFS dashboard · carry printed appointment letters + passports + full document file · Aariv attends (photo only) · decision ~3 weeks → expect passports back early Sept</div>
+  <div class="th"><span class="tn">🛂 UK Visas — biometrics TUE 18 AUG, 3:00 PM</span><span class="td2">VFS Connaught Place · Premium Lounge</span></div>
+  <div class="tr">All 3 booked ✓ — Aviral GWF089842284 · Chhavi GWF089843429 · Aariv GWF089844138 · 27 Kasturba Gandhi Marg, CP, New Delhi<br>⚠️ BEFORE Tuesday: self-upload all documents (incl. colour scans of EVERY passport page, even blanks) on the VFS dashboard · carry printed appointment letters + passports + full document file · Aariv attends (photo only) · decision ~3 weeks → expect passports back early Sept</div>
   <div class="tb"><a class="bk urgent" target="_blank" rel="noopener" href="https://visa.vfsglobal.com/ind/en/gbr/">VFS dashboard — upload docs ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://maps.google.com/?q=VFS+Global+27+Kasturba+Gandhi+Marg+New+Delhi">Map ↗</a></div>
 </div>
 
@@ -506,13 +506,13 @@
 
 <div class="tkt done">
   <div class="th"><span class="tn">🏨 Holiday Inn Bloomsbury</span><span class="td2">17–21 Oct · 4 nights</span></div>
-  <div class="tr">Standard King · conf <b>5882.748.000</b> · PIN <b>9456</b> · free cancel till 16 Oct 16:00 · ⚠️ add Aariv + ask luggage storage</div>
+  <div class="tr">Standard King · conf <b>5882.748.000</b> · PIN <b>9456</b> · free cancel till 16 Oct 16:00 · Aariv added ✓ · luggage storage OK ✓</div>
   <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://secure.booking.com/myreservations.html">Booking.com ↗</a></div>
 </div>
 
 <div class="tkt done">
   <div class="th"><span class="tn">🏨 Mount Royal, Edinburgh</span><span class="td2">21–24 Oct · 3 nights</span></div>
-  <div class="tr">Superior King castle view · conf <b>6263.527.000</b> · PIN <b>7709</b> · free cancel till 19 Oct 23:59 · ⚠️ confirm cot + birthday 🎂</div>
+  <div class="tr">Superior King castle view · conf <b>6263.527.000</b> · PIN <b>7709</b> · free cancel till 19 Oct 23:59 · cot ✓ · birthday noted 🎂</div>
   <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://secure.booking.com/myreservations.html">Booking.com ↗</a></div>
 </div>
 
@@ -539,6 +539,16 @@
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Store+Street+Espresso+London"><span class="qe">☕</span><span class="qt">Store Street Espresso</span><span class="qs">Best flat white near the hotel · ~£10 for two coffees · iced too</span><span class="qm">Map ↗</span></a>
 </div>
 
+<h3 class="qhead">✨ London — vibe &amp; ambience places</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Dalloway+Terrace+London"><span class="qe">🌸</span><span class="qt">Dalloway Terrace</span><span class="qs">Flower-decked terrace, 5 min from hotel · ~£50 brunch for 2–3 · THE Bloomsbury vibe spot</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=ELAN+Cafe+London"><span class="qe">💐</span><span class="qt">EL&amp;N Café</span><span class="qs">The pink flower-wall café · several branches · ~£35 coffee+cake · peak Instagram</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Peggy+Porschen+Belgravia+London"><span class="qe">🎀</span><span class="qt">Peggy Porschen</span><span class="qs">Pink cake-parlour icon, Belgravia · ~£30 · queue for the doorway photo</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Churchill+Arms+Kensington+London"><span class="qe">🌺</span><span class="qt">Churchill Arms</span><span class="qs">London's flower-covered pub · cheap Thai inside ~£35 · near Kensington day</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Seven+Dials+Market+London"><span class="qe">🎪</span><span class="qt">Seven Dials Market</span><span class="qs">Covent Garden food hall · buzzy, kid-easy · ~£40, everyone picks their own</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Biscuiteers+Notting+Hill+London"><span class="qe">🍪</span><span class="qt">Biscuiteers</span><span class="qs">Icing café, Notting Hill · Aariv decorates his own biscuit · ~£25</span><span class="qm">Map ↗</span></a>
+</div>
+
 <h3 class="qhead">🍽️ Edinburgh — cafés &amp; good eats</h3>
 <div class="qgrid">
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Dishoom+Edinburgh"><span class="qe">🥘</span><span class="qt">Dishoom Edinburgh</span><span class="qs">St Andrew Sq · 5 min from hotel · ~£55 for 2–3 · book for dinner!</span><span class="qm">Map ↗</span></a>
@@ -549,6 +559,16 @@
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Mimis+Little+Bakehouse+Royal+Mile+Edinburgh"><span class="qe">🧁</span><span class="qt">Mimi's Bakehouse</span><span class="qs">Royal Mile · ~£18 for cake+coffees · birthday cake candidate 🎂</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Soderberg+Edinburgh"><span class="qe">🥐</span><span class="qt">Söderberg</span><span class="qs">Swedish bakery · ~£14 for buns+coffees</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Kebab+Mahal+Edinburgh"><span class="qe">🍛</span><span class="qt">Kebab Mahal</span><span class="qs">Legendary cheap curry near the museum · ~£24 for 2–3 · an institution</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">✨ Edinburgh — vibe &amp; ambience places</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Cold+Town+House+Grassmarket+Edinburgh"><span class="qe">🏰</span><span class="qt">Cold Town House</span><span class="qs">Rooftop with CASTLE VIEW · pizza · ~£45 for 2–3 · golden hour = magic</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Marys+Milk+Bar+Edinburgh"><span class="qe">🍦</span><span class="qt">Mary's Milk Bar</span><span class="qs">Legendary gelato facing the castle · ~£12 · birthday treat 🎂</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=The+Milkman+Cockburn+Street+Edinburgh"><span class="qe">☕</span><span class="qt">The Milkman</span><span class="qs">Tiny heritage coffee shop on cobbled Cockburn St · ~£10 · pure Old Town vibe</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Lovecrumbs+Edinburgh"><span class="qe">🍰</span><span class="qt">Lovecrumbs</span><span class="qs">Cake displayed in a piano · window seats · ~£18 · arty and warm</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=The+Lookout+by+Gardeners+Cottage+Calton+Hill+Edinburgh"><span class="qe">🌄</span><span class="qt">The Lookout</span><span class="qs">Glass box ON Calton Hill · view brunch ~£55 · fits Day 8 morning · book</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=The+Witchery+by+the+Castle+Edinburgh"><span class="qe">🕯️</span><span class="qt">The Witchery</span><span class="qs">Gothic candlelit opulence by the castle · splurge ~£120 · at least peek in</span><span class="qm">Map ↗</span></a>
 </div>
 
 </section>
@@ -635,10 +655,10 @@
 
 <h2>✅ Still to do</h2>
 <div class="panel">
-  <label class="ck"><input type="checkbox"> <b>Visa biometrics — Mon 18 Aug, 3:00 PM, VFS Connaught Place</b> (all 3 booked ✓). Before Monday: self-upload documents on the VFS dashboard; carry printed appointment letters, passports &amp; the full file.</label>
-  <label class="ck"><input type="checkbox"> Message Holiday Inn: add Aariv to the 17–21 booking + luggage storage 21–24</label>
-  <label class="ck"><input type="checkbox"> Message Mount Royal: confirm cot, note child guest (2 at check-in, 3 mid-stay 🎂), birthday touch</label>
-  <label class="ck"><input type="checkbox"> Send leave email to Tanuj sir (draft ready in Gmail: 19, 21, 22, 23, 26 Oct)</label>
+  <label class="ck"><input type="checkbox"> <b>Visa biometrics — TUE 18 Aug, 3:00 PM, VFS Connaught Place</b> (all 3 booked ✓). Before Tuesday: self-upload documents on the VFS dashboard; carry printed appointment letters, passports &amp; the full file.</label>
+  <label class="ck"><input type="checkbox" checked> ✅ Holiday Inn replied — Aariv added &amp; luggage storage confirmed</label>
+  <label class="ck"><input type="checkbox" checked> ✅ Mount Royal replied — cot &amp; child guest confirmed, birthday noted 🎂</label>
+  <label class="ck"><input type="checkbox" checked> ✅ Leave approved by Tanuj sir (19, 21, 22, 23, 26 Oct) — save the approval email for the visa file</label>
   <label class="ck"><input type="checkbox"> ~2 wks out: WB-free plan needs nothing, but book Paddington Experience, NHM slot, Edinburgh Castle 10:00 (22 Oct), zoo tickets</label>
   <label class="ck"><input type="checkbox"> Book birthday dinner table + cake for 23 Oct</label>
   <label class="ck"><input type="checkbox"> Early Oct: book <b>Sky Garden free slot</b> (releases ~3 wks ahead) + re-check the <b>guard-ceremony calendar</b> for your exact dates</label>
@@ -746,13 +766,13 @@
 </div>
 
 <nav>
-  <button class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
-  <button data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
-  <button data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
-  <button data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
-  <button data-pg="pg-food"><span class="ni">🍕</span>Food</button>
-  <button data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
-  <button data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
+  <button type="button" class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
+  <button type="button" data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
+  <button type="button" data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
+  <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
+  <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
+  <button type="button" data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
+  <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
 </nav>
 
 <script>
@@ -765,13 +785,17 @@
     const card = document.querySelector('details.day[data-date="' + iso + '"]');
     if (card) { card.open = true; setTimeout(() => card.scrollIntoView({behavior:'smooth', block:'start'}), 300); }
   })();
-  btns.forEach(b => b.addEventListener('click', () => {
+  function go(b){
+    if(!b || !b.dataset.pg) return;
+    const pg = document.getElementById(b.dataset.pg);
+    if(!pg) return;
     btns.forEach(x => x.classList.remove('on'));
     pages.forEach(p => p.classList.remove('on'));
     b.classList.add('on');
-    document.getElementById(b.dataset.pg).classList.add('on');
+    pg.classList.add('on');
     window.scrollTo({top: 0});
-  }));
+  }
+  document.querySelector('nav').addEventListener('click', e => go(e.target.closest('button')));
 </script>
 </body>
 </html>
