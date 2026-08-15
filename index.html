@@ -101,6 +101,25 @@
   .panel p,.panel li{font-size:13px}
   .panel ul{padding-left:18px}
   .panel li{margin-bottom:5px}
+  /* calculator */
+  .calctabs{display:flex;gap:6px;margin-bottom:11px}
+  .calctab{flex:1;border:1.5px solid var(--line);background:var(--bg);color:var(--muted);border-radius:10px;padding:7px 4px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;touch-action:manipulation}
+  .calctab.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  .calcbody{display:none}
+  .calcbody.on{display:block}
+  .calcrow{display:flex;gap:8px;align-items:center;margin-bottom:9px}
+  .calcrow label{font-size:12.5px;color:var(--muted);width:78px;flex-shrink:0}
+  .calcrow input,.calcrow select{flex:1;background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;font-size:14.5px;color:var(--ink);font-family:inherit;min-width:0}
+  .calcrow input:focus,.calcrow select:focus{outline:none;border-color:var(--accent)}
+  .calcswap{background:none;border:1.5px solid var(--line);border-radius:8px;width:34px;height:34px;flex-shrink:0;font-size:15px;color:var(--accent);cursor:pointer;touch-action:manipulation}
+  .calcout{background:var(--accent-soft);border-radius:10px;padding:11px 13px;margin-top:2px}
+  .calcout .cv{font-size:20px;font-weight:800;color:var(--accent)}
+  .calcout .cl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+  .calcout .cs{font-size:12px;color:var(--muted);margin-top:4px}
+  .calcsplit{display:flex;gap:8px;margin-top:9px}
+  .calcsplit .box{flex:1;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 8px;text-align:center}
+  .calcsplit .box b{display:block;font-size:15px;color:var(--ink)}
+  .calcsplit .box span{font-size:10.5px;color:var(--muted);text-transform:uppercase}
   label.ck{display:flex;gap:9px;align-items:flex-start;padding:7px 4px;font-size:13.5px;border-bottom:1px dashed var(--line);cursor:pointer}
   label.ck:last-child{border-bottom:0}
   label.ck input{margin-top:2px;accent-color:var(--accent);width:16px;height:16px;flex-shrink:0}
@@ -248,7 +267,7 @@
     <p><b>AM:</b> birthday breakfast + <b>Edinburgh Zoo</b> — penguins, koalas, Penguin Parade (check time on arrival). <b>Wet backup:</b> Dynamic Earth or Camera Obscura's mirror maze. <b>PM:</b> nap, Halloween-y Royal Mile windows, Museum Context Harry Potter shop. <b>Eve:</b> birthday pizza at Civerinos, cake, lamp-lit walk down the Mile.</p>
     <div class="spend"><b>💰 Today ~£155 (₹20,000) 🎂</b>🦁 Zoo ~£55–65 · 🚌 £4 · birthday dinner + cake ~£80. Carry £40–50 cash for treats.</div>
     <div class="pace"><b>🚶 ~12,000 steps · 😴 rest plan</b>The zoo is on a hillside — pace it, do not race it. Non-negotiable birthday nap 13:30–15:00 so the evening cake moment lands on a happy, rested 3-year-old.</div>
-    <div class="eat"><b>🍴 Eat today 🎂 — pick per meal</b>Birthday breakfast: hotel · Loudons pancakes. Lunch: zoo café · Söderberg buns. Birthday dinner: Civerinos (book) · Pizza Express (kids classic) · Dishoom — cake from Mimi’s Bakehouse either way.</div>
+    <div class="eat"><b>🍴 Eat today 🎂 — pick per meal</b>Birthday breakfast: hotel · Loudons pancakes. Lunch: zoo café · Söderberg buns. Birthday dinner: Civerinos (book) · Pizza Express (kids classic) · Dishoom — cake: Colin the Caterpillar from M&amp;S Princes St (2 min from hotel, buy on the 22nd) or La Barantine.</div>
     <div class="times"><b>⏰ Timings 🎂</b>Up ~07:00 · birthday breakfast 08:00 · bus 09:15 → zoo 09:45–12:30 (ask Penguin Parade time at the gate) · lunch 12:45 · nap 13:30–15:00 · Royal Mile &amp; HP shop 15:30 · birthday dinner 17:30 + cake · lamp-lit walk · bed by 20:00.</div>
     <div class="wear"><b>👕 Wear</b> Zoo is outdoors on a hillside: warm + waterproof + spare socks for everyone. The birthday outfit moment: dress him up for breakfast/cake photos, practical clothes for the zoo — or a birthday t-shirt under the fleece.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Edinburgh Zoo</span>
@@ -356,6 +375,85 @@
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Sainsburys+Princes+Street+Edinburgh"><span class="qe">🛒</span><span class="qt">Sainsbury's</span><span class="qs">Milk · 2 min</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/McDonalds/@55.9533,-3.1965,15z"><span class="qe">🍟</span><span class="qt">McDonald's nearby</span><span class="qs">Fries emergency</span><span class="qm">Search ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/iced+coffee/@55.9533,-3.1965,15z"><span class="qe">🥤</span><span class="qt">Cold coffee nearby</span><span class="qs">All along Princes St</span><span class="qm">Search ↗</span></a>
+</div>
+</section>
+
+<!-- ============ PAGE: SIGHTS ============ -->
+<section class="page" id="pg-sights">
+<h2>🏛️ Landmarks &amp; places we're covering</h2>
+<p class="note" style="margin-top:-4px">Every sight actually on the itinerary, in the order you'll hit it — tap any card for the map.</p>
+
+<h3 class="qhead">📅 Day 2 · Sun 18 — Pirate playground &amp; parks</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Diana+Memorial+Playground+London"><span class="qe">🏴‍☠️</span><span class="qt">Diana Memorial Playground</span><span class="qs">Kensington Gardens · pirate ship, free</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=British+Museum+London"><span class="qe">🏛️</span><span class="qt">British Museum (taster)</span><span class="qs">Egyptian mummies + Rosetta Stone + Great Court</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">📅 Day 3 · Mon 19 — Museum day</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Natural+History+Museum+London"><span class="qe">🦖</span><span class="qt">Natural History Museum</span><span class="qs">T. rex first · free</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Science+Museum+London"><span class="qe">🔬</span><span class="qt">Science Museum</span><span class="qs">The Garden play zone · free</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Tower+Bridge+London"><span class="qe">🌉</span><span class="qt">Tower Bridge</span><span class="qs">Evening, if energy allows · lit up at dusk</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Tower+of+London"><span class="qe">🏰</span><span class="qt">Tower of London</span><span class="qs">Viewed from outside, same evening stop</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">📅 Day 4 · Tue 20 — Paddington, SEA LIFE &amp; the Eye</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Paddington+Bear+Experience+County+Hall+London"><span class="qe">🐻</span><span class="qt">Paddington Bear Experience</span><span class="qs">County Hall · pre-booked</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=SEA+LIFE+London+Aquarium"><span class="qe">🐠</span><span class="qt">SEA LIFE London Aquarium</span><span class="qs">County Hall</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=London+Eye"><span class="qe">🎡</span><span class="qt">London Eye</span><span class="qs">Under-3s ride free — Aariv qualifies</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Westminster+Bridge+London"><span class="qe">🕰️</span><span class="qt">Big Ben / Westminster</span><span class="qs">Photo stop from Westminster Bridge</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">📅 Day 5 · Wed 21 — Travel to Edinburgh</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Kings+Cross+Station+London"><span class="qe">🪄</span><span class="qt">Platform 9¾</span><span class="qs">King's Cross · the obligatory photo</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Royal+Mile+Edinburgh"><span class="qe">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="qt">Royal Mile</span><span class="qs">First amble, evening arrival</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">📅 Day 6 · Thu 22 — Edinburgh Castle &amp; Old Town</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Edinburgh+Castle"><span class="qe">🏰</span><span class="qt">Edinburgh Castle</span><span class="qs">10:00 slot · cannons</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Victoria+Street+Edinburgh"><span class="qe">🌈</span><span class="qt">Victoria Street</span><span class="qs">The colourful curved street</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Greyfriars+Bobby+Statue+Edinburgh"><span class="qe">🐕</span><span class="qt">Greyfriars Bobby</span><span class="qs">Rub his nose for luck</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=National+Museum+of+Scotland"><span class="qe">🏛️</span><span class="qt">National Museum of Scotland</span><span class="qs">Free · toddler galleries</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">🎂 Day 7 · Fri 23 — Birthday zoo day</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Edinburgh+Zoo"><span class="qe">🦁</span><span class="qt">Edinburgh Zoo</span><span class="qs">Penguins, koalas, Penguin Parade 🎂</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Royal+Mile+Edinburgh"><span class="qe">⚡</span><span class="qt">Harry Potter shop</span><span class="qs">Royal Mile, afternoon</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Dynamic+Earth+Edinburgh"><span class="qe">🌋</span><span class="qt">Dynamic Earth</span><span class="qs">Wet-weather backup only</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Camera+Obscura+Edinburgh"><span class="qe">🌀</span><span class="qt">Camera Obscura</span><span class="qs">Mirror maze — other wet backup</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">📅 Day 8 · Sat 24 — Back to London</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Calton+Hill+Edinburgh"><span class="qe">⛰️</span><span class="qt">Calton Hill</span><span class="qs">Postcard view before the train, 10-min climb</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">📅 Day 9 · Sun 25 — Fly home</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bicester+Village"><span class="qe">🛍️</span><span class="qt">Bicester Village</span><span class="qs">Option A · Chhavi's pick</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Horse+Guards+Whitehall+London"><span class="qe">🐴</span><span class="qt">Horse Guards</span><span class="qs">Option B · mounted sentries, daily 10–16</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Buckingham+Palace"><span class="qe">🏰</span><span class="qt">Buckingham Palace gates</span><span class="qs">Option B</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=St+James%27s+Park+London"><span class="qe">🦢</span><span class="qt">St James's Park</span><span class="qs">Option B · the pelicans</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">✨ Bonus — only if a slot opens up</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Covent+Garden+London"><span class="qe">🎭</span><span class="qt">Covent Garden</span><span class="qs">Street performers</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Trafalgar+Square+London"><span class="qe">🦁</span><span class="qt">Trafalgar Square</span><span class="qs">Lions to climb</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Sky+Garden+London"><span class="qe">🌆</span><span class="qt">Sky Garden</span><span class="qs">Free skyline view — needs a booked slot</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Cutty+Sark+Greenwich"><span class="qe">⛵</span><span class="qt">Greenwich</span><span class="qs">Cutty Sark + Meridian Line</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Portobello+Road+Market+London"><span class="qe">🎪</span><span class="qt">Portobello Road</span><span class="qs">Notting Hill market, Saturdays</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Millennium+Bridge+London"><span class="qe">🌉</span><span class="qt">Millennium Bridge</span><span class="qs">The "wobbly bridge" + St Paul's view</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Victoria+and+Albert+Museum+London"><span class="qe">🏺</span><span class="qt">V&amp;A Museum</span><span class="qs">Free · next door to NHM</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">❌ Considered, not doing this trip</h3>
+<div class="panel">
+  <p style="font-size:13px;margin:0">🇫🇷 <b>Paris day-trip</b> via Eurostar — ruled out. It needs a separate Schengen visa on top of the UK one, and with only 9 days already packed there's no real spare day to give it without rushing everything else.</p>
 </div>
 </section>
 
@@ -564,7 +662,8 @@
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Loudons+Edinburgh"><span class="qe">🥞</span><span class="qt">Loudons</span><span class="qs">Family-friendly brunch · ~£38 for 2–3 · pancakes, highchairs everywhere</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Oink+Victoria+Street+Edinburgh"><span class="qe">🥪</span><span class="qt">Oink</span><span class="qs">Victoria St · hog-roast rolls · ~£16 for 2–3 · quick lunch</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Makars+Gourmet+Mash+Bar+Edinburgh"><span class="qe">🥔</span><span class="qt">Makars Mash Bar</span><span class="qs">Comfort food by the Mound · ~£42 for 2–3 · warm, casual, kid-easy</span><span class="qm">Map ↗</span></a>
-  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Mimis+Little+Bakehouse+Royal+Mile+Edinburgh"><span class="qe">🧁</span><span class="qt">Mimi's Bakehouse</span><span class="qs">Royal Mile · ~£18 for cake+coffees · birthday cake candidate 🎂</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Marks+and+Spencer+Princes+Street+Edinburgh"><span class="qe">🐛</span><span class="qt">M&amp;S Princes St — cake HQ 🎂</span><span class="qs">2 min from hotel · Colin the Caterpillar (~£15), the iconic British kids' birthday cake · grab day before</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=La+Barantine+Victoria+Street+Edinburgh"><span class="qe">🧁</span><span class="qt">La Barantine</span><span class="qs">French bakery on Victoria St · fancier cake option · ~£20</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Soderberg+Edinburgh"><span class="qe">🥐</span><span class="qt">Söderberg</span><span class="qs">Swedish bakery · ~£14 for buns+coffees</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Kebab+Mahal+Edinburgh"><span class="qe">🍛</span><span class="qt">Kebab Mahal</span><span class="qs">Legendary cheap curry near the museum · ~£24 for 2–3 · an institution</span><span class="qm">Map ↗</span></a>
 </div>
@@ -573,6 +672,7 @@
 <div class="qgrid">
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Cold+Town+House+Grassmarket+Edinburgh"><span class="qe">🏰</span><span class="qt">Cold Town House</span><span class="qs">Rooftop with CASTLE VIEW · pizza · ~£45 for 2–3 · golden hour = magic</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Marys+Milk+Bar+Edinburgh"><span class="qe">🍦</span><span class="qt">Mary's Milk Bar</span><span class="qs">Legendary gelato facing the castle · ~£12 · birthday treat 🎂</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Artisan+Gelato+Bistro+Edinburgh"><span class="qe">🍨</span><span class="qt">Artisan Gelato Bistro</span><span class="qs">Old Town gelato spot from your vlogger · ~£12 · scoop #2 backup if Mary's queue is wild</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=The+Milkman+Cockburn+Street+Edinburgh"><span class="qe">☕</span><span class="qt">The Milkman</span><span class="qs">Tiny heritage coffee shop on cobbled Cockburn St · ~£10 · pure Old Town vibe</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Lovecrumbs+Edinburgh"><span class="qe">🍰</span><span class="qt">Lovecrumbs</span><span class="qs">Cake displayed in a piano · window seats · ~£18 · arty and warm</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=The+Lookout+by+Gardeners+Cottage+Calton+Hill+Edinburgh"><span class="qe">🌄</span><span class="qt">The Lookout</span><span class="qs">Glass box ON Calton Hill · view brunch ~£55 · fits Day 8 morning · book</span><span class="qm">Map ↗</span></a>
@@ -583,6 +683,59 @@
 
 <!-- ============ PAGE: COSTS ============ -->
 <section class="page" id="pg-costs">
+<h2>🧮 Calculator</h2>
+<div class="panel">
+  <div class="calctabs">
+    <button type="button" class="calctab on" data-calc="c-fx">💱 Currency</button>
+    <button type="button" class="calctab" data-calc="c-split">🧾 Split a bill</button>
+  </div>
+
+  <div class="calcbody on" id="c-fx">
+    <div class="calcrow">
+      <label>Rate (₹/£)</label>
+      <input type="number" id="fxrate" value="129" step="0.1" inputmode="decimal">
+    </div>
+    <div class="calcrow">
+      <label id="fxlbl-from">Pounds £</label>
+      <input type="number" id="fxgbp" value="10" step="1" inputmode="decimal" oninput="fxFromGBP()">
+      <button type="button" class="calcswap" onclick="fxSwap()">⇄</button>
+      <input type="number" id="fxinr" value="1290" step="1" inputmode="decimal" oninput="fxFromINR()">
+    </div>
+    <div class="calcout">
+      <div class="cl" id="fxsumlbl">£1 =</div>
+      <div class="cv" id="fxsum">₹129.00</div>
+      <div class="cs">Check today's real rate on Google ("GBP to INR") before you fly — this box just does the quick math with whatever rate you type in.</div>
+    </div>
+  </div>
+
+  <div class="calcbody" id="c-split">
+    <div class="calcrow">
+      <label>Bill total</label>
+      <input type="number" id="spbill" value="60" step="1" inputmode="decimal" oninput="calcSplit()">
+      <select id="spcur" onchange="calcSplit()" style="flex:0 0 68px">
+        <option value="£">£ GBP</option>
+        <option value="₹">₹ INR</option>
+      </select>
+    </div>
+    <div class="calcrow">
+      <label>Service %</label>
+      <input type="number" id="sptip" value="12.5" step="0.5" inputmode="decimal" oninput="calcSplit()">
+      <label style="width:auto;margin-left:8px">People</label>
+      <input type="number" id="sppeople" value="3" min="1" step="1" inputmode="numeric" style="flex:0 0 60px" oninput="calcSplit()">
+    </div>
+    <div class="calcout">
+      <div class="cl">Total incl. service</div>
+      <div class="cv" id="sptotal">£67.50</div>
+      <div class="cs" id="sptipnote">Bill £60.00 + 12.5% service £7.50</div>
+    </div>
+    <div class="calcsplit">
+      <div class="box"><b id="speach">£22.50</b><span>Each (÷3)</span></div>
+      <div class="box"><b id="spaariv">£33.75</b><span>÷2 (skip Aariv)</span></div>
+    </div>
+    <p class="note" style="margin:9px 2px 0">Most UK restaurants already add 12.5% "optional" service to the bill — check before adding your own tip on top. Cafés/takeaway: no tip expected, round up if you liked it.</p>
+  </div>
+</div>
+
 <h2>💰 Costs (₹)</h2>
 <div class="tblwrap"><table>
   <tr><th>Item</th><th>Amount</th><th>Status</th></tr>
@@ -776,6 +929,7 @@
 <nav>
   <button type="button" class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
   <button type="button" data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
+  <button type="button" data-pg="pg-sights"><span class="ni">🏛️</span>Sights</button>
   <button type="button" data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
   <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
   <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
@@ -804,6 +958,71 @@
     window.scrollTo({top: 0});
   }
   document.querySelector('nav').addEventListener('click', e => go(e.target.closest('button')));
+
+  // ---- calculator ----
+  document.querySelectorAll('.calctabs').forEach(tabs => {
+    tabs.addEventListener('click', e => {
+      const b = e.target.closest('.calctab');
+      if(!b) return;
+      const wrap = tabs.parentElement;
+      tabs.querySelectorAll('.calctab').forEach(x => x.classList.remove('on'));
+      wrap.querySelectorAll('.calcbody').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      document.getElementById(b.dataset.calc).classList.add('on');
+    });
+  });
+
+  function fxRate(){ const r = parseFloat(document.getElementById('fxrate').value); return isFinite(r) && r > 0 ? r : 129; }
+  function fxFromGBP(){
+    const r = fxRate();
+    const g = parseFloat(document.getElementById('fxgbp').value) || 0;
+    document.getElementById('fxinr').value = (g * r).toFixed(2);
+    fxRender(r);
+  }
+  function fxFromINR(){
+    const r = fxRate();
+    const i = parseFloat(document.getElementById('fxinr').value) || 0;
+    document.getElementById('fxgbp').value = (i / r).toFixed(2);
+    fxRender(r);
+  }
+  function fxSwap(){
+    const from = document.getElementById('fxlbl-from');
+    if(from.textContent.indexOf('Pounds') > -1){
+      from.textContent = 'Rupees ₹';
+      fxFromINR();
+    } else {
+      from.textContent = 'Pounds £';
+      fxFromGBP();
+    }
+  }
+  function fxRender(r){
+    document.getElementById('fxsumlbl').textContent = '£1 =';
+    document.getElementById('fxsum').textContent = '₹' + r.toFixed(2);
+  }
+  document.getElementById('fxrate').addEventListener('input', () => {
+    const from = document.getElementById('fxlbl-from').textContent;
+    if(from.indexOf('Pounds') > -1) fxFromGBP(); else fxFromINR();
+  });
+  fxRender(fxRate());
+
+  function calcSplit(){
+    const bill = parseFloat(document.getElementById('spbill').value) || 0;
+    const tipPct = parseFloat(document.getElementById('sptip').value) || 0;
+    const people = Math.max(1, parseInt(document.getElementById('sppeople').value) || 1);
+    const cur = document.getElementById('spcur').value;
+    const tipAmt = bill * (tipPct / 100);
+    const total = bill + tipAmt;
+    const each3 = total / people;
+    const peopleMinus1 = Math.max(1, people - 1);
+    const each2 = total / peopleMinus1;
+    document.getElementById('sptotal').textContent = cur + total.toFixed(2);
+    document.getElementById('sptipnote').textContent = 'Bill ' + cur + bill.toFixed(2) + ' + ' + tipPct + '% service ' + cur + tipAmt.toFixed(2);
+    document.getElementById('speach').textContent = cur + each3.toFixed(2);
+    document.querySelector('.calcsplit .box:first-child span').textContent = 'Each (÷' + people + ')';
+    document.getElementById('spaariv').textContent = cur + each2.toFixed(2);
+    document.querySelector('.calcsplit .box:last-child span').textContent = '÷' + peopleMinus1 + ' (skip Aariv)';
+  }
+  calcSplit();
 </script>
 </body>
 </html>
