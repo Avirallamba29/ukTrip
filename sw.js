@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v1';
+const CACHE_NAME = 'uktrip-cache-v4';
 
 const PRECACHE_URLS = [
   './',
@@ -11,15 +11,27 @@ const PRECACHE_URLS = [
   './tickets/flight-airindia-ai2016-lhr-del.pdf',
   './tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf',
   './tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf',
+  './tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf',
   './tickets/train-avanti-edinburgh-euston-24oct-adult1.pdf',
   './tickets/train-avanti-edinburgh-euston-24oct-adult2.pdf',
+  './tickets/train-avanti-edinburgh-euston-24oct-aariv-child.pdf',
   './tickets/hotel-pullman-london-17-21oct.pdf',
   './tickets/hotel-pullman-london-24-25oct.pdf',
   './tickets/hotel-mountroyal-edinburgh-21-24oct.pdf',
   './tickets/ticket-naturalhistorymuseum-19oct-main.pdf',
   './tickets/ticket-naturalhistorymuseum-backup.pdf',
   './tickets/ticket-britishmuseum-18oct.pdf',
-  './tickets/ticket-sciencemuseum-19oct.pdf'
+  './tickets/ticket-sciencemuseum-19oct.pdf',
+  './tickets/screenshots/lner-seatmap-coachA-search.png',
+  './tickets/screenshots/lner-a57-booking-summary1.png',
+  './tickets/screenshots/lner-a57-booking-summary2.png',
+  './tickets/screenshots/lner-55-56-confirmed.png',
+  './tickets/screenshots/lner-seatmap-coachA-2.png',
+  './tickets/screenshots/lner-coach-order-11-03.png',
+  './tickets/screenshots/avanti-j18-j19-seat-details.png',
+  './tickets/screenshots/avanti-j16-seatmap.png',
+  './tickets/screenshots/avanti-j16-booking-summary.png',
+  './tickets/screenshots/avanti-journey-details-stops.png'
 ];
 
 self.addEventListener('install', (event) => {
