@@ -1,12 +1,16 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v4';
+const CACHE_NAME = 'uktrip-cache-v8';
 
 const PRECACHE_URLS = [
   './',
   './index.html',
   './london-edinburgh-trip.html',
+  './tickets/aariv-birth-certificate.pdf',
+  './tickets/share-code-aviral.pdf',
+  './tickets/share-code-chhavi.pdf',
+  './tickets/share-code-aariv.pdf',
   './tickets/flight-indigo-6e3-del-lhr.pdf',
   './tickets/flight-airindia-ai2016-lhr-del.pdf',
   './tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf',
@@ -31,7 +35,10 @@ const PRECACHE_URLS = [
   './tickets/screenshots/avanti-j18-j19-seat-details.png',
   './tickets/screenshots/avanti-j16-seatmap.png',
   './tickets/screenshots/avanti-j16-booking-summary.png',
-  './tickets/screenshots/avanti-journey-details-stops.png'
+  './tickets/screenshots/avanti-journey-details-stops.png',
+  './tickets/screenshots/evisa-share-code-intro.png',
+  './tickets/screenshots/evisa-share-code-reason.png',
+  './tickets/screenshots/evisa-aviral-status-summary.png'
 ];
 
 self.addEventListener('install', (event) => {
