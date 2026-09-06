@@ -29,6 +29,9 @@
   .apphead{padding:4px 2px 12px}
   .apphead h1{font-size:19px;margin:0 0 3px;letter-spacing:-.01em}
   .apphead .sub{font-size:12px;color:var(--muted)}
+  .backbar{padding-top:6px}
+  .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;padding:7px 4px}
+  .backlink:active{opacity:.7}
   .status{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-top:8px}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex:none}
   .dot.live{background:var(--good)}
@@ -99,6 +102,7 @@
 <body>
 <div class="wrap">
 
+  <div class="backbar"><a class="backlink" href="./index.html">← Back to trip app</a></div>
   <div class="apphead">
     <h1>🧾 Trip Spend Log</h1>
     <div class="sub">London &amp; Edinburgh · 17–25 Oct 2026 — day-to-day spends, shared live between phones</div>
