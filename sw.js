@@ -1,12 +1,13 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v13';
+const CACHE_NAME = 'uktrip-cache-v14';
 
 const PRECACHE_URLS = [
   './',
   './index.html',
   './london-edinburgh-trip.html',
+  './spends.html',
   './tickets/aariv-birth-certificate.pdf',
   './tickets/share-code-aviral.pdf',
   './tickets/share-code-chhavi.pdf',

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trip Spend Log</title>
+<style>
+  :root{
+    --ink:#1d2733; --muted:#5b6b7c; --line:#e3e8ee;
+    --accent:#1f5aa8; --accent-soft:#eaf1fb;
+    --bg:#f4f7fa; --card:#ffffff;
+    --gold:#8a6a1f; --gold-soft:#faf3e2;
+    --good:#1f8a5f; --good-soft:#e7f6ee;
+    --bad:#c0392b; --bad-soft:#fbe9e7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ink:#e8edf3; --muted:#9fadbd; --line:#2a3543;
+      --accent:#7fb0ec; --accent-soft:#16283e;
+      --bg:#0f151c; --card:#161e27;
+      --gold:#e0c26a; --gold-soft:#2a2210;
+      --good:#4ade9a; --good-soft:#123324;
+      --bad:#ff8a75; --bad-soft:#3a1a16;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.45;padding-bottom:40px}
+  .wrap{max-width:520px;margin:0 auto;padding:16px 14px 8px}
+  .apphead{padding:4px 2px 12px}
+  .apphead h1{font-size:19px;margin:0 0 3px;letter-spacing:-.01em}
+  .apphead .sub{font-size:12px;color:var(--muted)}
+  .status{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-top:8px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex:none}
+  .dot.live{background:var(--good)}
+  .dot.err{background:var(--bad)}
+
+  .summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+  .stat .sl{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .stat .sv{font-size:20px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .stat .ss{font-size:11px;color:var(--muted);margin-top:2px;font-variant-numeric:tabular-nums}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin-bottom:14px}
+  .panel h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 11px}
+
+  form.addrow{display:flex;flex-direction:column;gap:9px}
+  .frow{display:flex;gap:8px}
+  .frow > *{flex:1;min-width:0}
+  label.fl{display:block;font-size:10.5px;color:var(--muted);margin-bottom:3px;letter-spacing:.03em}
+  input,select{width:100%;font:inherit;font-size:14.5px;padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);-webkit-appearance:none}
+  input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .curtoggle{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;flex:0 0 84px}
+  .curtoggle button{flex:1;border:0;background:var(--bg);color:var(--muted);font:inherit;font-size:13px;font-weight:700;padding:8px 0;cursor:pointer}
+  .curtoggle button.on{background:var(--accent);color:#fff}
+  .amtrow{display:flex;gap:8px}
+  .submitbtn{margin-top:2px;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px;font:inherit;font-size:14.5px;font-weight:700;cursor:pointer}
+  .submitbtn:active{opacity:.85}
+  .submitbtn:disabled{opacity:.5;cursor:default}
+  .formerr{font-size:12px;color:var(--bad);display:none}
+  .formerr.on{display:block}
+
+  h3.qhead{font-size:11px;margin:0 0 10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+  .bars{display:flex;flex-direction:column;gap:9px}
+  .bar-row{display:flex;align-items:center;gap:9px;font-size:12.5px}
+  .bar-cat{flex:0 0 118px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-track{flex:1;height:8px;border-radius:5px;background:var(--accent-soft);overflow:hidden}
+  .bar-fill{height:100%;background:var(--accent);border-radius:5px}
+  .bar-amt{flex:0 0 76px;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+
+  .daylabel{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:16px 2px 7px}
+  .daylabel:first-child{margin-top:0}
+  .entry{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;margin-bottom:7px}
+  .entry .ce{font-size:19px;flex:none}
+  .entry .cmid{flex:1;min-width:0}
+  .entry .cdesc{font-size:13.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .entry .cmeta{font-size:11px;color:var(--muted);margin-top:2px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .pchip{background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:1px 7px;font-weight:700;font-size:10.5px}
+  .entry .camt{flex:none;text-align:right;font-variant-numeric:tabular-nums}
+  .entry .camt b{display:block;font-size:14.5px}
+  .entry .camt span{display:block;font-size:11px;color:var(--muted)}
+  .delbtn{flex:none;border:0;background:none;color:var(--muted);font-size:15px;cursor:pointer;padding:4px 2px;line-height:1}
+  .delbtn:active{color:var(--bad)}
+  .rcpt-thumb{width:20px;height:20px;border-radius:5px;object-fit:cover;border:1px solid var(--line);cursor:pointer;vertical-align:middle}
+
+  .photopick{display:flex;align-items:center;gap:10px}
+  .photobtn{flex:1;border:1px dashed var(--line);border-radius:9px;background:var(--bg);color:var(--muted);font:inherit;font-size:13px;padding:9px 10px;cursor:pointer;text-align:center}
+  .photobtn.has{border-style:solid;border-color:var(--accent);color:var(--accent)}
+  #photoPreviewImg{max-height:52px;border-radius:8px;border:1px solid var(--line);display:none}
+  .photoclear{flex:none;border:0;background:none;color:var(--muted);font-size:13px;cursor:pointer;display:none}
+
+  .empty{text-align:center;color:var(--muted);font-size:12.5px;padding:22px 10px}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);font-size:12.5px;padding:9px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s}
+  .toast.on{opacity:1}
+  .banner{background:var(--bad-soft);color:var(--bad);border-radius:10px;padding:10px 12px;font-size:12px;margin-bottom:14px;display:none}
+  .banner.on{display:block}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="apphead">
+    <h1>🧾 Trip Spend Log</h1>
+    <div class="sub">London &amp; Edinburgh · 17–25 Oct 2026 — day-to-day spends, shared live between phones</div>
+    <div class="status"><span class="dot" id="statusDot"></span><span id="statusText">Connecting…</span></div>
+  </div>
+
+  <div class="banner" id="errBanner"></div>
+
+  <div class="summary">
+    <div class="stat">
+      <div class="sl">Total spent</div>
+      <div class="sv" id="totalInr">₹0</div>
+      <div class="ss" id="totalGbp">≈ £0.00</div>
+    </div>
+    <div class="stat">
+      <div class="sl">Entries</div>
+      <div class="sv" id="entryCount">0</div>
+      <div class="ss" id="avgPerDay">₹0/day so far</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Add a spend</h2>
+    <form class="addrow" id="addForm">
+      <div class="frow">
+        <div>
+          <label class="fl" for="fDate">Date</label>
+          <input type="date" id="fDate" required min="2026-10-17" max="2026-10-25" value="2026-10-17">
+        </div>
+        <div>
+          <label class="fl" for="fCat">Category</label>
+          <select id="fCat" required>
+            <option value="🍽️ Food">🍽️ Food</option>
+            <option value="🛍️ Shopping">🛍️ Shopping</option>
+            <option value="🚕 Travel">🚕 Travel</option>
+            <option value="🎁 Souvenirs">🎁 Souvenirs</option>
+            <option value="🎟️ Attractions">🎟️ Attractions</option>
+            <option value="🏨 Hotel/Misc">🏨 Hotel/Misc</option>
+            <option value="📦 Other">📦 Other</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="fl" for="fDesc">What was it?</label>
+        <input type="text" id="fDesc" placeholder="e.g. Gelato at Mary's Milk Bar" required maxlength="120">
+      </div>
+      <div class="frow">
+        <div class="amtrow" style="flex:1">
+          <div style="flex:1">
+            <label class="fl" for="fAmt">Amount</label>
+            <input type="number" id="fAmt" inputmode="decimal" step="0.01" min="0" placeholder="0.00" required>
+          </div>
+          <div class="curtoggle" id="curToggle" style="align-self:flex-end">
+            <button type="button" class="on" data-cur="GBP">£</button>
+            <button type="button" data-cur="INR">₹</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="fl" for="fWho">Paid by</label>
+        <select id="fWho">
+          <option>Aviral</option>
+          <option>Chhavi</option>
+          <option>Joint</option>
+        </select>
+      </div>
+      <div>
+        <label class="fl">Receipt photo (optional)</label>
+        <input type="file" accept="image/*" capture="environment" id="fPhoto" style="display:none">
+        <div class="photopick">
+          <button type="button" class="photobtn" id="photoBtn">📷 Take or choose a photo</button>
+          <img id="photoPreviewImg" alt="Receipt preview">
+          <button type="button" class="photoclear" id="photoClear">✕</button>
+        </div>
+      </div>
+      <div class="formerr" id="formErr"></div>
+      <button type="submit" class="submitbtn" id="submitBtn">Add spend</button>
+    </form>
+  </div>
+
+  <div class="panel" id="breakdownPanel" style="display:none">
+    <h3 class="qhead">By category</h3>
+    <div class="bars" id="bars"></div>
+  </div>
+
+  <div id="listWrap"></div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  var SUPABASE_URL = "https://jdnhgxxvqxuxawegyfri.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_wRumABwdQhH36KtmjatECg_XX0YH6DM";
+  var FX_RATE = 129; // ₹ per £, matches the main trip app's reference rate
+
+  var RECEIPTS_BUCKET = "receipts";
+  var CAT_EMOJI = {
+    "🍽️ Food":"🍽️", "🛍️ Shopping":"🛍️", "🚕 Travel":"🚕",
+    "🎁 Souvenirs":"🎁", "🎟️ Attractions":"🎟️", "🏨 Hotel/Misc":"🏨", "📦 Other":"📦"
+  };
+
+  var sb = null;
+  var rows = [];
+  var supabaseReady = (typeof window.supabase !== "undefined");
+
+  function setStatus(mode, text){
+    var dot = document.getElementById("statusDot");
+    var t = document.getElementById("statusText");
+    dot.className = "dot" + (mode ? " " + mode : "");
+    t.textContent = text;
+  }
+
+  function showBanner(msg){
+    var b = document.getElementById("errBanner");
+    if(!msg){ b.className = "banner"; b.textContent = ""; return; }
+    b.className = "banner on";
+    b.textContent = msg;
+  }
+
+  function toast(msg){
+    var el = document.getElementById("toast");
+    el.textContent = msg;
+    el.className = "toast on";
+    setTimeout(function(){ el.className = "toast"; }, 1800);
+  }
+
+  function toGBP(amount, currency){
+    return currency === "GBP" ? amount : amount / FX_RATE;
+  }
+  function toINR(amount, currency){
+    return currency === "INR" ? amount : amount * FX_RATE;
+  }
+  function fmtINR(n){
+    return "₹" + Math.round(n).toLocaleString("en-IN");
+  }
+  function fmtGBP(n){
+    return "£" + n.toFixed(2);
+  }
+
+  function render(){
+    // Summary
+    var totalGBP = 0;
+    rows.forEach(function(r){ totalGBP += toGBP(Number(r.amount), r.currency); });
+    document.getElementById("totalInr").textContent = fmtINR(totalGBP * FX_RATE);
+    document.getElementById("totalGbp").textContent = "≈ " + fmtGBP(totalGBP);
+    document.getElementById("entryCount").textContent = rows.length;
+
+    var daysSpan = 9; // 17-25 Oct inclusive
+    if(rows.length){
+      var earliest = rows.reduce(function(a,b){ return a.spent_at < b.spent_at ? a : b; }).spent_at;
+      var d0 = new Date("2026-10-17T00:00:00Z"), d1 = new Date(earliest + "T00:00:00Z");
+      var daysElapsed = Math.max(1, Math.round((d0 - d1) / 86400000) * -1 + 1);
+    }
+    document.getElementById("avgPerDay").textContent = rows.length
+      ? fmtINR((totalGBP * FX_RATE) / daysSpan) + "/day avg"
+      : "₹0/day so far";
+
+    // Category breakdown
+    var byCat = {};
+    rows.forEach(function(r){
+      var g = toGBP(Number(r.amount), r.currency);
+      byCat[r.category] = (byCat[r.category] || 0) + g;
+    });
+    var cats = Object.keys(byCat).sort(function(a,b){ return byCat[b]-byCat[a]; });
+    var bp = document.getElementById("breakdownPanel");
+    var barsEl = document.getElementById("bars");
+    if(cats.length === 0){
+      bp.style.display = "none";
+    } else {
+      bp.style.display = "";
+      var max = byCat[cats[0]];
+      barsEl.innerHTML = cats.map(function(c){
+        var v = byCat[c];
+        var pct = max > 0 ? Math.round((v/max)*100) : 0;
+        return '<div class="bar-row"><div class="bar-cat">'+escapeHtml(c)+'</div>'
+          + '<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div>'
+          + '<div class="bar-amt">'+fmtINR(v*FX_RATE)+'</div></div>';
+      }).join("");
+    }
+
+    // List, grouped by date desc
+    var listWrap = document.getElementById("listWrap");
+    if(rows.length === 0){
+      listWrap.innerHTML = '<div class="empty">No spends logged yet — add your first one above.</div>';
+      return;
+    }
+    var sorted = rows.slice().sort(function(a,b){
+      if(a.spent_at !== b.spent_at) return a.spent_at < b.spent_at ? 1 : -1;
+      return (b.created_at||"").localeCompare(a.created_at||"");
+    });
+    var groups = {};
+    var order = [];
+    sorted.forEach(function(r){
+      if(!groups[r.spent_at]){ groups[r.spent_at] = []; order.push(r.spent_at); }
+      groups[r.spent_at].push(r);
+    });
+    var html = "";
+    order.forEach(function(date){
+      html += '<div class="daylabel">' + fmtDateLabel(date) + '</div>';
+      groups[date].forEach(function(r){
+        var emoji = CAT_EMOJI[r.category] || "📦";
+        var origAmt = r.currency === "GBP" ? fmtGBP(Number(r.amount)) : fmtINR(Number(r.amount));
+        var convAmt = r.currency === "GBP" ? fmtINR(Number(r.amount)*FX_RATE) : fmtGBP(Number(r.amount)/FX_RATE);
+        var metaBits = "";
+        if(r.paid_by) metaBits += '<span class="pchip">'+escapeHtml(r.paid_by)+'</span>';
+        if(r.photo_url) metaBits += '<img class="rcpt-thumb" src="'+escapeHtml(r.photo_url)+'" alt="Receipt" data-full="'+escapeHtml(r.photo_url)+'">';
+        html += '<div class="entry" data-id="'+r.id+'">'
+          + '<div class="ce">'+emoji+'</div>'
+          + '<div class="cmid"><div class="cdesc">'+escapeHtml(r.description||"")+'</div>'
+          + '<div class="cmeta">'+metaBits+'</div></div>'
+          + '<div class="camt"><b>'+origAmt+'</b><span>'+convAmt+'</span></div>'
+          + '<button class="delbtn" title="Delete" data-id="'+r.id+'">✕</button>'
+          + '</div>';
+      });
+    });
+    listWrap.innerHTML = html;
+    Array.prototype.forEach.call(listWrap.querySelectorAll(".delbtn"), function(btn){
+      btn.addEventListener("click", function(){ handleDelete(btn.getAttribute("data-id")); });
+    });
+    Array.prototype.forEach.call(listWrap.querySelectorAll(".rcpt-thumb"), function(img){
+      img.addEventListener("click", function(){ window.open(img.getAttribute("data-full"), "_blank"); });
+    });
+  }
+
+  function fmtDateLabel(iso){
+    var d = new Date(iso + "T00:00:00Z");
+    return d.toLocaleDateString("en-GB", { weekday:"short", day:"numeric", month:"short", timeZone:"UTC" });
+  }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function handleDelete(id){
+    if(!sb) return;
+    if(!confirm("Delete this spend?")) return;
+    sb.from("expenses").delete().eq("id", id).then(function(res){
+      if(res.error){
+        toast("Couldn't delete — try again");
+        return;
+      }
+      toast("Deleted");
+      loadAll();
+    });
+  }
+
+  function loadAll(){
+    if(!sb) return;
+    sb.from("expenses").select("*").order("spent_at", { ascending:false }).then(function(res){
+      if(res.error){
+        setStatus("err", "Can't reach the log");
+        showBanner("Couldn't load spends: " + res.error.message + " — check the `expenses` table exists in Supabase (see setup SQL).");
+        return;
+      }
+      showBanner(null);
+      setStatus("live", "Live");
+      rows = res.data || [];
+      render();
+    }).catch(function(e){
+      setStatus("err", "Can't reach the log");
+      showBanner("Network error reaching Supabase: " + e.message);
+    });
+  }
+
+  function init(){
+    if(!supabaseReady){
+      setStatus("err", "Failed to load");
+      showBanner("The Supabase library didn't load — check your internet connection and reload.");
+      render();
+      return;
+    }
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    setStatus(null, "Connecting…");
+    loadAll();
+
+    sb.channel("expenses-changes")
+      .on("postgres_changes", { event: "*", schema: "public", table: "expenses" }, function(){ loadAll(); })
+      .subscribe();
+
+    // Fallback poll: keeps every phone in sync even if realtime replication
+    // isn't enabled on the table (see setup SQL) or a push is missed.
+    setInterval(function(){ if(sb) loadAll(); }, 15000);
+  }
+
+  // Currency toggle
+  var selectedCur = "GBP";
+  document.getElementById("curToggle").addEventListener("click", function(e){
+    var btn = e.target.closest("button");
+    if(!btn) return;
+    selectedCur = btn.getAttribute("data-cur");
+    Array.prototype.forEach.call(this.querySelectorAll("button"), function(b){
+      b.classList.toggle("on", b === btn);
+    });
+  });
+
+  // Photo picker
+  var photoInput = document.getElementById("fPhoto");
+  var photoBtn = document.getElementById("photoBtn");
+  var photoPreviewImg = document.getElementById("photoPreviewImg");
+  var photoClear = document.getElementById("photoClear");
+  photoBtn.addEventListener("click", function(){ photoInput.click(); });
+  photoInput.addEventListener("change", function(){
+    var file = photoInput.files && photoInput.files[0];
+    if(!file){ resetPhotoPicker(); return; }
+    var url = URL.createObjectURL(file);
+    photoPreviewImg.src = url;
+    photoPreviewImg.style.display = "inline-block";
+    photoBtn.textContent = "📷 " + file.name;
+    photoBtn.classList.add("has");
+    photoClear.style.display = "inline-block";
+  });
+  photoClear.addEventListener("click", function(){
+    photoInput.value = "";
+    resetPhotoPicker();
+  });
+  function resetPhotoPicker(){
+    photoPreviewImg.style.display = "none";
+    photoPreviewImg.src = "";
+    photoBtn.textContent = "📷 Take or choose a photo";
+    photoBtn.classList.remove("has");
+    photoClear.style.display = "none";
+  }
+
+  function uploadPhotoIfAny(){
+    var file = photoInput.files && photoInput.files[0];
+    if(!file) return Promise.resolve(null);
+    var ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
+    var path = "r-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8) + "." + ext;
+    return sb.storage.from(RECEIPTS_BUCKET).upload(path, file).then(function(up){
+      if(up.error) throw up.error;
+      var pub = sb.storage.from(RECEIPTS_BUCKET).getPublicUrl(path);
+      return pub.data ? pub.data.publicUrl : null;
+    });
+  }
+
+  document.getElementById("addForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var errEl = document.getElementById("formErr");
+    errEl.className = "formerr";
+    if(!sb){
+      errEl.textContent = "Not connected yet — wait a moment and try again.";
+      errEl.className = "formerr on";
+      return;
+    }
+    var date = document.getElementById("fDate").value;
+    var cat = document.getElementById("fCat").value;
+    var desc = document.getElementById("fDesc").value.trim();
+    var amt = parseFloat(document.getElementById("fAmt").value);
+    var who = document.getElementById("fWho").value;
+    if(!date || !desc || !(amt > 0)){
+      errEl.textContent = "Fill in date, description and a valid amount.";
+      errEl.className = "formerr on";
+      return;
+    }
+    var submitBtn = document.getElementById("submitBtn");
+    submitBtn.disabled = true;
+    submitBtn.textContent = photoInput.files.length ? "Uploading photo…" : "Adding…";
+    uploadPhotoIfAny().then(function(photoUrl){
+      submitBtn.textContent = "Adding…";
+      return sb.from("expenses").insert({
+        spent_at: date,
+        category: cat,
+        description: desc,
+        amount: amt,
+        currency: selectedCur,
+        paid_by: who,
+        photo_url: photoUrl
+      });
+    }).then(function(res){
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Add spend";
+      if(res.error){
+        errEl.textContent = "Couldn't save: " + res.error.message;
+        errEl.className = "formerr on";
+        return;
+      }
+      document.getElementById("fDesc").value = "";
+      document.getElementById("fAmt").value = "";
+      photoInput.value = "";
+      resetPhotoPicker();
+      toast("Added ✓");
+      loadAll();
+    }).catch(function(err){
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Add spend";
+      errEl.textContent = "Couldn't save: " + (err && err.message ? err.message : "photo upload failed — check the `receipts` storage bucket exists (see setup SQL).");
+      errEl.className = "formerr on";
+    });
+  });
+
+  render();
+  init();
+})();
+</script>
+</body>
+</html>
