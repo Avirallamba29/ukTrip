@@ -1096,6 +1096,7 @@
   <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
   <button type="button" data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
   <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
+  <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
 </nav>
 
 <script>
@@ -1117,7 +1118,9 @@
     if (card) { card.open = true; setTimeout(() => card.scrollIntoView({behavior:'smooth', block:'start'}), 300); }
   })();
   function go(b){
-    if(!b || !b.dataset.pg) return;
+    if(!b) return;
+    if(b.dataset.ext){ window.open(b.dataset.ext, '_blank'); return; }
+    if(!b.dataset.pg) return;
     const pg = document.getElementById(b.dataset.pg);
     if(!pg) return;
     btns.forEach(x => x.classList.remove('on'));
