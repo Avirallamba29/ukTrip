@@ -199,9 +199,43 @@
   .tkt.pend{border-left:4px solid var(--gold)}
   .tkt.done{border-left:4px solid #2e8b57}
   footer{margin-top:22px;color:var(--muted);font-size:11px;text-align:center}
+  /* login gate */
+  #authGate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}
+  #authGate[hidden]{display:none!important}
+  .authcard{width:100%;max-width:340px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;box-shadow:var(--shadow-md)}
+  .authcard h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+  .authcard .sub{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+  .authrow{margin-bottom:12px}
+  .authrow label{display:block;font-size:10.5px;color:var(--muted);margin-bottom:4px;letter-spacing:.03em;text-transform:uppercase}
+  .authrow input{width:100%;font:inherit;font-size:14.5px;padding:9px 11px;border-radius:9px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);-webkit-appearance:none;box-sizing:border-box}
+  .authrow input:focus{outline:none;border-color:var(--accent)}
+  #authSubmit{width:100%;margin-top:6px;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px;font:inherit;font-size:14.5px;font-weight:700;cursor:pointer;transition:opacity .12s ease}
+  #authSubmit:active{opacity:.85}
+  #authSubmit:disabled{opacity:.5;cursor:default}
+  #authErr{font-size:12px;color:var(--bad,#c0392b);margin-top:10px;display:none;line-height:1.4}
+  #authErr.on{display:block}
 </style>
 </head>
 <body>
+
+<div id="authGate" hidden>
+  <div class="authcard">
+    <h1>🇬🇧 London &amp; Edinburgh</h1>
+    <div class="sub">Sign in to open the trip app</div>
+    <form id="authForm">
+      <div class="authrow">
+        <label for="authEmail">Email</label>
+        <input type="email" id="authEmail" autocomplete="username" required>
+      </div>
+      <div class="authrow">
+        <label for="authPass">Password</label>
+        <input type="password" id="authPass" autocomplete="current-password" required>
+      </div>
+      <button type="submit" id="authSubmit">Sign in</button>
+      <div id="authErr"></div>
+    </form>
+  </div>
+</div>
 
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <aside class="drawer" id="drawer">
@@ -219,6 +253,7 @@
     <button type="button" data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
     <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
     <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
+    <button type="button" id="logoutBtn"><span class="ni">🚪</span>Log out</button>
   </div>
 </aside>
 
@@ -253,7 +288,7 @@
 <details class="day" data-date="2026-10-17">
   <summary><span class="dn">SAT 17</span><span class="dt">✈️ Fly Delhi → London</span><span class="dd">Day 1 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
-    <p><b>IndiGo 6E3</b> · <b>Stretch/Business</b> (B787-9, leased from Norse) · DEL 11:10 → LHR 18:10, non-stop 11h30m · seats 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward priority · check-in closes 09:55 <a target="_blank" rel="noopener" href="tickets/flight-indigo-6e3-del-lhr.pdf">📄 Ticket ↗</a>. Taxi/pre-booked cab to <b>Pullman London St Pancras, 100-110 Euston Road</b> (R360 Booking ID 45183173940800523004, Partner Ref 260825663048 — paid, non-refundable). Bedtime = jet-lag reset.</p>
+    <p><b>IndiGo 6E3</b> · <b>Stretch/Business</b> (B787-9, leased from Norse) · DEL 11:10 → LHR 18:10, non-stop 11h30m · seats 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward priority · check-in closes 09:55 <a target="_blank" rel="noopener" href="tickets/flight-indigo-6e3-del-lhr.pdf">📄 Ticket ↗</a>. Taxi/pre-booked cab to <b>Pullman London St Pancras, 100-110 Euston Road</b> (R360 Booking ID 45183173940800523004, Partner Ref 260825663048 — paid, non-refundable). 🧳 At check-in, remind the front desk about the 2-bag luggage storage for 21–24 Oct — confirmed by email (Georgina, Pullman) but they asked us to flag it again on arrival. Bedtime = jet-lag reset.</p>
     <p class="tip">🛒 Stroller — bring it through the airport, handy for a tired toddler on the transfer; folds down for the taxi boot or tube gates.</p>
     <div class="story"><b>📖 In short</b>You leave home at 7:45 AM to reach Delhi T3 by 8:10 for the 11:10 IndiGo 6E3 flight — now booked in Stretch/Business on a 787-9, seats 1D/1E/1F, with Fast Forward priority through security, so the airport side of the day should be noticeably smoother than a standard economy departure (check-in itself still closes at 09:55, so don't relax the timing). Baggage is up to 46kg check-in + 12kg cabin each, landing at Heathrow at 18:10 local time. From the airport you'll take the Piccadilly line into town (about 55 minutes) or a taxi (around 50 minutes, £45–60) to the Pullman London St Pancras on Euston Road (R360 Booking ID 45183173940800523004, already paid in full and non-refundable) — King's Cross St Pancras station is right outside, about a 4–5 minute walk from the hotel door. Keep dinner simple tonight, since getting everyone to bed matters far more than the meal: there are cafés and grab-and-go options right around King's Cross/St Pancras, or Deliveroo straight to the room. You should be checked in by around 8 PM, with lights out by 8:30–9 PM UK time no matter how wired Aariv seems — tonight's “activity” really is just the flight and the transfer. Dress for comfort on the plane and for a cool ~12°C evening on landing — keep jackets for all three of you in the cabin bag rather than checked.</div>
     <div class="spend"><b>💰 Today ~£75 (₹9,700)</b>🚕 Airport taxi £45–60 + light dinner. Carry £40 cash + printed visas.</div>
@@ -715,7 +750,8 @@
 <div class="tkt done">
   <div class="th"><span class="tn">🏨 Pullman London St Pancras</span><span class="td2">17–21 Oct · 4 nights</span></div>
   <div class="tr">Superior Room, 1 King Bed + sofa bed · 2 adults + 1 child · R360 Booking ID <b>45183173940800523004</b> · Partner Ref <b>260825663048</b> · ₹128,674 total (₹39,742 via points + ₹88,932 cash) · ✅ PAID IN FULL — 100% non-refundable (cutoff 25 Aug already passed) · breakfast NOT included (~£26pp optional) · booked via Cleartrip/HDFC SmartBuy</div>
-  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/hotel-pullman-london-17-21oct.pdf">📄 Ticket PDF ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.cleartrip.com/trips">Cleartrip ↗</a></div>
+  <div class="tr">🧳 <b>Luggage storage confirmed</b> — 2 large bags OK for the 21–24 Oct Edinburgh gap, noted on the booking (Georgina, 7 Sep). Remind front desk again at check-in. 🛏️ Upgrade also requested/noted — not promised.</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/hotel-pullman-london-17-21oct.pdf">📄 Ticket PDF ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/pullman-luggage-storage-confirmation.eml">📧 Storage email ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.cleartrip.com/trips">Cleartrip ↗</a></div>
 </div>
 
 <div class="tkt done">
@@ -1071,7 +1107,8 @@
   <label class="ck"><input type="checkbox" checked> ✅ Generated 90-day eVisa "share codes" for all 3, as backup proof in case check-in staff can't verify status electronically — see UK Visas card above for all 3 codes</label>
   <label class="ck"><input type="checkbox"> 🔲 Buy travel insurance for all 3 (Aviral, Chhavi, Aariv) — covers the whole 17–25 Oct trip, ideally before departure</label>
   <label class="ck"><input type="checkbox" checked> ✅ Switched to Pullman London St Pancras (both legs) — booked &amp; paid via HDFC SmartBuy, non-refundable; Aariv already included in the 2 adults + 1 child room</label>
-  <label class="ck"><input type="checkbox"> 🔲 Confirm luggage storage with the Pullman for the 21–24 Oct Edinburgh gap (not yet verified the way it was with the old hotel)</label>
+  <label class="ck"><input type="checkbox" checked> ✅ Luggage storage confirmed with the Pullman for the 21–24 Oct Edinburgh gap — 2 large bags, no problem, noted on the booking (email from Georgina, 7 Sep). Just remind the front desk again at check-in on the 17th.</label>
+  <label class="ck"><input type="checkbox"> 🔲 Room upgrade — requested by email and noted on both Pullman bookings, but not promised ("we'll try our best"). No action needed, just don't expect it.</label>
   <label class="ck"><input type="checkbox" checked> ✅ Mount Royal replied — cot &amp; child guest confirmed, birthday noted 🎂</label>
   <label class="ck"><input type="checkbox"> 🔲 Check HDFC SmartBuy points balance after 23 Sep — see if a better Edinburgh hotel (vs. Mount Royal) works out through points, same way the Pullman swap did. Mount Royal is free-cancellable till 19 Oct 23:59, so no rush.</label>
   <label class="ck"><input type="checkbox" checked> ✅ Leave approved by Tanuj sir (19, 21, 22, 23, 26 Oct) — save the approval email for the visa file</label>
@@ -1203,6 +1240,62 @@
   <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
 </nav>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Login gate — same Supabase project as spends.html. Sessions persist in
+  // this browser (localStorage) and are NOT auto-logged-out; only the
+  // "Log out" button in the drawer signs a user out.
+  (function () {
+    var SUPABASE_URL = "https://jdnhgxxvqxuxawegyfri.supabase.co";
+    var SUPABASE_KEY = "sb_publishable_wRumABwdQhH36KtmjatECg_XX0YH6DM";
+    var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    window.__tripAuth = sb; // exposed so the drawer's Log out button can use it
+
+    var gateEl = document.getElementById('authGate');
+    var formEl = document.getElementById('authForm');
+    var emailEl = document.getElementById('authEmail');
+    var passEl = document.getElementById('authPass');
+    var submitEl = document.getElementById('authSubmit');
+    var errEl = document.getElementById('authErr');
+
+    function showGate() { gateEl.hidden = false; setTimeout(function () { emailEl.focus(); }, 50); }
+    function hideGate() { gateEl.hidden = true; }
+
+    // Check for an existing session first (returning visit) — no flash of
+    // the app if already signed in, no gate at all if there's a session.
+    sb.auth.getSession().then(function (res) {
+      if (res.data && res.data.session) { hideGate(); } else { showGate(); }
+    }).catch(function () { showGate(); });
+
+    sb.auth.onAuthStateChange(function (event, session) {
+      if (session) { hideGate(); } else { showGate(); }
+    });
+
+    formEl.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errEl.classList.remove('on');
+      submitEl.disabled = true;
+      submitEl.textContent = 'Signing in…';
+      sb.auth.signInWithPassword({ email: emailEl.value.trim(), password: passEl.value })
+        .then(function (res) {
+          submitEl.disabled = false;
+          submitEl.textContent = 'Sign in';
+          if (res.error) {
+            errEl.textContent = 'Incorrect email or password. Try again.';
+            errEl.classList.add('on');
+          } else {
+            passEl.value = '';
+          }
+        })
+        .catch(function () {
+          submitEl.disabled = false;
+          submitEl.textContent = 'Sign in';
+          errEl.textContent = 'Could not reach the sign-in service — check your connection.';
+          errEl.classList.add('on');
+        });
+    });
+  })();
+</script>
 <script>
   // Register service worker so the app + all ticket PDFs work offline after
   // the first visit (open this page once on wifi/data before you fly).
@@ -1252,6 +1345,11 @@
     if(!b) return;
     go(b);
     closeDrawer();
+  });
+  const logoutBtnEl = document.getElementById('logoutBtn');
+  if(logoutBtnEl) logoutBtnEl.addEventListener('click', () => {
+    closeDrawer();
+    if(window.__tripAuth) window.__tripAuth.auth.signOut();
   });
 
   // ---- search everything ----
