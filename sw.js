@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v26';
+const CACHE_NAME = 'uktrip-cache-v27';
 
 const PRECACHE_URLS = [
   './',
@@ -59,7 +59,8 @@ const PRECACHE_URLS = [
   './tickets/screenshots/lner-coachB-seatmap-55-58.png',
   './tickets/screenshots/lner-coachB-seatmap-key.png',
   './tickets/screenshots/lner-coachB-seatmap-full.png',
-  './tickets/screenshots/lner-coach-order-front-to-back.png'
+  './tickets/screenshots/lner-coach-order-front-to-back.png',
+  './tickets/images/bigbus-photo.jpg'
 ];
 
 self.addEventListener('install', (event) => {
