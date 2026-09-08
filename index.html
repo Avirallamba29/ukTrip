@@ -198,6 +198,8 @@
   .bk.urgent{background:#c0392b}
   .tkt.pend{border-left:4px solid var(--gold)}
   .tkt.done{border-left:4px solid #2e8b57}
+  .tkt.cancelled{border-left:4px solid var(--muted);opacity:.7}
+  .tkt.cancelled .tn{text-decoration:line-through}
   footer{margin-top:22px;color:var(--muted);font-size:11px;text-align:center}
   /* login gate */
   #authGate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}
@@ -247,6 +249,7 @@
     <button type="button" data-pg="pg-days"><span class="ni">📅</span>Days</button>
     <button type="button" data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
     <button type="button" data-pg="pg-sights"><span class="ni">🏛️</span>Sights</button>
+    <button type="button" data-pg="pg-shopping"><span class="ni">🛍️</span>Shopping</button>
     <button type="button" data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
     <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
     <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
@@ -336,11 +339,9 @@
 <details class="day" data-date="2026-10-19">
   <summary><span class="dn">MON 19</span><span class="dt">🦖 Dinosaurs — museum day</span><span class="dd">Day 3 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
-    <img class="day-photo" src="tickets/images/bigbus-photo.jpg" alt="Big Bus hop-on-hop-off open-top bus outside St Paul's Cathedral" loading="lazy">
     <p><b>AM:</b> <b>Natural History Museum</b> — booked entry <b>11:00</b> (order 20260822-S17424539, free) <a target="_blank" rel="noopener" href="tickets/ticket-naturalhistorymuseum-19oct-main.pdf">📄 Ticket ↗</a> — T. rex first. <b>PM:</b> <b>Science Museum</b> next door — booked entry window <b>14:30–15:00</b> (order 17875983, free) <a target="_blank" rel="noopener" href="tickets/ticket-sciencemuseum-19oct.pdf">📄 Ticket ↗</a>, The Garden play zone for under-6s. No scheduled nap — just a rest stop between if he's flagging.</p>
     <p><b>Evening (optional, if energy allows):</b> tube to Tower Hill (~30 min) — walk <b>Tower Bridge</b> lit up at dusk with Tower of London views, dinner at St Katharine Docks. Otherwise straight back to the hotel for an easy dinner nearby — genuinely optional either way. <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Tower+Bridge+London&travelmode=transit">🚇 Route ↗</a></p>
     <p class="tip">🛒 Stroller — museums are step-heavy and both are stroller-friendly; also doubles as a rest spot for Aariv if he flags between exhibits.</p>
-    <p class="tip">🚌 <b>Big Bus Hop-on-Hop-off pass goes live today, 08:30</b> (48hrs from first use) — redeem the voucher with the driver/staff at any stop. Today's packed with the two museums, so there's no real window to use it, but it's worth knowing it's active in case Tower Bridge in the evening turns into a bus hop instead of the tube. Save it properly for tomorrow (the 20th), which is the lighter day. Nearest stop to the hotel is <b>🟢 Green Link, Stop 51 "St Pancras Station"</b> on Midland Road, ~3–5 min walk (Red/Blue don't reach up here). <a target="_blank" rel="noopener" href="tickets/ticket-bigbus-hoponhopoff-19oct.pdf">📄 Confirmation ↗</a> <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33924469">Manage ↗</a> <a target="_blank" rel="noopener" href="https://www.bigbustours.com/en/london/london-routes-and-tour-maps">🗺️ Route map ↗</a></p>
     <div class="story"><b>📖 In short</b>Today is two free museums back to back, and both are now locked to actual booked slots — Natural History Museum at 11 AM (order 20260822-S17424539, 2 adults + Aariv, £0) and Science Museum at 14:30–15:00 (order 17875983, 2 adults + 1 child, £0) — so the whole day is built around those two windows. Leave the hotel by 10:00 to reach the Natural History Museum right at its 11 AM slot on the Piccadilly line direct from King's Cross St Pancras — going straight for the T. rex before the crowds build. After a proper sit-down lunch in South Kensington around 13:15 (Comptoir Libanais, the NHM café, or Honest Burgers are all close by), walk over to the Science Museum in good time for your 14:30–15:00 entry window (you can arrive any time in that half hour, but don't cut it fine) and head for The Garden play zone for under-6s. Museums are deceptively step-heavy, so build in that long lunch break, and remember the hotel is a straightforward Piccadilly-line ride away if Aariv fades — there's no scheduled nap block, so just let him rest in the stroller or head back to the hotel if he genuinely needs a break. The evening is genuinely optional both ways: a 30-minute tube ride to Tower Hill lets you walk Tower Bridge lit up at dusk with views of the Tower of London, followed by dinner at St Katharine Docks (the Dickens Inn is a good option) — or just head straight back to the hotel for an easy dinner nearby if Aariv's spent. Museums run warm, so pack light layers you can shed and your comfiest trainers; Aariv does best in a t-shirt under an easy-on-off zip hoodie.</div>
     <div class="spend"><b>💰 Today ~£65 (₹8,400)</b>Both museums free (NHM booked, £0) · 🚇 ~£12 · 🍽️ ~£55. Carry £20–30 cash.</div>
     <div class="pace"><b>🚶 ~9,000–11,000 steps</b> Museums are secretly step-heavy. Long sit-down lunch between the two; no scheduled nap — if Aariv fades, the hotel is 15 min away or he can rest in the stroller.</div>
@@ -360,13 +361,11 @@
   <summary><span class="dn">TUE 20</span><span class="dt">🐠 SEA LIFE + London Eye</span><span class="dd">Day 4 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
     <div style="display:flex;gap:8px;margin-bottom:10px">
-      <img style="width:33.3%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/bigbus-photo.jpg" alt="Big Bus hop-on-hop-off open-top bus outside St Paul's Cathedral" loading="lazy">
-      <img style="width:33.3%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/sea-life-photo.jpg" alt="Family at SEA LIFE London Aquarium ocean tunnel" loading="lazy">
-      <img style="width:33.3%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/london-eye-photo.jpg" alt="London Eye capsule with river view" loading="lazy">
+      <img style="width:50%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/sea-life-photo.jpg" alt="Family at SEA LIFE London Aquarium ocean tunnel" loading="lazy">
+      <img style="width:50%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/london-eye-photo.jpg" alt="London Eye capsule with river view" loading="lazy">
     </div>
     <p><b>Paddington Bear Experience dropped</b> — not doing it. <b>Morning:</b> <b>Borough Market</b> (open Tue 10am–5pm) — food stalls, pastries, coffee before heading to County Hall. <b>Late morning:</b> booked <b>SEA LIFE London Aquarium</b> entry 11:00 (Headout Booking ID 33619404, £96, 2 adults + 1 child, charges 18 Oct) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619404">Manage ↗</a>. <b>PM:</b> booked <b>London Eye</b> entry 14:30 (Booking ID 33619539, £58, 2 adults + 1 infant, charges 18 Oct) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619539">Manage ↗</a> — under-3s ride free, Big Ben photo from Westminster Bridge after, then straight home. Tower Bridge lives on Day 3's evening instead — no need to double up.</p>
     <p class="tip">🛒 Stroller — a long day out, useful across the market, the South Bank stretch and the queues; no scheduled nap today, so it's also where Aariv can rest if he needs to.</p>
-    <p class="tip">🚌 <b>This is the day to actually use the Big Bus Hop-on-Hop-off pass</b> (48hrs from yesterday's first redemption) — hop on/off along the Blue or Red route to link up the South Bank stops instead of walking/tubing between Borough Market → County Hall (SEA LIFE) → London Eye. Board anywhere, show the voucher/QR to the driver. Starting from the hotel, the closest stop is <b>🟢 Green Link, Stop 51 "St Pancras Station"</b> (Midland Road, ~3–5 min walk) — that route loops toward Covent Garden/Temple, so to reach the South Bank stops near Borough Market/County Hall/the Eye you'll want the Red or Blue route, which you can pick up once you're further south (e.g. near Waterloo/Westminster). Also included today, if there's a gap: <b>Royal walk</b> (Stop #7, 10am, 1.5hrs) · <b>Jack the Ripper walk</b> (Stop #16, 1:30pm, 2hrs) · <b>Tales of the City walk</b> (Stop #16, 4pm, 1.5hrs) · <b>evening night tour</b> (Stop #11 London Eye, 7:30pm, 2hrs). Full route map &amp; stop list in the confirmation, or the interactive one below. <a target="_blank" rel="noopener" href="tickets/ticket-bigbus-hoponhopoff-19oct.pdf">📄 Confirmation ↗</a> <a target="_blank" rel="noopener" href="tickets/ticket-bigbus-manage-booking.pdf">📄 Full details ↗</a> <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33924469">Manage ↗</a> <a target="_blank" rel="noopener" href="https://www.bigbustours.com/en/london/london-routes-and-tour-maps">🗺️ Route map ↗</a></p>
     <div class="story"><b>📖 In short</b>With Paddington out, today is lighter and now built around two booked slots — SEA LIFE London Aquarium at County Hall, 11:00 entry (Booking ID 33619404, 2 adults + 1 child), and the London Eye at 14:30 (Booking ID 33619539, £58 total, 2 adults + 1 infant, auto-charges 18 Oct). The morning that opened up once Paddington was dropped now has a good use — Borough Market, which is closed Mondays but runs full hours 10am–5pm on Tuesdays, so today's the one weekday it actually works. Leave the hotel by 09:15 (tube via London Bridge, ~30 min), browse the food stalls for pastries/coffee/a snack from about 09:45 to 10:30, then it's a 20–25 minute walk or short bus along the South Bank to County Hall for your 11:00 SEA LIFE entry — don't linger past 10:30 or you'll cut it fine. After the aquarium, a relaxed South Bank lunch around 12:30 (Wahaca has a proper kids' menu, or try Giraffe or a riverside Gail's), then a bit of slack before the Eye — a slow stroll along the river, the book market under Waterloo Bridge, or an ice cream. Aim to be in the queue for your 14:30 Eye slot with 15–20 minutes to spare, then it's a 30-minute rotation — Aariv still rides free under 3 — followed by Big Ben photos from Westminster Bridge, then straight home, with Aariv likely dozing on the bus if he needs it — Tower Bridge already has its slot on Day 3's evening, so there's no need to squeeze it in here too. The riverside is windier than it looks even on a mild day, so a windproof jacket over a warm layer is worth it for everyone, plus a hat for Aariv for the bridge photos.</div>
     <div class="spend"><b>💰 Today ~£232.50 (₹30,100)</b>🥐 Borough Market snacks ~£20 · 🐠 SEA LIFE £96 (booked, charges 18 Oct) · 🎡 London Eye £58 (booked, charges 18 Oct) · 🚌/🚇 £8 · 🍽️ ~£55. Carry £20–30 cash — market stalls are often cash/card-either but some are card-only.</div>
     <div class="pace"><b>🚶 ~9,500 steps</b> Borough Market is a slow browse-and-graze, not a rush. Then SEA LIFE slow strolling, a leisurely South Bank gap, and the Eye 30 min sitting. No scheduled nap — quiet stroller time on the bus home if he needs it.</div>
@@ -467,21 +466,20 @@
   <div class="dbody">
     <p>Clocks <b>fall back 1 hr</b> overnight (bonus sleep — flight time 22:00 is new time). Three ways to spend the morning:</p>
     <p class="tip">🧳 <b>Whichever option you pick:</b> check out of the room and leave all the luggage at Pullman reception before heading out (this is a checkout-day, not a late-checkout day) — you're not carrying bags around London on your last morning. Collect everything again when you're back at the hotel in the afternoon, before leaving for Heathrow ~17:30.</p>
-    <p class="tip">🛒 Stroller's back — collected with the bags on the 24th, useful again for Bicester/Oxford St, and a place for Aariv to rest before the flight.</p>
-    <p><b>Option A — 🛍️ Bicester Village</b> (Chhavi's pick!): checkout &amp; leave bags at reception by 8:45 → train from <b>Marylebone ~9:10</b>, arrive 10:00 as boutiques open → shop till ~13:30 → back at Marylebone 14:30, hotel 15:00. Burberry, Coach, Boss &amp; 150 more at 30–60% off. ⚠️ Remember: 1 checked bag each home (two of the three upgraded to 32kg) — and no VAT refund in the UK anymore, the tag price is final. Kids' play area near the centre for Aariv + Papa while Mumma shops.</p>
+    <p class="tip">🛒 Stroller's back — collected with the bags on the 24th, useful again for Regent St/Oxford St, and a place for Aariv to rest before the flight.</p>
+    <p><b>Option A — 🛍️ Regent Street</b> (swapped in for Bicester Village): no early rush needed — Regent Street's flagships (including <b>Coach, 200-206 Regent St</b>) don't open until <b>12:00 on Sundays</b> under UK Sunday-trading rules, so a relaxed late morning. Checkout &amp; leave bags at reception by ~10:45 → Victoria line ~10 min to <b>Oxford Circus</b> → Coach is a ~3–4 min walk down Regent St from the station, opens 12:00 → browse Regent Street's other flagships too — <b>Hamleys</b> toy store is right next door, a good stop for Aariv → shop till ~14:00 → back at the hotel by ~14:30–15:00.</p>
     <p><b>Option B — relaxed:</b> checkout &amp; leave bags at reception by ~9:30 → the <b>Horse Guards mounted sentries</b> on Whitehall — on duty daily 10:00–16:00, horses changing on the hour; stand right beside them for the photo (note: the full guard-change ceremonies at both Horse Guards and Buckingham Palace run Mon/Wed/Fri only, which doesn't fit our days). Then a 10-min walk to <b>Buckingham Palace gates</b>. Back at the hotel by ~12:30–13:00 to collect bags whenever you're ready to settle in for the afternoon.</p>
     <p><b>Option C — 🛍️ Oxford Street</b> (no train needed): checkout &amp; leave bags at reception by ~9:15 → Victoria line ~10 min or ~30-min walk to Oxford Street for the high-street shops. Closest and most flexible of the three, easy to cut short. Back at the hotel by ~12:30 to collect bags.</p>
     <p><b>~17:30</b> leave for <b>Heathrow T2</b> — taxi ~50 min, or Piccadilly line direct from King's Cross St Pancras (right outside the hotel). <b>AI-2016</b> 22:00 → DEL 13:15 Mon, seats 23A/B/C, 1 bag each (two of the three upgraded to 32kg). PNR EF3LZT <a target="_blank" rel="noopener" href="tickets/flight-airindia-ai2016-lhr-del.pdf">📄 Ticket ↗</a>.</p>
-    <div class="story"><b>📖 In short</b>Clocks fall back an hour overnight, so you gain some sleep and your 10 PM flight is effectively later than it feels. Option A, Chhavi's pick, is Bicester Village: check out and leave bags at reception by 8:45, catch a train from Marylebone around 9:10, arrive by 10 as the boutiques open, and shop until about 1:30 PM before heading back to the hotel by 3 PM — remember you're each down to one checked bag home, and the UK no longer offers VAT refunds. Option B is a more relaxed morning: the Horse Guards mounted sentries on Whitehall are on duty daily from 10 to 4 with a horse change on the hour; from there it's a walk to the Buckingham Palace gates. Option C is the closest and most flexible: a quick hop on the Victoria line (about 10 minutes) or a 30-minute walk gets you to Oxford Street for proper high-street shopping without a train booking — easy to shorten if Aariv's tired. Whichever morning you pick, plan for quiet downtime at the hotel from 3 to 5 PM before heading out around 5:30 for Heathrow Terminal 2 for the 10 PM AI-2016 flight, seats 23A/B/C, landing in Delhi at 1:15 PM Monday, PNR EF3LZT — two of your three checked bags are upgraded to 32kg for the way home. Keep passports, printed visas and your receipts pouch in the cabin bag — Indian immigration wants hard copies.</div>
-    <div class="spend"><b>💰 Today ~£80 (₹10,300) + shopping</b>🚕 Airport taxi £45–60 · 🍽️ ~£25 · Option A adds ~£55 travel (taxi + trains) + shopping · Option C adds just tube fare (~£4) + shopping, no train. Carry passports + spend coins down.</div>
-    <div class="pace"><b>🚶 Option A ~8,000 · Option B ~4,000 · Option C ~6,000 steps</b>Whatever the morning, quiet hotel downtime 15:00–17:00 before the airport — no scheduled nap, just a calm couple of hours so everyone boards the night flight settled.</div>
-    <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast: hotel · Gail's bakery. Lunch: Bicester food court (Opt A) · Covent Garden (Opt B) · Oxford Street food hall (Opt C). Early dinner 16:30: Franco Manca quick · then Pret/proper meal at LHR T2 after security.</div>
-    <div class="times"><b>⏰ Timings</b>Clocks fell back — enjoy the free hour. Option A: up 07:00, taxi 08:45 → Marylebone, ~09:10 train, Bicester 10:00–13:30, hotel 15:00. Option B: lazy 08:00 start, sights 10:00–12:30, hotel rest 15:00. Option C: relaxed 08:00 start, tube/walk to Oxford St ~09:30, shop 09:45–12:00, hotel 12:30. All: leave 17:30 → LHR T2 by 18:30 · fly 22:00 · land DEL 13:15 Mon.</div>
+    <div class="story"><b>📖 In short</b>Clocks fall back an hour overnight, so you gain some sleep and your 10 PM flight is effectively later than it feels. Option A is now Regent Street instead of Bicester Village: no need to rush since the flagship stores here (Coach at 200-206 Regent St included) don't open until noon on Sundays, so check out and leave bags at reception by around 10:45, take the Victoria line ~10 minutes to Oxford Circus, and you're right by the shops as they open at 12 — Hamleys is next door if Aariv needs a break — then shop until about 2 PM before heading back to the hotel by 2:30–3 PM. Option B is a more relaxed morning: the Horse Guards mounted sentries on Whitehall are on duty daily from 10 to 4 with a horse change on the hour; from there it's a walk to the Buckingham Palace gates. Option C is the closest and most flexible: a quick hop on the Victoria line (about 10 minutes) or a 30-minute walk gets you to Oxford Street for proper high-street shopping without a train booking — easy to shorten if Aariv's tired. Whichever morning you pick, plan for quiet downtime at the hotel from 3 to 5 PM before heading out around 5:30 for Heathrow Terminal 2 for the 10 PM AI-2016 flight, seats 23A/B/C, landing in Delhi at 1:15 PM Monday, PNR EF3LZT — two of your three checked bags are upgraded to 32kg for the way home. Keep passports, printed visas and your receipts pouch in the cabin bag — Indian immigration wants hard copies.</div>
+    <div class="spend"><b>💰 Today ~£80 (₹10,300) + shopping</b>🚕 Airport taxi £45–60 · 🍽️ ~£25 · Options A &amp; C are both now just tube fare (~£4–8 return) + shopping — no train needed either way. Carry passports + spend coins down.</div>
+    <div class="pace"><b>🚶 Option A ~5,500 · Option B ~4,000 · Option C ~6,000 steps</b>Whatever the morning, quiet hotel downtime before the airport — no scheduled nap, just a calm couple of hours so everyone boards the night flight settled.</div>
+    <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast: hotel · Gail's bakery. Lunch: Regent St/Oxford St food halls (Opt A/C) · Covent Garden (Opt B). Early dinner 16:30: Franco Manca quick · then Pret/proper meal at LHR T2 after security.</div>
+    <div class="times"><b>⏰ Timings</b>Clocks fell back — enjoy the free hour. Option A: relaxed morning, leave hotel ~10:45 → Oxford Circus ~10:55 → Regent St shops open 12:00, shop 12:00–14:00, hotel ~14:30–15:00. Option B: lazy 08:00 start, sights 10:00–12:30, hotel rest 15:00. Option C: relaxed 08:00 start, tube/walk to Oxford St ~09:30, shop 09:45–12:00, hotel 12:30. All: leave 17:30 → LHR T2 by 18:30 · fly 22:00 · land DEL 13:15 Mon.</div>
     <div class="wear"><b>👕 Wear</b> Plane comfies again; layers off as you head south. Keep printed visas, passports and the ₹/£ receipts pouch in the cabin bag — Indian emigration wants hard copies.</div>
-    <div class="routes"><span class="rlbl">🧭 Hotel → Bicester Village (Option A)</span>
-      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Marylebone+Station+London&travelmode=driving">🚕 to Marylebone ~15 min · £14</a>
-      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Marylebone+Station+London&destination=Bicester+Village+Station&travelmode=transit">🚆 Chiltern 46 min · ~£25 rtn</a>
-      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Bicester+Village+Station&destination=Bicester+Village&travelmode=walking">🚶 station → village 2 min</a>
+    <div class="routes"><span class="rlbl">🧭 Hotel → Regent Street / Coach, 200-206 Regent St (Option A)</span>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Oxford+Circus+Station+London&travelmode=transit">🚇 Victoria line ~10 min</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Oxford+Circus+Station+London&destination=200-206+Regent+Street+London+W1B+5BN&travelmode=walking">🚶 Oxford Circus → Coach ~3–4 min</a>
     </div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Oxford Street (Option C)</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Oxford+Street+London&travelmode=walking">🚶 ~30 min</a>
@@ -507,7 +505,6 @@
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Pullman+London+St+Pancras+100-110+Euston+Road+NW1+2AJ"><span class="qe">🏨</span><span class="qt">Pullman London St Pancras</span><span class="qs">100-110 Euston Rd · +44 20 7666 9000</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Kings+Cross+St+Pancras+Underground+Station+London"><span class="qe">🚇</span><span class="qt">King's Cross St Pancras</span><span class="qs">Piccadilly/Victoria/Circle + more · 4–5 min walk</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=St+Pancras+British+Library+bus+stop+Euston+Road+London"><span class="qe">🚌</span><span class="qt">Bus stop, St Pancras/British Library</span><span class="qs">Routes 1 · 30 · 73 · 91 · 205 · 390 · ~1–2 min walk</span><span class="qm">Map ↗</span></a>
-  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Midland+Road+St+Pancras+Station+London"><span class="qe">🟢</span><span class="qt">Big Bus stop — Green Link, Stop 51 "St Pancras Station"</span><span class="qs">Midland Rd, behind St Pancras · ~3–5 min walk · closest Big Bus stop to hotel</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=St+Pancras+International+Station+London"><span class="qe">🚉</span><span class="qt">St Pancras International</span><span class="qs">Eurostar + mainline · 4–5 min walk</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Euston+Station+London"><span class="qe">🚉</span><span class="qt">Euston</span><span class="qs">Arrive 24 Oct · ~8–10 min walk</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=M%26S+Simply+Food+St+Pancras+International"><span class="qe">🛒</span><span class="qt">M&amp;S Simply Food</span><span class="qs">Inside St Pancras station · ~5 min</span><span class="qm">Map ↗</span></a>
@@ -525,7 +522,8 @@
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=London+Eye"><span class="qe">🎡</span><span class="qt">London Eye</span><span class="qs">Booked 14:30 · under-3s free · ~30 min</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Tower+Bridge+London"><span class="qe">🌉</span><span class="qt">Tower Bridge</span><span class="qs">Optional · Day 3 evening only</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Heathrow+Terminal+2"><span class="qe">✈️</span><span class="qt">Heathrow T2</span><span class="qs">25 Oct · 22:00</span><span class="qm">Map ↗</span></a>
-  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bicester+Village"><span class="qe">🛍️</span><span class="qt">Bicester Village</span><span class="qs">Day 9, Option A · 46 min from Marylebone · ~3.5 hrs</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=200-206+Regent+Street+London+W1B+5BN"><span class="qe">🛍️</span><span class="qt">Coach, 200-206 Regent St</span><span class="qs">Day 9, Option A · Victoria line to Oxford Circus, ~3–4 min walk · opens 12:00 Sun · Hamleys next door</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bicester+Village"><span class="qe">🛍️</span><span class="qt">Bicester Village</span><span class="qs">No longer the plan — swapped for Regent Street · was ~55–65 min from Marylebone</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Oxford+Street+London"><span class="qe">🛍️</span><span class="qt">Oxford Street</span><span class="qs">Day 9, Option C · no train needed</span><span class="qm">Map ↗</span></a>
 </div>
 
@@ -625,7 +623,7 @@
 
 <h3 class="qhead">📅 Day 9 · Sun 25 — Fly home</h3>
 <div class="qgrid">
-  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bicester+Village"><span class="qe">🛍️</span><span class="qt">Bicester Village</span><span class="qs">Option A · Chhavi's pick</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=200-206+Regent+Street+London+W1B+5BN"><span class="qe">🛍️</span><span class="qt">Coach, 200-206 Regent St</span><span class="qs">Option A · near Oxford Circus, opens 12:00 Sun</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Horse+Guards+Whitehall+London"><span class="qe">🐴</span><span class="qt">Horse Guards</span><span class="qs">Option B · mounted sentries, daily 10–16</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Buckingham+Palace"><span class="qe">🏰</span><span class="qt">Buckingham Palace gates</span><span class="qs">Option B</span><span class="qm">Map ↗</span></a>
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Oxford+Street+London"><span class="qe">🛍️</span><span class="qt">Oxford Street</span><span class="qs">Option C · no train needed</span><span class="qm">Map ↗</span></a>
@@ -645,6 +643,63 @@
 <h3 class="qhead">❌ Considered, not doing this trip</h3>
 <div class="panel">
   <p style="font-size:13px;margin:0">🇫🇷 <b>Paris day-trip</b> via Eurostar — ruled out. It needs a separate Schengen visa on top of the UK one, and with only 9 days already packed there's no real spare day to give it without rushing everything else.</p>
+</div>
+</section>
+
+<!-- ============ PAGE: SHOPPING ============ -->
+<section class="page" id="pg-shopping">
+<h2>🛍️ Shopping</h2>
+<p class="note" style="margin-top:-4px">Where to buy Chhavi's Coach bag, the nicest streets to browse, outlet options, and how to get around — all in one place.</p>
+
+<div class="panel">
+  <h4>💰 Chhavi's shopping budget — ₹1,50,000 (≈ £1,160 at ~₹129/£)</h4>
+  <p style="font-size:13px;margin:0 0 8px">This is her own set-aside pool — the same ₹1,50,000 line already in the Costs tab, not a separate amount. A rough way to split it, purely as a starting point:</p>
+  <p style="font-size:13px;margin:0 0 8px">🎒 <b>The Coach bag itself: ≈ £250–500</b> — entry styles (small crossbody/wristlet) run ~£250–300, mid-size classics ~£350–450, larger totes/leather pieces ~£500+. That leaves roughly <b>£650–900 (≈ ₹84,000–1,16,000)</b> for everything else.</p>
+  <p style="font-size:13px;margin:0 0 8px">🏬 <b>Everything else</b> — clothes, shoes, accessories along Regent St/Oxford St/Bond St/Knightsbridge, spread across whichever days you're passing through.</p>
+  <p style="font-size:13px;margin:0">🎯 <b>Stretch it further at an outlet</b> (Bicester Village or the in-London Wembley option) — 30–60% off means the same budget goes noticeably further if she's happy to shop discounted over full-price boutiques.</p>
+</div>
+
+<h3 class="qhead">👜 Coach — where to buy it</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=200-206+Regent+Street+London+W1B+5BN"><span class="qe">🛍️</span><span class="qt">Coach, 200-206 Regent St</span><span class="qs">Day 9 plan (Option A) · opens 12:00 Sun · Victoria line to Oxford Circus</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Coach+St+Pancras+International+Unit+6A"><span class="qe">🚉</span><span class="qt">Coach, St Pancras International</span><span class="qs">Unit 6A · ~4–5 min walk from the hotel · Sun 9am–7pm (longest hours) · works ANY evening</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=71+Brompton+Road+London+SW3+1DB"><span class="qe">🏬</span><span class="qt">Coach, 71 Brompton Rd (Knightsbridge)</span><span class="qs">Near Harrods · close to Day 3's South Kensington museums · Sun 12:00–18:00</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bicester+Village"><span class="qe">🚆</span><span class="qt">Coach outlet, Bicester Village</span><span class="qs">Not the Day 9 plan anymore, but still a valid day trip · ~55–65 min from Marylebone</span><span class="qm">Map ↗</span></a>
+</div>
+<p class="note" style="margin-top:-2px">Easiest option is honestly St Pancras — it's a real boutique (not a concession), a few minutes' walk from the Pullman, and open long hours even on Sunday. No need to build a whole outing around it.</p>
+
+<h3 class="qhead">🏬 Best streets to browse together</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Regent+Street+London"><span class="qe">🛍️</span><span class="qt">Regent Street</span><span class="qs">Big flagships — Coach, Burberry &amp; more · Day 9 plan</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Oxford+Street+London"><span class="qe">🛍️</span><span class="qt">Oxford Street</span><span class="qs">High-street shopping, huge range · Option C, no train needed</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bond+Street+London"><span class="qe">💎</span><span class="qt">Bond Street (New &amp; Old)</span><span class="qs">The designer/luxury tier — Chanel, Dior and similar</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Sloane+Street+Knightsbridge+London"><span class="qe">🏰</span><span class="qt">Knightsbridge / Sloane Street</span><span class="qs">Harrods + luxury boutiques · near Day 3's museums</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Covent+Garden+London"><span class="qe">🎭</span><span class="qt">Covent Garden</span><span class="qs">Nicer independent boutiques + covered market</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Carnaby+Street+London"><span class="qe">🎨</span><span class="qt">Carnaby Street</span><span class="qs">Quirky, trendy, fun to just wander</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Kings+Road+Chelsea+London"><span class="qe">🌷</span><span class="qt">King's Road, Chelsea</span><span class="qs">A bit further out, relaxed boutique strip</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Marylebone+High+Street+London"><span class="qe">🥐</span><span class="qt">Marylebone High Street</span><span class="qs">Low-key, elegant, boutique-y · closest to the hotel area</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">🎯 Outlet shopping</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Bicester+Village"><span class="qe">🚆</span><span class="qt">Bicester Village</span><span class="qs">The best-known one · ~55–65 min from Marylebone · needs a train</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=London+Designer+Outlet+Wembley+Park"><span class="qe">🚇</span><span class="qt">London Designer Outlet, Wembley Park</span><span class="qs">Real outlet pricing, inside London — Tube only, no train</span><span class="qm">Map ↗</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=ICON+Outlet+The+O2+London"><span class="qe">🎡</span><span class="qt">ICON Outlet, The O2</span><span class="qs">Another in-London option · Tube/DLR to North Greenwich</span><span class="qm">Map ↗</span></a>
+</div>
+
+<h3 class="qhead">🚇 Getting between them</h3>
+<div class="panel">
+  <p style="font-size:13px;margin:0">The Big Bus Hop-on-Hop-off pass is cancelled for now (see Tickets tab), so plan on the Tube: Victoria line from King's Cross St Pancras gets you to <b>Oxford Circus</b> (~10 min) for Regent St/Oxford St, and on to <b>Knightsbridge</b> for Brompton Rd/Harrods. If you rebook Big Bus later, its Blue route covers both areas — Stop 47 near Oxford Circus, Stop 34 outside Harrods — and its route map stays useful either way. <a target="_blank" rel="noopener" href="https://www.bigbustours.com/en/london/london-routes-and-tour-maps">🗺️ Route map ↗</a></p>
+</div>
+
+<h3 class="qhead">📅 Sales — set expectations</h3>
+<div class="panel">
+  <p style="font-size:13px;margin:0">No major UK-wide sale falls in October — Black Friday is late November (after you fly home), and the other big ones are Boxing Day and January. Late October is just school half-term, which brings family-oriented store events, not real discounting. Go in expecting full price rather than hunting for a sale.</p>
+</div>
+
+<h3 class="qhead">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edinburgh</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Victoria+Street+Edinburgh"><span class="qe">🌈</span><span class="qt">Victoria Street</span><span class="qs">Colourful shopfronts + the Harry Potter shop · already on Day 6</span><span class="qm">Map ↗</span></a>
 </div>
 </section>
 
@@ -718,9 +773,9 @@
 </div>
 
 <div class="tkt pend">
-  <div class="th"><span class="tn">🛍️ Bicester Village trains (Option A, 25 Oct)</span><span class="td2">Optional · ~£25 rtn pp</span></div>
-  <div class="tr">Chiltern Railways from Marylebone · book advance for cheaper fares · Aariv free · Sunday opening 10:00</div>
-  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://www.chilternrailways.co.uk/bicester-village">Book train ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.thebicestercollection.com/bicester-village/en/visit">Village info ↗</a></div>
+  <div class="th"><span class="tn">🛍️ Regent Street shopping (Option A, 25 Oct)</span><span class="td2">No booking needed</span></div>
+  <div class="tr">Swapped in for Bicester Village. Target: <b>Coach, 200-206 Regent St, London W1B 5BN</b> — bags/accessories, repair &amp; customization service, ~3–4 min walk from Oxford Circus station. ⚠️ <b>Sunday hours are 12:00–18:00</b> (most Regent St flagships, under UK Sunday-trading rules) — don't head over expecting a morning opening. Hamleys toy store is right next door — an easy stop for Aariv while you browse. No train, no advance tickets — just hop the Victoria line to Oxford Circus whenever you're ready after 12.</div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.google.com/maps/?q=200-206+Regent+Street+London+W1B+5BN">📍 Map ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://uk.coach.com/stores/gb-lnd/london/200-206-regent-street">Coach store ↗</a></div>
 </div>
 
 <div class="tkt pend">
@@ -745,6 +800,15 @@
   <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.gov.uk/evisa/check-status">Check eVisa ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/share-code-aviral.pdf">📄 Aviral's Share Code ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/share-code-chhavi.pdf">📄 Chhavi's Share Code ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/share-code-aariv.pdf">📄 Aariv's Share Code ↗</a></div>
   <div class="tr" style="margin-top:8px">🛂 <b>Passport scans on file</b> — for quick access if ever needed at check-in/immigration:</div>
   <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/passport-aviral.pdf">📄 Aviral's Passport ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/passport-chhavi.pdf">📄 Chhavi's Passport ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/passport-aariv.pdf">📄 Aariv's Passport ↗</a></div>
+</div>
+
+<div class="tkt done">
+  <div class="th"><span class="tn">🩺 Travel Insurance — all 3</span><span class="td2">HDFC ERGO · 07 Sep 2026 – 06 Sep 2027</span></div>
+  <div class="tr">Group Travel Insurance (Overseas Mediclaim), Policy <b>GTI0002992000106</b>, via M/s Vasco Worldwide India Pvt Ltd. Covers Worldwide excl. US/Canada — your UK trip is included. Valid a full year, not just this trip.</div>
+  <div class="tr">Aviral — Certificate <b>GTI0002992000106/000479</b> · passport Y1406968. Chhavi — Certificate <b>GTI0002992000106/000477</b> · passport Y3766049. Aariv — Certificate <b>GTI0002992000106/000478</b> · passport Y3159732.</div>
+  <div class="tr">📋 Covers (per person): $50,000 emergency medical + evacuation/repatriation, $10,000 accidental death/disablement, $1,000 checked baggage loss, $500 emergency dental, plus flight delay, hospital cash, personal liability and more. Full benefit list and exclusions are in each certificate PDF.</div>
+  <div class="tr">🚨 <b>In an emergency, call HDFC ERGO first</b> (before arranging anything yourselves) — 24hr Help Center: toll-free (globally) <b>+800 08250825</b>, or landline (chargeable) <b>+91-120-4507250</b> · email <b>travelclaims@hdfcergo.com</b>. Have ready: your name, this Certificate Number, Policy Number, and passport number.</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/insurance-aviral.pdf">📄 Aviral's Certificate ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/insurance-chhavi.pdf">📄 Chhavi's Certificate ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/insurance-aariv.pdf">📄 Aariv's Certificate ↗</a></div>
 </div>
 
 <div class="tkt done">
@@ -785,15 +849,10 @@
   <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/ticket-sciencemuseum-19oct.pdf">📄 Ticket PDF ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.sciencemuseum.org.uk/visit-us">Science Museum ↗</a></div>
 </div>
 
-<div class="tkt done">
-  <img class="tkt-photo" src="tickets/images/bigbus-photo.jpg" alt="Big Bus hop-on-hop-off open-top bus outside St Paul's Cathedral" loading="lazy">
-  <div class="th"><span class="tn">🚌 Big Bus Hop-on-Hop-off</span><span class="td2">From Mon 19 Oct · 08:30 open · 48hrs</span></div>
-  <div class="tr">2 Adults (Aariv rides free) · <b>£94.98</b> — <b>auto-charges 17 Oct 08:30am</b> (your departure-day morning) — not yet paid · Headout Booking ID <b>33924469</b> · Big Bus partner ref <b>TNBY9KBX</b></div>
-  <div class="tr">🕐 <b>Best used on the 20th</b> (your lighter day), not squeezed into the packed 19th — pass is valid 48 hrs from first redemption, so start it whenever suits. Redeem the voucher with the driver/staff at any stop, then board anywhere along the Blue or Red route.</div>
-  <div class="tr">🎁 <b>Also included, easy to miss:</b> 3 free guided walking tours — Royal walk (Stop #7, 10am, 1.5hrs), Jack the Ripper walk (Stop #16, 1:30pm, 2hrs), Tales of the City walk (Stop #16, 4pm, 1.5hrs) — plus a 2-hr evening night tour, departs 7:30pm from Stop #11 (London Eye), one per evening. Also includes a 40-min guided Thames River Cruise (Tower Pier ⇄ Westminster Pier, every ~40 min, last boat ~19:00/19:20) — <b>you're not planning to use this leg</b>, noted here in case plans change; download it via the City Cruises login (booking ID + last name) if you do.</div>
-  <div class="tr">📍 <b>Nearest stop to the Pullman: 🟢 Green Link, Stop 51 "St Pancras Station"</b> — Midland Road, right behind St Pancras (~3–5 min walk). Red and Blue routes don't come this far north — you'll need the Green Link to start/end near the hotel; it also runs to Covent Garden and Temple. Runs ~every 45 min, first bus ~08:30, last ~18:15.</div>
-  <div class="tr">↩️ Free cancel/reschedule until 08:30 AM, 18 Oct 2026.</div>
-  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/ticket-bigbus-hoponhopoff-19oct.pdf">📄 Confirmation ↗</a><a class="bk" target="_blank" rel="noopener" href="tickets/ticket-bigbus-manage-booking.pdf">📄 Full details ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33924469">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.bigbustours.com/en/london/london-routes-and-tour-maps">🗺️ Route map ↗</a></div>
+<div class="tkt cancelled">
+  <div class="th"><span class="tn">🚌 Big Bus Hop-on-Hop-off</span><span class="td2">❌ Cancelled — for now</span></div>
+  <div class="tr">Cancelled before the 17 Oct auto-charge, so nothing was paid. Was: 48hr pass from Mon 19 Oct, 2 adults, £94.98, Headout Booking ID <b>33924469</b>. Left here in case plans change — rebooking is easy, and everything below (routes, walking tours, stops) still applies if you do.</div>
+  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗ (to rebook)</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.bigbustours.com/en/london/london-routes-and-tour-maps">🗺️ Route map ↗</a></div>
 </div>
 
 <div class="tkt done">
@@ -1030,15 +1089,15 @@
   <tr><td>🚢 Thames Sightseeing Cruise</td><td>≈ ₹3,900</td><td>💳 Booked (£30) — auto-charges 16 Oct</td></tr>
   <tr><td>🐠 SEA LIFE London Aquarium</td><td>≈ ₹12,400</td><td>💳 Booked (£96) — auto-charges 18 Oct</td></tr>
   <tr><td>🎡 London Eye</td><td>≈ ₹7,500</td><td>💳 Booked (£58) — auto-charges 18 Oct</td></tr>
-  <tr><td>🚌 Big Bus Hop-on-Hop-off (48hr)</td><td>≈ ₹12,250</td><td>💳 Booked (£94.98) — auto-charges 17 Oct 08:30am</td></tr>
-  <tr><td><b>Σ Booked so far</b></td><td><b>≈ ₹7,27,950</b></td><td><b>✅ ₹5,92,200 paid</b> · 💷 ₹89,593 at hotel (Mount Royal) · 💳 ₹10,100 charges 20 Oct · 💳 ₹3,900 charges 16 Oct · 💳 ₹19,900 charges 18 Oct (SEA LIFE + Eye) · 💳 ₹12,250 charges 17 Oct (Big Bus)</td></tr>
+  <tr><td>🚌 Big Bus Hop-on-Hop-off (48hr)</td><td>₹0</td><td>❌ Cancelled — for now, before the 17 Oct charge, nothing paid</td></tr>
+  <tr><td><b>Σ Booked so far</b></td><td><b>≈ ₹7,15,700</b></td><td><b>✅ ₹5,92,200 paid</b> · 💷 ₹89,593 at hotel (Mount Royal) · 💳 ₹10,100 charges 20 Oct · 💳 ₹3,900 charges 16 Oct · 💳 ₹19,900 charges 18 Oct (SEA LIFE + Eye)</td></tr>
   <tr><td>🛂 Visas ×3 + VFS premium lounge</td><td>≈ ₹74,000</td><td>✅ Paid — GRANTED 25 Aug</td></tr>
   <tr><td>🎟️ Other attractions</td><td>≈ ₹15–25,000</td><td>📊 Estimate · under-5 mostly free</td></tr>
   <tr><td>🍽️ Meals (9 days)</td><td>≈ ₹90,000–1,15,000</td><td>📊 Estimate</td></tr>
   <tr><td>🚕 Transport &amp; airport runs</td><td>≈ ₹20–25,000</td><td>📊 Estimate</td></tr>
-  <tr><td><b>Σ Likely total (excl. 🛍️)</b></td><td><b>≈ ₹9.1–9.6 lakh</b></td><td>💱 GBP at ~₹129/£ · corrected — previous subtotal hadn't been recalculated since the IndiGo Business upgrade, Aariv's 2 own train seats, and the Highland tour were added</td></tr>
+  <tr><td><b>Σ Likely total (excl. 🛍️)</b></td><td><b>≈ ₹9.0–9.5 lakh</b></td><td>💱 GBP at ~₹129/£ · Big Bus (₹12,250) removed after cancellation</td></tr>
   <tr><td>🛍️ Shopping budget</td><td>₹1,50,000</td><td>📊 Budget set aside — not yet spent</td></tr>
-  <tr><td><b>Σ Grand total (incl. 🛍️)</b></td><td><b>≈ ₹10.6–11.1 lakh</b></td><td>💱 GBP at ~₹129/£</td></tr>
+  <tr><td><b>Σ Grand total (incl. 🛍️)</b></td><td><b>≈ ₹10.5–11.0 lakh</b></td><td>💱 GBP at ~₹129/£</td></tr>
 </table></div>
 
 <div class="spend"><b>🧾 Live spend log</b>The table above is what's booked and planned. For the loose day-to-day stuff — meals, taxis, souvenirs, gelato — track it as you go in the <a href="spends.html" target="_blank" rel="noopener">Trip Spend Log ↗</a>, a shared live tracker both of you can add to from your own phones. Runs separately from this app; bookmark it too.</div>
@@ -1113,7 +1172,7 @@
   <label class="ck"><input type="checkbox" checked> ✅ eVisas now VIEWABLE in each UKVI account, all 3 — Visitor (British-Irish visa scheme), valid 10 Oct 2026–10 Apr 2027, multiple entries. Aariv's eVisa is "Child accompanied," valid only when travelling with Aviral or Chhavi.</label>
   <label class="ck"><input type="checkbox" checked> ✅ Checked name/DOB/passport number on each UKVI account against the actual passport scans — all 3 match exactly (Aviral, Chhavi, Aariv), no errors to report</label>
   <label class="ck"><input type="checkbox" checked> ✅ Generated 90-day eVisa "share codes" for all 3, as backup proof in case check-in staff can't verify status electronically — see UK Visas card above for all 3 codes</label>
-  <label class="ck"><input type="checkbox"> 🔲 Buy travel insurance for all 3 (Aviral, Chhavi, Aariv) — covers the whole 17–25 Oct trip, ideally before departure</label>
+  <label class="ck"><input type="checkbox" checked> ✅ Travel insurance sorted for all 3 — HDFC ERGO (free via VFS Global voucher), Policy GTI0002992000106, valid 07 Sep 2026–06 Sep 2027, covers this trip. ⚠️ Trip cancellation/interruption is NOT actually active on this policy (not in the schedule's benefit table) — worth knowing given how much is prepaid.</label>
   <label class="ck"><input type="checkbox" checked> ✅ Switched to Pullman London St Pancras (both legs) — booked &amp; paid via HDFC SmartBuy, non-refundable; Aariv already included in the 2 adults + 1 child room</label>
   <label class="ck"><input type="checkbox" checked> ✅ Luggage storage confirmed with the Pullman for the 21–24 Oct Edinburgh gap — 2 large bags, no problem, noted on the booking (email from Georgina, 7 Sep). Just remind the front desk again at check-in on the 17th.</label>
   <label class="ck"><input type="checkbox"> 🔲 Room upgrade — requested by email and noted on both Pullman bookings, but not promised ("we'll try our best"). No action needed, just don't expect it.</label>
@@ -1126,7 +1185,7 @@
   <label class="ck"><input type="checkbox" checked> ✅ British Museum booked — Sun 18 Oct, 11:10 entry, order 10909534</label>
   <label class="ck"><input type="checkbox" checked> ✅ SEA LIFE London Aquarium booked — Tue 20 Oct, 11:00 entry, ID 33619404 (Paddington Bear Experience dropped — not doing it)</label>
   <label class="ck"><input type="checkbox" checked> ✅ London Eye booked — Tue 20 Oct, 14:30 entry, ID 33619539, £58 auto-charges 18 Oct</label>
-  <label class="ck"><input type="checkbox" checked> ✅ Big Bus Hop-on-Hop-off booked — from Mon 19 Oct, 08:30 open, 48hr pass, 2 adults, £94.98 (auto-charges 17 Oct), Booking ID 33924469 — best used on the lighter 20th; includes 3 free walking tours + an evening tour + a Thames cruise leg we're not using</label>
+  <label class="ck"><input type="checkbox"> ❌ Big Bus Hop-on-Hop-off — cancelled for now (Booking ID 33924469, was £94.98). Rebook via the Headout app if plans change; nothing was charged.</label>
   <label class="ck"><input type="checkbox" checked> ✅ Edinburgh Castle guided tour booked — Thu 22 Oct 12:15pm, ID 33614375, £78 charges 20 Oct</label>
   <label class="ck"><input type="checkbox" checked> ✅ Highland Experience Loch Ness/Glen Coe tour booked — 23 Oct, #374019708</label>
   <label class="ck"><input type="checkbox" checked> ✅ Thames Sightseeing Cruise booked — Sun 18 Oct, Westminster→Greenwich, ID 33618337, £30 auto-charges 16 Oct</label>
@@ -1228,6 +1287,7 @@
     <li>🍛 Ghar ka khana: Drummond Street (10 min from London hotel) is a classic Indian food street.</li>
     <li>💊 Boots pharmacies everywhere for nappies/Calpol/anything forgotten.</li>
     <li>🚨 Emergency: 999 (or 112). NHS non-emergency advice: 111.</li>
+    <li>🩺 Travel insurance (HDFC ERGO) — call before arranging/paying for anything yourselves: toll-free (globally) <b>+800 08250825</b>, landline (chargeable) <b>+91-120-4507250</b>, email <b>travelclaims@hdfcergo.com</b>. Policy GTI0002992000106, certificates for all 3 in the Tickets tab.</li>
   </ul>
 </div>
 
@@ -1240,6 +1300,7 @@
   <button type="button" class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
   <button type="button" data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
   <button type="button" data-pg="pg-sights"><span class="ni">🏛️</span>Sights</button>
+  <button type="button" data-pg="pg-shopping"><span class="ni">🛍️</span>Shopping</button>
   <button type="button" data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
   <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
   <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
