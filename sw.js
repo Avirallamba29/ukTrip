@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v39';
+const CACHE_NAME = 'uktrip-cache-v50';
 
 const PRECACHE_URLS = [
   './',
@@ -66,7 +66,27 @@ const PRECACHE_URLS = [
   './tickets/insurance-aariv.pdf',
   './tickets/insurance-aviral-tataaig.pdf',
   './tickets/insurance-chhavi-tataaig.pdf',
-  './tickets/insurance-aariv-tataaig.pdf'
+  './tickets/insurance-aariv-tataaig.pdf',
+  './tickets/images/attr-air-india.jpg',
+  './tickets/images/attr-borough-market.jpg',
+  './tickets/images/attr-british-museum.jpg',
+  './tickets/images/attr-calton-hill.jpg',
+  './tickets/images/attr-glen-coe.jpg',
+  './tickets/images/attr-heathrow-t2.jpg',
+  './tickets/images/attr-highland-cow.jpg',
+  './tickets/images/attr-indigo.jpg',
+  './tickets/images/attr-loch-ness.jpg',
+  './tickets/images/attr-nhm.jpg',
+  './tickets/images/attr-regent-street.jpg',
+  './tickets/images/attr-royal-mile.jpg',
+  './tickets/images/attr-science-museum.jpg',
+  './tickets/images/attr-sky-garden.jpg',
+  './tickets/images/attr-tower-bridge.jpg',
+  './tickets/images/attr-victoria-street.jpg',
+  './tickets/images/attr-avanti.jpg',
+  './tickets/images/attr-lner-azuma.jpg',
+  './tickets/images/attr-kings-cross.jpg',
+  './tickets/images/attr-cutty-sark.jpg'
 ];
 
 self.addEventListener('install', (event) => {
