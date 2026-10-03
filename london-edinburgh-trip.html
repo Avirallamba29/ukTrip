@@ -12,210 +12,417 @@
 <title>London &amp; Edinburgh · 17–25 Oct · Aariv turns 3 🎂</title>
 <style>
   :root{
-    --ink:#1d2733; --muted:#5b6b7c; --line:#e3e8ee;
-    --accent:#1f5aa8; --accent-soft:#eaf1fb;
-    --gold:#b07d1e; --gold-soft:#fdf3df;
-    --bg:#f4f7fa; --card:#ffffff; --nav-h:58px;
-    --shadow-sm:0 1px 2px rgba(16,24,32,.06), 0 1px 1px rgba(16,24,32,.04);
-    --shadow-md:0 6px 20px rgba(16,24,32,.10), 0 2px 6px rgba(16,24,32,.06);
+    --ink:#172033; --ink2:#2b3950; --muted:#5f6c7e; --line:#e1e6ee; --line2:#eef1f6;
+    --bg:#f1f4f8; --card:#ffffff; --card2:#f7f9fc;
+    --accent:#2457b7; --accent-ink:#1b449a; --accent-soft:#e7eefb; --accent-ring:rgba(36,87,183,.22);
+    --gold:#a3650f; --gold-soft:#fff3dd; --gold-line:#f0cf8a;
+    --green:#1d7a4b; --green-soft:#e4f3ea;
+    --red:#c0392b; --red-soft:#fdecea;
+    --purple:#6f4fc4; --purple-soft:#eee9fb;
+    --coral:#c0503e; --coral-soft:#fdeae6;
+    --nav-h:64px;
+    --shadow-sm:0 1px 2px rgba(16,24,40,.06), 0 1px 1px rgba(16,24,40,.03);
+    --shadow-md:0 8px 24px rgba(16,24,40,.10), 0 2px 6px rgba(16,24,40,.06);
+    --r-lg:18px; --r-md:14px; --r-sm:10px;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --ink:#e8edf3; --muted:#9fadbd; --line:#2a3543;
-      --accent:#7fb0ec; --accent-soft:#16283e;
-      --gold:#e3b35c; --gold-soft:#33260e;
-      --bg:#0f151c; --card:#161e27;
-      --shadow-sm:0 1px 3px rgba(0,0,0,.32);
-      --shadow-md:0 10px 28px rgba(0,0,0,.45);
+      --ink:#e9eef5; --ink2:#c9d3e0; --muted:#9aa8ba; --line:#28333f; --line2:#1f2833;
+      --bg:#0e1319; --card:#161d26; --card2:#1b232e;
+      --accent:#8ab4f2; --accent-ink:#a9c6f5; --accent-soft:#182840; --accent-ring:rgba(138,180,242,.28);
+      --gold:#e6b45e; --gold-soft:#2f2410; --gold-line:#5a4318;
+      --green:#6fcf97; --green-soft:#132b1f;
+      --red:#f08a7e; --red-soft:#3a1a16;
+      --purple:#b7a2f0; --purple-soft:#241d3a;
+      --coral:#f0947f; --coral-soft:#3a1d17;
+      --shadow-sm:0 1px 3px rgba(0,0,0,.35);
+      --shadow-md:0 12px 30px rgba(0,0,0,.5);
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 28px);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:760px;margin:0 auto;padding:14px 12px 0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,Roboto,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:15px;padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 30px);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:10px 14px 0}
   ::selection{background:var(--accent);color:#fff}
-  /* header */
-  .apphead{padding:14px 4px 10px}
-  .apphead h1{font-size:22px;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
-  .apphead .sub{font-size:12.5px;color:var(--muted);margin-top:4px}
-  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:11.5px;color:var(--muted);box-shadow:var(--shadow-sm)}
-  .chip b{color:var(--ink)}
-  .chip.bday{background:var(--gold-soft);border-color:var(--gold);color:var(--gold)}
+  a{color:var(--accent-ink)}
+  b{font-weight:700}
 
-  /* top bar (hamburger + search) */
-  .topbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:8px;padding:8px 0;background:var(--bg)}
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:10px;padding:8px 0;margin:0 -14px;padding-left:14px;padding-right:14px;background:var(--bg);box-shadow:0 1px 0 var(--line2)}
   .topbar .spacer{flex:1}
-  .iconbtn{width:40px;height:40px;flex:none;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:16.5px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:var(--shadow-sm);transition:transform .12s ease, background-color .15s ease}
+  .tb-title{flex:1;min-width:0;text-align:center;line-height:1.15;opacity:0;transform:translateY(3px);transition:opacity .2s ease,transform .2s ease}
+  .topbar.scrolled .tb-title{opacity:1;transform:none}
+  .tb-title b{display:block;font-size:14px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tb-title span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+  .iconbtn{width:42px;height:42px;flex:none;border-radius:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:var(--shadow-sm);transition:transform .12s ease, background-color .15s ease}
   .iconbtn:active{background:var(--accent-soft);transform:scale(.94)}
   .iconbtn.searching{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-  /* search bar */
-  .searchbar{display:none;margin-bottom:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px;box-shadow:var(--shadow-md);animation:slidedown .18s ease}
+  /* ---------- app header ---------- */
+  .apphead{padding:10px 2px 8px}
+  .apphead h1{font-size:24px;line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+  .apphead .sub{font-size:13px;color:var(--muted);margin-top:5px}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12px;color:var(--muted);box-shadow:var(--shadow-sm);white-space:nowrap}
+  .chip b{color:var(--ink)}
+  .chip.bday{background:var(--gold-soft);border-color:var(--gold-line);color:var(--gold)}
+  .chip.bday b{color:var(--gold)}
+  .chip.count{background:var(--accent);border-color:var(--accent);color:#fff}
+  .chip.count b{color:#fff}
+
+  /* ---------- search ---------- */
+  .searchbar{display:none;margin:0 0 10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px;box-shadow:var(--shadow-md);animation:slidedown .18s ease}
   @keyframes slidedown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
   .searchbar.on{display:block}
   .searchbar-inner{position:relative}
-  .searchbar-inner::before{content:"🔍";position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.6;pointer-events:none}
-  .searchbar input{width:100%;font:inherit;font-size:14px;padding:11px 11px 11px 34px;border-radius:10px;border:1px solid transparent;background:var(--bg);color:var(--ink);-webkit-appearance:none}
-  .searchbar input:focus{outline:none;border-color:var(--accent)}
-  .search-results{margin-top:2px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:3px;padding:6px}
-  .search-hit-row{display:block;width:100%;text-align:left;border:0;background:none;border-radius:9px;padding:8px 10px;cursor:pointer;font:inherit;transition:background-color .12s ease}
+  .searchbar-inner::before{content:"🔍";position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.6;pointer-events:none}
+  .searchbar input{width:100%;font:inherit;font-size:15px;padding:12px 12px 12px 36px;border-radius:12px;border:1px solid transparent;background:var(--bg);color:var(--ink);-webkit-appearance:none}
+  .searchbar input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-ring)}
+  .search-results{margin-top:2px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding:6px}
+  .search-hit-row{display:block;width:100%;text-align:left;border:0;background:none;border-radius:10px;padding:9px 10px;cursor:pointer;font:inherit;transition:background-color .12s ease}
   .search-hit-row:active{background:var(--accent-soft)}
-  .shlabel{font-size:13px;color:var(--ink);font-weight:650}
-  .shpage{font-size:10.5px;color:var(--accent);margin-top:2px;letter-spacing:.03em;text-transform:uppercase;font-weight:700}
-  .search-empty{font-size:12.5px;color:var(--muted);padding:10px 10px}
-  @keyframes searchflash{0%{background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}100%{background:transparent;box-shadow:0 0 0 0 transparent}}
-  .search-hit{animation:searchflash 1.6s ease;border-radius:10px}
+  .shlabel{font-size:13.5px;color:var(--ink);font-weight:650}
+  .shpage{font-size:10.5px;color:var(--accent-ink);margin-top:2px;letter-spacing:.05em;text-transform:uppercase;font-weight:700}
+  .search-empty{font-size:13px;color:var(--muted);padding:10px}
+  @keyframes searchflash{0%{background:var(--accent-soft);box-shadow:0 0 0 4px var(--accent-soft)}100%{background:transparent;box-shadow:0 0 0 0 transparent}}
+  .search-hit{animation:searchflash 1.6s ease;border-radius:12px}
 
-  /* left drawer */
-  .drawer-overlay{position:fixed;inset:0;background:rgba(10,14,20,.45);backdrop-filter:blur(1px);z-index:200;opacity:0;pointer-events:none;transition:opacity .22s ease}
+  /* ---------- drawer ---------- */
+  .drawer-overlay{position:fixed;inset:0;background:rgba(8,12,18,.5);backdrop-filter:blur(2px);z-index:1200;opacity:0;pointer-events:none;transition:opacity .22s ease}
   .drawer-overlay.on{opacity:1;pointer-events:auto}
-  .drawer{position:fixed;top:0;left:0;bottom:0;width:78%;max-width:300px;background:var(--card);z-index:201;transform:translateX(-100%);transition:transform .28s cubic-bezier(.2,.8,.3,1);box-shadow:var(--shadow-md);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
+  .drawer{position:fixed;top:0;left:0;bottom:0;width:80%;max-width:310px;background:var(--card);z-index:1201;transform:translateX(-100%);transition:transform .28s cubic-bezier(.2,.8,.3,1);box-shadow:var(--shadow-md);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
   .drawer.on{transform:translateX(0)}
-  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:20px 16px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--accent-soft),transparent)}
-  .drawer-head b{font-size:14.5px}
-  .drawer-head .sub{font-size:10.5px;color:var(--muted);display:block;margin-top:3px}
-  .drawer-close{border:0;background:var(--bg);color:var(--muted);font-size:15px;cursor:pointer;padding:0;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px 18px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--accent-soft),transparent)}
+  .drawer-head b{font-size:15px}
+  .drawer-head .sub{font-size:11px;color:var(--muted);display:block;margin-top:3px}
+  .drawer-close{border:0;background:var(--bg);color:var(--muted);font-size:15px;cursor:pointer;padding:0;width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
   .drawer-close:active{background:var(--accent-soft)}
   .drawer-links{display:flex;flex-direction:column;padding:10px;gap:2px;overflow-y:auto}
-  .drawer-links button{display:flex;align-items:center;gap:12px;border:0;background:none;text-align:left;padding:11px 10px;border-radius:11px;font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .12s ease}
-  .drawer-links button .ni{font-size:17px;width:32px;height:32px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);border-radius:9px}
+  .drawer-links button{display:flex;align-items:center;gap:12px;border:0;background:none;text-align:left;padding:11px 10px;border-radius:12px;font:inherit;font-size:15px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .12s ease;min-height:46px}
+  .drawer-links button .ni{font-size:18px;width:34px;height:34px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);border-radius:10px}
   .drawer-links button:active{background:var(--bg)}
-  .drawer-links button.on{background:var(--accent-soft);color:var(--accent);font-weight:700}
+  .drawer-links button.on{background:var(--accent-soft);color:var(--accent-ink);font-weight:700}
   .drawer-links button.on .ni{background:var(--card)}
+  .drawer-links .dsep{height:1px;background:var(--line);margin:6px 8px}
 
-  /* bottom nav */
-  nav{position:fixed;bottom:0;left:0;right:0;width:100%;height:calc(var(--nav-h) + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);display:flex;z-index:999;padding-bottom:max(env(safe-area-inset-bottom),6px);box-shadow:0 -4px 16px rgba(0,0,0,.08);transform:translateZ(0)}
-  nav button{flex:1;border:0;background:none;color:var(--muted);font-size:10.5px;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;padding:0;min-height:44px;transition:color .12s ease,transform .1s ease}
+  /* ---------- bottom nav (5 tabs) ---------- */
+  nav{position:fixed;bottom:0;left:0;right:0;width:100%;height:calc(var(--nav-h) + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-top:1px solid var(--line);display:flex;z-index:999;padding:6px 6px max(env(safe-area-inset-bottom),6px);box-shadow:0 -6px 20px rgba(0,0,0,.07);transform:translateZ(0)}
+  nav button{flex:1;border:0;background:none;color:var(--muted);font-size:11px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;padding:0;min-height:48px;border-radius:14px;transition:color .12s ease,transform .1s ease}
   nav button:active{transform:scale(.94)}
-  nav button .ni{font-size:19px;line-height:1;transition:transform .12s ease}
-  nav button.on{color:var(--accent);font-weight:700}
-  nav button.on .ni{transform:translateY(-1px)}
-  /* pages */
+  nav button .ni{font-size:21px;line-height:1;width:48px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:999px;transition:background-color .15s ease,transform .12s ease}
+  nav button.on{color:var(--accent-ink)}
+  nav button.on .ni{background:var(--accent-soft);transform:translateY(-1px)}
+
+  /* ---------- pages ---------- */
   .page{display:none}
   .page.on{display:block;animation:fade .18s ease}
   @keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
-  h2{font-size:16px;margin:18px 2px 10px}
-  h3.qhead{font-size:12px;margin:16px 2px 8px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
-  /* day cards */
-  details.day{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .15s ease}
-  details.day summary{list-style:none;cursor:pointer;padding:14px;display:flex;align-items:center;gap:10px;-webkit-tap-highlight-color:transparent;transition:background-color .12s ease}
+  h2{font-size:18px;margin:20px 2px 10px;letter-spacing:-.015em}
+  h3.qhead{font-size:11.5px;margin:18px 2px 8px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .note{font-size:12.5px;color:var(--muted);margin:8px 2px;line-height:1.5}
+
+  /* ---------- date strip (jump between days) ---------- */
+  .datestrip{position:sticky;top:58px;z-index:50;display:flex;gap:6px;overflow-x:auto;padding:6px 0 10px;margin:0 -14px;padding-left:14px;padding-right:14px;scrollbar-width:none;background:var(--bg);box-shadow:0 8px 10px -10px rgba(0,0,0,.25)}
+  .datestrip::-webkit-scrollbar{display:none}
+  .dj{flex:none;width:50px;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:12px;padding:5px 0 4px;display:flex;flex-direction:column;align-items:center;gap:0;font:inherit;cursor:pointer;box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent;transition:transform .1s ease}
+  .dj:active{transform:scale(.95)}
+  .dj span{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .dj b{font-size:17px;line-height:1.1;color:var(--ink)}
+  .dj.bday{border-color:var(--gold-line);background:var(--gold-soft)}
+  .dj.bday b{color:var(--gold)}
+  .dj.today{background:var(--accent);border-color:var(--accent);color:#fff}
+  .dj.today b{color:#fff}
+
+  /* ---------- action items ---------- */
+  .panel.actions{background:var(--gold-soft);border-color:var(--gold-line)}
+  .panel.actions h4{display:flex;align-items:center;gap:8px;font-size:14.5px;color:var(--gold)}
+  .panel.actions label.ck{border-bottom-color:var(--gold-line)}
+  .due{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);background:var(--card);border:1px solid var(--gold-line);border-radius:999px;padding:2px 8px;margin-right:4px;vertical-align:1px;white-space:nowrap}
+  .due.hot{background:var(--red);border-color:var(--red);color:#fff}
+  .jl{border:0;background:none;color:var(--accent-ink);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:0 2px;white-space:nowrap}
+
+  /* ---------- day cards ---------- */
+  details.day{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .15s ease;scroll-margin-top:118px}
+  details.day[open]{box-shadow:var(--shadow-md)}
+  details.day summary{list-style:none;cursor:pointer;padding:12px 14px 12px 12px;display:flex;align-items:center;gap:12px;position:relative;-webkit-tap-highlight-color:transparent;transition:background-color .12s ease}
   details.day summary:active{background:var(--accent-soft)}
   details.day summary::-webkit-details-marker{display:none}
-  .dn{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 8px;white-space:nowrap}
-  .dt{font-size:14.5px;font-weight:650;flex:1;line-height:1.3}
-  .dd{font-size:11px;color:var(--muted);white-space:nowrap}
-  .arrow{color:var(--muted);font-size:12px;transition:transform .2s ease}
-  details[open] .arrow{transform:rotate(90deg)}
-  .dbody{padding:2px 14px 14px;border-top:1px dashed var(--line)}
-  .dbody p{font-size:13.5px;margin:9px 0;line-height:1.55}
-  .tip{font-size:12.5px;color:var(--muted);border-left:3px solid var(--accent);padding:2px 0 2px 10px;margin:8px 0}
-  .story{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:12.5px;line-height:1.6;margin:8px 0}
-  .story b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-  .wear{background:var(--accent-soft);border-radius:10px;padding:9px 12px;font-size:12.5px;margin:8px 0}
-  .wear b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
-  .times{background:rgba(142,106,200,.12);border-radius:10px;padding:9px 12px;font-size:12.5px;margin:8px 0}
-  .times b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8e6ac8;margin-bottom:3px}
-  .eat{background:rgba(214,86,68,.10);border-radius:10px;padding:9px 12px;font-size:12.5px;margin:8px 0}
-  .eat b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#c05040;margin-bottom:3px}
-  .pace{background:rgba(46,139,87,.12);border-radius:10px;padding:9px 12px;font-size:12.5px;margin:8px 0}
-  .pace b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#2e8b57;margin-bottom:3px}
-  .spend{background:var(--gold-soft);border-radius:10px;padding:9px 12px;font-size:12.5px;margin:8px 0}
-  .spend b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
-  .routes{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 2px}
-  .routes .rlbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:-2px}
-  .rbtn{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1.5px solid var(--accent);border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:650;color:var(--accent);text-decoration:none;white-space:nowrap;transition:transform .1s ease, background-color .12s ease}
+  details.day[open] summary{border-bottom:1px solid var(--line2);background:var(--card2)}
+  .dn{flex:none;width:54px;min-height:58px;border-radius:14px;background:var(--accent-soft);color:var(--accent-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;padding:6px 0}
+  .dn .dw{font-size:9.5px;font-weight:800;letter-spacing:.1em;opacity:.85}
+  .dn .dnum{font-size:23px;font-weight:800;letter-spacing:-.02em;margin:3px 0 2px}
+  .dn .dmo{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+  .dtw{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding-right:22px}
+  .dt{font-size:15.5px;font-weight:750;line-height:1.25;letter-spacing:-.01em}
+  .dk{font-size:12px;color:var(--muted);line-height:1.4}
+  .dk b{color:var(--ink);font-weight:750}
+  .dkick{display:flex;align-items:center;gap:6px;margin-bottom:2px}
+  .dd{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap}
+  .arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:12px;transition:transform .2s ease}
+  details[open] .arrow{transform:translateY(-50%) rotate(90deg)}
+  .dbody{padding:12px 14px 14px}
+  .dbody p{font-size:14.5px;margin:10px 0;line-height:1.55}
+  .tip{font-size:13px;color:var(--ink2);border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:7px 11px;margin:10px 0}
+  .story,.wear,.times,.eat,.pace,.spend{border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.55;margin:10px 0;border:1px solid transparent}
+  .story b,.wear b,.times b,.eat b,.pace b,.spend b{font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:800;margin-bottom:4px}
+  .story > b,.wear > b,.times > b,.eat > b,.pace > b,.spend > b{display:block}
+  .story{background:var(--card2);border-color:var(--line)}
+  .story b{color:var(--muted)}
+  .times{background:var(--purple-soft);border-left:4px solid var(--purple);font-size:14px;color:var(--ink)}
+  .times > b{color:var(--purple);font-size:11.5px}
+  .times b:not(:first-child){font-size:inherit;letter-spacing:0;text-transform:none;display:inline;color:var(--ink)}
+  .wear{background:var(--accent-soft)}
+  .wear > b{color:var(--accent-ink)}
+  .wear b:not(:first-child){font-size:inherit;letter-spacing:0;text-transform:none;display:inline}
+  .eat{background:var(--coral-soft)}
+  .eat > b{color:var(--coral)}
+  .pace{background:var(--green-soft)}
+  .pace > b{color:var(--green)}
+  .spend{background:var(--gold-soft)}
+  .spend > b{color:var(--gold)}
+  .routes{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 2px}
+  .routes .rlbl{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:-1px;font-weight:700}
+  .rbtn{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1.5px solid var(--accent);border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:650;color:var(--accent-ink);text-decoration:none;white-space:nowrap;transition:transform .1s ease, background-color .12s ease}
   .rbtn:active{background:var(--accent-soft);transform:scale(.96)}
-  .rbtn.walk{border-color:#2e8b57;color:#2e8b57}
+  .rbtn.walk{border-color:var(--green);color:var(--green)}
   .rbtn.taxi{border-color:var(--gold);color:var(--gold)}
-  details.bday{border:2px solid var(--gold);background:linear-gradient(0deg,var(--gold-soft),var(--card) 70%)}
-  details.bday .dn{color:var(--gold);background:var(--gold-soft);border:1px solid var(--gold)}
+  details.bday{border:2px solid var(--gold-line);background:linear-gradient(0deg,var(--gold-soft),var(--card) 70%)}
+  details.bday .dn{background:var(--gold);color:#fff}
+  details.bday[open] summary{background:transparent}
   details.bday .wear{background:var(--gold-soft)}
-  details.bday .wear b{color:var(--gold)}
-  a{color:var(--accent)}
-  /* quick cards */
-  .qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px}
-  .qcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 11px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:transform .1s ease, background-color .12s ease}
+  details.bday .wear > b{color:var(--gold)}
+
+  /* ---------- quick cards ---------- */
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
+  .qcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 12px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:transform .1s ease, background-color .12s ease}
   .qcard:active{background:var(--accent-soft);transform:scale(.98)}
-  .qe{font-size:18px;display:block}
-  .qt{font-size:13px;font-weight:650;line-height:1.3;display:block;margin-top:3px}
-  .qs{font-size:11px;color:var(--muted);display:block;margin-top:2px}
-  .qm{font-size:11px;color:var(--accent);font-weight:700;display:block;margin-top:4px}
-  .shotgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin-top:6px}
+  .qe{font-size:20px;display:block}
+  .qt{font-size:13.5px;font-weight:700;line-height:1.3;display:block;margin-top:4px}
+  .qs{font-size:11.5px;color:var(--muted);display:block;margin-top:3px;line-height:1.4}
+  .qm{font-size:11px;color:var(--accent-ink);font-weight:800;display:block;margin-top:6px;letter-spacing:.02em}
+  .shotgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin-top:8px}
   .shotcard{display:block;text-decoration:none;color:var(--ink)}
   .shotcard img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
   .shotcap{font-size:9.5px;color:var(--muted);text-align:center;margin-top:3px;line-height:1.25;display:block}
-  .tkt-photo{width:100%;max-height:130px;object-fit:cover;border-radius:10px 10px 0 0;margin:-12px -13px 10px -13px;width:calc(100% + 26px);display:block}
-  .day-photo{width:100%;max-height:150px;object-fit:cover;border-radius:12px;margin-bottom:10px;display:block}
-  /* tables */
-  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow-sm)}
-  table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
-  th{text-align:left;padding:10px 12px;background:var(--accent-soft);color:var(--accent);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
-  td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.45}
+  .tkt-photo{max-height:140px;object-fit:cover;border-radius:14px 14px 0 0;margin:-13px -14px 10px -14px;width:calc(100% + 28px);display:block}
+  .day-photo{width:100%;max-height:160px;object-fit:cover;border-radius:12px;margin-bottom:10px;display:block}
+
+  /* ---------- tables ---------- */
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--shadow-sm)}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+  th{text-align:left;padding:10px 12px;background:var(--accent-soft);color:var(--accent-ink);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;position:sticky;top:0}
+  td{padding:10px 12px;border-top:1px solid var(--line2);vertical-align:top;line-height:1.45}
   td:first-child{white-space:nowrap;font-weight:600}
-  tr:hover td{background:var(--accent-soft)}
-  /* panels + packing */
-  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
-  .panel h4{font-size:13.5px;margin-bottom:6px;letter-spacing:-.005em}
-  .panel p,.panel li{font-size:13px;line-height:1.5}
+  tr:hover td{background:var(--card2)}
+  tr:has(> td:first-child > b) td{background:var(--accent-soft);border-top:2px solid var(--accent)}
+  @media (max-width:640px){
+    table.stack{min-width:0}
+    table.stack tr{display:block;padding:11px 13px;border-top:1px solid var(--line2)}
+    table.stack tr:first-child{display:none}
+    table.stack td{display:block;padding:0;border:0;white-space:normal;background:transparent!important}
+    table.stack td:first-child{font-weight:750;font-size:14px;line-height:1.35}
+    table.stack td:nth-child(2){font-size:15.5px;font-weight:800;color:var(--accent-ink);margin:3px 0 2px;letter-spacing:-.01em}
+    table.stack td:nth-child(3){font-size:12.5px;color:var(--muted)}
+    table.stack tr:hover td{background:transparent}
+    table.stack tr:has(> td:first-child > b){background:var(--accent-soft);border-top:2px solid var(--accent)}
+  }
+
+  /* ---------- panels + checklists ---------- */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 15px;margin-bottom:11px;box-shadow:var(--shadow-sm)}
+  .panel h4{font-size:14.5px;margin-bottom:8px;letter-spacing:-.01em}
+  .panel p,.panel li{font-size:13.5px;line-height:1.55}
   .panel ul{padding-left:18px}
-  .panel li{margin-bottom:6px}
-  /* calculator */
+  .panel li{margin-bottom:7px}
+  label.ck{display:block;position:relative;padding:9px 4px 9px 34px;font-size:14px;line-height:1.45;border-bottom:1px solid var(--line2);cursor:pointer;transition:background-color .12s ease;border-radius:8px;overflow-wrap:anywhere}
+  label.ck:active{background:var(--accent-soft)}
+  label.ck:last-of-type{border-bottom:0}
+  label.ck input{position:absolute;left:6px;top:11px;margin:0;accent-color:var(--accent);width:18px;height:18px}
+  label.ck:has(input:checked){color:var(--muted)}
+  label.ck:has(input:checked) b{color:var(--muted)}
+
+  /* ---------- calculator ---------- */
   .calctabs{display:flex;gap:6px;margin-bottom:11px}
-  .calctab{flex:1;border:1.5px solid var(--line);background:var(--bg);color:var(--muted);border-radius:10px;padding:7px 4px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;touch-action:manipulation;transition:transform .1s ease,background-color .12s ease,border-color .12s ease}
+  .calctab{flex:1;border:1.5px solid var(--line);background:var(--bg);color:var(--muted);border-radius:11px;padding:8px 4px;font-size:12.5px;font-weight:700;font-family:inherit;cursor:pointer;touch-action:manipulation;transition:transform .1s ease,background-color .12s ease,border-color .12s ease}
   .calctab:active{transform:scale(.96)}
-  .calctab.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  .calctab.on{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
   .calcbody{display:none}
   .calcbody.on{display:block}
   .calcrow{display:flex;gap:8px;align-items:center;margin-bottom:9px}
   .calcrow label{font-size:12.5px;color:var(--muted);width:78px;flex-shrink:0}
-  .calcrow input,.calcrow select{flex:1;background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;font-size:14.5px;color:var(--ink);font-family:inherit;min-width:0}
-  .calcrow input:focus,.calcrow select:focus{outline:none;border-color:var(--accent)}
-  .calcswap{background:none;border:1.5px solid var(--line);border-radius:8px;width:34px;height:34px;flex-shrink:0;font-size:15px;color:var(--accent);cursor:pointer;touch-action:manipulation}
-  .calcout{background:var(--accent-soft);border-radius:10px;padding:11px 13px;margin-top:2px}
-  .calcout .cv{font-size:20px;font-weight:800;color:var(--accent)}
-  .calcout .cl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
-  .calcout .cs{font-size:12px;color:var(--muted);margin-top:4px}
+  .calcrow input,.calcrow select{flex:1;background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:9px 10px;font-size:15px;color:var(--ink);font-family:inherit;min-width:0}
+  .calcrow input:focus,.calcrow select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-ring)}
+  .calcswap{background:none;border:1.5px solid var(--line);border-radius:9px;width:36px;height:36px;flex-shrink:0;font-size:15px;color:var(--accent-ink);cursor:pointer;touch-action:manipulation}
+  .calcout{background:var(--accent-soft);border-radius:12px;padding:12px 14px;margin-top:2px}
+  .calcout .cv{font-size:22px;font-weight:800;color:var(--accent-ink);letter-spacing:-.01em}
+  .calcout .cl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;font-weight:700}
+  .calcout .cs{font-size:12.5px;color:var(--muted);margin-top:4px}
   .calcsplit{display:flex;gap:8px;margin-top:9px}
-  .calcsplit .box{flex:1;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 8px;text-align:center}
-  .calcsplit .box b{display:block;font-size:15px;color:var(--ink)}
-  .calcsplit .box span{font-size:10.5px;color:var(--muted);text-transform:uppercase}
-  label.ck{display:flex;gap:9px;align-items:flex-start;padding:8px 4px;font-size:13.5px;line-height:1.4;border-bottom:1px dashed var(--line);cursor:pointer;transition:background-color .12s ease}
-  label.ck:active{background:var(--accent-soft)}
-  label.ck:last-child{border-bottom:0}
-  label.ck input{margin-top:2px;accent-color:var(--accent);width:16px;height:16px;flex-shrink:0}
-  .note{font-size:12px;color:var(--muted);margin:8px 2px;line-height:1.5}
-  .tkt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin-bottom:9px;box-shadow:var(--shadow-sm);transition:box-shadow .15s ease}
-  .tkt .th{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-  .tkt .tn{font-size:13.5px;font-weight:700;flex:1;line-height:1.3}
-  .tkt .td2{font-size:11px;color:var(--muted);white-space:nowrap}
-  .tkt .tr{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}
+  .calcsplit .box{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 8px;text-align:center}
+  .calcsplit .box b{display:block;font-size:16px;color:var(--ink)}
+  .calcsplit .box span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+
+  /* ---------- ticket cards ---------- */
+  .tkt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:10px;box-shadow:var(--shadow-sm);transition:box-shadow .15s ease;position:relative}
+  .tkt .th{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tkt .tn{font-size:15px;font-weight:750;flex:1 1 100%;line-height:1.3;letter-spacing:-.01em}
+  .tkt .td2{font-size:12px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border-radius:999px;padding:4px 10px;white-space:normal;line-height:1.3}
+  .tkt .th::after{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 9px;margin-left:auto}
+  .tkt.done .th::after{content:"✓ Booked";color:var(--green);background:var(--green-soft)}
+  .tkt.pend .th::after{content:"⏳ To do";color:var(--gold);background:var(--card);border:1px solid var(--gold-line)}
+  .tkt.cancelled .th::after{content:"✕ Cancelled";color:var(--muted);background:var(--bg);border:1px solid var(--line)}
+  .tkt .tr{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.5}
   .tkt .tr b{color:var(--ink)}
-  .tkt .tb{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
-  .bk{display:inline-flex;align-items:center;gap:5px;background:var(--accent);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:700;color:#fff;text-decoration:none;box-shadow:var(--shadow-sm);transition:transform .1s ease,opacity .12s ease}
+  .tkt .tb{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .bk{display:inline-flex;align-items:center;gap:5px;background:var(--accent);border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:700;color:#fff;text-decoration:none;box-shadow:var(--shadow-sm);transition:transform .1s ease,opacity .12s ease;min-height:34px}
   .bk:active{transform:scale(.96);opacity:.9}
-  .bk.alt{background:none;border:1.5px solid var(--accent);color:var(--accent);box-shadow:none}
-  .bk.urgent{background:#c0392b}
-  .tkt.pend{border-left:4px solid var(--gold)}
-  .tkt.done{border-left:4px solid #2e8b57}
-  .tkt.cancelled{border-left:4px solid var(--muted);opacity:.7}
+  .bk.alt{background:none;border:1.5px solid var(--accent);color:var(--accent-ink);box-shadow:none}
+  .bk.urgent{background:var(--red)}
+  .tkt.pend{border-left:4px solid var(--gold);background:linear-gradient(90deg,var(--gold-soft),var(--card) 55%)}
+  .tkt.pend .td2{color:var(--gold);background:var(--card);border:1px solid var(--gold-line)}
+  .tkt.done{border-left:4px solid var(--green)}
+  .tkt.cancelled{border-left:4px solid var(--muted);opacity:.72}
   .tkt.cancelled .tn{text-decoration:line-through}
-  footer{margin-top:22px;color:var(--muted);font-size:11px;text-align:center}
-  /* login gate */
+  .tkt.cancelled .td2{color:var(--muted);background:var(--bg)}
+  footer{margin-top:26px;color:var(--muted);font-size:11.5px;text-align:center}
+
+  /* ---------- login gate ---------- */
   #authGate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}
   #authGate[hidden]{display:none!important}
-  .authcard{width:100%;max-width:340px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;box-shadow:var(--shadow-md)}
-  .authcard h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
-  .authcard .sub{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+  .authcard{width:100%;max-width:350px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px;box-shadow:var(--shadow-md)}
+  .authcard h1{font-size:20px;margin:0 0 4px;letter-spacing:-.015em}
+  .authcard .sub{font-size:13px;color:var(--muted);margin-bottom:18px}
   .authrow{margin-bottom:12px}
-  .authrow label{display:block;font-size:10.5px;color:var(--muted);margin-bottom:4px;letter-spacing:.03em;text-transform:uppercase}
-  .authrow input{width:100%;font:inherit;font-size:14.5px;padding:9px 11px;border-radius:9px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);-webkit-appearance:none;box-sizing:border-box}
-  .authrow input:focus{outline:none;border-color:var(--accent)}
-  #authSubmit{width:100%;margin-top:6px;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px;font:inherit;font-size:14.5px;font-weight:700;cursor:pointer;transition:opacity .12s ease}
+  .authrow label{display:block;font-size:10.5px;color:var(--muted);margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700}
+  .authrow input{width:100%;font:inherit;font-size:15px;padding:11px 12px;border-radius:11px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);-webkit-appearance:none;box-sizing:border-box}
+  .authrow input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-ring)}
+  #authSubmit{width:100%;margin-top:6px;background:var(--accent);color:#fff;border:0;border-radius:12px;padding:12px;font:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .12s ease;min-height:46px}
   #authSubmit:active{opacity:.85}
   #authSubmit:disabled{opacity:.5;cursor:default}
-  #authErr{font-size:12px;color:var(--bad,#c0392b);margin-top:10px;display:none;line-height:1.4}
+  #authErr{font-size:12.5px;color:var(--red);margin-top:10px;display:none;line-height:1.4}
   #authErr.on{display:block}
+
+  /* ================= v38 — app-grade visual layer ================= */
+  :root{--hero1:#1d3f8f; --hero2:#2d6bd6; --hero3:#6a3fc7; --on-hero:#fff; --kc:#eef3fb}
+  @media (prefers-color-scheme: dark){ :root{--hero1:#15306e; --hero2:#2457b7; --hero3:#5a35b0; --kc:#1b2a44} }
+  body{font-size:15.5px}
+  .wrap{padding-top:6px}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-radius:24px;padding:20px 18px 16px;margin:4px 0 12px;color:var(--on-hero);background:linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 55%,var(--hero3) 100%);box-shadow:0 14px 34px rgba(29,63,143,.28)}
+  .hero::before{content:"";position:absolute;inset:auto -40px -70px auto;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.10)}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative}
+  .hero-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+  .hero h1{font-size:28px;line-height:1.1;letter-spacing:-.025em;margin-top:10px;position:relative}
+  .hero-sub{font-size:14px;opacity:.9;margin-top:4px;position:relative}
+  .hero .chip.count{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35);color:#fff;backdrop-filter:blur(6px)}
+  .avatars{display:flex;align-items:center;gap:6px;margin-top:14px;position:relative}
+  .av{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--hero1);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.7);margin-right:-10px;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+  .av.kid{background:var(--gold-soft);font-size:15px;margin-right:0}
+  .av-names{font-size:12.5px;opacity:.92;margin-left:8px}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;position:relative}
+  .hs{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:8px 6px;text-align:center;backdrop-filter:blur(6px)}
+  .hs b{display:block;font-size:17px;line-height:1.1}
+  .hs span{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.85;margin-top:2px}
+
+  /* today / next-up card */
+  .todaycard{display:none;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px 15px;margin-bottom:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+  .todaycard.on{display:block}
+  .todaycard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--hero2),var(--hero3))}
+  .tc-kicker{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+  .tc-title{font-size:17px;font-weight:800;letter-spacing:-.015em;margin-top:3px}
+  .tc-key{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .tc-actions{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;padding:9px 15px;font:inherit;font-size:13.5px;font-weight:750;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .1s ease,opacity .12s ease;min-height:38px}
+  .btn:active{transform:scale(.96)}
+  .btn.primary{background:var(--accent);color:#fff;box-shadow:0 6px 16px var(--accent-ring)}
+  .btn.ghost{background:var(--accent-soft);color:var(--accent-ink)}
+  .btn.soft{background:var(--card2);color:var(--ink);border:1px solid var(--line)}
+
+  /* key-time chips on day summaries */
+  .dk{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+  .kc{display:inline-block;font-size:11.5px;line-height:1.25;padding:3px 8px;border-radius:8px;background:var(--kc);color:var(--ink2);white-space:nowrap}
+  .kc b{color:var(--ink);font-weight:800}
+  details.bday .kc{background:var(--gold-soft)}
+
+  /* today state on the card itself */
+  details.day.today{border:2px solid var(--accent);box-shadow:0 0 0 4px var(--accent-ring),var(--shadow-md)}
+  details.day.today .dn{background:var(--accent);color:#fff}
+  .tbadge{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:999px;padding:2px 9px}
+  details.day.tomorrow .dd{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-soft)}
+  details.day summary{padding-right:40px}
+  .dtw{padding-right:0}
+
+  /* per-day toolbar: play / voice note */
+  .daytools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:2px 0 10px}
+  .daytools .btn{font-size:13px;padding:8px 13px;min-height:36px}
+  .daytools .rate{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-left:auto}
+  .daytools .rate button{border:0;background:var(--card);color:var(--muted);font:inherit;font-size:11.5px;font-weight:700;padding:7px 9px;cursor:pointer}
+  .daytools .rate button.on{background:var(--accent-soft);color:var(--accent-ink)}
+  .speaking{outline:2px solid var(--purple);outline-offset:2px;border-radius:12px}
+  .playbtn.playing{background:var(--purple);color:#fff;box-shadow:0 6px 16px rgba(111,79,196,.35)}
+  .notes{display:flex;flex-direction:column;gap:6px;margin:0 0 10px}
+  .vnote{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:12.5px}
+  .vnote .nt{flex:1;min-width:0;color:var(--muted)}
+  .vnote .nt b{display:block;color:var(--ink);font-size:13px}
+  .vnote audio{height:32px;max-width:170px}
+  .vnote .ndel{border:0;background:none;color:var(--muted);font-size:15px;cursor:pointer;padding:4px}
+  .recbtn.rec{background:var(--red);color:#fff;animation:pulse 1.2s ease infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.45)}50%{box-shadow:0 0 0 8px rgba(192,57,43,0)}}
+  .voicehint{font-size:11.5px;color:var(--muted);margin:-4px 0 10px}
+
+  /* section headers */
+  .page > h2{display:flex;align-items:center;gap:8px;font-size:20px;margin:18px 2px 6px}
+  h3.qhead{display:flex;align-items:center;gap:6px;margin-top:20px}
+  h3.qhead::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* richer quick cards */
+  .qgrid{gap:10px}
+  .qcard{display:grid;grid-template-columns:40px 1fr;grid-template-rows:auto auto auto;column-gap:10px;row-gap:1px;padding:12px 12px 11px;border-radius:16px;position:relative}
+  .qcard .qe{grid-row:1 / span 3;width:40px;height:40px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .qcard .qt{margin-top:0}
+  .qcard .qm{margin-top:4px}
+  .qcard::after{content:"›";position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:20px;line-height:1}
+  .qcard{padding-right:28px}
+  .qcard .qt,.qcard .qs{overflow-wrap:anywhere}
+  @media (max-width:560px){
+    .qgrid{grid-template-columns:1fr;gap:8px}
+    .qcard{padding:10px 28px 10px 12px;row-gap:0}
+    .qcard .qt{font-size:14px}
+    .qcard .qm{display:none}
+    .qcard .qs{margin-top:2px}
+  }
+
+  /* ticket cards: a touch more app-like */
+  .tkt{border-radius:18px;padding:14px 15px}
+  .tkt .tn{font-size:15.5px}
+  .tkt .tb .bk{min-height:36px}
+
+  /* packing progress */
+  .pwrap{display:flex;align-items:center;gap:10px;margin:-2px 0 8px}
+  .pbar{flex:1;height:8px;border-radius:999px;background:var(--accent-soft);overflow:hidden}
+  .pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--hero2),var(--hero3));border-radius:999px;transition:width .25s ease}
+  .pcount{font-size:11.5px;font-weight:800;color:var(--accent-ink);white-space:nowrap}
+  .panel.done-all{border-color:var(--green)}
+  .panel.done-all .pbar i{background:var(--green)}
+
+  /* costs stat tiles */
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 13px;box-shadow:var(--shadow-sm)}
+  .stat .sl{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .stat .sv{font-size:19px;font-weight:850;margin-top:3px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .stat .ss{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .stat.hi{background:linear-gradient(135deg,var(--hero1),var(--hero2));border-color:transparent;color:#fff}
+  .stat.hi .sl,.stat.hi .ss{color:rgba(255,255,255,.85)}
+
+  /* drawer header gradient */
+  .drawer-head{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-bottom:0}
+  .drawer-head .sub{color:rgba(255,255,255,.85)}
+  .drawer-close{background:rgba(255,255,255,.18);color:#fff}
+
+  /* nav polish */
+  nav button .ni{height:32px;width:52px}
+  nav button.on .ni{background:linear-gradient(135deg,var(--accent-soft),var(--purple-soft))}
+  @media (min-width:700px){ nav{max-width:760px;left:50%;transform:translateX(-50%);border-radius:22px 22px 0 0;border-left:1px solid var(--line);border-right:1px solid var(--line)} }
 </style>
 </head>
 <body>
@@ -255,6 +462,7 @@
     <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
     <button type="button" data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
     <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
+    <div class="dsep"></div>
     <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
     <button type="button" id="logoutBtn"><span class="ni">🚪</span>Log out</button>
   </div>
@@ -264,7 +472,7 @@
 
 <div class="topbar">
   <button class="iconbtn" id="menuBtn" aria-label="Open menu">☰</button>
-  <div class="spacer"></div>
+  <div class="tb-title"><b>London &amp; Edinburgh 🇬🇧</b><span>Sat 17 – Sun 25 Oct 2026</span></div>
   <button class="iconbtn" id="searchToggleBtn" aria-label="Search the trip">🔍</button>
 </div>
 
@@ -275,29 +483,60 @@
   <div class="search-results" id="searchResults"></div>
 </div>
 
-<div class="apphead">
-  <h1>London &amp; Edinburgh 🇬🇧</h1>
-  <div class="sub">17–25 Oct 2026 · Aviral, Chhavi &amp; Aariv · everything booked ✓</div>
-  <div class="chips">
-    <span class="chip">✈️ + 🚄 + 🏨 <b>done</b></span>
-    <span class="chip">🛂 <b>Visas granted ×3</b></span>
-    <span class="chip bday">🎂 <b>Aariv turns 3 — Fri 23 Oct</b></span>
-  </div>
-</div>
 
 <!-- ============ PAGE: DAYS ============ -->
 <section class="page on" id="pg-days">
 
+<header class="hero">
+  <div class="hero-top"><span class="hero-kicker">Family trip · 9 days</span><span class="chip count" id="countdown">🗓️ <b>…</b></span></div>
+  <h1>London &amp; Edinburgh</h1>
+  <div class="hero-sub">Sat 17 – Sun 25 Oct 2026 · fly 10:55 out, 22:00 back</div>
+  <div class="avatars"><span class="av">A</span><span class="av">C</span><span class="av kid">🎂</span><span class="av-names">Aviral, Chhavi &amp; Aariv — who turns 3 on Fri 23 Oct</span></div>
+  <div class="hero-stats">
+    <div class="hs"><b>✓</b><span>Visas ×3</span></div>
+    <div class="hs"><b>18</b><span>Bookings</span></div>
+    <div class="hs"><b>2</b><span>Insurances</span></div>
+    <div class="hs"><b>8</b><span>To-dos</span></div>
+  </div>
+</header>
+<div class="todaycard" id="todayCard"></div>
+
+<div class="datestrip" id="datestrip" aria-label="Jump to a day">
+  <button type="button" class="dj" data-jump="2026-10-17"><span>Sat</span><b>17</b></button>
+  <button type="button" class="dj" data-jump="2026-10-18"><span>Sun</span><b>18</b></button>
+  <button type="button" class="dj" data-jump="2026-10-19"><span>Mon</span><b>19</b></button>
+  <button type="button" class="dj" data-jump="2026-10-20"><span>Tue</span><b>20</b></button>
+  <button type="button" class="dj" data-jump="2026-10-21"><span>Wed</span><b>21</b></button>
+  <button type="button" class="dj" data-jump="2026-10-22"><span>Thu</span><b>22</b></button>
+  <button type="button" class="dj bday" data-jump="2026-10-23"><span>Fri</span><b>23</b></button>
+  <button type="button" class="dj" data-jump="2026-10-24"><span>Sat</span><b>24</b></button>
+  <button type="button" class="dj" data-jump="2026-10-25"><span>Sun</span><b>25</b></button>
+</div>
+
+<div class="panel actions" id="actions">
+  <h4>⚡ Action items — still open, in date order</h4>
+  <label class="ck"><input type="checkbox"> <span class="due hot">Now</span> Book the <b>Sky Garden</b> free slot — Sun 25 Oct, <b>11:00</b> (Sunday opening; done by 12:00 when Regent St opens). Slots release ~3 weeks ahead. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">by ~10 Oct</span> Buy the <b>UK eSIM</b> (Airalo) and pre-book the <b>17 Oct LHR arrival taxi</b>. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">Thu 15 Oct</span> IndiGo <b>online check-in</b> opens 48 hrs before the revised <b>10:55</b> departure — re-check the flight time the night before too (IndiGo is winding down the Norse 787 lease in October).</label>
+  <label class="ck"><input type="checkbox"> <span class="due">before 17 Oct</span> <b>Print one backup page</b>: eVisa share codes ×3 + both insurance policy numbers &amp; helplines + flight PNRs. Everything else stays on the phone. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">Sat 17 Oct</span> At Pullman check-in, remind the desk about the <b>2-bag storage for 21–24 Oct</b> (confirmed by Georgina, 7 Sep).</label>
+  <label class="ck"><input type="checkbox"> <span class="due">by 19 Oct</span> Optional — check HDFC SmartBuy points for a better Edinburgh hotel; Mount Royal is free-cancel till 19 Oct 23:59. <button type="button" class="jl" data-pg="pg-info">Info ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">Thu 22 Oct</span> Buy the <b>picnic/snacks</b> for the Highlands coach (no lunch stop) + the <b>birthday cake</b> (M&amp;S Colin the Caterpillar or La Barantine). <button type="button" class="jl" data-pg="pg-food">Food ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">Fri 23 Oct</span> Air India <b>online check-in</b> opens 48 hrs before the 22:00 departure on the 25th.</label>
+  <p class="note" style="margin:8px 2px 0">Ticks are remembered on this phone. The full history of what's already done is under Info → Still to do.</p>
+</div>
+
 <details class="day" data-date="2026-10-17">
-  <summary><span class="dn">SAT 17</span><span class="dt">✈️ Fly Delhi → London</span><span class="dd">Day 1 · 🛒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">SAT</span> <span class="dnum">17</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">✈️ Fly Delhi → London</span><span class="dk">🇬🇧 London · ✈️ 6E3 <b>10:55 → 18:10</b> · 🏨 Pullman St Pancras · check-in closes 09:40</span></span><span class="dd">Day 1 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
-    <p><b>IndiGo 6E3</b> · <b>Stretch/Business</b> (B787-9, leased from Norse) · DEL 11:10 → LHR 18:10, non-stop 11h30m · seats 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward priority · check-in closes 09:55 <a target="_blank" rel="noopener" href="tickets/flight-indigo-6e3-del-lhr.pdf">📄 Ticket ↗</a>. Taxi/pre-booked cab to <b>Pullman London St Pancras, 100-110 Euston Road</b> (R360 Booking ID 45183173940800523004, Partner Ref 260825663048 — paid, non-refundable). 🧳 At check-in, remind the front desk about the 2-bag luggage storage for 21–24 Oct — confirmed by email (Georgina, Pullman) but they asked us to flag it again on arrival. Bedtime = jet-lag reset.</p>
+    <div class="times"><b>⏰ Timings</b>Home: up ~05:45, <b>leave 06:30–06:45</b> → DEL T3 by ~07:15 (3½ hrs before, buffer for traffic + Fast Forward). Check-in closes 09:40. Fly <b>10:55</b> (revised) → land 18:10. Hotel ~20:00 · lights out 20:30–21:00 UK — no matter how awake he seems.</div>
+    <p><b>IndiGo 6E3</b> · <b>Stretch/Business</b> (B787-9, leased from Norse) · DEL <b>10:55</b> → LHR 18:10 (⚠️ revised by IndiGo on 30 Sep — was 11:10; arrival unchanged), non-stop 11h15m · seats 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward priority · check-in closes <b>09:40</b> <a target="_blank" rel="noopener" href="tickets/flight-indigo-6e3-del-lhr.pdf">📄 Ticket ↗</a>. Taxi/pre-booked cab to <b>Pullman London St Pancras, 100-110 Euston Road</b> (R360 Booking ID 45183173940800523004, Partner Ref 260825663048 — paid, non-refundable). 🧳 At check-in, remind the front desk about the 2-bag luggage storage for 21–24 Oct — confirmed by email (Georgina, Pullman) but they asked us to flag it again on arrival. Bedtime = jet-lag reset.</p>
+    <p class="tip">⚠️ <b>Timing revised by IndiGo (SMS, 30 Sep):</b> 6E 3 now departs <b>10:55</b>, not 11:10 — arrival 18:10 unchanged. Keep an eye on SMS/email for any further changes closer to the date: this route runs on 787-9s wet-leased from Norse Atlantic, and IndiGo is ending that lease and <b>suspending Heathrow flights from 25 Oct</b> (last 787 flights ~24 Oct) until its own A350s arrive. Your 17 Oct departure is a week before the cut-off, so only the timing has changed — but any further SMS from IndiGo is worth reading straight away.</p>
     <p class="tip">🛒 Stroller — bring it through the airport, handy for a tired toddler on the transfer; folds down for the taxi boot or tube gates.</p>
-    <div class="story"><b>📖 In short</b>You leave home at 7:45 AM to reach Delhi T3 by 8:10 for the 11:10 IndiGo 6E3 flight — now booked in Stretch/Business on a 787-9, seats 1D/1E/1F, with Fast Forward priority through security, so the airport side of the day should be noticeably smoother than a standard economy departure (check-in itself still closes at 09:55, so don't relax the timing). Baggage is up to 46kg check-in + 12kg cabin each, landing at Heathrow at 18:10 local time. From the airport you'll take the Piccadilly line into town (about 55 minutes) or a taxi (around 50 minutes, £45–60) to the Pullman London St Pancras on Euston Road (R360 Booking ID 45183173940800523004, already paid in full and non-refundable) — King's Cross St Pancras station is right outside, about a 4–5 minute walk from the hotel door. Keep dinner simple tonight, since getting everyone to bed matters far more than the meal: there are cafés and grab-and-go options right around King's Cross/St Pancras, or Deliveroo straight to the room. You should be checked in by around 8 PM, with lights out by 8:30–9 PM UK time no matter how wired Aariv seems — tonight's “activity” really is just the flight and the transfer. Dress for comfort on the plane and for a cool ~12°C evening on landing — keep jackets for all three of you in the cabin bag rather than checked.</div>
+    <div class="story"><b>📖 In short</b>You leave home between 6:30 and 6:45 AM to reach Delhi T3 by about 7:15 for the 10:55 IndiGo 6E3 flight (IndiGo moved it 15 minutes earlier on 30 Sep — same 18:10 arrival) — now booked in Stretch/Business on a 787-9, seats 1D/1E/1F, with Fast Forward priority through security, so the airport side of the day should be noticeably smoother than a standard economy departure (check-in itself now closes at 09:40, so don't relax the timing). Baggage is up to 46kg check-in + 12kg cabin each, landing at Heathrow at 18:10 local time. From the airport you'll take the Piccadilly line into town (about 55 minutes) or a taxi (around 50 minutes, £45–60) to the Pullman London St Pancras on Euston Road (R360 Booking ID 45183173940800523004, already paid in full and non-refundable) — King's Cross St Pancras station is right outside, about a 4–5 minute walk from the hotel door. Keep dinner simple tonight, since getting everyone to bed matters far more than the meal: there are cafés and grab-and-go options right around King's Cross/St Pancras, or Deliveroo straight to the room. You should be checked in by around 8 PM, with lights out by 8:30–9 PM UK time no matter how wired Aariv seems — tonight's “activity” really is just the flight and the transfer. Dress for comfort on the plane and for a cool ~12°C evening on landing — keep jackets for all three of you in the cabin bag rather than checked.</div>
     <div class="spend"><b>💰 Today ~£75 (₹9,700)</b>🚕 Airport taxi £45–60 + light dinner. Carry £40 cash + printed visas.</div>
     <div class="pace"><b>🚶 ~4,000 steps</b>Airports + transfers only. No scheduled nap needed — rest = the flight itself; lights out by 20:00 UK, everyone.</div>
     <div class="eat"><b>🍴 Eat tonight — pick one</b>Franco Manca pizza (2 min) · Pret grab-and-go · room delivery via Deliveroo. Keep it quick — bed matters more than dinner tonight.</div>
-    <div class="times"><b>⏰ Timings</b>Home: up 06:30, leave 07:45 → DEL T3 by 08:10 (3 hrs before). Fly 11:10 → land 18:10. Hotel ~20:00 · lights out 20:30–21:00 UK — no matter how awake he seems.</div>
     <div class="wear"><b>👕 Wear</b> Comfy layers for the plane + slip-on shoes. Landing in ~12° evening: keep jackets for all three in the cabin bag. Aariv: soft joggers + hoodie + jacket on top.</div>
     <div class="routes"><span class="rlbl">🧭 Heathrow → hotel</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+2&destination=Pullman+London+St+Pancras&travelmode=transit">🚇 Piccadilly ~55 min</a>
@@ -308,16 +547,16 @@
 </details>
 
 <details class="day" data-date="2026-10-18">
-  <summary><span class="dn">SUN 18</span><span class="dt">🏛️ British Museum &amp; Thames cruise</span><span class="dd">Day 2 · 🛒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">SUN</span> <span class="dnum">18</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">🏛️ British Museum &amp; Thames cruise</span><span class="dk">🇬🇧 London · 🏛️ British Museum <b>11:10</b> · 🚢 cruise board <b>~16:00</b> · bed ~20:30</span></span><span class="dd">Day 2 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
     <img class="day-photo" src="tickets/images/thames-cruise-photo.jpg" alt="Thames Sightseeing Cruise boat passing Big Ben" loading="lazy">
+    <div class="times"><b>⏰ Timings</b>Expect a ~06:00 jet-lag wake. Slow breakfast 07:30 · leave ~10:35 · British Museum entry 11:10, taster ~11:10–12:15 · lunch 12:30–13:30 · free/rest time 13:30–14:50 · leave for Westminster Pier 15:00 · board cruise ~16:00 · arrive Greenwich ~17:00–17:15 · brief look around + dinner 17:30–18:30 · DLR/Jubilee back ~19:00 · home ~19:50 · bed ~20:30.</div>
     <p><b>AM:</b> booked <b>British Museum</b> entry <b>11:10</b> (order 10909534, free, 3 tickets) — about a 15-min walk from the hotel, or a quick bus/taxi; mummies, Rosetta Stone, Great Court. <b>Midday:</b> lunch near the museum, free time. <b>PM/Eve:</b> booked <b>Thames Sightseeing Cruise</b>, Westminster → Greenwich (booking #33618337, one-way flexible, board 10am–6pm), then dinner before heading back.</p>
     <p class="tip">🛒 Stroller — good for the museum and the walk to the pier; Aariv can also just doze in it if he needs to, no need to plan a formal nap.</p>
     <div class="story"><b>📖 In short</b>Today now has two things anchoring it — a booked British Museum entry and the Thames cruise this afternoon — with everything else free around them. Expect a genuine 6 AM wake-up from the time change; slow breakfast around 7:30, then it's about a 15-minute walk (or a quick bus/taxi) to the British Museum for your 11:10 entry (order 10909534, 3 tickets, free) — an hour or so of highlights is plenty for Aariv: the Egyptian mummies, the Rosetta Stone, and a look at the Great Court roof. From there, a relaxed lunch near the museum in Bloomsbury, then a genuinely open stretch of the early afternoon — head back toward the hotel to rest, or wander the neighbourhood, whatever suits, no plan needed. Head to Westminster Pier (about 25–30 minutes by tube) for your booked one-way Thames cruise toward Greenwich — it's a flexible ticket so there's no fixed departure to rush for, but aim to board around 4 PM so you're not cutting it too close to dusk. The sail itself is roughly an hour, relaxed and mostly seated. In Greenwich, keep it brief — a look at the Cutty Sark from outside and a short wander is plenty, since you'll need the DLR or Jubilee line back afterward (about 40–45 minutes to the hotel). Have dinner in Greenwich before heading back rather than adding another stop once you're home. Pack for both a mild museum morning and a windy river deck at dusk: warm layers, a waterproof jacket, and a spare change of clothes for Aariv as usual.</div>
     <div class="spend"><b>💰 Today ~£60 (₹7,800)</b>🏛️ British Museum free (booked, order 10909534) · 🚢 Thames cruise £30 (already booked, charges 16 Oct) · 🚇 ~£10 tube/DLR/bus · 🍽️ ~£50 meals. Carry £20–30 cash.</div>
     <div class="pace"><b>🚶 ~7,000 steps</b> An easy indoor hour at the museum, free time, seated cruise in the afternoon — no scheduled nap; let Aariv rest on his own terms (stroller, cruise seat, whenever).</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Lunch near the museum: Franco Manca · Museum Tavern (opposite the British Museum) · Waitrose picnic in Russell Square. Dinner in Greenwich before heading back: a café near the Cutty Sark or Greenwich Market food stalls — keep it quick and toddler-easy rather than a sit-down booking.</div>
-    <div class="times"><b>⏰ Timings</b>Expect a ~06:00 jet-lag wake. Slow breakfast 07:30 · leave ~10:35 · British Museum entry 11:10, taster ~11:10–12:15 · lunch 12:30–13:30 · free/rest time 13:30–14:50 · leave for Westminster Pier 15:00 · board cruise ~16:00 · arrive Greenwich ~17:00–17:15 · brief look around + dinner 17:30–18:30 · DLR/Jubilee back ~19:00 · home ~19:50 · bed ~20:30.</div>
     <div class="wear"><b>👕 Wear</b> Mild museum morning, ~13° by afternoon: warm layer + <b>waterproof jacket</b>, trainers everyone. Aariv: fleece under jacket, spare socks &amp; full change of clothes in the daypack. River deck is windier and colder than town — keep jackets zipped for the cruise.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → British Museum</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=British+Museum+London&travelmode=walking">🚶 ~15 min</a>
@@ -337,8 +576,9 @@
 </details>
 
 <details class="day" data-date="2026-10-19">
-  <summary><span class="dn">MON 19</span><span class="dt">🦖 Dinosaurs — museum day</span><span class="dd">Day 3 · 🛒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">MON</span> <span class="dnum">19</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">🦖 Dinosaurs — museum day</span><span class="dk">🇬🇧 London · 🦖 NHM <b>11:00</b> · 🔬 Science Museum <b>14:30–15:00</b> · 🌉 Tower Bridge optional eve</span></span><span class="dd">Day 3 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
+    <div class="times"><b>⏰ Timings</b>Up ~07:15 · breakfast 08:15 · leave 10:15 → NHM at 11:00 sharp (dinosaurs before crowds) · museum lunch 13:15 · Science Museum entry window 14:30–15:00, Garden play ~15:00–15:45 · evening: Tower Bridge (dinner ~18:00, home ~19:45) OR straight home (dinner 17:45, bed 19:30–20:00).</div>
     <p><b>AM:</b> <b>Natural History Museum</b> — booked entry <b>11:00</b> (order 20260822-S17424539, free) <a target="_blank" rel="noopener" href="tickets/ticket-naturalhistorymuseum-19oct-main.pdf">📄 Ticket ↗</a> — T. rex first. <b>PM:</b> <b>Science Museum</b> next door — booked entry window <b>14:30–15:00</b> (order 17875983, free) <a target="_blank" rel="noopener" href="tickets/ticket-sciencemuseum-19oct.pdf">📄 Ticket ↗</a>, The Garden play zone for under-6s. No scheduled nap — just a rest stop between if he's flagging.</p>
     <p><b>Evening (optional, if energy allows):</b> tube to Tower Hill (~30 min) — walk <b>Tower Bridge</b> lit up at dusk with Tower of London views, dinner at St Katharine Docks. Otherwise straight back to the hotel for an easy dinner nearby — genuinely optional either way. <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Tower+Bridge+London&travelmode=transit">🚇 Route ↗</a></p>
     <p class="tip">🛒 Stroller — museums are step-heavy and both are stroller-friendly; also doubles as a rest spot for Aariv if he flags between exhibits.</p>
@@ -346,7 +586,6 @@
     <div class="spend"><b>💰 Today ~£65 (₹8,400)</b>Both museums free (NHM booked, £0) · 🚇 ~£12 · 🍽️ ~£55. Carry £20–30 cash.</div>
     <div class="pace"><b>🚶 ~9,000–11,000 steps</b> Museums are secretly step-heavy. Long sit-down lunch between the two; no scheduled nap — if Aariv fades, the hotel is 15 min away or he can rest in the stroller.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Lunch South Ken: Comptoir Libanais · NHM café · Honest Burgers. Dinner: Dickens Inn at St Katharine Docks (if Tower Bridge) · Franco Manca · Ciao Bella (if straight home).</div>
-    <div class="times"><b>⏰ Timings</b>Up ~07:15 · breakfast 08:15 · leave 10:15 → NHM at 11:00 sharp (dinosaurs before crowds) · museum lunch 13:15 · Science Museum entry window 14:30–15:00, Garden play ~15:00–15:45 · evening: Tower Bridge (dinner ~18:00, home ~19:45) OR straight home (dinner 17:45, bed 19:30–20:00).</div>
     <div class="wear"><b>👕 Wear</b> Museums run warm: light layers you can shed, comfiest trainers (8,000+ steps today). Aariv: t-shirt under a zip hoodie — easy on/off indoors.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Natural History Museum</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Natural+History+Museum+London&travelmode=transit">🚇 ~20 min · Piccadilly direct</a>
@@ -358,19 +597,19 @@
 </details>
 
 <details class="day" data-date="2026-10-20">
-  <summary><span class="dn">TUE 20</span><span class="dt">🐠 SEA LIFE + London Eye</span><span class="dd">Day 4 · 🛒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">TUE</span> <span class="dnum">20</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">🐠 SEA LIFE + London Eye</span><span class="dk">🇬🇧 London · 🥐 Borough Mkt <b>09:45</b> · 🐠 SEA LIFE <b>11:00</b> · 🎡 Eye <b>14:30</b></span></span><span class="dd">Day 4 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <img style="width:50%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/sea-life-photo.jpg" alt="Family at SEA LIFE London Aquarium ocean tunnel" loading="lazy">
       <img style="width:50%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/london-eye-photo.jpg" alt="London Eye capsule with river view" loading="lazy">
     </div>
+    <div class="times"><b>⏰ Timings</b>Up ~07:45 · breakfast 08:30 (light — save room for the market) · leave 09:15 → Borough Market 09:45–10:30 · walk/bus → SEA LIFE 11:00 entry · lunch 12:30 · South Bank stroll/ice cream 13:15–14:00 · London Eye 14:30 · bridge photos · bus home ~15:15 · dinner 17:30 · bed 19:30.</div>
     <p><b>Paddington Bear Experience dropped</b> — not doing it. <b>Morning:</b> <b>Borough Market</b> (open Tue 10am–5pm) — food stalls, pastries, coffee before heading to County Hall. <b>Late morning:</b> booked <b>SEA LIFE London Aquarium</b> entry 11:00 (Headout Booking ID 33619404, £96, 2 adults + 1 child, charges 18 Oct) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619404">Manage ↗</a>. <b>PM:</b> booked <b>London Eye</b> entry 14:30 (Booking ID 33619539, £58, 2 adults + 1 infant, charges 18 Oct) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619539">Manage ↗</a> — under-3s ride free, Big Ben photo from Westminster Bridge after, then straight home. Tower Bridge lives on Day 3's evening instead — no need to double up.</p>
     <p class="tip">🛒 Stroller — a long day out, useful across the market, the South Bank stretch and the queues; no scheduled nap today, so it's also where Aariv can rest if he needs to.</p>
     <div class="story"><b>📖 In short</b>With Paddington out, today is lighter and now built around two booked slots — SEA LIFE London Aquarium at County Hall, 11:00 entry (Booking ID 33619404, 2 adults + 1 child), and the London Eye at 14:30 (Booking ID 33619539, £58 total, 2 adults + 1 infant, auto-charges 18 Oct). The morning that opened up once Paddington was dropped now has a good use — Borough Market, which is closed Mondays but runs full hours 10am–5pm on Tuesdays, so today's the one weekday it actually works. Leave the hotel by 09:15 (tube via London Bridge, ~30 min), browse the food stalls for pastries/coffee/a snack from about 09:45 to 10:30, then it's a 20–25 minute walk or short bus along the South Bank to County Hall for your 11:00 SEA LIFE entry — don't linger past 10:30 or you'll cut it fine. After the aquarium, a relaxed South Bank lunch around 12:30 (Wahaca has a proper kids' menu, or try Giraffe or a riverside Gail's), then a bit of slack before the Eye — a slow stroll along the river, the book market under Waterloo Bridge, or an ice cream. Aim to be in the queue for your 14:30 Eye slot with 15–20 minutes to spare, then it's a 30-minute rotation — Aariv still rides free under 3 — followed by Big Ben photos from Westminster Bridge, then straight home, with Aariv likely dozing on the bus if he needs it — Tower Bridge already has its slot on Day 3's evening, so there's no need to squeeze it in here too. The riverside is windier than it looks even on a mild day, so a windproof jacket over a warm layer is worth it for everyone, plus a hat for Aariv for the bridge photos.</div>
     <div class="spend"><b>💰 Today ~£232.50 (₹30,100)</b>🥐 Borough Market snacks ~£20 · 🐠 SEA LIFE £96 (booked, charges 18 Oct) · 🎡 London Eye £58 (booked, charges 18 Oct) · 🚌/🚇 £8 · 🍽️ ~£55. Carry £20–30 cash — market stalls are often cash/card-either but some are card-only.</div>
     <div class="pace"><b>🚶 ~9,500 steps</b> Borough Market is a slow browse-and-graze, not a rush. Then SEA LIFE slow strolling, a leisurely South Bank gap, and the Eye 30 min sitting. No scheduled nap — quiet stroller time on the bus home if he needs it.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast/snack: Borough Market stalls (Bread Ahead doughnuts, Monmouth Coffee, Kappacasein toasties). Lunch South Bank: Wahaca (kids menu!) · Giraffe · riverside Gail's. Dinner back home: North Sea Fish · Drummond St · Deliveroo to the hotel.</div>
-    <div class="times"><b>⏰ Timings</b>Up ~07:45 · breakfast 08:30 (light — save room for the market) · leave 09:15 → Borough Market 09:45–10:30 · walk/bus → SEA LIFE 11:00 entry · lunch 12:30 · South Bank stroll/ice cream 13:15–14:00 · London Eye 14:30 · bridge photos · bus home ~15:15 · dinner 17:30 · bed 19:30.</div>
     <div class="wear"><b>👕 Wear</b> Riverside = windier than it looks: windproof jacket over a warm layer, trainers. Aariv: jacket zipped + hat for the bridge photos.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Borough Market</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Borough+Market+London&travelmode=transit">🚇 via London Bridge ~30 min</a>
@@ -385,15 +624,15 @@
 </details>
 
 <details class="day" data-date="2026-10-21">
-  <summary><span class="dn">WED 21</span><span class="dt">🚄 Train to Edinburgh</span><span class="dd">Day 5 · 🎒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">WED</span> <span class="dnum">21</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">🚄 Train to Edinburgh</span><span class="dk">🚄 LNER <b>11:03 → 15:34</b> · Coach B 55/56/57 · 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Mount Royal from 16:00</span></span><span class="dd">Day 5 · 🎒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
+    <div class="times"><b>⏰ Timings</b>Up 07:00 · breakfast 08:00 · checkout &amp; store big bags 10:15 · walk 10:35 → King’s Cross 10:40 · 9¾ photo · board 10:50, depart 11:03 · arrive 15:34 · Mount Royal 16:00 · Royal Mile 17:00 · dinner 18:00 · bed 19:30–20:00.</div>
     <p>Leave big bags <b>and the stroller</b> with the hotel (returning on the 24th) — go light, carrier only from here on. The Pullman is right next to King's Cross, so there's real slack this morning — or make it a <b>Dishoom King's Cross breakfast</b> (bacon/egg naan, a couple of minutes away) before the train. Platform 9¾ photo, then <b>11:03 LNER</b>, Coach B (relabelled from A, phone-confirmed) — 55 (window, Aviral/Chhavi), 56 (aisle, Aviral/Chhavi), and Aariv now has his own seat, <b>57</b> (window, facing you across the table) → Waverley 15:34 <a target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf">📄 Ticket 1 ↗</a><a target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf">📄 Ticket 2 ↗</a><a target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf">📄 Aariv's Ticket ↗</a>. Check in at <b>Mount Royal, 53 Princes St</b> (conf. 6263.527.000, PIN 7709) <a target="_blank" rel="noopener" href="tickets/hotel-mountroyal-edinburgh-21-24oct.pdf">📄 Confirmation ↗</a>. Evening: first Royal Mile amble + Grassmarket dinner.</p>
     <p class="tip">🎒 No stroller from today through the 24th — leave it at the Pullman with the big bags. Edinburgh's cobbles and hills aren't stroller-friendly anyway; carrier/shoulder-rides for the rest of the Scotland leg.</p>
     <div class="story"><b>📖 In short</b>Travel day. Leave your big bags — and the stroller — with the Pullman, you'll be back on the 24th, and pack light for Edinburgh. Being right next to King's Cross this time means the morning has real slack — no need to rush, and there's time for a Dishoom King's Cross breakfast (bacon-and-egg naan, just a couple of minutes' walk) before the train if you fancy it. Either way, there's time for the Platform 9¾ photo before boarding the 11:03 LNER service, Coach B — you're in 55 and 56 (window/aisle), right-hand side of the coach for the scenic coastal views, and Aariv now has his own booked seat, 57, facing you across the same table — which gets you into Edinburgh Waverley at 3:34 PM. From Waverley it's a short trip to check in at the Mount Royal, 53 Princes Street (confirmation 6263.527.000, PIN 7709), aiming to be settled by around 4 PM, before an easy first amble down the Royal Mile and dinner in the Grassmarket area — Makars Mash, Civerinos, or Mums Great Comfort Food are all good picks. The train itself is your rest for the day — four and a half hours to eat, play, and let Aariv doze if he wants to, with no need to force anything. Pack Edinburgh's warmer kit (hats, gloves, extra layers) into your small bag rather than the stored luggage, since it runs 3–4°C colder up north.</div>
     <div class="spend"><b>💰 Today ~£80 (₹10,300)</b>Train paid ✓ · 🚕 £10 bags taxi · 🍽️ ~£65 (train lunch + dinner). Carry £30–40 + passports.</div>
     <div class="pace"><b>🚶 ~6,000 steps</b> Travel day = built-in rest: 4½ hrs on the train for lunch and downtime. Easy evening stroll only.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast: Dishoom King’s Cross (go 09:15) · hotel. Train lunch: M&amp;S picnic from KGX · onboard café. Edinburgh dinner: Makars Mash · Civerinos · Mums Great Comfort Food.</div>
-    <div class="times"><b>⏰ Timings</b>Up 07:00 · breakfast 08:00 · checkout &amp; store big bags 10:15 · walk 10:35 → King’s Cross 10:40 · 9¾ photo · board 10:50, depart 11:03 · arrive 15:34 · Mount Royal 16:00 · Royal Mile 17:00 · dinner 18:00 · bed 19:30–20:00.</div>
     <div class="wear"><b>👕 Wear</b> Comfy train clothes. Pack Edinburgh's warmer kit in the small bag: hats, gloves, warm layers — it's 3–4° colder up north. Aariv: window seat on the right for sea views.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → King's Cross</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Kings+Cross+Station&travelmode=walking">🚶 4–5 min</a>
@@ -405,16 +644,16 @@
 </details>
 
 <details class="day" data-date="2026-10-22">
-  <summary><span class="dn">THU 22</span><span class="dt">🏰 Edinburgh Castle &amp; Old Town</span><span class="dd">Day 6 · 🎒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">THU</span> <span class="dnum">22</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">🏰 Edinburgh Castle &amp; Old Town</span><span class="dk">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edinburgh · 🏛️ museum 09:30 · 🏰 castle tour <b>12:15</b> · 🎂 buy cake tonight</span></span><span class="dd">Day 6 · 🎒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
     <img class="day-photo" src="tickets/images/edinburgh-castle-photo.jpg" alt="Guided tour group at Edinburgh Castle" loading="lazy">
+    <div class="times"><b>⏰ Timings</b>Up 07:30 · relaxed breakfast 08:30 · National Museum of Scotland 09:30–11:00 · Victoria Street stroll 11:00–11:45 · check in for castle tour 12:00 · guided tour 12:15–~14:00 (One O'Clock Gun happens mid-tour) · lunch 14:15 · Greyfriars Bobby 15:15 · free/rest time 15:30–17:00 · Grassmarket dinner 17:30 · arrange tomorrow's cake · bed 19:30–20:00.</div>
     <p><b>AM:</b> National Museum of Scotland (free, no time slot needed) and a stroll down Victoria Street. <b>Midday:</b> <b>Edinburgh Castle</b> — booked <b>guided tour, 12:15pm</b> (Booking ID 33614375, Edinburgh Tickets/Headout, £78, charged 20 Oct) <a target="_blank" rel="noopener" href="https://book.edinburgh-tickets.com/">Manage ↗</a>. <b>PM:</b> Greyfriars Bobby (rub the nose), no scheduled nap — rest at the hotel only if he needs it. Arrange tomorrow's cake with the hotel tonight.</p>
     <p class="tip">🎒 No stroller today — cobbles and the castle esplanade aren't stroller-friendly. Carrier/shoulder-rides only.</p>
     <div class="story"><b>📖 In short</b>This is the hilliest, hardest-walking day of the trip, and the schedule below is built around your actual booked castle slot — a guided tour at 12:15pm, not the 10 AM self-entry originally planned, so the day runs later across the board. Start with a relaxed morning: the free National Museum of Scotland doesn't need a timed slot, so that's the natural first stop, followed by a wander down Victoria Street on your way up to the castle. Check in for your 12:15 guided English-language tour (2 adults + Aariv, booking ID 33614375) — a guided tour typically runs 1.5–2 hours, which means you'll likely still be up on the esplanade around 1 PM when the One O'Clock Gun fires; since a guided tour has a fixed route and pace you can't simply duck out to skip it this time, so if Aariv is noise-sensitive it's worth packing ear defenders or at least a warning that a loud bang is coming. After the tour finishes around 2 PM, grab a late lunch near Victoria Street — Oink's hog-roast rolls or La Barantine bakery both work. There's no scheduled nap today — if Aariv needs a break, the hotel's a short walk away, but otherwise carry straight on: let him rub Greyfriars Bobby's nose for luck mid-afternoon, then dinner in the Grassmarket around 5:30, and use tonight to arrange tomorrow's birthday cake with the hotel before bed. It's the coldest, windiest stop on the trip, especially up on the castle esplanade, so pack the warmest jacket, hat and gloves for Aariv along with grippy shoes for the cobblestones — and don't be shy about shoulder-rides if he tires on the slopes.</div>
     <div class="spend"><b>💰 Today ~£90 (₹11,600) + castle tour booked</b>🏰 Castle guided tour £78 (2 adults + Aariv as infant) — auto-charges 20 Oct, not today · museum free · 🍽️ ~£55 lunch+dinner · optional Camera Obscura ~£45. Carry £20–30 cash.</div>
     <div class="pace"><b>🚶 ~11,000 steps (hilly!)</b> Castle cobbles + Old Town slopes — the hardest walking day, now pushed later since the tour is midday. No scheduled nap; shoulder-rides budgeted if he tires.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast: hotel, unhurried. Lunch (after the tour, ~14:15): Oink hog-roast rolls (Victoria St) · La Barantine bakery · Grassmarket pub. Dinner: Dishoom Edinburgh (book!) · Makars · Mums.</div>
-    <div class="times"><b>⏰ Timings</b>Up 07:30 · relaxed breakfast 08:30 · National Museum of Scotland 09:30–11:00 · Victoria Street stroll 11:00–11:45 · check in for castle tour 12:00 · guided tour 12:15–~14:00 (One O'Clock Gun happens mid-tour) · lunch 14:15 · Greyfriars Bobby 15:15 · free/rest time 15:30–17:00 · Grassmarket dinner 17:30 · arrange tomorrow's cake · bed 19:30–20:00.</div>
     <div class="wear"><b>👕 Wear</b> Coldest, windiest stop of the trip — castle esplanade especially. Warmest jacket + hat + gloves for Aariv, grippy shoes for cobbles. Consider ear defenders given the tour overlaps the One O'Clock Gun.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Edinburgh Castle</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Royal+Hotel+Edinburgh&destination=Edinburgh+Castle&travelmode=walking">🚶 15 min · uphill</a>
@@ -424,15 +663,15 @@
 </details>
 
 <details class="day bday" data-date="2026-10-23">
-  <summary><span class="dn">🎂 FRI 23</span><span class="dt">Aariv turns 3! Highlands day tour</span><span class="dd">Day 7 · 🎒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">FRI</span> <span class="dnum">23</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">Aariv turns 3! Highlands day tour</span><span class="dk">🎂 Aariv is 3! · 🚌 check-in <b>07:45</b>, depart 08:00 · back <b>~20:30</b> · cake ~21:00</span></span><span class="dd">Day 7 · 🎒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
+    <div class="times"><b>⏰ Timings 🎂</b>Up ~06:45 · quick breakfast · leave hotel 07:25 · check in 07:45 at Caffe Nero, Parliament Square · depart 08:00 · Forth Bridge → Taste Perthshire → Cairngorms/Aviemore → Inverness → Loch Ness (+ optional cruise/castle) → Ben Nevis photo stop → Glen Coe → past Stirling Castle · back Edinburgh ~20:30 · birthday dinner + cake ~21:00 · bed late tonight, and that's OK.</div>
     <p><b>All day:</b> Highland Experience Tours' <b>Loch Ness, Glen Coe &amp; the Highlands</b> coach tour (booking #374019708). Route: Forth Bridge → Taste Perthshire (hairy coos + refreshments) → Cairngorms &amp; Aviemore → Inverness → Loch Ness (cruise + Urquhart Castle optional, £31 adult/£22 child on the day) → Commando Memorial &amp; Ben Nevis photo stop → Glen Coe &amp; Rannoch Moor → past Stirling Castle &amp; the Wallace Monument → Edinburgh ~20:30. Check in by <b>07:45</b> at No. 1 Parliament Square, Royal Mile (inside Caffe Nero), depart 08:00. Cake and birthday dinner happen once you're back that evening.</p>
     <p class="tip">🎒 No stroller today — the tour's one-bag limit and coach storage rule it out anyway; carrier or lap-sit for the stops.</p>
     <div class="story"><b>📖 In short</b>This is the year the birthday plan is the road trip itself. You're up early to check in by 7:45 at the Caffe Nero on Parliament Square, just off the Royal Mile — a 10–15 minute walk from the Mount Royal — for an 08:00 departure. The route heads north over the Forth Bridge, stops at Taste Perthshire for refreshments and a chance to meet Highland cows, then runs through the Cairngorms and past Aviemore to Inverness, before reaching Loch Ness itself — bring your camera in case Nessie shows up. A cruise on the loch plus Urquhart Castle is a popular optional extra bookable on the day (£31 per adult, £22 for Aariv, so about £84 for the three of you if you fancy it — not included in what you've already paid). From there it's the Commando Memorial and a photo stop with Ben Nevis, then Glen Coe itself with the guide's telling of the Glen Coe massacre story, past Rannoch Moor (a Skyfall filming location), and home via a drive past Stirling Castle and a glimpse of the Wallace Monument, arriving back in Edinburgh around 8:30 PM. The operator says food options en route are limited, so pack a picnic and snacks the night before rather than counting on a lunch stop — a real consideration with a toddler. It's listed as suitable from age 3, which Aariv hits exactly that morning, so it's worth a quick call to the operator (0131 226 1414) just to confirm a same-day third birthday is fine rather than assuming. Once you're back around 8:30, keep the birthday dinner and cake simple and close to the hotel — it'll be a late, tired end to a very long day, so this isn't the night for a booked sit-down restaurant across town. Pack for changeable Highland weather (it will probably rain at some point) plus something to keep a 3-year-old occupied through several hours of coach seating — downloaded shows, a favourite toy, a travel pillow for the long stretches between stops.</div>
     <div class="spend"><b>💰 Already paid: £211.28 (₹27,300) 🎂</b>Tour for 2 adults + 1 child, paid. Optional Loch Ness cruise + Urquhart Castle on the day: ~£84 for the three of you (£31 + £31 + £22). Add ~£20–30 for picnic/snacks + a simple dinner once back — skip anything that needs a booking, you'll be back late and tired. Bring some cash too, not every stop takes card.</div>
     <div class="pace"><b>🪑 Long coach day</b>Not a walking day — the challenge is the opposite: ~12.5 hours including several hours of coach seating with plenty of stretch/photo stops along the way. No scheduled nap — let him sleep on the coach whenever he will, don't fight it.</div>
     <div class="eat"><b>🍴 Eat today 🎂 — no lunch stop, pack your own</b>Breakfast: grab-and-go from the hotel or a bakery before 7:45 (full sit-down breakfast won't fit the timing). Lunch: pack a picnic — sandwiches, fruit, snacks bought the evening before, since the operator says food options on the route are limited (Taste Perthshire has refreshments, but don't rely on it as lunch). Dinner once back (~21:00): keep it close and simple — Deliveroo to the hotel, or a quick Civerinos/pizza if it's still open — plus cake (Colin the Caterpillar from M&amp;S Princes St, buy on the 22nd, or La Barantine).</div>
-    <div class="times"><b>⏰ Timings 🎂</b>Up ~06:45 · quick breakfast · leave hotel 07:25 · check in 07:45 at Caffe Nero, Parliament Square · depart 08:00 · Forth Bridge → Taste Perthshire → Cairngorms/Aviemore → Inverness → Loch Ness (+ optional cruise/castle) → Ben Nevis photo stop → Glen Coe → past Stirling Castle · back Edinburgh ~20:30 · birthday dinner + cake ~21:00 · bed late tonight, and that's OK.</div>
     <div class="wear"><b>👕 Wear</b> Changeable Highland weather — waterproof jacket, warm layers, hat, gloves, sunglasses for when it does clear up. Shoes suitable for short walks on rough/uneven ground at the photo stops, not the zoo-day trainers. <b>Luggage:</b> the tour limits you to one small/medium bag per person (≤15kg) plus a small daypack — leave the big bags at the hotel. Pack a small birthday outfit or a fun t-shirt under the fleece for photos at the stops.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Meeting point (Parliament Square / Caffe Nero)</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Royal+Hotel+Edinburgh&destination=Parliament+Square+Edinburgh&travelmode=walking">🚶 ~12 min</a>
@@ -443,15 +682,15 @@
 </details>
 
 <details class="day" data-date="2026-10-24">
-  <summary><span class="dn">SAT 24</span><span class="dt">🚄 Back to London</span><span class="dd">Day 8 · 🎒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">SAT</span> <span class="dnum">24</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">🚄 Back to London</span><span class="dk">⛰️ Calton Hill AM · 🚄 Avanti <b>12:52 → 18:38</b> · Coach J 16/18/19 · 🏨 Pullman</span></span><span class="dd">Day 8 · 🎒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
+    <div class="times"><b>⏰ Timings</b>Up 07:30 · breakfast 08:30 · checkout 10:00, bags at desk · Calton Hill 10:15–11:30 · collect bags, Waverley by 12:20 · depart 12:52 · Euston 18:38 · hotel 18:50 · dinner &amp; flight-packing · bed 21:00.</div>
     <p><b>AM:</b> checkout 11:00, bags at reception → <b>Calton Hill</b> view (10-min climb). <b>12:52 Avanti</b> from Waverley — Coach J 18–19, Standard Premium (refreshments incl.), forward-facing table seats — J18 aisle, J19 window with power socket, and Aariv now has his own seat too: <b>J16</b>, at the same table, facing you across it → <b>Euston 18:38</b> <a target="_blank" rel="noopener" href="tickets/train-avanti-edinburgh-euston-24oct-adult1.pdf">📄 Ticket 1 ↗</a><a target="_blank" rel="noopener" href="tickets/train-avanti-edinburgh-euston-24oct-adult2.pdf">📄 Ticket 2 ↗</a><a target="_blank" rel="noopener" href="tickets/train-avanti-edinburgh-euston-24oct-aariv-child.pdf">📄 Aariv's Ticket ↗</a>. Short walk to the Pullman London St Pancras (R360 Booking ID 41888004013833504617, Partner Ref NH15002511864002 — paid, non-refundable) <a target="_blank" rel="noopener" href="tickets/hotel-pullman-london-24-25oct.pdf">📄 Confirmation ↗</a>. Collect stored bags, pack for the flight: heavy stuff in the 32kg bag.</p>
     <p class="tip">🎒 Still no stroller — it's in storage at the Pullman from the 21st, and today's just a hill climb + a long sit-down train ride. Back in play from tomorrow.</p>
     <div class="story"><b>📖 In short</b>Checkout at the Mount Royal is 11 AM, with bags left at reception while you climb Calton Hill for the view — about a 10-minute climb. Collect your bags and be at Waverley by 12:20 for the 12:52 Avanti service, Coach J, seats 18–19, Standard Premium with refreshments included — J18 is the aisle seat, J19 the window seat (with its own power socket), both forward-facing at a table. Aariv now has his own booked seat too, J16, one row up at the same table — it's a backwards-facing seat, meaning he's sitting directly across the table from you both rather than beside you, which works out well for a long ride. These tickets are valid only on the 12:52, so don't cut it close. The train ride is nearly six hours, arriving into London Euston at 6:38 PM, and it's built-in rest for everyone — download some cartoons for Aariv as today's real essential. From Euston it's about a 10-minute walk (or a quick taxi with the bags) to the Pullman London St Pancras, this time a Superior Room with a sofa bed for Aariv (R360 Booking ID 41888004013833504617, Partner Ref NH15002511864002). Once you're in around 6:50 PM, collect the bags you stored on the 21st, have dinner, and use the evening to repack for the flight home, putting the heavier items into the two bags upgraded to 32kg.</div>
     <div class="spend"><b>💰 Today ~£80 (₹10,300)</b>Train paid ✓ (refreshments incl.) · 🚕 £12 taxis · 🍽️ ~£60. Carry £30–40 + passports.</div>
     <div class="pace"><b>🚶 ~6,000 steps</b>Calton Hill is the only climb; then 5¾ hrs of train downtime. No scheduled nap — Aariv's free to doze on the train if he wants, no pressure either way.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Edinburgh brunch: Loudons · Söderberg · hotel. Train: Standard Premium refreshments incl. London dinner: Franco Manca · North Sea Fish · Deliveroo while you pack.</div>
-    <div class="times"><b>⏰ Timings</b>Up 07:30 · breakfast 08:30 · checkout 10:00, bags at desk · Calton Hill 10:15–11:30 · collect bags, Waverley by 12:20 · depart 12:52 · Euston 18:38 · hotel 18:50 · dinner &amp; flight-packing · bed 21:00.</div>
     <div class="wear"><b>👕 Wear</b> Comfy travel layers; 5¾ hrs on the train — downloaded cartoons are today's real essential. Keep one warm layer handy for Calton Hill wind.</div>
     <div class="routes"><span class="rlbl">🧭 Euston → hotel (evening)</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Euston+Station&destination=Pullman+London+St+Pancras&travelmode=walking">🚶 ~10 min</a>
@@ -462,8 +701,9 @@
 </details>
 
 <details class="day" data-date="2026-10-25">
-  <summary><span class="dn">SUN 25</span><span class="dt">✈️ Fly home</span><span class="dd">Day 9 · 🛒</span><span class="arrow">▶</span></summary>
+  <summary><span class="dn"><span class="dw">SUN</span> <span class="dnum">25</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">✈️ Fly home</span><span class="dk">🇬🇧 London · 🛍️ Regent St opens <b>12:00</b> · leave hotel <b>17:30</b> · ✈️ AI-2016 <b>22:00 → DEL 13:15 Mon</b></span></span><span class="dd">Day 9 · 🛒</span><span class="arrow">▶</span></summary>
   <div class="dbody">
+    <div class="times"><b>⏰ Timings</b>Clocks fell back — enjoy the free hour. Option A: relaxed morning, leave hotel ~10:45 → Oxford Circus ~10:55 → Regent St shops open 12:00, shop 12:00–14:00, hotel ~14:30–15:00. Option B: lazy 08:00 start, sights 10:00–12:30, hotel rest 15:00. Option C: relaxed 08:00 start, tube/walk to Oxford St ~09:30, shop 09:45–12:00, hotel 12:30. All: leave 17:30 → LHR T2 by 18:30 · fly 22:00 · land DEL 13:15 Mon.</div>
     <p>Clocks <b>fall back 1 hr</b> overnight (bonus sleep — flight time 22:00 is new time). Three ways to spend the morning:</p>
     <p class="tip">🧳 <b>Whichever option you pick:</b> check out of the room and leave all the luggage at Pullman reception before heading out (this is a checkout-day, not a late-checkout day) — you're not carrying bags around London on your last morning. Collect everything again when you're back at the hotel in the afternoon, before leaving for Heathrow ~17:30.</p>
     <p class="tip">🛒 Stroller's back — collected with the bags on the 24th, useful again for Regent St/Oxford St, and a place for Aariv to rest before the flight.</p>
@@ -475,7 +715,6 @@
     <div class="spend"><b>💰 Today ~£80 (₹10,300) + shopping</b>🚕 Airport taxi £45–60 · 🍽️ ~£25 · Options A &amp; C are both now just tube fare (~£4–8 return) + shopping — no train needed either way. Carry passports + spend coins down.</div>
     <div class="pace"><b>🚶 Option A ~5,500 · Option B ~4,000 · Option C ~6,000 steps</b>Whatever the morning, quiet hotel downtime before the airport — no scheduled nap, just a calm couple of hours so everyone boards the night flight settled.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast: hotel · Gail's bakery. Lunch: Regent St/Oxford St food halls (Opt A/C) · Covent Garden (Opt B). Early dinner 16:30: Franco Manca quick · then Pret/proper meal at LHR T2 after security.</div>
-    <div class="times"><b>⏰ Timings</b>Clocks fell back — enjoy the free hour. Option A: relaxed morning, leave hotel ~10:45 → Oxford Circus ~10:55 → Regent St shops open 12:00, shop 12:00–14:00, hotel ~14:30–15:00. Option B: lazy 08:00 start, sights 10:00–12:30, hotel rest 15:00. Option C: relaxed 08:00 start, tube/walk to Oxford St ~09:30, shop 09:45–12:00, hotel 12:30. All: leave 17:30 → LHR T2 by 18:30 · fly 22:00 · land DEL 13:15 Mon.</div>
     <div class="wear"><b>👕 Wear</b> Plane comfies again; layers off as you head south. Keep printed visas, passports and the ₹/£ receipts pouch in the cabin bag — Indian emigration wants hard copies.</div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Regent Street / Coach, 200-206 Regent St (Option A)</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Oxford+Circus+Station+London&travelmode=transit">🚇 Victoria line ~10 min</a>
@@ -706,7 +945,7 @@
 <!-- ============ PAGE: PACK ============ -->
 <section class="page" id="pg-pack">
 <h2>🎒 Packing</h2>
-<p class="note">Checkboxes are for in-the-moment ticking — they reset if you reload the page.</p>
+<p class="note">Ticks are remembered on this phone (each of you keeps your own), so pack over a few evenings.</p>
 
 <div class="panel">
   <h4>📄 Documents pouch (cabin bag, never checked)</h4>
@@ -762,7 +1001,7 @@
 
 <div class="tkt pend">
   <div class="th"><span class="tn">🌆 Sky Garden free tickets (optional)</span><span class="td2">Released ~3 wks ahead · FREE</span></div>
-  <div class="tr">Free timed slots for the skyline garden at 20 Fenchurch St — book when your dates open (late Sept/early Oct) · weekday entry starts 10am, Sun 11am, 1 hr per visit · day still undecided — Day 9 (25 Oct, last day) is the best fit since there's no time pressure; doesn't work well on Day 3 or 4 due to timing clashes · under-5s welcome</div>
+  <div class="tr">Free timed slots for the skyline garden at 20 Fenchurch St — book when your dates open (late Sept/early Oct — i.e. <b>now</b>; aim for the 11:00 Sunday slot on 25 Oct, done by 12:00 when Regent St opens) · weekday entry starts 10am, Sun 11am, 1 hr per visit · day still undecided — Day 9 (25 Oct, last day) is the best fit since there's no time pressure; doesn't work well on Day 3 or 4 due to timing clashes · under-5s welcome</div>
   <div class="tb"><a class="bk" target="_blank" rel="noopener" href="https://skygarden.london/booking/">Book free slot ↗</a></div>
 </div>
 
@@ -821,8 +1060,8 @@
 </div>
 
 <div class="tkt done">
-  <div class="th"><span class="tn">✈️ IndiGo 6E3 · DEL → LHR</span><span class="td2">Sat 17 Oct · 11:10 → 18:10 · Stretch/Business (B787-9)</span></div>
-  <div class="tr">Upgraded to Business ✅ · Seats 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward priority · check-in closes 09:55 · Booking.com <b>40-1069523777</b> · PIN <b>1331</b> · ref <b>VB97QZ</b> · reissued Business e-ticket on file, total fare ₹1,67,724</div>
+  <div class="th"><span class="tn">✈️ IndiGo 6E3 · DEL → LHR</span><span class="td2">Sat 17 Oct · 10:55 → 18:10 (revised 30 Sep) · Stretch/Business (B787-9)</span></div>
+  <div class="tr">Upgraded to Business ✅ · Seats 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward priority · check-in closes 09:40 (departure moved 11:10 → 10:55 by IndiGo, 30 Sep; arrival still 18:10) · Booking.com <b>40-1069523777</b> · PIN <b>1331</b> · ref <b>VB97QZ</b> · reissued Business e-ticket on file, total fare ₹1,67,724</div>
   <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/flight-indigo-6e3-del-lhr.pdf">📄 Ticket PDF ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.goindigo.in/edit-booking.html">Manage ↗</a></div>
 </div>
 
@@ -1085,7 +1324,13 @@
 </div>
 
 <h2>💰 Costs (₹)</h2>
-<div class="tblwrap"><table>
+<div class="stats">
+  <div class="stat hi"><div class="sl">Booked so far</div><div class="sv">≈ ₹7.18 L</div><div class="ss">₹5,94,933 already paid</div></div>
+  <div class="stat"><div class="sl">Still to pay</div><div class="sv">≈ ₹1.24 L</div><div class="ss">Mount Royal at hotel + 4 auto-charges</div></div>
+  <div class="stat"><div class="sl">Likely total</div><div class="sv">₹9.0–9.5 L</div><div class="ss">excl. shopping · at ~₹129/£</div></div>
+  <div class="stat"><div class="sl">Grand total</div><div class="sv">₹10.5–11 L</div><div class="ss">incl. ₹1.5 L shopping budget</div></div>
+</div>
+<div class="tblwrap"><table class="stack">
   <tr><th>Item</th><th>Amount</th><th>Status</th></tr>
   <tr><td>✈️ Flights out — IndiGo 6E3 (Stretch/Business upgrade)</td><td>₹1,67,724</td><td>✅ Paid in full (per reissued e-ticket)</td></tr>
   <tr><td>✈️ Flights back — AI-2016</td><td>₹150,073</td><td>✅ Paid</td></tr>
@@ -1152,9 +1397,9 @@
 <section class="page" id="pg-info">
 <h2>ℹ️ Bookings &amp; Info</h2>
 
-<div class="tblwrap"><table>
+<div class="tblwrap"><table class="stack">
   <tr><th>Booking</th><th>Detail</th><th>Ref</th></tr>
-  <tr><td>✈️ Out · Sat 17</td><td>IndiGo 6E3 · Stretch/Business (B787-9) · DEL 11:10 → LHR 18:10 · 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward</td><td>Booking.com 40-1069523777 · PIN 1331 · VB97QZ</td></tr>
+  <tr><td>✈️ Out · Sat 17</td><td>IndiGo 6E3 · Stretch/Business (B787-9) · DEL 10:55 (revised, was 11:10) → LHR 18:10 · 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward</td><td>Booking.com 40-1069523777 · PIN 1331 · VB97QZ</td></tr>
   <tr><td>🚄 Wed 21</td><td>LNER 11:03 KGX → Waverley 15:34 · Coach B 55–56 (Aviral/Chhavi) + 57 (Aariv, own seat, facing you at the table) · right-hand/scenic side · Flex (09:53–12:13 valid)</td><td>Trainline CK640181 (tickets TTB4SJ2Q52E/G) · Aariv DY886690 · phone-confirmed 546920566196</td></tr>
   <tr><td>🚄 Sat 24</td><td>Avanti 12:52 Waverley → Euston 18:38 · Coach J 18–19 (Aviral/Chhavi) + 16 (Aariv, own seat) · Std Premium</td><td>22343793 / DU983394 · Aariv 22636576</td></tr>
   <tr><td>✈️ Back · Sun 25</td><td>AI-2016 · LHR T2 22:00 → DEL 13:15 (+1) · 23A/B/C · 1 bag each, two of three upgraded to 32kg</td><td>PNR EF3LZT · EMT169387829</td></tr>
@@ -1302,22 +1547,17 @@
   </ul>
 </div>
 
-<footer>Updated 22 Aug 2026 · Aviral, Chhavi &amp; Aariv · 🎂 Fri 23 Oct, Edinburgh</footer>
+<footer>Updated 3 Oct 2026 · Aviral, Chhavi &amp; Aariv · 🎂 Fri 23 Oct, Edinburgh</footer>
 </section>
 
 </div>
 
 <nav>
   <button type="button" class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
-  <button type="button" data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
-  <button type="button" data-pg="pg-sights"><span class="ni">🏛️</span>Sights</button>
-  <button type="button" data-pg="pg-shopping"><span class="ni">🛍️</span>Shopping</button>
-  <button type="button" data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
   <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
-  <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
-  <button type="button" data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
-  <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
-  <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
+  <button type="button" data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
+  <button type="button" data-pg="pg-shopping"><span class="ni">🛍️</span>Shopping</button>
+  <button type="button" id="moreBtn"><span class="ni">☰</span>More</button>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1401,15 +1641,65 @@
     pages.forEach(p => p.classList.remove('on'));
     const navBtn = document.querySelector('nav button[data-pg="' + pageId + '"]');
     if(navBtn) navBtn.classList.add('on');
+    // pages that only live in the drawer light up the "More" tab instead
+    const moreBtn = document.getElementById('moreBtn');
+    if(moreBtn) moreBtn.classList.toggle('on', !navBtn);
+    document.querySelectorAll('.drawer-links button[data-pg]').forEach(x => x.classList.toggle('on', x.dataset.pg === pageId));
     pg.classList.add('on');
     window.scrollTo({top: 0});
   }
   function go(b){
     if(!b) return;
+    if(b.id === 'moreBtn'){ openDrawer(); return; }
     if(b.dataset.ext){ window.open(b.dataset.ext, '_blank'); return; }
     if(!b.dataset.pg) return;
     showPage(b.dataset.pg);
   }
+  // action-item jump links
+  const actionsEl = document.getElementById('actions');
+  if(actionsEl) actionsEl.addEventListener('click', e => {
+    const j = e.target.closest('.jl');
+    if(!j) return;
+    e.preventDefault();
+    showPage(j.dataset.pg);
+  });
+  // date strip: jump to a day card, and highlight today during the trip
+  (function(){
+    const strip = document.getElementById('datestrip');
+    if(!strip) return;
+    const t = new Date();
+    const iso = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+    const todayBtn = strip.querySelector('.dj[data-jump="' + iso + '"]');
+    if(todayBtn){ todayBtn.classList.add('today'); setTimeout(() => todayBtn.scrollIntoView({inline:'center', block:'nearest'}), 50); }
+    strip.addEventListener('click', e => {
+      const b = e.target.closest('.dj');
+      if(!b) return;
+      const card = document.querySelector('details.day[data-date="' + b.dataset.jump + '"]');
+      if(!card) return;
+      card.open = true;
+      setTimeout(() => card.scrollIntoView({behavior:'smooth', block:'start'}), 40);
+    });
+  })();
+  // sticky top bar shows the trip title only once the big header has scrolled away
+  (function(){
+    const tb = document.querySelector('.topbar');
+    const upd = () => tb.classList.toggle('scrolled', window.scrollY > 110);
+    window.addEventListener('scroll', upd, {passive:true}); upd();
+  })();
+  // countdown chip in the header
+  (function(){
+    const el = document.getElementById('countdown');
+    if(!el) return;
+    const start = new Date(2026, 9, 17), end = new Date(2026, 9, 25);
+    const now = new Date(); const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const d = Math.round((start - today) / 86400000);
+    let txt;
+    if(d > 1) txt = '🗓️ <b>' + d + ' days</b> to go';
+    else if(d === 1) txt = '🗓️ <b>Tomorrow!</b> Fly 10:55';
+    else if(today <= end) txt = '🧳 <b>Day ' + (Math.round((today - start) / 86400000) + 1) + ' of 9</b> · today';
+    else txt = '🏠 <b>Trip done</b> · welcome home';
+    el.innerHTML = txt;
+  })();
   document.querySelector('nav').addEventListener('click', e => go(e.target.closest('button')));
 
   // ---- left drawer ----
@@ -1446,7 +1736,7 @@
     if(searchIndex) return searchIndex;
     const idx = [];
     const pageMeta = {};
-    document.querySelectorAll('nav button[data-pg]').forEach(b => { pageMeta[b.dataset.pg] = b.textContent.trim(); });
+    document.querySelectorAll('nav button[data-pg], .drawer-links button[data-pg]').forEach(b => { pageMeta[b.dataset.pg] = b.textContent.trim(); });
     document.querySelectorAll('.page').forEach(page => {
       const pageId = page.id;
       const pageLabel = pageMeta[pageId] || pageId;
@@ -1584,6 +1874,217 @@
     document.querySelector('.calcsplit .box:last-child span').textContent = '÷' + peopleMinus1 + ' (skip Aariv)';
   }
   calcSplit();
+
+  // ======================= v38: app-grade features =======================
+  (function(){
+    const DAY_TITLES = {};
+    document.querySelectorAll('details.day').forEach(d => { DAY_TITLES[d.dataset.date] = d.querySelector('.dt').textContent.trim(); });
+
+    // --- key-times line -> chips ---
+    document.querySelectorAll('details.day .dk').forEach(dk => {
+      const parts = dk.innerHTML.split(' · ').map(s => s.trim()).filter(Boolean);
+      dk.innerHTML = parts.map(p => '<span class="kc">' + p + '</span>').join('');
+    });
+
+    // --- today / tomorrow state on the cards themselves ---
+    const now = new Date();
+    const isoOf = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    const todayIso = isoOf(now);
+    const tmr = new Date(now); tmr.setDate(tmr.getDate()+1);
+    const tomorrowIso = isoOf(tmr);
+    const todayCard = document.querySelector('details.day[data-date="' + todayIso + '"]');
+    const tomorrowCard = document.querySelector('details.day[data-date="' + tomorrowIso + '"]');
+    // move the 'Day N · 🛒' label into the title block as a kicker row (room for a TODAY badge)
+    document.querySelectorAll('details.day').forEach(d => {
+      const dtw = d.querySelector('.dtw'), dd = d.querySelector('.dd');
+      const k = document.createElement('div'); k.className = 'dkick';
+      if(dd) k.appendChild(dd);
+      dtw.insertBefore(k, dtw.firstChild);
+    });
+    if(todayCard){
+      todayCard.classList.add('today');
+      const b = document.createElement('span'); b.className = 'tbadge'; b.textContent = 'Today';
+      todayCard.querySelector('.dkick').insertBefore(b, todayCard.querySelector('.dkick').firstChild);
+    }
+    if(tomorrowCard){ tomorrowCard.classList.add('tomorrow'); const dd = tomorrowCard.querySelector('.dd'); if(dd) dd.textContent = 'Tomorrow · ' + dd.textContent; }
+
+    // --- per-day toolbar: Play this day (text-to-speech) + voice notes ---
+    const canSpeak = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+    const canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+    document.querySelectorAll('details.day').forEach(d => {
+      const body = d.querySelector('.dbody');
+      const tools = document.createElement('div');
+      tools.className = 'daytools';
+      tools.innerHTML =
+        (canSpeak ? '<button type="button" class="btn ghost playbtn" data-play>▶ Play this day</button>' : '') +
+        (canRecord ? '<button type="button" class="btn soft recbtn" data-rec>🎙️ Voice note</button>' : '') +
+        (canSpeak ? '<span class="rate" title="Reading speed"><button type="button" data-rate="0.9">0.9×</button><button type="button" data-rate="1" class="on">1×</button><button type="button" data-rate="1.15">1.15×</button></span>' : '');
+      const notes = document.createElement('div'); notes.className = 'notes'; notes.setAttribute('data-notes', d.dataset.date);
+      body.insertBefore(notes, body.firstChild);
+      body.insertBefore(tools, body.firstChild);
+    });
+    if(canSpeak || canRecord){
+      const hint = document.createElement('p'); hint.className = 'note';
+      hint.innerHTML = (canSpeak ? '🔊 <b>Play this day</b> reads the card aloud (timings, plan, where to eat, what to wear) — handy over breakfast or on the tube. ' : '') +
+                       (canRecord ? '🎙️ <b>Voice notes</b> are saved on this phone only (not shared), so each of you can leave your own reminders per day.' : '');
+      const strip = document.getElementById('datestrip');
+      if(strip) strip.insertAdjacentElement('afterend', hint);
+    }
+
+    // ---- text-to-speech ----
+    let rate = 1, speakingCard = null, queue = [], idx = 0, current = null;
+    function pickVoice(){
+      const vs = speechSynthesis.getVoices();
+      return vs.find(v => /en[-_]GB/i.test(v.lang) && /female|Kate|Serena|Libby|Google UK English Female|Sonia/i.test(v.name))
+          || vs.find(v => /en[-_]GB/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+    }
+    function cleanText(el){
+      const c = el.cloneNode(true);
+      c.querySelectorAll('a, .routes, .rlbl, img, button, .daytools, .notes, .tbadge').forEach(x => x.remove());
+      return c.textContent.replace(/[📖💰🚶🍴⏰👕🛒🎒🧭⚠️🧳🚨📄↗✓✅❌🎂🪑🔊🎙️]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+    function buildQueue(card){
+      const q = [];
+      const dn = card.querySelector('.dn').textContent.replace(/\s+/g,' ').trim();
+      const dt = card.querySelector('.dt').textContent.trim();
+      q.push({ el: card.querySelector('summary'), text: dn + '. ' + dt + '.' });
+      const order = ['.times', 'p:not(.tip)', '.story', '.eat', '.wear', '.spend', '.pace', 'p.tip'];
+      const seen = new Set();
+      order.forEach(sel => card.querySelectorAll('.dbody ' + sel).forEach(el => {
+        if(seen.has(el) || el.closest('.daytools, .notes')) return; seen.add(el);
+        const t = cleanText(el); if(t.length > 2) q.push({ el, text: t });
+      }));
+      return q;
+    }
+    function stopSpeaking(){
+      speechSynthesis.cancel();
+      if(current) current.el.classList.remove('speaking');
+      if(speakingCard){ const b = speakingCard.querySelector('.playbtn'); if(b){ b.classList.remove('playing'); b.textContent = '▶ Play this day'; } }
+      speakingCard = null; queue = []; idx = 0; current = null;
+    }
+    function speakNext(){
+      if(!speakingCard || idx >= queue.length){ stopSpeaking(); return; }
+      if(current) current.el.classList.remove('speaking');
+      current = queue[idx++];
+      current.el.classList.add('speaking');
+      const u = new SpeechSynthesisUtterance(current.text);
+      const v = pickVoice(); if(v) u.voice = v;
+      u.lang = (v && v.lang) || 'en-GB'; u.rate = rate; u.pitch = 1;
+      u.onend = speakNext; u.onerror = speakNext;
+      speechSynthesis.speak(u);
+    }
+    function playCard(card){
+      if(speakingCard === card){
+        if(speechSynthesis.paused){ speechSynthesis.resume(); card.querySelector('.playbtn').textContent = '⏸ Pause'; }
+        else { speechSynthesis.pause(); card.querySelector('.playbtn').textContent = '▶ Resume'; }
+        return;
+      }
+      stopSpeaking();
+      card.open = true; speakingCard = card; queue = buildQueue(card); idx = 0;
+      const b = card.querySelector('.playbtn'); b.classList.add('playing'); b.textContent = '⏸ Pause';
+      speakNext();
+    }
+    window.playDay = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); if(c){ showPage('pg-days'); playCard(c); setTimeout(() => c.scrollIntoView({behavior:'smooth', block:'start'}), 60); } };
+    document.addEventListener('click', e => {
+      const p = e.target.closest('[data-play]'); if(p){ playCard(p.closest('details.day')); return; }
+      const r = e.target.closest('[data-rate]'); if(r){ rate = parseFloat(r.dataset.rate); r.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === r)); if(speakingCard){ const c = speakingCard; stopSpeaking(); playCard(c); } return; }
+    });
+    document.querySelectorAll('details.day').forEach(d => d.addEventListener('toggle', () => { if(!d.open && speakingCard === d) stopSpeaking(); }));
+    if(canSpeak && speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = () => {};
+
+    // ---- voice notes (MediaRecorder -> IndexedDB, this phone only) ----
+    const DB = 'uktrip-notes', STORE = 'notes';
+    function openDb(){ return new Promise((res, rej) => { const r = indexedDB.open(DB, 1); r.onupgradeneeded = () => { const s = r.result.createObjectStore(STORE, { keyPath:'id' }); s.createIndex('day', 'day'); }; r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); }
+    async function listNotes(day){ const db = await openDb(); return new Promise(res => { const out = []; const req = db.transaction(STORE).objectStore(STORE).index('day').openCursor(IDBKeyRange.only(day)); req.onsuccess = () => { const c = req.result; if(c){ out.push(c.value); c.continue(); } else res(out.sort((a,b) => a.id - b.id)); }; req.onerror = () => res([]); }); }
+    async function saveNote(n){ const db = await openDb(); return new Promise(res => { const t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).put(n); t.oncomplete = res; t.onerror = res; }); }
+    async function delNote(id){ const db = await openDb(); return new Promise(res => { const t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).delete(id); t.oncomplete = res; t.onerror = res; }); }
+    function fmtDur(s){ return Math.floor(s/60) + ':' + String(Math.round(s%60)).padStart(2,'0'); }
+    async function renderNotes(day){
+      const box = document.querySelector('.notes[data-notes="' + day + '"]'); if(!box) return;
+      const notes = await listNotes(day).catch(() => []);
+      box.innerHTML = notes.map(n => {
+        const url = URL.createObjectURL(n.blob);
+        const when = new Date(n.id).toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+        return '<div class="vnote"><span>🎙️</span><div class="nt"><b>Voice note · ' + fmtDur(n.dur||0) + '</b>' + when + '</div><audio controls preload="none" src="' + url + '"></audio><button type="button" class="ndel" data-del="' + n.id + '" aria-label="Delete note">✕</button></div>';
+      }).join('');
+    }
+    if(canRecord){
+      document.querySelectorAll('details.day').forEach(d => renderNotes(d.dataset.date));
+      let rec = null, chunks = [], t0 = 0, recBtn = null, timer = null;
+      async function startRec(btn){
+        try{
+          const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+          const mime = ['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg'].find(m => MediaRecorder.isTypeSupported(m)) || '';
+          rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+          chunks = []; t0 = Date.now(); recBtn = btn;
+          rec.ondataavailable = e => { if(e.data && e.data.size) chunks.push(e.data); };
+          rec.onstop = async () => {
+            stream.getTracks().forEach(t => t.stop());
+            const blob = new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' });
+            const day = btn.closest('details.day').dataset.date;
+            if(blob.size > 0) await saveNote({ id: Date.now(), day, blob, dur: (Date.now() - t0) / 1000 });
+            btn.classList.remove('rec'); btn.textContent = '🎙️ Voice note'; clearInterval(timer);
+            renderNotes(day); rec = null;
+          };
+          rec.start();
+          btn.classList.add('rec'); btn.textContent = '⏹ Stop · 0:00';
+          timer = setInterval(() => { btn.textContent = '⏹ Stop · ' + fmtDur((Date.now() - t0) / 1000); }, 500);
+        } catch(err){ alert('Microphone not available — allow mic access for this site and try again.'); }
+      }
+      document.addEventListener('click', async e => {
+        const b = e.target.closest('[data-rec]');
+        if(b){ if(rec && rec.state === 'recording'){ rec.stop(); } else startRec(b); return; }
+        const del = e.target.closest('[data-del]');
+        if(del){ const day = del.closest('.notes').dataset.notes; await delNote(parseInt(del.dataset.del, 10)); renderNotes(day); }
+      });
+    }
+
+    // ---- today / next-up card under the hero ----
+    (function(){
+      const tc = document.getElementById('todayCard'); if(!tc) return;
+      const start = new Date(2026, 9, 17), end = new Date(2026, 9, 25);
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      let card, kicker;
+      if(today >= start && today <= end && todayCard){ card = todayCard; kicker = 'Today · Day ' + (Math.round((today - start) / 86400000) + 1) + ' of 9'; }
+      else if(today < start){ card = document.querySelector('details.day[data-date="2026-10-17"]'); kicker = 'Next up · Day 1 · ' + Math.round((start - today) / 86400000) + ' days away'; }
+      if(!card){ return; }
+      const title = card.querySelector('.dt').textContent.trim();
+      const chips = card.querySelector('.dk').innerHTML;
+      const dn = card.querySelector('.dn').textContent.replace(/\s+/g,' ').trim();
+      tc.innerHTML = '<div class="tc-kicker">' + kicker + ' · ' + dn + '</div><div class="tc-title">' + title + '</div><div class="tc-key">' + chips + '</div>' +
+        '<div class="tc-actions"><button type="button" class="btn primary" data-open-day="' + card.dataset.date + '">Open the day</button>' +
+        (canSpeak ? '<button type="button" class="btn ghost" data-play-day="' + card.dataset.date + '">🔊 Play the day</button>' : '') + '</div>';
+      tc.classList.add('on');
+      tc.addEventListener('click', e => {
+        const o = e.target.closest('[data-open-day]'); if(o){ const c = document.querySelector('details.day[data-date="' + o.dataset.openDay + '"]'); c.open = true; c.scrollIntoView({behavior:'smooth', block:'start'}); return; }
+        const p = e.target.closest('[data-play-day]'); if(p){ window.playDay(p.dataset.playDay); }
+      });
+    })();
+
+    // ---- checklists: remember ticks on this phone + packing progress ----
+    (function(){
+      let i = 0;
+      document.querySelectorAll('.page').forEach(page => {
+        page.querySelectorAll('label.ck input[type="checkbox"]').forEach(cb => {
+          const key = 'ck:' + page.id + ':' + (i++);
+          try{ const v = localStorage.getItem(key); if(v === '1') cb.checked = true; else if(v === '0') cb.checked = false; }catch(e){}
+          cb.addEventListener('change', () => { try{ localStorage.setItem(key, cb.checked ? '1' : '0'); }catch(e){} updateProgress(); });
+        });
+      });
+      function updateProgress(){
+        document.querySelectorAll('#pg-pack .panel, #actions').forEach(panel => {
+          const cbs = panel.querySelectorAll('label.ck input[type="checkbox"]'); if(!cbs.length) return;
+          let done = 0; cbs.forEach(c => { if(c.checked) done++; });
+          let w = panel.querySelector('.pwrap');
+          if(!w){ w = document.createElement('div'); w.className = 'pwrap'; w.innerHTML = '<div class="pbar"><i></i></div><span class="pcount"></span>'; panel.querySelector('h4').insertAdjacentElement('afterend', w); }
+          w.querySelector('.pbar i').style.width = Math.round(done / cbs.length * 100) + '%';
+          w.querySelector('.pcount').textContent = done + '/' + cbs.length + (done === cbs.length ? ' ✓' : '');
+          panel.classList.toggle('done-all', done === cbs.length);
+        });
+      }
+      updateProgress();
+    })();
+  })();
 </script>
 </body>
 </html>
