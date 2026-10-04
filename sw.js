@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v55';
+const CACHE_NAME = 'uktrip-cache-v59';
 
 const PRECACHE_URLS = [
   './',
@@ -119,4 +119,22 @@ self.addEventListener('fetch', (event) => {
       }).catch(() => cached);
     })
   );
+});
+
+// ---- Web Push: lock-screen alerts for new voice notes ----
+self.addEventListener('push', (event) => {
+  let d = {};
+  try { d = event.data ? event.data.json() : {}; } catch (e) { d = { body: event.data ? event.data.text() : '' }; }
+  event.waitUntil(self.registration.showNotification(d.title || 'London & Edinburgh', {
+    body: d.body || '', icon: './icon-192.png', badge: './icon-192.png', tag: d.tag || 'voice-note', renotify: true,
+    data: { url: d.url || './index.html' }
+  }));
+});
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const target = new URL((event.notification.data && event.notification.data.url) || './index.html', self.registration.scope).href;
+  event.waitUntil(clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+    for (const c of list) { if ('focus' in c) { if ('navigate' in c) c.navigate(target); return c.focus(); } }
+    return clients.openWindow(target);
+  }));
 });

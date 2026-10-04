@@ -732,6 +732,7 @@
     <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
     <div class="dsep"></div>
     <div class="themerow"><span class="ni">🗣️</span><span class="tlbl">Voice</span><select id="voiceSel" class="vsel" aria-label="Reading voice"><option value="">Auto</option></select></div>
+    <div class="themerow"><span class="ni">🎚️</span><span class="tlbl">Tone</span><div class="seg" id="toneSeg"><button type="button" data-tone="soft">Soft</button><button type="button" data-tone="natural">Natural</button><button type="button" data-tone="bright">Bright</button></div></div>
     <div class="themerow"><span class="ni">🔊</span><span class="tlbl">Auto-read a day when opened</span><div class="seg" id="autoSeg"><button type="button" data-auto="1">On</button><button type="button" data-auto="0">Off</button></div></div>
     <div class="themerow"><span class="ni">🌓</span><span class="tlbl">Theme</span><div class="seg" id="themeSeg"><button type="button" data-theme="system">Auto</button><button type="button" data-theme="light">Light</button><button type="button" data-theme="dark">Dark</button></div></div>
     <div class="dsep"></div>
@@ -1967,6 +1968,7 @@
       if(!b) return;
       const card = document.querySelector('details.day[data-date="' + b.dataset.jump + '"]');
       if(!card) return;
+      if(!card.open && window.__stopSpeaking) window.__stopSpeaking(); // jumping to another day stops any playing day
       card.open = true;
       setTimeout(() => card.scrollIntoView({behavior:'smooth', block:'start'}), 40);
     });
@@ -2216,7 +2218,7 @@
     });
     if(canSpeak || canRecord){
       const hint = document.createElement('p'); hint.className = 'voicehint';
-      hint.innerHTML = '<span>💡</span><span>' + (canSpeak ? '<b>Play this day</b> reads a card aloud. ' : '') + (canRecord ? '<b>Voice notes</b> stay on this phone only.' : '') + '</span>';
+      hint.innerHTML = '<span>💡</span><span>' + (canSpeak ? '<b>Play this day</b> reads a card aloud. ' : '') + (canRecord ? '<b>Voice notes</b> are shared between your two phones.' : '') + '</span>';
       const strip = document.getElementById('datestrip');
       if(strip) strip.insertAdjacentElement('afterend', hint);
     }
@@ -2226,17 +2228,30 @@
     // Voice: prefer an Indian-English female voice, then any en-IN, then UK female, then any English.
     // A picker in the drawer lets you choose from whatever voices this phone actually has.
     let chosenVoiceURI = ''; try{ chosenVoiceURI = localStorage.getItem('voice') || ''; }catch(e){}
-    const FEMALE = /female|woman|Veena|Isha|Neerja|Ananya|Kajal|Priya|Aditi|Heera|Lekha|Raveena|Kate|Serena|Libby|Sonia|Martha|Samantha|Zira|Susan|Hazel|Fiona|Moira|Tessa|Karen|Google (UK|US) English Female|en-IN-.*(Female|Neerja)/i;
-    const MALE = /male|man|Rishi|Prabhat|Daniel|Arthur|Oliver|George|Alex|Fred|Thomas|Google (UK|US) English Male/i;
-    function allVoices(){ return speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)).sort((a,b) => (a.lang === 'en-IN' ? -1 : 0) - (b.lang === 'en-IN' ? -1 : 0)); }
+    const FEMALE = /female|woman|girl|Veena|Isha|Neerja|Aashi|Ananya|Kavya|Kajal|Priya|Aditi|Heera|Lekha|Raveena|Swara|Luna|Rosa|Yan\b|Asilia|Ezinne|Imani|Kate|Serena|Libby|Sonia|Martha|Samantha|Zira|Susan|Hazel|Fiona|Moira|Tessa|Karen|Catherine|Natasha|Leah|Nicole|Google (UK|US) English Female|en-IN-.*(Female|Neerja)/i;
+    const MALE = /\b(male|man|boy)\b|Rishi|Prabhat|Daniel|Arthur|Oliver|George|Alex|Fred|Thomas|Aaron|Gordon|Wayne|James|Ryan|Liam|William|Google (UK|US) English Male/i;
+    const isMale = v => MALE.test(v.name.replace(/female|woman|girl/ig, ''));
+    const isFemale = v => !isMale(v) && FEMALE.test(v.name);
+    const INDIAN = /en[-_]IN/i, ASIAN = /en[-_](SG|PH|HK|MY|ID|TH|CN|JP|KR|TW)/i;
+    const REGION = { IN:'Indian 🇮🇳', GB:'British 🇬🇧', IE:'Irish 🇮🇪', AU:'Australian 🇦🇺', NZ:'Kiwi 🇳🇿', ZA:'South African 🇿🇦', US:'American 🇺🇸', CA:'Canadian 🇨🇦', SG:'Singapore 🇸🇬', PH:'Filipino 🇵🇭', HK:'Hong Kong 🇭🇰', MY:'Malaysian 🇲🇾', KE:'Kenyan 🇰🇪', NG:'Nigerian 🇳🇬', TZ:'Tanzanian 🇹🇿', scotland:'Scottish 🏴󠁧󠁢󠁳󠁣󠁴󠁿' };
+    const regionOf = v => { const m = /^en[-_](\w+)/i.exec(v.lang); return (m && (REGION[m[1].toUpperCase()] || REGION[m[1]])) || 'English'; };
+    function allVoices(){ return speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)).sort((a,b) => a.name.localeCompare(b.name)); }
     function bestGuess(){
       const vs = allVoices();
-      return vs.find(v => /en[-_]IN/i.test(v.lang) && FEMALE.test(v.name) && !MALE.test(v.name))
-          || vs.find(v => /en[-_]IN/i.test(v.lang) && !MALE.test(v.name))
-          || vs.find(v => /en[-_]IN/i.test(v.lang))
-          || vs.find(v => /en[-_]GB/i.test(v.lang) && FEMALE.test(v.name))
+      return vs.find(v => INDIAN.test(v.lang) && isFemale(v))
+          || vs.find(v => INDIAN.test(v.lang) && !isMale(v))
+          || vs.find(v => ASIAN.test(v.lang) && isFemale(v))
+          || vs.find(v => /en[-_]GB/i.test(v.lang) && isFemale(v))
+          || vs.find(v => isFemale(v))
+          || vs.find(v => INDIAN.test(v.lang))
           || vs.find(v => /en[-_]GB/i.test(v.lang)) || vs[0] || null;
     }
+    // tone: a softer, slightly slower delivery by default; saved per phone
+    const TONES = { soft:{ pitch:.9, rate:.94 }, natural:{ pitch:1, rate:1 }, bright:{ pitch:1.1, rate:1.03 } };
+    let tone = 'soft'; try{ const t = localStorage.getItem('tone'); if(TONES[t]) tone = t; }catch(e){}
+    const toneSeg = document.getElementById('toneSeg');
+    function paintTone(){ if(toneSeg) toneSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.tone === tone)); }
+    paintTone();
     function pickVoice(){
       const vs = speechSynthesis.getVoices();
       if(chosenVoiceURI){ const v = vs.find(x => x.voiceURI === chosenVoiceURI); if(v) return v; }
@@ -2246,18 +2261,33 @@
       const sel = document.getElementById('voiceSel'); if(!sel) return;
       const vs = allVoices(); if(!vs.length) return;
       const def = bestGuess();
-      sel.innerHTML = '<option value="">Auto (' + (def ? def.name + ' · ' + def.lang : 'device default') + ')</option>' +
-        vs.map(v => '<option value="' + v.voiceURI.replace(/"/g,'&quot;') + '"' + (v.voiceURI === chosenVoiceURI ? ' selected' : '') + '>' + v.name + ' · ' + v.lang + (v.lang === 'en-IN' ? ' 🇮🇳' : '') + '</option>').join('');
+      const opt = v => '<option value="' + v.voiceURI.replace(/"/g,'&quot;') + '"' + (v.voiceURI === chosenVoiceURI ? ' selected' : '') + '>' + v.name + ' · ' + regionOf(v) + '</option>';
+      const grp = (label, list) => list.length ? '<optgroup label="' + label + '">' + list.map(opt).join('') + '</optgroup>' : '';
+      const used = new Set();
+      const take = pred => { const out = vs.filter(v => !used.has(v) && pred(v)); out.forEach(v => used.add(v)); return out; };
+      const indianF = take(v => INDIAN.test(v.lang) && isFemale(v));
+      const asianF  = take(v => ASIAN.test(v.lang) && isFemale(v));
+      const otherF  = take(v => isFemale(v));
+      const indianAny = take(v => INDIAN.test(v.lang) || ASIAN.test(v.lang));
+      const rest = take(() => true);
+      sel.innerHTML = '<option value="">Auto (' + (def ? def.name + ' · ' + regionOf(def) : 'device default') + ')</option>' +
+        grp('👩 Indian · female', indianF) + grp('👩 Asian · female', asianF) + grp('👩 Soft female · British & others', otherF) + grp('🌏 Indian & Asian · other', indianAny) + grp('👨 Male & other voices', rest);
     }
     document.addEventListener('change', e => {
       if(e.target && e.target.id === 'voiceSel'){
         chosenVoiceURI = e.target.value; try{ chosenVoiceURI ? localStorage.setItem('voice', chosenVoiceURI) : localStorage.removeItem('voice'); }catch(err){}
         if(speakingCard){ const c = speakingCard; stopSpeaking(); playCard(c); }
-        else { try{ const u = new SpeechSynthesisUtterance('Hello! I will read your London and Edinburgh plan.'); const v = pickVoice(); if(v){ u.voice = v; u.lang = v.lang; } speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(err){} }
+        else { try{ const u = new SpeechSynthesisUtterance('Hello! I will read your London and Edinburgh plan.'); const v = pickVoice(); if(v){ u.voice = v; u.lang = v.lang; } u.rate = rate * TONES[tone].rate; u.pitch = TONES[tone].pitch; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(err){} }
       }
     });
     fillVoicePicker();
     if(canSpeak) speechSynthesis.addEventListener('voiceschanged', fillVoicePicker);
+    if(toneSeg) toneSeg.addEventListener('click', e => {
+      const b = e.target.closest('button[data-tone]'); if(!b || !TONES[b.dataset.tone]) return;
+      tone = b.dataset.tone; try{ localStorage.setItem('tone', tone); }catch(err){} paintTone();
+      if(speakingCard){ const c = speakingCard; stopSpeaking(); playCard(c); }
+      else { try{ const u = new SpeechSynthesisUtterance('Hello Aviral, hello Chhavi. This is how I will read your days.'); const v = pickVoice(); if(v){ u.voice = v; u.lang = v.lang; } u.rate = rate * TONES[tone].rate; u.pitch = TONES[tone].pitch; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(err){} }
+    });
     function spokenTime(hhmm){
       const m = /^(\d{1,2}):(\d{2})$/.exec(hhmm); if(!m) return hhmm;
       let h = parseInt(m[1],10), mi = m[2]; const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12; if(h === 0) h = 12;
@@ -2314,7 +2344,7 @@
       current.el.classList.add('speaking');
       const u = new SpeechSynthesisUtterance(current.text);
       const v = pickVoice(); if(v) u.voice = v;
-      u.lang = (v && v.lang) || 'en-GB'; u.rate = rate; u.pitch = 1;
+      u.lang = (v && v.lang) || 'en-GB'; u.rate = rate * TONES[tone].rate; u.pitch = TONES[tone].pitch;
       u.onend = speakNext; u.onerror = speakNext;
       speechSynthesis.speak(u);
     }
@@ -2338,17 +2368,19 @@
     if(canSpeak) document.querySelectorAll('details.day > summary').forEach(sm => sm.addEventListener('click', () => {
       const d = sm.parentElement;
       const wasOpen = d.open;               // state BEFORE the tap toggles it
-      if(wasOpen){ stopSpeaking(); return; } // closing: always stop, never start
+      if(wasOpen){ if(speakingCard === d) stopSpeaking(); return; } // closing the day that is speaking: stop
+      if(speakingCard && speakingCard !== d) stopSpeaking();           // moving to another day: stop the old one
       if(!autoPlay) return;
       setTimeout(() => { if(d.open && speakingCard !== d) playCard(d); }, 60);
     }));
+    window.__stopSpeaking = stopSpeaking;
     window.__ttsPreview = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); return c ? buildQueue(c).map(x => x.text) : []; };
     window.playDay = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); if(c){ showPage('pg-days'); playCard(c); setTimeout(() => c.scrollIntoView({behavior:'smooth', block:'start'}), 60); } };
     document.addEventListener('click', e => {
       const p = e.target.closest('[data-play]'); if(p){ playCard(p.closest('details.day')); return; }
       const r = e.target.closest('[data-rate]'); if(r){ rate = parseFloat(r.dataset.rate); r.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === r)); if(speakingCard){ const c = speakingCard; stopSpeaking(); playCard(c); } return; }
     });
-    document.querySelectorAll('details.day').forEach(d => d.addEventListener('toggle', () => { if(!d.open && speakingCard === d) stopSpeaking(); }));
+    document.querySelectorAll('details.day').forEach(d => d.addEventListener('toggle', () => { if(!d.open && speakingCard === d) stopSpeaking(); else if(d.open && speakingCard && speakingCard !== d) stopSpeaking(); }));
 
     // ---- voice notes: shared between phones via Supabase (same login as the app); falls back to this phone only ----
     const DB = 'uktrip-notes', STORE = 'notes', BUCKET = 'voicenotes', TABLE = 'voice_notes';
