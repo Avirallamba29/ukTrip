@@ -691,6 +691,18 @@
   nav button .ni{position:relative}
   nav button.unread .ni::after{content:"";position:absolute;top:2px;right:8px;width:9px;height:9px;border-radius:50%;background:var(--red);border:2px solid var(--card)}
   .vnote .nshare{border:0;background:none;font-size:15px;cursor:pointer;padding:4px;color:var(--accent-ink)}
+  /* ---------- v60: apps to download ---------- */
+  .apps{display:grid;gap:8px;margin:0 0 10px}
+  .app{display:grid;grid-template-columns:44px 1fr;gap:6px 12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+  .app .ai{width:44px;height:44px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:22px}
+  .app .an{display:block;font-weight:800;font-size:15px;color:var(--ink)}
+  .app .ai{align-self:center}
+  #apps{scroll-margin-top:72px}
+  .app .aw{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .app .aw b{color:var(--ink2);font-weight:700}
+  .app .bk{grid-column:2;justify-self:start;min-height:36px;padding:7px 14px;white-space:nowrap;margin-top:2px}
+  .app.must{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-ring)}
+  .app.must .ai{background:var(--accent-soft)}
 </style>
 </head>
 <body>
@@ -770,7 +782,7 @@
     <div class="hs"><b>✓</b><span>Visas ×3</span></div>
     <div class="hs"><b>18</b><span>Bookings</span></div>
     <div class="hs"><b>2</b><span>Insurances</span></div>
-    <div class="hs"><b>9</b><span>To-dos</span></div>
+    <div class="hs"><b>10</b><span>To-dos</span></div>
   </div>
 </header>
 <div class="todaycard" id="todayCard"></div>
@@ -794,6 +806,7 @@
 <div class="panel actions" id="actions">
   <h4>⚡ Action items — still open, in date order</h4>
   <label class="ck"><input type="checkbox"> <span class="due hot">Now</span> Book the <b>Sky Garden</b> free slot — Sun 25 Oct, <b>11:00</b> (Sunday opening; done by 12:00 when Regent St opens). Slots release ~3 weeks ahead. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">by ~10 Oct</span> Install the <b>transport apps</b> on both phones — Citymapper, TfL Go, Bus &amp; Tram (Edinburgh), Trainline, Uber — and download offline Google Maps for London &amp; Edinburgh. <button type="button" class="jl" data-pg="pg-info" data-anchor="apps">Info ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">by ~10 Oct</span> Buy the <b>UK eSIM</b> (Airalo) and pre-book the <b>17 Oct LHR arrival taxi</b>. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">before 17 Oct</span> <b>BookMyForex card setup</b> (£1,001.29 loaded, card ending 8073): set the 4-digit PIN · enable international POS/ATM/online channels · review daily limits — all in the app's Card Setup section. Confirm the channels show "Enabled" before you fly. <button type="button" class="jl" data-pg="pg-costs">Costs ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">Thu 15 Oct</span> IndiGo <b>online check-in</b> opens 48 hrs before the revised <b>10:55</b> departure — re-check the flight time the night before too (IndiGo is winding down the Norse 787 lease in October).</label>
@@ -1700,6 +1713,18 @@
 </table></div>
 <p class="note">📞 <b>LNER Customer Services:</b> 03457 225 333 — call for seat changes/reservations on the Trainline-booked leg (ref CK640181) if their website doesn't show an option. <b>Avanti:</b> avantiwestcoast.co.uk/help/contact-us. <b>Highland Experience</b> changes/cancel: 0131 226 1414.</p>
 
+<h2 id="apps">📱 Apps to download before you fly</h2>
+<p class="note">Install these on <b>both</b> phones on Wi-Fi at home and sign in where needed — the first two are the ones you'll open every day. All links go to the UK App Store page; your Indian Apple ID will still download them.</p>
+<div class="apps">
+  <div class="app must"><span class="ai">🗺️</span><span><span class="an">Citymapper</span><span class="aw">The one app for London <b>and</b> Edinburgh: tube + bus + walking door-to-door, live arrivals, "which carriage to board", and it tells you the step-free / stroller route. Works offline for the tube map.</span></span><a class="bk" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/citymapper/id469463298">App Store ↗</a></div>
+  <div class="app must"><span class="ai">🚇</span><span><span class="an">TfL Go</span><span class="aw">Official Transport for London app — live Tube/bus status, closures and strikes, lift status for the stroller, and <b>Pay as you go</b> to see what each day's taps cost on your card.</span></span><a class="bk" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/tfl-go-plan-pay-travel/id1419541638">App Store ↗</a></div>
+  <div class="app"><span class="ai">🚌</span><span><span class="an">Bus &amp; Tram (Lothian Buses)</span><span class="aw">Official Edinburgh bus + tram app — live bus tracker and <b>mobile tickets</b> (Edinburgh buses don't give change; tap a contactless card or buy in the app). Needed Wed 21–Sat 24 only.</span></span><a class="bk" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/bus-tram/id6468092588">App Store ↗</a></div>
+  <div class="app"><span class="ai">📍</span><span><span class="an">Google Maps</span><span class="aw">Already on your phone — every route pill in this app opens here. Before flying, <b>download offline maps</b> of London and Edinburgh (Profile → Offline maps) so walking directions work even with no signal.</span></span><a class="bk alt" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/id585027354">App Store ↗</a></div>
+  <div class="app"><span class="ai">🚄</span><span><span class="an">Trainline</span><span class="aw">You booked the LNER leg here — shows <b>live platform numbers</b> at King's Cross and Waverley about 10–15 min before departure, delays, and your e-tickets. Covers the Avanti train too.</span></span><a class="bk alt" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/trainline-train-bus-tickets/id334235181">App Store ↗</a></div>
+  <div class="app"><span class="ai">🚕</span><span><span class="an">Uber</span><span class="aw">Works in both cities and also books <b>black cabs</b> in London (which can take a stroller without folding). Add the BookMyForex or HSBC card in-app before you leave India so the first ride isn't a card-verification fight.</span></span><a class="bk alt" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/id368677368">App Store ↗</a></div>
+</div>
+<p class="note">🚇 <b>No Oyster card needed.</b> Tap in and out with the <b>same</b> contactless card or Apple Pay device every time — fares cap automatically per day (Zone 1–2 is about £8.90) and Aariv travels free. Use one card for all taps or the cap won't apply. 🚌 London buses are a flat fare, tap on entry only, and the stroller goes in the wheelchair bay unfolded.</p>
+
 <h2>🌦️ Weather</h2>
 <div class="tblwrap"><table>
   <tr><th></th><th>London</th><th>Edinburgh</th></tr>
@@ -1954,6 +1979,7 @@
     if(!j) return;
     e.preventDefault();
     showPage(j.dataset.pg);
+    if(j.dataset.anchor){ const a = document.getElementById(j.dataset.anchor); if(a) setTimeout(() => a.scrollIntoView({behavior:'smooth', block:'start'}), 80); }
   });
   // date strip: jump to a day card, and highlight today during the trip
   (function(){
@@ -1968,8 +1994,10 @@
       if(!b) return;
       const card = document.querySelector('details.day[data-date="' + b.dataset.jump + '"]');
       if(!card) return;
-      if(!card.open && window.__stopSpeaking) window.__stopSpeaking(); // jumping to another day stops any playing day
+      const wasOpen = card.open;
+      if(!wasOpen && window.__stopSpeaking) window.__stopSpeaking(); // jumping to another day stops any playing day
       card.open = true;
+      if(!wasOpen && window.__autoRead) setTimeout(() => window.__autoRead(card), 60); // Auto-read on: the pill behaves like tapping the day
       setTimeout(() => card.scrollIntoView({behavior:'smooth', block:'start'}), 40);
     });
   })();
@@ -2330,12 +2358,36 @@
       }));
       return q;
     }
-    function stopSpeaking(){
+    // Each play session gets a generation number: events from utterances that were cancelled
+    // (iOS fires onend/onerror for them, late) are ignored, so they can't advance or restart a newer session.
+    let gen = 0, pausedCard = null, watchdog = null, quietTicks = 0;
+    function syncButtons(){
+      document.querySelectorAll('.playbtn').forEach(b => {
+        const card = b.closest('details.day');
+        const on = card === speakingCard;
+        b.classList.toggle('playing', on && pausedCard !== card);
+        b.textContent = !on ? '▶ Play this day' : (pausedCard === card ? '▶ Resume' : '⏸ Pause');
+      });
+    }
+    function hardCancel(){
       try{ speechSynthesis.resume(); }catch(e){}
-      speechSynthesis.cancel();
+      try{ speechSynthesis.cancel(); }catch(e){}
+      // iOS sometimes ignores the first cancel(): keep cancelling for a moment until the engine is really quiet
+      let tries = 0;
+      const t = setInterval(() => {
+        tries++;
+        const busy = speechSynthesis.speaking || speechSynthesis.pending;
+        if(speakingCard || !busy || tries > 10){ clearInterval(t); return; }
+        try{ speechSynthesis.cancel(); }catch(e){}
+      }, 120);
+    }
+    function stopSpeaking(){
+      gen++;
       if(current) current.el.classList.remove('speaking');
-      if(speakingCard){ const b = speakingCard.querySelector('.playbtn'); if(b){ b.classList.remove('playing'); b.textContent = '▶ Play this day'; } }
-      speakingCard = null; queue = []; idx = 0; current = null;
+      speakingCard = null; pausedCard = null; queue = []; idx = 0; current = null;
+      hardCancel();
+      syncButtons();
+      if(watchdog){ clearInterval(watchdog); watchdog = null; }
     }
     function speakNext(){
       if(!speakingCard || idx >= queue.length){ stopSpeaking(); return; }
@@ -2345,18 +2397,40 @@
       const u = new SpeechSynthesisUtterance(current.text);
       const v = pickVoice(); if(v) u.voice = v;
       u.lang = (v && v.lang) || 'en-GB'; u.rate = rate * TONES[tone].rate; u.pitch = TONES[tone].pitch;
-      u.onend = speakNext; u.onerror = speakNext;
+      const my = gen;
+      u.onstart = () => { quietTicks = 0; };
+      u.onend = u.onerror = () => { if(my !== gen) return; speakNext(); };
+      quietTicks = 0;
       speechSynthesis.speak(u);
     }
+    function startWatchdog(){
+      if(watchdog) clearInterval(watchdog);
+      watchdog = setInterval(() => {
+        if(!speakingCard){ clearInterval(watchdog); watchdog = null; return; }
+        if(pausedCard) return;
+        const busy = speechSynthesis.speaking || speechSynthesis.pending;
+        quietTicks = busy ? 0 : quietTicks + 1;
+        // the engine went silent without telling us (happens on iPhone after the screen locks): move on
+        if(quietTicks >= 5){ quietTicks = 0; speakNext(); }
+        syncButtons();
+      }, 700);
+    }
     function playCard(card){
+      const b = card.querySelector('.playbtn');
       if(speakingCard === card){
-        if(speechSynthesis.paused){ speechSynthesis.resume(); card.querySelector('.playbtn').textContent = '⏸ Pause'; }
-        else { speechSynthesis.pause(); card.querySelector('.playbtn').textContent = '▶ Resume'; }
+        if(pausedCard === card){            // resume: re-read the sentence we stopped in
+          pausedCard = null; idx = Math.max(0, idx - 1); gen++; syncButtons(); startWatchdog(); speakNext();
+        } else {                            // pause: cancel, but remember our place (iOS pause/resume is unreliable)
+          pausedCard = card; gen++; if(current) current.el.classList.remove('speaking');
+          try{ speechSynthesis.resume(); }catch(e){} try{ speechSynthesis.cancel(); }catch(e){}
+          syncButtons();
+        }
         return;
       }
       stopSpeaking();
-      card.open = true; speakingCard = card; queue = buildQueue(card); idx = 0;
-      const b = card.querySelector('.playbtn'); b.classList.add('playing'); b.textContent = '⏸ Pause';
+      card.open = true; speakingCard = card; pausedCard = null; queue = buildQueue(card); idx = 0; gen++;
+      if(b){ b.classList.add('playing'); b.textContent = '⏸ Pause'; }
+      startWatchdog();
       speakNext();
     }
     // auto-play when a day is opened by a tap (default on; switch in the drawer)
@@ -2374,6 +2448,7 @@
       setTimeout(() => { if(d.open && speakingCard !== d) playCard(d); }, 60);
     }));
     window.__stopSpeaking = stopSpeaking;
+    window.__autoRead = function(card){ if(autoPlay && card.open && speakingCard !== card) playCard(card); };
     window.__ttsPreview = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); return c ? buildQueue(c).map(x => x.text) : []; };
     window.playDay = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); if(c){ showPage('pg-days'); playCard(c); setTimeout(() => c.scrollIntoView({behavior:'smooth', block:'start'}), 60); } };
     document.addEventListener('click', e => {
