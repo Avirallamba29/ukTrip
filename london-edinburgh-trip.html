@@ -679,6 +679,7 @@
   .sc-river{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Crect x=%220%22 y=%22104%22 width=%22400%22 height=%2216%22 fill-opacity=%22.16%22/%3E%3Cpath d=%22M0 104c20-8 40-8 60 0s40 8 60 0 40-8 60 0 40 8 60 0 40-8 60 0 40 8 60 0 40-8 40 0v16H0z%22/%3E %3Ccircle cx=%22300%22 cy=%2252%22 r=%2234%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.22%22 stroke-width=%225%22/%3E%3Cpath d=%22M300 52l-20 52h40z%22/%3E%3Cpath d=%22M300 18v68M266 52h68%22 stroke=%22%23fff%22 stroke-opacity=%22.22%22 stroke-width=%222%22/%3E %3Cpath d=%22M40 96h90l-8-12H52z%22/%3E%3Crect x=%2270%22 y=%2272%22 width=%2230%22 height=%2212%22/%3E%3Cpath d=%22M160 90h60l-6-10h-48z%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%228%22 height=%2240%22/%3E%3Crect x=%22120%22 y=%2230%22 width=%228%22 height=%2250%22/%3E%3Crect x=%2214%22 y=%2278%22 width=%22120%22 height=%226%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
   .sc-street{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Crect x=%220%22 y=%22104%22 width=%22400%22 height=%2216%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2270%22 height=%2264%22/%3E%3Crect x=%22110%22 y=%2230%22 width=%2280%22 height=%2274%22/%3E%3Crect x=%22210%22 y=%2246%22 width=%2270%22 height=%2258%22/%3E%3Crect x=%22300%22 y=%2234%22 width=%2280%22 height=%2270%22/%3E %3Cg fill=%22%23fff%22 fill-opacity=%22.3%22%3E%3Crect x=%2220%22 y=%2278%22 width=%2270%22 height=%228%22/%3E%3Crect x=%22110%22 y=%2278%22 width=%2280%22 height=%228%22/%3E%3Crect x=%22210%22 y=%2278%22 width=%2270%22 height=%228%22/%3E%3Crect x=%22300%22 y=%2278%22 width=%2280%22 height=%228%22/%3E%3C/g%3E %3Cpath d=%22M0 22h400v3H0z%22 fill-opacity=%22.3%22/%3E%3Cpath d=%22M40 25l6 10 6-10zM100 25l6 10 6-10zM160 25l6 10 6-10zM220 25l6 10 6-10zM280 25l6 10 6-10zM340 25l6 10 6-10z%22 fill-opacity=%22.35%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
   .sc-flight{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Cpath d=%22M60 70l200-40 90 6-80 22-50 40-20-4 18-34-120 22z%22/%3E%3Ccircle cx=%2240%22 cy=%22100%22 r=%2216%22/%3E%3Ccircle cx=%2262%22 cy=%22100%22 r=%2222%22/%3E%3Ccircle cx=%2290%22 cy=%22102%22 r=%2216%22/%3E%3Ccircle cx=%22330%22 cy=%2296%22 r=%2214%22/%3E%3Ccircle cx=%22350%22 cy=%2294%22 r=%2220%22/%3E%3Ccircle cx=%22374%22 cy=%2298%22 r=%2214%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
+  .vsel{max-width:46%;font:inherit;font-size:12.5px;padding:7px 8px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -719,6 +720,8 @@
     <button type="button" data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
     <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
     <div class="dsep"></div>
+    <div class="themerow"><span class="ni">🗣️</span><span class="tlbl">Voice</span><select id="voiceSel" class="vsel" aria-label="Reading voice"><option value="">Auto</option></select></div>
+    <div class="themerow"><span class="ni">🔊</span><span class="tlbl">Read a day aloud when opened</span><div class="seg" id="autoSeg"><button type="button" data-auto="1">On</button><button type="button" data-auto="0">Off</button></div></div>
     <div class="themerow"><span class="ni">🌓</span><span class="tlbl">Theme</span><div class="seg" id="themeSeg"><button type="button" data-theme="system">Auto</button><button type="button" data-theme="light">Light</button><button type="button" data-theme="dark">Dark</button></div></div>
     <div class="dsep"></div>
     <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
@@ -2208,21 +2211,75 @@
 
     // ---- text-to-speech ----
     let rate = 1, speakingCard = null, queue = [], idx = 0, current = null;
+    // Voice: prefer an Indian-English female voice, then any en-IN, then UK female, then any English.
+    // A picker in the drawer lets you choose from whatever voices this phone actually has.
+    let chosenVoiceURI = ''; try{ chosenVoiceURI = localStorage.getItem('voice') || ''; }catch(e){}
+    const FEMALE = /female|woman|Veena|Isha|Neerja|Ananya|Kajal|Priya|Aditi|Heera|Lekha|Raveena|Kate|Serena|Libby|Sonia|Martha|Samantha|Zira|Susan|Hazel|Fiona|Moira|Tessa|Karen|Google (UK|US) English Female|en-IN-.*(Female|Neerja)/i;
+    const MALE = /male|man|Rishi|Prabhat|Daniel|Arthur|Oliver|George|Alex|Fred|Thomas|Google (UK|US) English Male/i;
+    function allVoices(){ return speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)).sort((a,b) => (a.lang === 'en-IN' ? -1 : 0) - (b.lang === 'en-IN' ? -1 : 0)); }
+    function bestGuess(){
+      const vs = allVoices();
+      return vs.find(v => /en[-_]IN/i.test(v.lang) && FEMALE.test(v.name) && !MALE.test(v.name))
+          || vs.find(v => /en[-_]IN/i.test(v.lang) && !MALE.test(v.name))
+          || vs.find(v => /en[-_]IN/i.test(v.lang))
+          || vs.find(v => /en[-_]GB/i.test(v.lang) && FEMALE.test(v.name))
+          || vs.find(v => /en[-_]GB/i.test(v.lang)) || vs[0] || null;
+    }
     function pickVoice(){
       const vs = speechSynthesis.getVoices();
-      return vs.find(v => /en[-_]GB/i.test(v.lang) && /female|Kate|Serena|Libby|Google UK English Female|Sonia/i.test(v.name))
-          || vs.find(v => /en[-_]GB/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+      if(chosenVoiceURI){ const v = vs.find(x => x.voiceURI === chosenVoiceURI); if(v) return v; }
+      return bestGuess();
+    }
+    function fillVoicePicker(){
+      const sel = document.getElementById('voiceSel'); if(!sel) return;
+      const vs = allVoices(); if(!vs.length) return;
+      const def = bestGuess();
+      sel.innerHTML = '<option value="">Auto (' + (def ? def.name + ' · ' + def.lang : 'device default') + ')</option>' +
+        vs.map(v => '<option value="' + v.voiceURI.replace(/"/g,'&quot;') + '"' + (v.voiceURI === chosenVoiceURI ? ' selected' : '') + '>' + v.name + ' · ' + v.lang + (v.lang === 'en-IN' ? ' 🇮🇳' : '') + '</option>').join('');
+    }
+    document.addEventListener('change', e => {
+      if(e.target && e.target.id === 'voiceSel'){
+        chosenVoiceURI = e.target.value; try{ chosenVoiceURI ? localStorage.setItem('voice', chosenVoiceURI) : localStorage.removeItem('voice'); }catch(err){}
+        if(speakingCard){ const c = speakingCard; stopSpeaking(); playCard(c); }
+        else { try{ const u = new SpeechSynthesisUtterance('Hello! I will read your London and Edinburgh plan.'); const v = pickVoice(); if(v){ u.voice = v; u.lang = v.lang; } speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(err){} }
+      }
+    });
+    fillVoicePicker();
+    if(canSpeak) speechSynthesis.addEventListener('voiceschanged', fillVoicePicker);
+    function spokenTime(hhmm){
+      const m = /^(\d{1,2}):(\d{2})$/.exec(hhmm); if(!m) return hhmm;
+      let h = parseInt(m[1],10), mi = m[2]; const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12; if(h === 0) h = 12;
+      return h + (mi === '00' ? '' : ':' + mi) + ' ' + ap;
+    }
+    function speakable(t){
+      return t
+        .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{E0060}-\u{E007F}\uFE0F\u200D]/gu, ' ')
+        .replace(/↗|→/g, ' to ').replace(/⇄/g, ' and back ').replace(/[·•]/g, ', ').replace(/~/g, 'about ').replace(/≈/g, 'about ').replace(/×/g, ' times ').replace(/&/g, ' and ').replace(/\+/g, ' plus ')
+        .replace(/(\d{1,2}:\d{2})\s*[–\-]\s*(\d{1,2}:\d{2})/g, (_, a, b) => spokenTime(a) + ' to ' + spokenTime(b)).replace(/(\d+)h(\d+)m\b/g, '$1 hours $2 minutes').replace(/½/g, ' and a half').replace(/¾/g, ' and three quarters').replace(/¼/g, ' and a quarter')
+        .replace(/\b(\d{1,2}:\d{2})\b(?!\s?[AP]M)/g, (_, a) => spokenTime(a))
+        .replace(/£\s?(\d[\d,]*(?:\.\d+)?)\s*[–\-]\s*(\d[\d,]*)/g, '$1 to $2 pounds').replace(/£\s?(\d[\d,]*(?:\.\d+)?)/g, '$1 pounds')
+        .replace(/₹\s?(\d[\d,]*)/g, '$1 rupees').replace(/\$\s?(\d[\d,]*)/g, '$1 dollars')
+        .replace(/(\d)\s*–\s*(\d)/g, '$1 to $2').replace(/(\d{2,})-(\d{2,})/g, '$1 to $2').replace(/(\d+)\s*°/g, '$1 degrees').replace(/(\d)\s*kg\b/g, '$1 kilos').replace(/\b\d{9,}\b/g, 'reference number').replace(/\bhrs?\b/g, 'hours').replace(/\bmins?\b/g, 'minutes')
+        .replace(/\bT([1-5])\b/g, 'Terminal $1').replace(/\bLHR\b/g, 'Heathrow').replace(/\bDEL\b/g, 'Delhi').replace(/\bKGX\b/g, "King's Cross").replace(/\bNHM\b/g, 'Natural History Museum')
+        .replace(/\b6E\s?3\b/g, 'IndiGo six E three').replace(/\bAI-?2016\b/g, 'Air India 2016').replace(/\bIST\b/g, 'India time').replace(/\bUK\b/g, 'U K').replace(/\bpp\b/g, 'per person')
+        .replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/gi, m => ({mon:'Monday',tue:'Tuesday',wed:'Wednesday',thu:'Thursday',fri:'Friday',sat:'Saturday',sun:'Sunday'})[m.toLowerCase()]).replace(/\b(Sep|Oct|Nov)\b/g, m => ({Sep:'September',Oct:'October',Nov:'November'})[m])
+        .replace(/\(([^)]{0,3})\)/g, '$1').replace(/[()\[\]"]/g, ' ').replace(/\s+/g, ' ').replace(/\s+([,.;:])/g, '$1').trim();
     }
     function cleanText(el){
       const c = el.cloneNode(true);
-      c.querySelectorAll('a, .routes, .rlbl, img, button, .daytools, .notes, .tbadge').forEach(x => x.remove());
-      return c.textContent.replace(/[📖💰🚶🍴⏰👕🛒🎒🧭⚠️🧳🚨📄↗✓✅❌🎂🪑🔊🎙️]/g, ' ').replace(/\s+/g, ' ').trim();
+      c.querySelectorAll('a, .routes, .rlbl, img, button, .daytools, .notes, .tbadge, .ndel, audio').forEach(x => x.remove());
+      // timeline rows read as "At 7:15 AM, up." etc.
+      if(c.classList.contains('tl')){
+        const rows = Array.from(c.querySelectorAll('.tli .tlx')).map(r => r.textContent.trim().replace(/[.]+$/, ''));
+        return speakable('Timings. ' + rows.join('. ') + '.');
+      }
+      return speakable(c.textContent);
     }
     function buildQueue(card){
       const q = [];
       const dn = card.querySelector('.dn').textContent.replace(/\s+/g,' ').trim();
       const dt = card.querySelector('.dt').textContent.trim();
-      q.push({ el: card.querySelector('summary'), text: dn + '. ' + dt + '.' });
+      q.push({ el: card.querySelector('summary'), text: speakable(dn + '. ' + dt + '.') });
       const order = ['.times', 'p:not(.tip)', '.story', '.eat', '.wear', '.spend', '.pace', 'p.tip'];
       const seen = new Set();
       order.forEach(sel => card.querySelectorAll('.dbody ' + sel).forEach(el => {
@@ -2259,46 +2316,94 @@
       const b = card.querySelector('.playbtn'); b.classList.add('playing'); b.textContent = '⏸ Pause';
       speakNext();
     }
+    // auto-play when a day is opened by a tap (default on; switch in the drawer)
+    let autoPlay = true; try{ autoPlay = localStorage.getItem('autoplay') !== '0'; }catch(e){}
+    const autoSeg = document.getElementById('autoSeg');
+    function paintAuto(){ if(autoSeg) autoSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', (b.dataset.auto === '1') === autoPlay)); }
+    if(autoSeg) autoSeg.addEventListener('click', e => { const b = e.target.closest('button[data-auto]'); if(!b) return; autoPlay = b.dataset.auto === '1'; try{ localStorage.setItem('autoplay', autoPlay ? '1' : '0'); }catch(err){} paintAuto(); if(!autoPlay) stopSpeaking(); });
+    paintAuto();
+    if(canSpeak) document.querySelectorAll('details.day > summary').forEach(sm => sm.addEventListener('click', () => {
+      const d = sm.parentElement;
+      setTimeout(() => { if(!autoPlay) return; if(d.open){ if(speakingCard !== d) playCard(d); } else if(speakingCard === d) stopSpeaking(); }, 0);
+    }));
+    window.__ttsPreview = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); return c ? buildQueue(c).map(x => x.text) : []; };
     window.playDay = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); if(c){ showPage('pg-days'); playCard(c); setTimeout(() => c.scrollIntoView({behavior:'smooth', block:'start'}), 60); } };
     document.addEventListener('click', e => {
       const p = e.target.closest('[data-play]'); if(p){ playCard(p.closest('details.day')); return; }
       const r = e.target.closest('[data-rate]'); if(r){ rate = parseFloat(r.dataset.rate); r.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === r)); if(speakingCard){ const c = speakingCard; stopSpeaking(); playCard(c); } return; }
     });
     document.querySelectorAll('details.day').forEach(d => d.addEventListener('toggle', () => { if(!d.open && speakingCard === d) stopSpeaking(); }));
-    if(canSpeak && speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = () => {};
 
-    // ---- voice notes (MediaRecorder -> IndexedDB, this phone only) ----
-    const DB = 'uktrip-notes', STORE = 'notes';
-    function openDb(){ return new Promise((res, rej) => { const r = indexedDB.open(DB, 1); r.onupgradeneeded = () => { const s = r.result.createObjectStore(STORE, { keyPath:'id' }); s.createIndex('day', 'day'); }; r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); }
-    async function listNotes(day){ const db = await openDb(); return new Promise(res => { const out = []; const req = db.transaction(STORE).objectStore(STORE).index('day').openCursor(IDBKeyRange.only(day)); req.onsuccess = () => { const c = req.result; if(c){ out.push(c.value); c.continue(); } else res(out.sort((a,b) => a.id - b.id)); }; req.onerror = () => res([]); }); }
-    async function saveNote(n){ const db = await openDb(); return new Promise(res => { const t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).put(n); t.oncomplete = res; t.onerror = res; }); }
-    async function delNote(id){ const db = await openDb(); return new Promise(res => { const t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).delete(id); t.oncomplete = res; t.onerror = res; }); }
-    function fmtDur(s){ return Math.floor(s/60) + ':' + String(Math.round(s%60)).padStart(2,'0'); }
+    // ---- voice notes: shared between phones via Supabase (same login as the app); falls back to this phone only ----
+    const DB = 'uktrip-notes', STORE = 'notes', BUCKET = 'voicenotes', TABLE = 'voice_notes';
+    function openDb(){ return new Promise((res, rej) => { const r = indexedDB.open(DB, 1); r.onupgradeneeded = () => { const st = r.result.createObjectStore(STORE, { keyPath:'id' }); st.createIndex('day', 'day'); }; r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); }
+    async function localList(day){ const db = await openDb(); return new Promise(res => { const out = []; const req = db.transaction(STORE).objectStore(STORE).index('day').openCursor(IDBKeyRange.only(day)); req.onsuccess = () => { const c = req.result; if(c){ out.push(c.value); c.continue(); } else res(out.sort((x,y) => x.id - y.id)); }; req.onerror = () => res([]); }); }
+    async function localSave(n){ const db = await openDb(); return new Promise(res => { const t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).put(n); t.oncomplete = res; t.onerror = res; }); }
+    async function localDel(id){ const db = await openDb(); return new Promise(res => { const t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).delete(id); t.oncomplete = res; t.onerror = res; }); }
+    function fmtDur(x){ return Math.floor(x/60) + ':' + String(Math.round(x%60)).padStart(2,'0'); }
+    const sbc = () => window.__tripAuth || null;
+    let cloudOk = null; // null = unknown, true/false after first call
+    let me = '';
+    async function whoAmI(){ try{ const r = await sbc().auth.getUser(); me = (r.data && r.data.user && r.data.user.email) || ''; }catch(e){} return me; }
+    const niceName = em => { const l = (em || '').split('@')[0].toLowerCase(); if(l.startsWith('aviral')) return 'Aviral'; if(l.startsWith('chhavi')) return 'Chhavi'; return l ? l.charAt(0).toUpperCase() + l.slice(1) : 'Someone'; };
+    async function cloudList(day){
+      const sb = sbc(); if(!sb) return null;
+      const r = await sb.from(TABLE).select('*').eq('day', day).order('created_at', { ascending: true });
+      if(r.error){ cloudOk = false; return null; }
+      cloudOk = true; return r.data || [];
+    }
+    async function cloudSave(day, blob, dur, ext){
+      const sb = sbc(); const path = day + '/' + Date.now() + '-' + Math.random().toString(36).slice(2,7) + '.' + ext;
+      const up = await sb.storage.from(BUCKET).upload(path, blob, { contentType: blob.type || 'audio/mp4' });
+      if(up.error) throw up.error;
+      const url = sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+      const ins = await sb.from(TABLE).insert({ day, path, url, duration: Math.round(dur), by_email: me || null });
+      if(ins.error) throw ins.error;
+    }
+    async function cloudDel(row){ const sb = sbc(); await sb.from(TABLE).delete().eq('id', row.id); await sb.storage.from(BUCKET).remove([row.path]); }
     async function renderNotes(day){
       const box = document.querySelector('.notes[data-notes="' + day + '"]'); if(!box) return;
-      const notes = await listNotes(day).catch(() => []);
-      box.innerHTML = notes.map(n => {
-        const url = URL.createObjectURL(n.blob);
-        const when = new Date(n.id).toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
-        return '<div class="vnote"><span>🎙️</span><div class="nt"><b>Voice note · ' + fmtDur(n.dur||0) + '</b>' + when + '</div><audio controls preload="none" src="' + url + '"></audio><button type="button" class="ndel" data-del="' + n.id + '" aria-label="Delete note">✕</button></div>';
+      let rows = null;
+      if(cloudOk !== false) rows = await cloudList(day).catch(() => null);
+      const shared = Array.isArray(rows);
+      if(!shared) rows = await localList(day).catch(() => []);
+      box.innerHTML = rows.map(n => {
+        const url = shared ? n.url : URL.createObjectURL(n.blob);
+        const when = new Date(shared ? n.created_at : n.id).toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+        const who = shared ? niceName(n.by_email) : 'This phone';
+        const mine = !shared || !n.by_email || n.by_email === me;
+        return '<div class="vnote"><span>🎙️</span><div class="nt"><b>' + who + ' · ' + fmtDur(n.duration != null ? n.duration : (n.dur||0)) + '</b>' + when + (shared ? ' · shared' : ' · this phone only') + '</div><audio controls preload="none" src="' + url + '"></audio>' + (mine ? '<button type="button" class="ndel" data-del="' + n.id + '" data-shared="' + (shared ? 1 : 0) + '" aria-label="Delete note">✕</button>' : '') + '</div>';
       }).join('');
+      box.dataset.shared = shared ? '1' : '0';
+      if(!shared && cloudOk === false && !box.dataset.warned){ box.dataset.warned = '1'; box.insertAdjacentHTML('beforeend', '<p class="voicehint" style="margin:0"><span>ℹ️</span><span>Shared notes aren\'t set up in Supabase yet — notes are saved on this phone only for now.</span></p>'); }
     }
     if(canRecord){
-      document.querySelectorAll('details.day').forEach(d => renderNotes(d.dataset.date));
-      let rec = null, chunks = [], t0 = 0, recBtn = null, timer = null;
+      (async () => { await whoAmI(); document.querySelectorAll('details.day').forEach(d => renderNotes(d.dataset.date)); })();
+      document.querySelectorAll('details.day').forEach(d => d.addEventListener('toggle', () => { if(d.open) renderNotes(d.dataset.date); }));
+      // keep both phones in sync: realtime if enabled, plus a gentle poll while the tab is visible
+      try{ const sb = sbc(); if(sb && sb.channel) sb.channel('voice-notes').on('postgres_changes', { event:'*', schema:'public', table: TABLE }, () => { document.querySelectorAll('details.day[open]').forEach(d => renderNotes(d.dataset.date)); }).subscribe(); }catch(e){}
+      setInterval(() => { if(document.visibilityState === 'visible' && cloudOk) document.querySelectorAll('details.day[open]').forEach(d => renderNotes(d.dataset.date)); }, 30000);
+      let rec = null, chunks = [], t0 = 0, timer = null;
       async function startRec(btn){
         try{
           const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
           const mime = ['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg'].find(m => MediaRecorder.isTypeSupported(m)) || '';
           rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
-          chunks = []; t0 = Date.now(); recBtn = btn;
+          chunks = []; t0 = Date.now();
           rec.ondataavailable = e => { if(e.data && e.data.size) chunks.push(e.data); };
           rec.onstop = async () => {
             stream.getTracks().forEach(t => t.stop());
-            const blob = new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' });
-            const day = btn.closest('details.day').dataset.date;
-            if(blob.size > 0) await saveNote({ id: Date.now(), day, blob, dur: (Date.now() - t0) / 1000 });
-            btn.classList.remove('rec'); btn.textContent = '🎙️ Voice note'; clearInterval(timer);
+            const type = rec.mimeType || mime || 'audio/webm';
+            const blob = new Blob(chunks, { type });
+            const ext = /mp4/.test(type) ? 'm4a' : (/ogg/.test(type) ? 'ogg' : 'webm');
+            const day = btn.closest('details.day').dataset.date, dur = (Date.now() - t0) / 1000;
+            clearInterval(timer); btn.classList.remove('rec'); btn.textContent = '☁️ Saving…'; btn.disabled = true;
+            if(blob.size > 0){
+              let saved = false;
+              if(cloudOk !== false && sbc()){ try{ await cloudSave(day, blob, dur, ext); saved = true; cloudOk = true; }catch(err){ cloudOk = false; } }
+              if(!saved) await localSave({ id: Date.now(), day, blob, dur });
+            }
+            btn.disabled = false; btn.textContent = '🎙️ Voice note';
             renderNotes(day); rec = null;
           };
           rec.start();
@@ -2310,7 +2415,12 @@
         const b = e.target.closest('[data-rec]');
         if(b){ if(rec && rec.state === 'recording'){ rec.stop(); } else startRec(b); return; }
         const del = e.target.closest('[data-del]');
-        if(del){ const day = del.closest('.notes').dataset.notes; await delNote(parseInt(del.dataset.del, 10)); renderNotes(day); }
+        if(del){
+          const day = del.closest('.notes').dataset.notes;
+          if(del.dataset.shared === '1'){ const rows = await cloudList(day); const row = (rows || []).find(r => String(r.id) === del.dataset.del); if(row) await cloudDel(row).catch(() => {}); }
+          else await localDel(parseInt(del.dataset.del, 10));
+          renderNotes(day);
+        }
       });
     }
 
@@ -2331,7 +2441,7 @@
         (canSpeak ? '<button type="button" class="btn ghost" data-play-day="' + card.dataset.date + '">🔊 Play the day</button>' : '') + '</div>';
       tc.classList.add('on');
       tc.addEventListener('click', e => {
-        const o = e.target.closest('[data-open-day]'); if(o){ const c = document.querySelector('details.day[data-date="' + o.dataset.openDay + '"]'); c.open = true; c.scrollIntoView({behavior:'smooth', block:'start'}); return; }
+        const o = e.target.closest('[data-open-day]'); if(o){ const c = document.querySelector('details.day[data-date="' + o.dataset.openDay + '"]'); c.open = true; c.scrollIntoView({behavior:'smooth', block:'start'}); if(canSpeak && autoPlay) window.playDay(o.dataset.openDay); return; }
         const p = e.target.closest('[data-play-day]'); if(p){ window.playDay(p.dataset.playDay); }
       });
     })();
