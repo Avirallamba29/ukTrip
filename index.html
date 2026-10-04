@@ -680,6 +680,17 @@
   .sc-street{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Crect x=%220%22 y=%22104%22 width=%22400%22 height=%2216%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2270%22 height=%2264%22/%3E%3Crect x=%22110%22 y=%2230%22 width=%2280%22 height=%2274%22/%3E%3Crect x=%22210%22 y=%2246%22 width=%2270%22 height=%2258%22/%3E%3Crect x=%22300%22 y=%2234%22 width=%2280%22 height=%2270%22/%3E %3Cg fill=%22%23fff%22 fill-opacity=%22.3%22%3E%3Crect x=%2220%22 y=%2278%22 width=%2270%22 height=%228%22/%3E%3Crect x=%22110%22 y=%2278%22 width=%2280%22 height=%228%22/%3E%3Crect x=%22210%22 y=%2278%22 width=%2270%22 height=%228%22/%3E%3Crect x=%22300%22 y=%2278%22 width=%2280%22 height=%228%22/%3E%3C/g%3E %3Cpath d=%22M0 22h400v3H0z%22 fill-opacity=%22.3%22/%3E%3Cpath d=%22M40 25l6 10 6-10zM100 25l6 10 6-10zM160 25l6 10 6-10zM220 25l6 10 6-10zM280 25l6 10 6-10zM340 25l6 10 6-10z%22 fill-opacity=%22.35%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
   .sc-flight{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Cpath d=%22M60 70l200-40 90 6-80 22-50 40-20-4 18-34-120 22z%22/%3E%3Ccircle cx=%2240%22 cy=%22100%22 r=%2216%22/%3E%3Ccircle cx=%2262%22 cy=%22100%22 r=%2222%22/%3E%3Ccircle cx=%2290%22 cy=%22102%22 r=%2216%22/%3E%3Ccircle cx=%22330%22 cy=%2296%22 r=%2214%22/%3E%3Ccircle cx=%22350%22 cy=%2294%22 r=%2220%22/%3E%3Ccircle cx=%22374%22 cy=%2298%22 r=%2214%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
   .vsel{max-width:46%;font:inherit;font-size:12.5px;padding:7px 8px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+  /* ---------- v55: note alerts ---------- */
+  .toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 14px);transform:translate(-50%,20px);background:var(--ink);color:var(--bg);border-radius:14px;padding:11px 14px;font-size:13.5px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-md);z-index:1500;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;max-width:calc(100% - 28px)}
+  .toast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+  .toast button{border:0;background:var(--accent);color:#fff;font:inherit;font-size:13px;font-weight:700;border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+  .toast .tx{border:0;background:none;color:inherit;opacity:.7;font-size:16px;padding:2px 4px}
+  .dj{position:relative}
+  .dj.unread::before,.dn.unread::before{content:"";position:absolute;top:-4px;right:-4px;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid var(--card)}
+  .dn{position:relative}
+  nav button .ni{position:relative}
+  nav button.unread .ni::after{content:"";position:absolute;top:2px;right:8px;width:9px;height:9px;border-radius:50%;background:var(--red);border:2px solid var(--card)}
+  .vnote .nshare{border:0;background:none;font-size:15px;cursor:pointer;padding:4px;color:var(--accent-ink)}
 </style>
 </head>
 <body>
@@ -764,6 +775,7 @@
 <div class="todaycard" id="todayCard"></div>
 <div class="hlhead"><h3>Highlights</h3><span>tap to jump to the day</span></div>
 <div class="hl" id="hl"></div>
+<div class="toast" id="toast" role="status"></div>
 <div class="a2hs" id="a2hs"><span>📲</span><span>Add to Home Screen for a full-screen app: tap <b>Share</b> → <b>Add to Home Screen</b>.</span><button type="button" class="x" aria-label="Dismiss">✕</button></div>
 
 <div class="datestrip" id="datestrip" aria-label="Jump to a day">
@@ -2289,6 +2301,7 @@
       return q;
     }
     function stopSpeaking(){
+      try{ speechSynthesis.resume(); }catch(e){}
       speechSynthesis.cancel();
       if(current) current.el.classList.remove('speaking');
       if(speakingCard){ const b = speakingCard.querySelector('.playbtn'); if(b){ b.classList.remove('playing'); b.textContent = '▶ Play this day'; } }
@@ -2324,7 +2337,10 @@
     paintAuto();
     if(canSpeak) document.querySelectorAll('details.day > summary').forEach(sm => sm.addEventListener('click', () => {
       const d = sm.parentElement;
-      setTimeout(() => { if(!autoPlay) return; if(d.open){ if(speakingCard !== d) playCard(d); } else if(speakingCard === d) stopSpeaking(); }, 0);
+      const wasOpen = d.open;               // state BEFORE the tap toggles it
+      if(wasOpen){ stopSpeaking(); return; } // closing: always stop, never start
+      if(!autoPlay) return;
+      setTimeout(() => { if(d.open && speakingCard !== d) playCard(d); }, 60);
     }));
     window.__ttsPreview = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); return c ? buildQueue(c).map(x => x.text) : []; };
     window.playDay = function(dateIso){ const c = document.querySelector('details.day[data-date="' + dateIso + '"]'); if(c){ showPage('pg-days'); playCard(c); setTimeout(() => c.scrollIntoView({behavior:'smooth', block:'start'}), 60); } };
@@ -2359,8 +2375,40 @@
       const url = sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
       const ins = await sb.from(TABLE).insert({ day, path, url, duration: Math.round(dur), by_email: me || null });
       if(ins.error) throw ins.error;
+      return { url };
     }
     async function cloudDel(row){ const sb = sbc(); await sb.from(TABLE).delete().eq('id', row.id); await sb.storage.from(BUCKET).remove([row.path]); }
+    // ---- alerts for the other person's notes: toast while open, red dots until the day is opened, WhatsApp share ----
+    const toastEl = document.getElementById('toast'); let toastT = null;
+    function toast(msg, actionLabel, onAction){
+      if(!toastEl) return;
+      toastEl.innerHTML = '<span>' + msg + '</span>' + (actionLabel ? '<button type="button" class="ta">' + actionLabel + '</button>' : '') + '<button type="button" class="tx" aria-label="Dismiss">✕</button>';
+      toastEl.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('on'), actionLabel ? 9000 : 3500);
+      toastEl.querySelector('.tx').onclick = () => toastEl.classList.remove('on');
+      const a = toastEl.querySelector('.ta'); if(a) a.onclick = () => { toastEl.classList.remove('on'); onAction && onAction(); };
+    }
+    let seen = {}; try{ seen = JSON.parse(localStorage.getItem('notesSeen') || '{}'); }catch(e){}
+    let unreadDays = new Set();
+    function markSeen(day){ seen[day] = new Date().toISOString(); try{ localStorage.setItem('notesSeen', JSON.stringify(seen)); }catch(e){} unreadDays.delete(day); paintUnread(); }
+    function paintUnread(){
+      document.querySelectorAll('.dj').forEach(b => b.classList.toggle('unread', unreadDays.has(b.dataset.jump)));
+      document.querySelectorAll('details.day').forEach(d => d.querySelector('.dn').classList.toggle('unread', unreadDays.has(d.dataset.date)));
+      const nb = document.querySelector('nav button[data-pg="pg-days"]'); if(nb) nb.classList.toggle('unread', unreadDays.size > 0);
+    }
+    async function refreshUnread(){
+      const sb = sbc(); if(!sb || cloudOk === false) return;
+      const r = await sb.from(TABLE).select('day,created_at,by_email').order('created_at', { ascending:false }).limit(60);
+      if(r.error){ return; }
+      cloudOk = true; unreadDays = new Set();
+      (r.data || []).forEach(n => { if(n.by_email && n.by_email !== me && (!seen[n.day] || n.created_at > seen[n.day])) unreadDays.add(n.day); });
+      paintUnread();
+    }
+    function dayLabel(day){ const d = document.querySelector('details.day[data-date="' + day + '"]'); return d ? d.querySelector('.dn').textContent.replace(/\s+/g,' ').trim() + ' · ' + d.querySelector('.dt').textContent.trim() : day; }
+    function openDay(day){ showPage('pg-days'); const d = document.querySelector('details.day[data-date="' + day + '"]'); if(d){ d.open = true; setTimeout(() => d.scrollIntoView({behavior:'smooth', block:'start'}), 60); } }
+    function waShare(day, url, who){
+      const text = '🎙️ Voice note from ' + (who || 'me') + ' for ' + dayLabel(day) + ' (London & Edinburgh trip):\n' + url;
+      window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    }
     async function renderNotes(day){
       const box = document.querySelector('.notes[data-notes="' + day + '"]'); if(!box) return;
       let rows = null;
@@ -2372,16 +2420,26 @@
         const when = new Date(shared ? n.created_at : n.id).toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
         const who = shared ? niceName(n.by_email) : 'This phone';
         const mine = !shared || !n.by_email || n.by_email === me;
-        return '<div class="vnote"><span>🎙️</span><div class="nt"><b>' + who + ' · ' + fmtDur(n.duration != null ? n.duration : (n.dur||0)) + '</b>' + when + (shared ? ' · shared' : ' · this phone only') + '</div><audio controls preload="none" src="' + url + '"></audio>' + (mine ? '<button type="button" class="ndel" data-del="' + n.id + '" data-shared="' + (shared ? 1 : 0) + '" aria-label="Delete note">✕</button>' : '') + '</div>';
+        return '<div class="vnote"><span>🎙️</span><div class="nt"><b>' + who + ' · ' + fmtDur(n.duration != null ? n.duration : (n.dur||0)) + '</b>' + when + (shared ? ' · shared' : ' · this phone only') + '</div><audio controls preload="none" src="' + url + '"></audio>' + (shared ? '<button type="button" class="nshare" data-share="' + n.id + '" title="Send on WhatsApp">↗</button>' : '') + (mine ? '<button type="button" class="ndel" data-del="' + n.id + '" data-shared="' + (shared ? 1 : 0) + '" aria-label="Delete note">✕</button>' : '') + '</div>';
       }).join('');
       box.dataset.shared = shared ? '1' : '0';
       if(!shared && cloudOk === false && !box.dataset.warned){ box.dataset.warned = '1'; box.insertAdjacentHTML('beforeend', '<p class="voicehint" style="margin:0"><span>ℹ️</span><span>Shared notes aren\'t set up in Supabase yet — notes are saved on this phone only for now.</span></p>'); }
     }
     if(canRecord){
       (async () => { await whoAmI(); document.querySelectorAll('details.day').forEach(d => renderNotes(d.dataset.date)); })();
-      document.querySelectorAll('details.day').forEach(d => d.addEventListener('toggle', () => { if(d.open) renderNotes(d.dataset.date); }));
+      document.querySelectorAll('details.day').forEach(d => d.addEventListener('toggle', () => { if(d.open){ renderNotes(d.dataset.date); if(unreadDays.has(d.dataset.date)) markSeen(d.dataset.date); } }));
+      setTimeout(refreshUnread, 1200); document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') refreshUnread(); });
       // keep both phones in sync: realtime if enabled, plus a gentle poll while the tab is visible
-      try{ const sb = sbc(); if(sb && sb.channel) sb.channel('voice-notes').on('postgres_changes', { event:'*', schema:'public', table: TABLE }, () => { document.querySelectorAll('details.day[open]').forEach(d => renderNotes(d.dataset.date)); }).subscribe(); }catch(e){}
+      try{ const sb = sbc(); if(sb && sb.channel) sb.channel('voice-notes').on('postgres_changes', { event:'*', schema:'public', table: TABLE }, payload => {
+        document.querySelectorAll('details.day[open]').forEach(d => renderNotes(d.dataset.date));
+        const n = payload && payload.new;
+        if(payload && payload.eventType === 'INSERT' && n && n.by_email && n.by_email !== me){
+          const od = document.querySelector('details.day[data-date="' + n.day + '"]');
+          if(!(od && od.open && document.visibilityState === 'visible')){ unreadDays.add(n.day); paintUnread(); }
+          toast('🎙️ New voice note from <b>' + niceName(n.by_email) + '</b> — ' + dayLabel(n.day), 'Open', () => openDay(n.day));
+          try{ if(navigator.vibrate) navigator.vibrate(60); }catch(e){}
+        }
+      }).subscribe(); }catch(e){}
       setInterval(() => { if(document.visibilityState === 'visible' && cloudOk) document.querySelectorAll('details.day[open]').forEach(d => renderNotes(d.dataset.date)); }, 30000);
       let rec = null, chunks = [], t0 = 0, timer = null;
       async function startRec(btn){
@@ -2400,7 +2458,7 @@
             clearInterval(timer); btn.classList.remove('rec'); btn.textContent = '☁️ Saving…'; btn.disabled = true;
             if(blob.size > 0){
               let saved = false;
-              if(cloudOk !== false && sbc()){ try{ await cloudSave(day, blob, dur, ext); saved = true; cloudOk = true; }catch(err){ cloudOk = false; } }
+              if(cloudOk !== false && sbc()){ try{ const row = await cloudSave(day, blob, dur, ext); saved = true; cloudOk = true; toast('Saved & shared ✓', 'Ping on WhatsApp', () => waShare(day, row.url, niceName(me))); }catch(err){ cloudOk = false; } }
               if(!saved) await localSave({ id: Date.now(), day, blob, dur });
             }
             btn.disabled = false; btn.textContent = '🎙️ Voice note';
@@ -2414,6 +2472,8 @@
       document.addEventListener('click', async e => {
         const b = e.target.closest('[data-rec]');
         if(b){ if(rec && rec.state === 'recording'){ rec.stop(); } else startRec(b); return; }
+        const sh = e.target.closest('[data-share]');
+        if(sh){ const day = sh.closest('.notes').dataset.notes; const rows = await cloudList(day); const row = (rows || []).find(r => String(r.id) === sh.dataset.share); if(row) waShare(day, row.url, niceName(row.by_email)); return; }
         const del = e.target.closest('[data-del]');
         if(del){
           const day = del.closest('.notes').dataset.notes;
