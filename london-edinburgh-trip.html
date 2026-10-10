@@ -679,6 +679,8 @@
   .sc-river{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Crect x=%220%22 y=%22104%22 width=%22400%22 height=%2216%22 fill-opacity=%22.16%22/%3E%3Cpath d=%22M0 104c20-8 40-8 60 0s40 8 60 0 40-8 60 0 40 8 60 0 40-8 60 0 40 8 60 0 40-8 40 0v16H0z%22/%3E %3Ccircle cx=%22300%22 cy=%2252%22 r=%2234%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.22%22 stroke-width=%225%22/%3E%3Cpath d=%22M300 52l-20 52h40z%22/%3E%3Cpath d=%22M300 18v68M266 52h68%22 stroke=%22%23fff%22 stroke-opacity=%22.22%22 stroke-width=%222%22/%3E %3Cpath d=%22M40 96h90l-8-12H52z%22/%3E%3Crect x=%2270%22 y=%2272%22 width=%2230%22 height=%2212%22/%3E%3Cpath d=%22M160 90h60l-6-10h-48z%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%228%22 height=%2240%22/%3E%3Crect x=%22120%22 y=%2230%22 width=%228%22 height=%2250%22/%3E%3Crect x=%2214%22 y=%2278%22 width=%22120%22 height=%226%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
   .sc-street{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Crect x=%220%22 y=%22104%22 width=%22400%22 height=%2216%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2270%22 height=%2264%22/%3E%3Crect x=%22110%22 y=%2230%22 width=%2280%22 height=%2274%22/%3E%3Crect x=%22210%22 y=%2246%22 width=%2270%22 height=%2258%22/%3E%3Crect x=%22300%22 y=%2234%22 width=%2280%22 height=%2270%22/%3E %3Cg fill=%22%23fff%22 fill-opacity=%22.3%22%3E%3Crect x=%2220%22 y=%2278%22 width=%2270%22 height=%228%22/%3E%3Crect x=%22110%22 y=%2278%22 width=%2280%22 height=%228%22/%3E%3Crect x=%22210%22 y=%2278%22 width=%2270%22 height=%228%22/%3E%3Crect x=%22300%22 y=%2278%22 width=%2280%22 height=%228%22/%3E%3C/g%3E %3Cpath d=%22M0 22h400v3H0z%22 fill-opacity=%22.3%22/%3E%3Cpath d=%22M40 25l6 10 6-10zM100 25l6 10 6-10zM160 25l6 10 6-10zM220 25l6 10 6-10zM280 25l6 10 6-10zM340 25l6 10 6-10z%22 fill-opacity=%22.35%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
   .sc-flight{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cg fill=%22%23fff%22 fill-opacity=%22.22%22%3E %3Cpath d=%22M60 70l200-40 90 6-80 22-50 40-20-4 18-34-120 22z%22/%3E%3Ccircle cx=%2240%22 cy=%22100%22 r=%2216%22/%3E%3Ccircle cx=%2262%22 cy=%22100%22 r=%2222%22/%3E%3Ccircle cx=%2290%22 cy=%22102%22 r=%2216%22/%3E%3Ccircle cx=%22330%22 cy=%2296%22 r=%2214%22/%3E%3Ccircle cx=%22350%22 cy=%2294%22 r=%2220%22/%3E%3Ccircle cx=%22374%22 cy=%2298%22 r=%2214%22/%3E%3C/g%3E%3C/svg%3E"),var(--g)!important;background-size:cover,cover;background-position:center bottom,center}
+  .vhint{font-size:12px;color:var(--muted);line-height:1.4;margin:-4px 10px 8px 56px}
+  .vhint b{color:var(--ink2)}
   .vsel{max-width:46%;font:inherit;font-size:12.5px;padding:7px 8px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
   /* ---------- v55: note alerts ---------- */
   .toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 14px);transform:translate(-50%,20px);background:var(--ink);color:var(--bg);border-radius:14px;padding:11px 14px;font-size:13.5px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-md);z-index:1500;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;max-width:calc(100% - 28px)}
@@ -830,6 +832,7 @@
     <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
     <div class="dsep"></div>
     <div class="themerow"><span class="ni">🗣️</span><span class="tlbl">Voice</span><select id="voiceSel" class="vsel" aria-label="Reading voice"><option value="">Auto</option></select></div>
+    <p class="vhint" id="vhint">Want it to sound like Siri? On iPhone: <b>Settings → Accessibility → Read &amp; Speak</b> (called <b>Spoken Content</b> on older iOS) <b>→ Voices → English</b>, tap a voice such as Kate, Serena or Samantha and download its <b>Premium</b> or <b>Enhanced</b> version (cloud icon). Or pull down in Settings and search “Voices”. Reopen this app — it's picked automatically and marked ✨ here.</p>
     <div class="themerow"><span class="ni">🎚️</span><span class="tlbl">Tone</span><div class="seg" id="toneSeg"><button type="button" data-tone="soft">Soft</button><button type="button" data-tone="natural">Natural</button><button type="button" data-tone="bright">Bright</button></div></div>
     <div class="themerow"><span class="ni">🔊</span><span class="tlbl">Auto-read a day when opened</span><div class="seg" id="autoSeg"><button type="button" data-auto="1">On</button><button type="button" data-auto="0">Off</button></div></div>
     <div class="themerow"><span class="ni">🌓</span><span class="tlbl">Theme</span><div class="seg" id="themeSeg"><button type="button" data-theme="system">Auto</button><button type="button" data-theme="light">Light</button><button type="button" data-theme="dark">Dark</button></div></div>
@@ -2485,16 +2488,18 @@
     const REGION = { IN:'Indian 🇮🇳', GB:'British 🇬🇧', IE:'Irish 🇮🇪', AU:'Australian 🇦🇺', NZ:'Kiwi 🇳🇿', ZA:'South African 🇿🇦', US:'American 🇺🇸', CA:'Canadian 🇨🇦', SG:'Singapore 🇸🇬', PH:'Filipino 🇵🇭', HK:'Hong Kong 🇭🇰', MY:'Malaysian 🇲🇾', KE:'Kenyan 🇰🇪', NG:'Nigerian 🇳🇬', TZ:'Tanzanian 🇹🇿', scotland:'Scottish 🏴󠁧󠁢󠁳󠁣󠁴󠁿' };
     const regionOf = v => { const m = /^en[-_](\w+)/i.exec(v.lang); return (m && (REGION[m[1].toUpperCase()] || REGION[m[1]])) || 'English'; };
     function allVoices(){ return speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)).sort((a,b) => a.name.localeCompare(b.name)); }
-    function bestGuess(){
-      const vs = allVoices();
-      return vs.find(v => INDIAN.test(v.lang) && isFemale(v))
-          || vs.find(v => INDIAN.test(v.lang) && !isMale(v))
-          || vs.find(v => ASIAN.test(v.lang) && isFemale(v))
-          || vs.find(v => /en[-_]GB/i.test(v.lang) && isFemale(v))
-          || vs.find(v => isFemale(v))
-          || vs.find(v => INDIAN.test(v.lang))
-          || vs.find(v => /en[-_]GB/i.test(v.lang)) || vs[0] || null;
+    // Voice quality: iPhones expose the "Premium"/"Enhanced" voices you download under Settings → Accessibility →
+    // Spoken Content → Voices; those sound close to Siri, the plain "compact" ones sound robotic. Siri's own voice
+    // is never offered to web apps, so the best natural voice the phone has wins, Indian-female preferred among equals.
+    const quality = v => /premium/i.test(v.name) ? 3 : (/enhanced|natural|neural|wavenet|journey|studio/i.test(v.name) ? 2 : (/google|microsoft/i.test(v.name) ? 1.5 : 1));
+    const qLabel = v => quality(v) >= 3 ? ' · ✨ Premium' : (quality(v) >= 2 ? ' · ✨ Enhanced' : '');
+    function score(v){
+      let t = 0;
+      if(INDIAN.test(v.lang) && isFemale(v)) t = 6; else if(INDIAN.test(v.lang) && !isMale(v)) t = 5; else if(ASIAN.test(v.lang) && isFemale(v)) t = 4;
+      else if(/en[-_]GB/i.test(v.lang) && isFemale(v)) t = 3.5; else if(isFemale(v)) t = 3; else if(INDIAN.test(v.lang)) t = 2; else if(/en[-_]GB/i.test(v.lang)) t = 1;
+      return quality(v) * 10 + t;   // a Premium/Enhanced voice beats a compact one whatever the accent
     }
+    function bestGuess(){ const vs = allVoices(); if(!vs.length) return null; return vs.slice().sort((a, b) => score(b) - score(a))[0]; }
     // tone: a softer, slightly slower delivery by default; saved per phone
     const TONES = { soft:{ pitch:.9, rate:.94 }, natural:{ pitch:1, rate:1 }, bright:{ pitch:1.1, rate:1.03 } };
     let tone = 'soft'; try{ const t = localStorage.getItem('tone'); if(TONES[t]) tone = t; }catch(e){}
@@ -2510,17 +2515,19 @@
       const sel = document.getElementById('voiceSel'); if(!sel) return;
       const vs = allVoices(); if(!vs.length) return;
       const def = bestGuess();
-      const opt = v => '<option value="' + v.voiceURI.replace(/"/g,'&quot;') + '"' + (v.voiceURI === chosenVoiceURI ? ' selected' : '') + '>' + v.name + ' · ' + regionOf(v) + '</option>';
+      const opt = v => '<option value="' + v.voiceURI.replace(/"/g,'&quot;') + '"' + (v.voiceURI === chosenVoiceURI ? ' selected' : '') + '>' + v.name + ' · ' + regionOf(v) + qLabel(v) + '</option>';
       const grp = (label, list) => list.length ? '<optgroup label="' + label + '">' + list.map(opt).join('') + '</optgroup>' : '';
       const used = new Set();
       const take = pred => { const out = vs.filter(v => !used.has(v) && pred(v)); out.forEach(v => used.add(v)); return out; };
+      vs.sort((a, b) => score(b) - score(a));
+      const natural = take(v => quality(v) >= 2);
       const indianF = take(v => INDIAN.test(v.lang) && isFemale(v));
       const asianF  = take(v => ASIAN.test(v.lang) && isFemale(v));
       const otherF  = take(v => isFemale(v));
       const indianAny = take(v => INDIAN.test(v.lang) || ASIAN.test(v.lang));
       const rest = take(() => true);
-      sel.innerHTML = '<option value="">Auto (' + (def ? def.name + ' · ' + regionOf(def) : 'device default') + ')</option>' +
-        grp('👩 Indian · female', indianF) + grp('👩 Asian · female', asianF) + grp('👩 Soft female · British & others', otherF) + grp('🌏 Indian & Asian · other', indianAny) + grp('👨 Male & other voices', rest);
+      sel.innerHTML = '<option value="">Auto (' + (def ? def.name + ' · ' + regionOf(def) + qLabel(def) : 'device default') + ')</option>' +
+        grp('✨ Natural voices on this phone (Premium / Enhanced)', natural) + grp('👩 Indian · female', indianF) + grp('👩 Asian · female', asianF) + grp('👩 Soft female · British & others', otherF) + grp('🌏 Indian & Asian · other', indianAny) + grp('👨 Male & other voices', rest);
     }
     document.addEventListener('change', e => {
       if(e.target && e.target.id === 'voiceSel'){
@@ -2617,7 +2624,7 @@
       current.el.classList.add('speaking');
       const u = new SpeechSynthesisUtterance(current.text);
       const v = pickVoice(); if(v) u.voice = v;
-      u.lang = (v && v.lang) || 'en-GB'; u.rate = rate * TONES[tone].rate; u.pitch = TONES[tone].pitch;
+      u.lang = (v && v.lang) || 'en-GB'; u.rate = rate * TONES[tone].rate; u.pitch = (v && quality(v) >= 2) ? 1 : TONES[tone].pitch; // never bend a natural voice's pitch
       const my = gen;
       u.onstart = () => { quietTicks = 0; };
       u.onend = u.onerror = () => { if(my !== gen) return; speakNext(); };
