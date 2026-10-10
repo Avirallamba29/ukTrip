@@ -778,6 +778,15 @@
   .doc .dt2{font-size:14.5px;font-weight:750;line-height:1.3}
   .doc .ds{font-size:12.5px;color:var(--muted);line-height:1.35}
   .doc .do{font-size:12.5px;font-weight:800;color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:10px;padding:7px 10px;white-space:nowrap}
+  /* ---------- v71: action items accordion ---------- */
+  details.actions > summary{list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent;margin:0}
+  details.actions > summary::-webkit-details-marker{display:none}
+  details.actions > summary h4{margin:0;align-items:center}
+  details.actions > summary h4 .acount{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--accent-ink);background:var(--accent-soft);border-radius:999px;padding:3px 9px;white-space:nowrap}
+  details.actions > summary h4 .chev{font-size:18px;line-height:1;color:var(--muted);transition:transform .2s ease;margin-left:4px}
+  details.actions[open] > summary h4 .chev{transform:rotate(180deg)}
+  details.actions[open] > summary{margin-bottom:6px}
+  details.actions:not([open]) .pwrap{margin:8px 0 0}
 </style>
 </head>
 <body>
@@ -880,8 +889,8 @@
   <button type="button" class="dj" data-jump="2026-10-25" data-em="✈️"><span>Sun</span><b>25</b></button>
 </div>
 
-<div class="panel actions" id="actions">
-  <h4>⚡ Action items — still open, in date order</h4>
+<details class="panel actions" id="actions">
+  <summary><h4>⚡ Action items — still open, in date order<span class="acount" id="acount"></span><span class="chev">⌄</span></h4></summary>
   <label class="ck"><input type="checkbox"> <span class="due hot">Now</span> Book the <b>Sky Garden</b> free slot — Sun 25 Oct, <b>11:00</b> (Sunday opening; done by 12:00 when Regent St opens). Slots release ~3 weeks ahead. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">by ~10 Oct</span> Install the <b>transport apps</b> on both phones — Citymapper, TfL Go, Bus &amp; Tram (Edinburgh), Trainline, Uber — and download offline Google Maps for London &amp; Edinburgh. <button type="button" class="jl" data-pg="pg-info" data-anchor="apps">Info ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">by ~10 Oct</span> Buy the <b>UK eSIM</b> (Airalo) and pre-book the <b>17 Oct LHR arrival taxi</b>. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
@@ -897,7 +906,7 @@
   <label class="ck"><input type="checkbox"> <span class="due">Thu 22 Oct</span> Buy the <b>picnic/snacks</b> for the Highlands coach (no lunch stop) + the <b>birthday cake</b> (M&amp;S Colin the Caterpillar or La Barantine). <button type="button" class="jl" data-pg="pg-food">Food ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">Fri 23 Oct</span> Air India <b>online check-in</b> opens 48 hrs before the 22:00 departure on the 25th.</label>
   <p class="note" style="margin:8px 2px 0">Ticks are remembered on this phone. The full history of what's already done is under Info → Still to do.</p>
-</div>
+</details>
 
 <details class="day" data-date="2026-10-17">
   <summary><span class="dn"><span class="dw">SAT</span> <span class="dnum">17</span> <span class="dmo">Oct</span></span><span class="dtw"><span class="dt">✈️ Fly Delhi → London</span><span class="dk">🇬🇧 London · ✈️ 6E3 <b>10:55 → 18:10</b> · 🏨 Pullman St Pancras · check-in closes 09:40</span></span><span class="dd">Day 1 · 🛒</span><span class="arrow">▶</span></summary>
@@ -3278,6 +3287,18 @@
       }catch(e){ if(hint) hint.textContent = '⚠️ Could not build the zip here (' + e.message + '). Open the app in Safari and try again.'; }
       btn.textContent = label; btn.classList.remove('busy');
     });
+  })();
+
+  // ======================= v71: action items accordion (closed by default, remembers your choice, shows open count) =======================
+  (function(){
+    const d = document.getElementById('actions'); if(!d || d.tagName !== 'DETAILS') return;
+    try{ d.open = localStorage.getItem('actionsOpen') === '1'; }catch(e){}
+    d.addEventListener('toggle', () => { try{ localStorage.setItem('actionsOpen', d.open ? '1' : '0'); }catch(e){} });
+    const badge = document.getElementById('acount');
+    function paint(){ const cbs = d.querySelectorAll('label.ck input[type="checkbox"]'); let left = 0; cbs.forEach(c => { if(!c.checked) left++; }); if(badge) badge.textContent = left ? left + ' open' : 'all done ✓'; }
+    d.addEventListener('change', () => setTimeout(paint, 0)); setTimeout(paint, 300);
+    // the hero "To-dos" tile opens it
+    document.querySelectorAll('.hero-stats .hs').forEach(h => { if(/To-dos/.test(h.textContent)){ h.style.cursor = 'pointer'; h.addEventListener('click', () => { d.open = true; setTimeout(() => d.scrollIntoView({behavior:'smooth', block:'start'}), 50); }); } });
   })();
 </script>
 </body>
