@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v63';
+const CACHE_NAME = 'uktrip-cache-v70';
 
 const PRECACHE_URLS = [
   './',
@@ -67,6 +67,21 @@ const PRECACHE_URLS = [
   './tickets/insurance-aviral-tataaig.pdf',
   './tickets/insurance-chhavi-tataaig.pdf',
   './tickets/insurance-aariv-tataaig.pdf',
+  './tickets/hsbc-zero-forex-offer-tnc.pdf',
+  './tickets/ticket-londoneye-20oct.pdf',
+  './tickets/ticket-edinburghcastle-22oct-voucher.pdf',
+  './tickets/screenshots/headout-castle-meeting-point.jpg',
+  './tickets/screenshots/headout-eye-meeting-point.jpg',
+  './tickets/screenshots/headout-sealife-meeting-policy.jpg',
+  './tickets/screenshots/headout-sealife-qr-1of3.jpg',
+  './tickets/screenshots/headout-sealife-qr-2of3.jpg',
+  './tickets/screenshots/headout-sealife-qr-3of3.jpg',
+  './tickets/screenshots/headout-cruise-qr-1of3.jpg',
+  './tickets/screenshots/headout-cruise-qr-2of3.jpg',
+  './tickets/screenshots/headout-cruise-qr-3of3.jpg',
+  './tickets/screenshots/headout-cruise-westminster-pier.jpg',
+  './tickets/screenshots/headout-cruise-waterloo-tower-piers.jpg',
+  './tickets/screenshots/headout-cruise-greenwich-pier.jpg',
   './tickets/images/attr-air-india.jpg',
   './tickets/images/attr-borough-market.jpg',
   './tickets/images/attr-british-museum.jpg',

@@ -760,6 +760,24 @@
   .ls .ladd button{font:inherit;font-size:13px;font-weight:700;border:1.5px solid var(--accent);border-radius:10px;padding:8px 12px;background:var(--card);color:var(--accent-ink)}
   .ls .lempty{font-size:13px;color:var(--muted);padding:4px 2px}
   .lsnone{font-size:14px;color:var(--muted);padding:14px;border:1.5px dashed var(--line);border-radius:14px;text-align:center}
+  /* ---------- v68: save-all-documents ---------- */
+  .dlbox{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+  .dlbox .btn{width:100%;justify-content:center}
+  .dlhint{font-size:12.5px;color:var(--muted);line-height:1.4}
+  .dlbox .btn.busy{opacity:.8;pointer-events:none}
+  /* ---------- v69: documents page ---------- */
+  .docnav{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .docnav::-webkit-scrollbar{display:none}
+  .docnav a{flex:none;font-size:13px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border-radius:999px;padding:7px 12px;text-decoration:none;white-space:nowrap}
+  #pg-docs h3.qhead{scroll-margin-top:70px}
+  .doclist{display:grid;gap:6px;margin:0 0 6px}
+  .doc{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 10px 10px 12px;text-decoration:none;color:var(--ink);min-height:56px}
+  .doc:active{transform:scale(.995)}
+  .doc .de{width:38px;height:38px;border-radius:11px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .doc .dm{display:flex;flex-direction:column;min-width:0;gap:2px}
+  .doc .dt2{font-size:14.5px;font-weight:750;line-height:1.3}
+  .doc .ds{font-size:12.5px;color:var(--muted);line-height:1.35}
+  .doc .do{font-size:12.5px;font-weight:800;color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:10px;padding:7px 10px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -797,6 +815,7 @@
     <button type="button" data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
     <button type="button" data-pg="pg-outfits"><span class="ni">👗</span>Outfits &amp; lists</button>
     <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
+    <button type="button" data-pg="pg-docs"><span class="ni">📂</span>Documents</button>
     <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
     <button type="button" data-pg="pg-costs"><span class="ni">💰</span>Costs</button>
     <button type="button" data-pg="pg-info"><span class="ni">ℹ️</span>Info</button>
@@ -840,7 +859,7 @@
     <div class="hs"><b>✓</b><span>Visas ×3</span></div>
     <div class="hs"><b>18</b><span>Bookings</span></div>
     <div class="hs"><b>2</b><span>Insurances</span></div>
-    <div class="hs"><b>10</b><span>To-dos</span></div>
+    <div class="hs"><b>14</b><span>To-dos</span></div>
   </div>
 </header>
 <div class="todaycard" id="todayCard"></div>
@@ -866,9 +885,13 @@
   <label class="ck"><input type="checkbox"> <span class="due hot">Now</span> Book the <b>Sky Garden</b> free slot — Sun 25 Oct, <b>11:00</b> (Sunday opening; done by 12:00 when Regent St opens). Slots release ~3 weeks ahead. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">by ~10 Oct</span> Install the <b>transport apps</b> on both phones — Citymapper, TfL Go, Bus &amp; Tram (Edinburgh), Trainline, Uber — and download offline Google Maps for London &amp; Edinburgh. <button type="button" class="jl" data-pg="pg-info" data-anchor="apps">Info ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">by ~10 Oct</span> Buy the <b>UK eSIM</b> (Airalo) and pre-book the <b>17 Oct LHR arrival taxi</b>. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
-  <label class="ck"><input type="checkbox"> <span class="due">before 17 Oct</span> <b>BookMyForex card setup</b> (£1,001.29 loaded, card ending 8073): set the 4-digit PIN · enable international POS/ATM/online channels · review daily limits — all in the app's Card Setup section. Confirm the channels show "Enabled" before you fly. <button type="button" class="jl" data-pg="pg-costs">Costs ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">by 14 Oct</span> <b>Bank OTPs abroad:</b> the Airalo eSIM is data-only, so turn on <b>international roaming</b> (incoming SMS at minimum) on whichever Indian number gets HDFC / HSBC / BookMyForex OTPs — otherwise every online payment, Uber verification and bank login dies at the OTP step. Airtel/Jio sell 10-day UK packs in-app; do it on both phones. Keep that SIM active alongside the eSIM.</label>
+  <label class="ck"><input type="checkbox"> <span class="due">before 17 Oct</span> <b>HSBC Premier: switch on international usage</b> in the HSBC India app (Cards → Manage → International transactions: POS + online + <b>contactless</b>, and set the overseas limit high enough for Mount Royal's £695.70). It's your main UK card now — HSBC's Zero Forex Markup offer runs 15 Aug – 31 Oct, so no 0.99% markup on anything you pay by card this trip. <button type="button" class="jl" data-pg="pg-costs">Costs ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due hot">Now</span> <b>£400 cash order shows “Incomplete order”</b> in the BookMyForex app (FX832413195592, 10 Oct 17:31). Open it and finish whatever step is pending — payment, KYC upload or delivery slot — or tomorrow's delivery won't happen. Once it says Confirmed, keep the delivery OTP handy and count the notes on arrival.</label>
+  <label class="ck"><input type="checkbox"> <span class="due">before 17 Oct</span> <b>BookMyForex card setup</b> (£1,101.29 loaded, card ending 8073): set the 4-digit PIN · enable international POS/ATM/online channels · review daily limits — all in the app's Card Setup section. Confirm the channels show "Enabled" before you fly. <button type="button" class="jl" data-pg="pg-costs">Costs ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">Thu 15 Oct</span> IndiGo <b>online check-in</b> opens 48 hrs before the revised <b>10:55</b> departure — re-check the flight time the night before too (IndiGo is winding down the Norse 787 lease in October).</label>
   <label class="ck"><input type="checkbox"> <span class="due">before 17 Oct</span> <b>Print one backup page</b>: eVisa share codes ×3 + both insurance policy numbers &amp; helplines + flight PNRs. Everything else stays on the phone. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due">Fri 16 Oct</span> <b>Open this app on both phones on home Wi-Fi</b> and tap through Tickets once — that caches every ticket PDF, voucher and photo for offline use at the airport and on the trains. Keep opening it every few days before that too, so the shared-notes backend never goes idle.</label>
   <label class="ck"><input type="checkbox"> <span class="due">Sat 17 Oct</span> At Pullman check-in, remind the desk about the <b>2-bag storage for 21–24 Oct</b> (confirmed by Georgina, 7 Sep).</label>
   <label class="ck"><input type="checkbox"> <span class="due">by 19 Oct</span> Optional — check HDFC SmartBuy points for a better Edinburgh hotel; Mount Royal is free-cancel till 19 Oct 23:59. <button type="button" class="jl" data-pg="pg-info">Info ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">Thu 22 Oct</span> Buy the <b>picnic/snacks</b> for the Highlands coach (no lunch stop) + the <b>birthday cake</b> (M&amp;S Colin the Caterpillar or La Barantine). <button type="button" class="jl" data-pg="pg-food">Food ↗</button></label>
@@ -902,9 +925,11 @@
     <img class="day-photo" src="tickets/images/thames-cruise-photo.jpg" alt="Thames Sightseeing Cruise boat passing Big Ben" loading="lazy">
     <div class="times"><b>⏰ Timings</b>Expect a ~06:00 jet-lag wake. Slow breakfast 07:30 · leave ~10:35 · British Museum entry 11:10, taster ~11:10–12:15 · lunch 12:30–13:30 · free/rest time 13:30–14:50 · leave for Westminster Pier 15:00 · board cruise ~16:00 · arrive Greenwich ~17:00–17:15 · brief look around + dinner 17:30–18:30 · DLR/Jubilee back ~19:00 · home ~19:50 · bed ~20:30.</div>
     <p><b>AM:</b> booked <b>British Museum</b> entry <b>11:10</b> (order 10909534, free, 3 tickets) — about a 15-min walk from the hotel, or a quick bus/taxi; mummies, Rosetta Stone, Great Court. <b>Midday:</b> lunch near the museum, free time. <b>PM/Eve:</b> booked <b>Thames Sightseeing Cruise</b>, Westminster → Greenwich (booking #33618337, one-way flexible, board 10am–6pm), then dinner before heading back.</p>
-    <p class="tip">🛒 Stroller — good for the museum and the walk to the pier; Aariv can also just doze in it if he needs to, no need to plan a formal nap.</p>
+    <p class="tip">🚢 <b>Cruise boarding:</b> 3 QR codes, scan each at the gate. Board at <b>Westminster Millennium Pier</b> (Victoria Embankment, right below Big Ben) — or Waterloo Pier by the Eye if you're on that side. Valid on any sightseeing boat 10:00–18:00, so there's no fixed sailing to miss; aim for ~16:00. Photo ID in the bag.</p>
+<p class="tip">🎨 <b>Greenwich Market</b> is 5 min from the pier and open Sunday till ~17:30 — a 20-minute browse before dinner is the easy win; the British Museum shop (Rosetta Stone bits) is the morning one.</p>
+<p class="tip">🛒 Stroller — good for the museum and the walk to the pier; Aariv can also just doze in it if he needs to, no need to plan a formal nap.</p>
     <div class="story"><b>📖 In short</b>Today now has two things anchoring it — a booked British Museum entry and the Thames cruise this afternoon — with everything else free around them. Expect a genuine 6 AM wake-up from the time change; slow breakfast around 7:30, then it's about a 15-minute walk (or a quick bus/taxi) to the British Museum for your 11:10 entry (order 10909534, 3 tickets, free) — an hour or so of highlights is plenty for Aariv: the Egyptian mummies, the Rosetta Stone, and a look at the Great Court roof. From there, a relaxed lunch near the museum in Bloomsbury, then a genuinely open stretch of the early afternoon — head back toward the hotel to rest, or wander the neighbourhood, whatever suits, no plan needed. Head to Westminster Pier (about 25–30 minutes by tube) for your booked one-way Thames cruise toward Greenwich — it's a flexible ticket so there's no fixed departure to rush for, but aim to board around 4 PM so you're not cutting it too close to dusk. The sail itself is roughly an hour, relaxed and mostly seated. In Greenwich, keep it brief — a look at the Cutty Sark from outside and a short wander is plenty, since you'll need the DLR or Jubilee line back afterward (about 40–45 minutes to the hotel). Have dinner in Greenwich before heading back rather than adding another stop once you're home. Pack for both a mild museum morning and a windy river deck at dusk: warm layers, a waterproof jacket, and a spare change of clothes for Aariv as usual.</div>
-    <div class="spend"><b>💰 Today ~£60 (₹7,800)</b>🏛️ British Museum free (booked, order 10909534) · 🚢 Thames cruise £30 (already booked, charges 16 Oct) · 🚇 ~£10 tube/DLR/bus · 🍽️ ~£50 meals. Carry £20–30 cash.</div>
+    <div class="spend"><b>💰 Today ~£60 (₹7,800)</b>🏛️ British Museum free (booked, order 10909534) · 🚢 Thames cruise £30 (paid) · 🚇 ~£10 tube/DLR/bus · 🍽️ ~£50 meals. Carry £20–30 cash.</div>
     <div class="pace"><b>🚶 ~7,000 steps</b> An easy indoor hour at the museum, free time, seated cruise in the afternoon — no scheduled nap; let Aariv rest on his own terms (stroller, cruise seat, whenever).</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Lunch near the museum: Franco Manca · Museum Tavern (opposite the British Museum) · Waitrose picnic in Russell Square. Dinner in Greenwich before heading back: a café near the Cutty Sark or Greenwich Market food stalls — keep it quick and toddler-easy rather than a sit-down booking.</div>
     <div class="wear"><b>👕 Wear</b> Mild museum morning, ~13° by afternoon: warm layer + <b>waterproof jacket</b>, trainers everyone. Aariv: fleece under jacket, spare socks &amp; full change of clothes in the daypack. River deck is windier and colder than town — keep jackets zipped for the cruise.</div>
@@ -921,7 +946,7 @@
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Greenwich+Pier+London&destination=Pullman+London+St+Pancras&travelmode=transit">🚇 DLR/Jubilee ~40–45 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Greenwich+Pier+London&destination=Pullman+London+St+Pancras&travelmode=driving">🚕 ~35 min</a>
     </div>
-    <p class="tip">British Museum order 10909534 · Sun 18 Oct, 11:10 entry, 3 tickets, free · tickets emailed, have them ready on your phone <a target="_blank" rel="noopener" href="tickets/ticket-britishmuseum-18oct.pdf">📄 Ticket ↗</a>. Thames cruise booking #33618337 · one-way flexible ticket, board any pier (Westminster/London Eye/Greenwich/Tower) anytime 10am–6pm · £30 total, charges automatically 16 Oct <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33618337">Manage ↗</a>.</p>
+    <p class="tip">British Museum order 10909534 · Sun 18 Oct, 11:10 entry, 3 tickets, free · tickets emailed, have them ready on your phone <a target="_blank" rel="noopener" href="tickets/ticket-britishmuseum-18oct.pdf">📄 Ticket ↗</a>. Thames cruise booking #33618337 · one-way flexible ticket, board any pier (Westminster/London Eye/Greenwich/Tower) anytime 10am–6pm · £30 total, paid <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33618337">Manage ↗</a>.</p>
   </div>
 </details>
 
@@ -954,10 +979,12 @@
       <img style="width:50%;max-height:150px;object-fit:cover;border-radius:12px;display:block" src="tickets/images/london-eye-photo.jpg" alt="London Eye capsule with river view" loading="lazy">
     </div>
     <div class="times"><b>⏰ Timings</b>Up ~07:45 · breakfast 08:30 (light — save room for the market) · leave 09:15 → Borough Market 09:45–10:30 · walk/bus → SEA LIFE 11:00 entry · lunch 12:30 · South Bank stroll/ice cream 13:15–14:00 · London Eye 14:30 · bridge photos · bus home ~15:15 · dinner 17:30 · bed 19:30.</div>
-    <p><b>Paddington Bear Experience dropped</b> — not doing it. <b>Morning:</b> <b>Borough Market</b> (open Tue 10am–5pm) — food stalls, pastries, coffee before heading to County Hall. <b>Late morning:</b> booked <b>SEA LIFE London Aquarium</b> entry 11:00 (Headout Booking ID 33619404, £96, 2 adults + 1 child, charges 18 Oct) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619404">Manage ↗</a>. <b>PM:</b> booked <b>London Eye</b> entry 14:30 (Booking ID 33619539, £58, 2 adults + 1 infant, charges 18 Oct) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619539">Manage ↗</a> — under-3s ride free, Big Ben photo from Westminster Bridge after, then straight home. Tower Bridge lives on Day 3's evening instead — no need to double up.</p>
-    <p class="tip">🛒 Stroller — a long day out, useful across the market, the South Bank stretch and the queues; no scheduled nap today, so it's also where Aariv can rest if he needs to.</p>
-    <div class="story"><b>📖 In short</b>With Paddington out, today is lighter and now built around two booked slots — SEA LIFE London Aquarium at County Hall, 11:00 entry (Booking ID 33619404, 2 adults + 1 child), and the London Eye at 14:30 (Booking ID 33619539, £58 total, 2 adults + 1 infant, auto-charges 18 Oct). The morning that opened up once Paddington was dropped now has a good use — Borough Market, which is closed Mondays but runs full hours 10am–5pm on Tuesdays, so today's the one weekday it actually works. Leave the hotel by 09:15 (tube via London Bridge, ~30 min), browse the food stalls for pastries/coffee/a snack from about 09:45 to 10:30, then it's a 20–25 minute walk or short bus along the South Bank to County Hall for your 11:00 SEA LIFE entry — don't linger past 10:30 or you'll cut it fine. After the aquarium, a relaxed South Bank lunch around 12:30 (Wahaca has a proper kids' menu, or try Giraffe or a riverside Gail's), then a bit of slack before the Eye — a slow stroll along the river, the book market under Waterloo Bridge, or an ice cream. Aim to be in the queue for your 14:30 Eye slot with 15–20 minutes to spare, then it's a 30-minute rotation — Aariv still rides free under 3 — followed by Big Ben photos from Westminster Bridge, then straight home, with Aariv likely dozing on the bus if he needs it — Tower Bridge already has its slot on Day 3's evening, so there's no need to squeeze it in here too. The riverside is windier than it looks even on a mild day, so a windproof jacket over a warm layer is worth it for everyone, plus a hat for Aariv for the bridge photos.</div>
-    <div class="spend"><b>💰 Today ~£232.50 (₹30,100)</b>🥐 Borough Market snacks ~£20 · 🐠 SEA LIFE £96 (booked, charges 18 Oct) · 🎡 London Eye £58 (booked, charges 18 Oct) · 🚌/🚇 £8 · 🍽️ ~£55. Carry £20–30 cash — market stalls are often cash/card-either but some are card-only.</div>
+    <p><b>Paddington Bear Experience dropped</b> — not doing it. <b>Morning:</b> <b>Borough Market</b> (open Tue 10am–5pm) — food stalls, pastries, coffee before heading to County Hall. <b>Late morning:</b> booked <b>SEA LIFE London Aquarium</b> entry 11:00 (Headout Booking ID 33619404, £96, 2 adults + 1 child, paid) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619404">Manage ↗</a>. <b>PM:</b> booked <b>London Eye</b> entry 14:30 (Booking ID 33619539, £58, 2 adults + 1 infant, paid) <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619539">Manage ↗</a> — under-3s ride free, Big Ben photo from Westminster Bridge after, then straight home. Tower Bridge lives on Day 3's evening instead — no need to double up.</p>
+    <p class="tip">🎫 <b>Tickets today:</b> SEA LIFE is 3 QR codes (one per person) — meet at the Riverside Building on the County Hall side; London Eye is the PDF with 3 barcodes, be in the queue by <b>14:15</b> with a photo ID. Both are in the day's ticket row above.</p>
+<p class="tip">☂️ <b>Chhavi's umbrella stop:</b> after the Eye (~15:15), Jubilee → Northern line to Tottenham Court Rd, 3-min walk to <b>James Smith &amp; Sons</b>, 53 New Oxford St (open till 17:45; closed Sun). Then it's a 15-min walk home up Southampton Row. Ring 020 7836 4731 first — their site mentions a closure for building work.</p>
+<p class="tip">🛒 Stroller — a long day out, useful across the market, the South Bank stretch and the queues; no scheduled nap today, so it's also where Aariv can rest if he needs to.</p>
+    <div class="story"><b>📖 In short</b>With Paddington out, today is lighter and now built around two booked slots — SEA LIFE London Aquarium at County Hall, 11:00 entry (Booking ID 33619404, 2 adults + 1 child), and the London Eye at 14:30 (Booking ID 33619539, £58 total, 2 adults + 1 infant, paid). The morning that opened up once Paddington was dropped now has a good use — Borough Market, which is closed Mondays but runs full hours 10am–5pm on Tuesdays, so today's the one weekday it actually works. Leave the hotel by 09:15 (tube via London Bridge, ~30 min), browse the food stalls for pastries/coffee/a snack from about 09:45 to 10:30, then it's a 20–25 minute walk or short bus along the South Bank to County Hall for your 11:00 SEA LIFE entry — don't linger past 10:30 or you'll cut it fine. After the aquarium, a relaxed South Bank lunch around 12:30 (Wahaca has a proper kids' menu, or try Giraffe or a riverside Gail's), then a bit of slack before the Eye — a slow stroll along the river, the book market under Waterloo Bridge, or an ice cream. Aim to be in the queue for your 14:30 Eye slot with 15–20 minutes to spare, then it's a 30-minute rotation — Aariv still rides free under 3 — followed by Big Ben photos from Westminster Bridge, then straight home, with Aariv likely dozing on the bus if he needs it — Tower Bridge already has its slot on Day 3's evening, so there's no need to squeeze it in here too. The riverside is windier than it looks even on a mild day, so a windproof jacket over a warm layer is worth it for everyone, plus a hat for Aariv for the bridge photos.</div>
+    <div class="spend"><b>💰 Today ~£232.50 (₹30,100)</b>🥐 Borough Market snacks ~£20 · 🐠 SEA LIFE £96 (paid) · 🎡 London Eye £58 (paid) · 🚌/🚇 £8 · 🍽️ ~£55. Carry £20–30 cash — market stalls are often cash/card-either but some are card-only.</div>
     <div class="pace"><b>🚶 ~9,500 steps</b> Borough Market is a slow browse-and-graze, not a rush. Then SEA LIFE slow strolling, a leisurely South Bank gap, and the Eye 30 min sitting. No scheduled nap — quiet stroller time on the bus home if he needs it.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast/snack: Borough Market stalls (Bread Ahead doughnuts, Monmouth Coffee, Kappacasein toasties). Lunch South Bank: Wahaca (kids menu!) · Giraffe · riverside Gail's. Dinner back home: North Sea Fish · Drummond St · Deliveroo to the hotel.</div>
     <div class="wear"><b>👕 Wear</b> Riverside = windier than it looks: windproof jacket over a warm layer, trainers. Aariv: jacket zipped + hat for the bridge photos.</div>
@@ -978,7 +1005,8 @@
   <div class="dbody">
     <div class="times"><b>⏰ Timings</b>Up 07:00 · breakfast 08:00 · checkout &amp; store big bags 10:15 · walk 10:35 → King’s Cross 10:40 · 9¾ photo · board 10:50, depart 11:03 · arrive 15:34 · Mount Royal 16:00 · Royal Mile 17:00 · dinner 18:00 · bed 19:30–20:00.</div>
     <p>Leave big bags <b>and the stroller</b> with the hotel (returning on the 24th) — go light, carrier only from here on. The Pullman is right next to King's Cross, so there's real slack this morning — or make it a <b>Dishoom King's Cross breakfast</b> (bacon/egg naan, a couple of minutes away) before the train. Platform 9¾ photo, then <b>11:03 LNER</b>, Coach B (relabelled from A, phone-confirmed) — 55 (window, Aviral/Chhavi), 56 (aisle, Aviral/Chhavi), and Aariv now has his own seat, <b>57</b> (window, facing you across the table) → Waverley 15:34 <a target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf">📄 Ticket 1 ↗</a><a target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf">📄 Ticket 2 ↗</a><a target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf">📄 Aariv's Ticket ↗</a>. Check in at <b>Mount Royal, 53 Princes St</b> (conf. 6263.527.000, PIN 7709) <a target="_blank" rel="noopener" href="tickets/hotel-mountroyal-edinburgh-21-24oct.pdf">📄 Confirmation ↗</a>. Evening: first Royal Mile amble + Grassmarket dinner.</p>
-    <p class="tip">🎒 No stroller from today through the 24th — leave it at the Pullman with the big bags. Edinburgh's cobbles and hills aren't stroller-friendly anyway; carrier/shoulder-rides for the rest of the Scotland leg.</p>
+    <p class="tip">⚡ <b>Platform 9¾ at 08:15, not 10:40.</b> The trolley queue is 5 minutes at opening (08:00) and an hour by mid-morning — walk over before breakfast, get the free own-phone photo with the house scarf, and be back for breakfast by 08:45. At 10:40 just walk past it to the LNER platform.</p>
+<p class="tip">🎒 No stroller from today through the 24th — leave it at the Pullman with the big bags. Edinburgh's cobbles and hills aren't stroller-friendly anyway; carrier/shoulder-rides for the rest of the Scotland leg.</p>
     <div class="story"><b>📖 In short</b>Travel day. Leave your big bags — and the stroller — with the Pullman, you'll be back on the 24th, and pack light for Edinburgh. Being right next to King's Cross this time means the morning has real slack — no need to rush, and there's time for a Dishoom King's Cross breakfast (bacon-and-egg naan, just a couple of minutes' walk) before the train if you fancy it. Either way, there's time for the Platform 9¾ photo before boarding the 11:03 LNER service, Coach B — you're in 55 and 56 (window/aisle), right-hand side of the coach for the scenic coastal views, and Aariv now has his own booked seat, 57, facing you across the same table — which gets you into Edinburgh Waverley at 3:34 PM. From Waverley it's a short trip to check in at the Mount Royal, 53 Princes Street (confirmation 6263.527.000, PIN 7709), aiming to be settled by around 4 PM, before an easy first amble down the Royal Mile and dinner in the Grassmarket area — Makars Mash, Civerinos, or Mums Great Comfort Food are all good picks. The train itself is your rest for the day — four and a half hours to eat, play, and let Aariv doze if he wants to, with no need to force anything. Pack Edinburgh's warmer kit (hats, gloves, extra layers) into your small bag rather than the stored luggage, since it runs 3–4°C colder up north.</div>
     <div class="spend"><b>💰 Today ~£80 (₹10,300)</b>Train paid ✓ · 🚕 £10 bags taxi · 🍽️ ~£65 (train lunch + dinner). Carry £30–40 + passports.</div>
     <div class="pace"><b>🚶 ~6,000 steps</b> Travel day = built-in rest: 4½ hrs on the train for lunch and downtime. Easy evening stroll only.</div>
@@ -999,9 +1027,11 @@
     <img class="day-photo" src="tickets/images/edinburgh-castle-photo.jpg" alt="Guided tour group at Edinburgh Castle" loading="lazy">
     <div class="times"><b>⏰ Timings</b>Up 07:30 · relaxed breakfast 08:30 · National Museum of Scotland 09:30–11:00 · Victoria Street stroll 11:00–11:45 · check in for castle tour 12:00 · guided tour 12:15–~14:00 (One O'Clock Gun happens mid-tour) · lunch 14:15 · Greyfriars Bobby 15:15 · free/rest time 15:30–17:00 · Grassmarket dinner 17:30 · arrange tomorrow's cake · bed 19:30–20:00.</div>
     <p><b>AM:</b> National Museum of Scotland (free, no time slot needed) and a stroll down Victoria Street. <b>Midday:</b> <b>Edinburgh Castle</b> — booked <b>guided tour, 12:15pm</b> (Booking ID 33614375, Edinburgh Tickets/Headout, £78, charged 20 Oct) <a target="_blank" rel="noopener" href="https://book.edinburgh-tickets.com/">Manage ↗</a>. <b>PM:</b> Greyfriars Bobby (rub the nose), no scheduled nap — rest at the hotel only if he needs it. Arrange tomorrow's cake with the hotel tonight.</p>
-    <p class="tip">🎒 No stroller today — cobbles and the castle esplanade aren't stroller-friendly. Carrier/shoulder-rides only.</p>
+    <p class="tip">🏰 <b>Castle tour meeting point:</b> 351 High Street on the Royal Mile, directly opposite St Giles' Cathedral (the Advocates Close entrance) — look for the guide's <b>black umbrella with the yellow Scotland City Tours logo</b>. Be there by <b>12:00</b> for the 12:15 start; latecomers aren't refunded. 8-min walk uphill from Mount Royal.</p>
+<p class="tip">🛍️ <b>Royal Mile shopping after the castle:</b> Mary's Milk Bar (Grassmarket) for a reward gelato → Victoria St → Royal Mile Whiskies (379 High St) → The Fudge House (197 Canongate). Pick up a Highland-cow plush today for tomorrow's birthday morning on the coach.</p>
+<p class="tip">🎒 No stroller today — cobbles and the castle esplanade aren't stroller-friendly. Carrier/shoulder-rides only.</p>
     <div class="story"><b>📖 In short</b>This is the hilliest, hardest-walking day of the trip, and the schedule below is built around your actual booked castle slot — a guided tour at 12:15pm, not the 10 AM self-entry originally planned, so the day runs later across the board. Start with a relaxed morning: the free National Museum of Scotland doesn't need a timed slot, so that's the natural first stop, followed by a wander down Victoria Street on your way up to the castle. Check in for your 12:15 guided English-language tour (2 adults + Aariv, booking ID 33614375) — a guided tour typically runs 1.5–2 hours, which means you'll likely still be up on the esplanade around 1 PM when the One O'Clock Gun fires; since a guided tour has a fixed route and pace you can't simply duck out to skip it this time, so if Aariv is noise-sensitive it's worth packing ear defenders or at least a warning that a loud bang is coming. After the tour finishes around 2 PM, grab a late lunch near Victoria Street — Oink's hog-roast rolls or La Barantine bakery both work. There's no scheduled nap today — if Aariv needs a break, the hotel's a short walk away, but otherwise carry straight on: let him rub Greyfriars Bobby's nose for luck mid-afternoon, then dinner in the Grassmarket around 5:30, and use tonight to arrange tomorrow's birthday cake with the hotel before bed. It's the coldest, windiest stop on the trip, especially up on the castle esplanade, so pack the warmest jacket, hat and gloves for Aariv along with grippy shoes for the cobblestones — and don't be shy about shoulder-rides if he tires on the slopes.</div>
-    <div class="spend"><b>💰 Today ~£90 (₹11,600) + castle tour booked</b>🏰 Castle guided tour £78 (2 adults + Aariv as infant) — auto-charges 20 Oct, not today · museum free · 🍽️ ~£55 lunch+dinner · optional Camera Obscura ~£45. Carry £20–30 cash.</div>
+    <div class="spend"><b>💰 Today ~£90 (₹11,600) + castle tour booked</b>🏰 Castle guided tour £78 (2 adults + Aariv as infant) — already paid · museum free · 🍽️ ~£55 lunch+dinner · optional Camera Obscura ~£45. Carry £20–30 cash.</div>
     <div class="pace"><b>🚶 ~11,000 steps (hilly!)</b> Castle cobbles + Old Town slopes — the hardest walking day, now pushed later since the tour is midday. No scheduled nap; shoulder-rides budgeted if he tires.</div>
     <div class="eat"><b>🍴 Eat today — pick per meal</b>Breakfast: hotel, unhurried. Lunch (after the tour, ~14:15): Oink hog-roast rolls (Victoria St) · La Barantine bakery · Grassmarket pub. Dinner: Dishoom Edinburgh (book!) · Makars · Mums.</div>
     <div class="wear"><b>👕 Wear</b> Coldest, windiest stop of the trip — castle esplanade especially. Warmest jacket + hat + gloves for Aariv, grippy shoes for cobbles. Consider ear defenders given the tour overlaps the One O'Clock Gun.</div>
@@ -1055,7 +1085,9 @@
   <div class="dbody">
     <div class="times"><b>⏰ Timings</b>Clocks fell back — enjoy the free hour. Option A: relaxed morning, leave hotel ~10:45 → Oxford Circus ~10:55 → Regent St shops open 12:00, shop 12:00–14:00, hotel ~14:30–15:00. Option B: lazy 08:00 start, sights 10:00–12:30, hotel rest 15:00. Option C: relaxed 08:00 start, tube/walk to Oxford St ~09:30, shop 09:45–12:00, hotel 12:30. All: leave 17:30 → LHR T2 by 18:30 · fly 22:00 · land DEL 13:15 Mon.</div>
     <p>Clocks <b>fall back 1 hr</b> overnight (bonus sleep — flight time 22:00 is new time). Three ways to spend the morning:</p>
-    <p class="tip">🧳 <b>Whichever option you pick:</b> check out of the room and leave all the luggage at Pullman reception before heading out (this is a checkout-day, not a late-checkout day) — you're not carrying bags around London on your last morning. Collect everything again when you're back at the hotel in the afternoon, before leaving for Heathrow ~17:30.</p>
+    <p class="tip">🎁 <b>Last-day gift run on Regent St:</b> Hamleys (Aariv's birthday toy), Liberty 3rd floor for Smythson, Fortnum &amp; Mason 5 min away on Piccadilly for tea tins — all open Sun 12:00–18:00. Jellycat is at Selfridges on the Oxford Circus end.</p>
+<p class="tip">📔 <b>Smythson</b> is on the 3rd floor of <b>Liberty</b> (Regent St, Sun 12–18) — right on today's route. Bond St shop has closed; the Heathrow one is in T5, not your T2.</p>
+<p class="tip">🧳 <b>Whichever option you pick:</b> check out of the room and leave all the luggage at Pullman reception before heading out (this is a checkout-day, not a late-checkout day) — you're not carrying bags around London on your last morning. Collect everything again when you're back at the hotel in the afternoon, before leaving for Heathrow ~17:30.</p>
     <p class="tip">🛒 Stroller's back — collected with the bags on the 24th, useful again for Regent St/Oxford St, and a place for Aariv to rest before the flight.</p>
     <p class="tip">🛋️ <b>Lounge at T2:</b> you'll have ~3 hrs after security — the HSBC Premier card gives unlimited international lounge access with guest visits, so check the HSBC app for which T2 lounge is covered and settle in there with Aariv rather than the gate area.</p>
     <p><b>Option A — 🛍️ Regent Street</b> (swapped in for Bicester Village): no early rush needed — Regent Street's flagships (including <b>Coach, 200-206 Regent St</b>) don't open until <b>12:00 on Sundays</b> under UK Sunday-trading rules, so a relaxed late morning. Checkout &amp; leave bags at reception by ~10:45 → Victoria line ~10 min to <b>Oxford Circus</b> → Coach is a ~3–4 min walk down Regent St from the station, opens 12:00 → browse Regent Street's other flagships too — <b>Hamleys</b> toy store is right next door, a good stop for Aariv → shop till ~14:00 → back at the hotel by ~14:30–15:00.</p>
@@ -1249,6 +1281,35 @@
   <p style="font-size:13px;margin:0">🎯 <b>Stretch it further at an outlet</b> (Bicester Village or the in-London Wembley option) — 30–60% off means the same budget goes noticeably further if she's happy to shop discounted over full-price boutiques.</p>
 </div>
 
+<h3 class="qhead">💝 Chhavi's picks — where &amp; when</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=James+Smith+%26+Sons+Umbrellas+53+New+Oxford+Street+London"><span class="qe">☂️</span><span class="qt">James Smith &amp; Sons — umbrellas</span><span class="qs">53 New Oxford St, Europe's oldest umbrella shop (1830), 15-min walk or 1 stop from the hotel. Mon–Fri 10:00–17:45, Sat 10:00–17:15, <b>closed Sunday</b>. Best slot: <b>Tue 20 after the London Eye</b> (Tottenham Court Rd tube, there by ~16:00). Folding from ~£80, classic wood-handled £150–300+. ⚠️ Their site warns of a closure for building work — ring 020 7836 4731 the day before.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Liberty+London+Regent+Street"><span class="qe">📔</span><span class="qt">Smythson — stationery &amp; leather</span><span class="qs">The Bond St shop has closed; nearest are <b>Liberty, 3rd floor, Regent St</b> (Sun 12–18 — fits <b>Sun 25</b> Regent St shopping perfectly), Selfridges lower ground (Sun 11:30–18), Harrods, or Sloane St. Panama notebooks from ~£60, leather goods £100+. Also at Heathrow but only T5 — you fly from T2.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Sainsburys+Local+near+St+Pancras+London"><span class="qe">🍫</span><span class="qt">Cadbury — buy it at a supermarket</span><span class="qs">UK Cadbury (made in Bournville) tastes different from Indian Cadbury — creamier. Don't buy at souvenir shops or the airport: Tesco/Sainsbury's/Co-op sell 180g Dairy Milk bars for ~£2–3 and gift tins (Heroes, Roses) ~£5–8. Try Fruit &amp; Nut, Caramel, Wispa, Twirl, Crunchie, Curly Wurly and a Freddo for Aariv. Buy on <b>Sat 24 evening</b> near the hotel so it goes straight into the checked bag. (Cadbury World is in Birmingham, not London.)</span></a>
+</div>
+
+<h3 class="qhead">🇬🇧 More London classics — matched to your days</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Harry+Potter+Shop+at+Platform+9+3%2F4+Kings+Cross"><span class="qe">⚡</span><span class="qt">Harry Potter Shop &amp; Platform 9¾ trolley</span><span class="qs">Inside King's Cross, between platforms 4 &amp; 5, 5 min from the hotel. Shop Mon–Sat 08:00–20:00, Sun 09:00–20:00. Your own-phone photo is free (a staff member hands you a house scarf), but the queue hits an hour by mid-morning — so <b>go at 08:15 on Wed 21, before breakfast</b>, not at 10:40 when you have a train to catch. Wands £35–45, scarves ~£30.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Fortnum+and+Mason+181+Piccadilly"><span class="qe">🫖</span><span class="qt">Fortnum &amp; Mason</span><span class="qs">181 Piccadilly, 5-min walk from Regent St. Sun 12:00–18:00. The green-tinned Royal Blend tea, biscuits and the hampers are the classic London gift — <b>Sun 25</b> fits, just before or after Regent St.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Hamleys+Regent+Street"><span class="qe">🧸</span><span class="qt">Hamleys</span><span class="qs">188–196 Regent St, the 7-floor toy shop — Aariv's birthday present from London. Sun 12:00–18:00, so it slots straight into <b>Sun 25</b>. Staff demos on every floor; budget 45 min and go in with one thing in mind.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Selfridges+Oxford+Street"><span class="qe">🐰</span><span class="qt">Jellycat at Selfridges / John Lewis</span><span class="qs">The soft-toy craze — Selfridges (Oxford St, Sun 11:30–18:00) has the biggest wall of them; John Lewis next door too. A bunny or a Bashful Highland cow is a sweet 3rd-birthday keepsake. <b>Sun 25</b> (Oxford Circus end).</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Borough+Market"><span class="qe">🧀</span><span class="qt">Borough Market — what to actually buy</span><span class="qs">On <b>Tue 20</b>: Bread Ahead doughnuts (the queue moves fast), Neal's Yard Dairy for cheese to carry home vacuum-packed, Monmouth coffee beans, and Kappacasein's toastie for lunch. Most stalls card-only.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Sainsburys+St+Pancras"><span class="qe">🛒</span><span class="qt">Supermarket haul (gifts that taste of the UK)</span><span class="qs">Tesco/Sainsbury's/M&amp;S on <b>Sat 24 evening</b>, near the hotel: Cadbury bars &amp; tins, McVitie's Digestives, Walkers crisps, Yorkshire Tea, Percy Pigs (M&amp;S), shortbread tins, Marmite for the brave. £30 fills a bag and beats airport prices by half.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Greenwich+Market+London"><span class="qe">🎨</span><span class="qt">Greenwich Market</span><span class="qs">Covered craft &amp; food market 5 min from the Cutty Sark pier, open Sundays till ~17:30 — a browse on <b>Sun 18</b> while you're there for the cruise. Small prints, jewellery, Brazilian churros for Aariv.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Natural+History+Museum+shop"><span class="qe">🏛️</span><span class="qt">Museum shops (the good ones)</span><span class="qs">British Museum (Sun 18): Rosetta Stone and Lewis chessmen things. NHM (Mon 19): dinosaur everything — the plush T-rex is the famous one. Science Museum: the space section shop. All open till museum closing.</span></a>
+</div>
+
+<h3 class="qhead">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edinburgh classics — Thu 22 &amp; Sat 24</h3>
+<div class="qgrid">
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Royal+Mile+Whiskies+Edinburgh"><span class="qe">🥃</span><span class="qt">Royal Mile Whiskies</span><span class="qs">379 High St, Royal Mile — the best-stocked, least touristy whisky shop; staff will pick a bottle for a budget and tell you why. Miniature sets make easy gifts. <b>Thu 22</b> after the castle.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=The+Fudge+House+197+Canongate+Edinburgh"><span class="qe">🍬</span><span class="qt">The Fudge House</span><span class="qs">197 Canongate, lower Royal Mile since 1949 — hand-made tablet and fudge, sold by the slab; Aariv will want the rum-free vanilla. <b>Thu 22</b> if you walk the full Mile.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Hawico+Edinburgh"><span class="qe">🧣</span><span class="qt">Cashmere &amp; Harris Tweed</span><span class="qs">Chhavi's one Scottish splurge: Hawico (Grassmarket) or Johnstons of Elgin for cashmere; genuine Harris Tweed carries the orb label — bags and caps from ~£40 at the Royal Mile shops. Skip the tartan-tat chains.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Marys+Milk+Bar+19+Grassmarket+Edinburgh"><span class="qe">🍦</span><span class="qt">Mary's Milk Bar</span><span class="qs">19 Grassmarket, under the castle — small-batch gelato and hot chocolate, perfect reward after the castle tour on <b>Thu 22</b>. Cash or card, tiny shop, short queue.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Royal+Mile+Edinburgh"><span class="qe">🐄</span><span class="qt">Highland cow plush</span><span class="qs">Every Royal Mile shop sells them; the soft Jellycat/"Hairy Coo" ones are the nice version. Buy on <b>Thu 22</b> and give it to Aariv on the coach on <b>Fri 23 — birthday morning</b>, just as the real ones appear at the roadside stop.</span></a>
+  <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=Marks+and+Spencer+Princes+Street+Edinburgh"><span class="qe">🍪</span><span class="qt">Walkers shortbread, Tunnock's teacakes &amp; Irn-Bru</span><span class="qs">M&amp;S and Sainsbury's are steps from Mount Royal on Princes St — tartan Walkers tins, Tunnock's teacakes and caramel wafers, a can of Irn-Bru to try. Grab on <b>Sat 24</b> morning before Calton Hill so they ride in the big bag.</span></a>
+</div>
+
 <h3 class="qhead">👜 Coach — where to buy it</h3>
 <div class="qgrid">
   <a class="qcard" target="_blank" rel="noopener" href="https://maps.google.com/?q=200-206+Regent+Street+London+W1B+5BN"><span class="qe">🛍️</span><span class="qt">Coach, 200-206 Regent St</span><span class="qs">Day 9 plan (Option A) · opens 12:00 Sun · Victoria line to Oxford Circus</span><span class="qm">Map ↗</span></a>
@@ -1308,7 +1369,7 @@
   <label class="ck"><input type="checkbox" checked> ✅ Booked Aariv his own Avanti seat for 24 Oct — Coach J, seat 16 (window, same table as you, facing you), £96.25, ticket PIB4MVKKDZ2</label>
   <label class="ck"><input type="checkbox"> Hotel confirmations ×3 — Pullman St Pancras 45183173940800523004 / Mount Royal 6263.527.000 / Pullman St Pancras 41888004013833504617</label>
   <label class="ck"><input type="checkbox"> Aariv's birth certificate copy + travel insurance</label>
-  <label class="ck"><input type="checkbox"> Cards: HDFC Infinia ×2 · <b>BookMyForex GBP card</b> (ending 8073, £1,001 loaded) · <b>HSBC Premier World Mastercard</b> (ending 3495) as backup · ~£50 cash</label>
+  <label class="ck"><input type="checkbox"> Cards: HDFC Infinia ×2 · <b>HSBC Premier World Mastercard</b> (ending 3495) — main card, 0% forex markup till 31 Oct · <b>BookMyForex GBP card</b> (ending 8073, £1,101 loaded) for ATMs/backup · <b>£400 cash</b> (ordered at ₹130, arrives 11 Oct — count it, £5/£10/£20 notes only, split £300 wallet / £100 documents pouch)</label>
 </div>
 
 <div class="panel">
@@ -1324,6 +1385,7 @@
 
 <div class="panel">
   <h4>🧒 Aariv</h4>
+  <label class="ck"><input type="checkbox"> ☔ <b>Stroller rain cover</b> + waterproof shoes/boots for Aariv — the Met Office outlook is changeable and windy for both cities, and a wet toddler at 3pm ends the day</label>
   <label class="ck"><input type="checkbox"> Warm waterproof jacket + fleeces ×2</label>
   <label class="ck"><input type="checkbox"> Outfits ×6–7 (active/messy days = 2/day) + birthday outfit 🎂</label>
   <label class="ck"><input type="checkbox"> Warm hat, gloves, spare socks everywhere</label>
@@ -1344,10 +1406,90 @@
 </section>
 
 <!-- ============ PAGE: TICKETS ============ -->
+<section class="page" id="pg-docs">
+<h2>📂 Documents</h2>
+<p class="pagesub">Everything you might be asked to show, in the order you'll be asked for it. All files stay on the phone once the app has been opened online once.</p>
+<div class="dlbox"><button type="button" class="btn primary" id="dlAll">📦 Save all documents to this device</button><span class="dlhint" id="dlHint">One zip with every PDF, voucher, screenshot and photo; size shows once built. On iPhone/iPad it lands in Files → Downloads; tap it there to unzip.</span></div>
+<div class="docnav"><a href="#d-pass">🛂 Passports</a><a href="#d-visa">🇬🇧 Visas</a><a href="#d-tix">🎟️ Tickets</a><a href="#d-hotel">🏨 Hotels</a><a href="#d-other">📎 Other</a></div>
+
+<h3 class="qhead" id="d-pass">🛂 1 · Passports</h3>
+<div class="doclist">
+  <a class="doc" target="_blank" rel="noopener" href="tickets/passport-aviral.pdf"><span class="de">🛂</span><span class="dm"><span class="dt2">Aviral — passport</span><span class="ds">Y1406968 · valid to 11 Apr 2034</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/passport-chhavi.pdf"><span class="de">🛂</span><span class="dm"><span class="dt2">Chhavi — passport</span><span class="ds">Y3766049 · valid to 13 Jun 2034</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/passport-aariv.pdf"><span class="de">🛂</span><span class="dm"><span class="dt2">Aariv — passport</span><span class="ds">Y3159732 · valid to 13 Jun 2034</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/aariv-birth-certificate.pdf"><span class="de">👶</span><span class="dm"><span class="dt2">Aariv — birth certificate</span><span class="ds">Proof of age for the Highlands child fare and any “under 5” free entry</span></span><span class="do">Open ↗</span></a>
+</div>
+
+<h3 class="qhead" id="d-visa">🇬🇧 2 · Visas (eVisa — digital, nothing in the passport)</h3>
+<p class="note">All three granted 25 Aug · Visitor, valid 10 Oct 2026 – 10 Apr 2027, multiple entry. At check-in and the UK border the airline/officer looks you up by passport; the share code is the backup if their system can't. Aariv's is “child accompanied” — only valid travelling with you.</p>
+<div class="doclist">
+  <a class="doc" target="_blank" rel="noopener" href="tickets/share-code-aviral.pdf"><span class="de">🔗</span><span class="dm"><span class="dt2">Aviral — eVisa share code</span><span class="ds">90-day share code PDF · UKVI ref 3434-5670-0658-3412</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/share-code-chhavi.pdf"><span class="de">🔗</span><span class="dm"><span class="dt2">Chhavi — eVisa share code</span><span class="ds">UKVI ref 3434-2161-7842-1239</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/share-code-aariv.pdf"><span class="de">🔗</span><span class="dm"><span class="dt2">Aariv — eVisa share code</span><span class="ds">UKVI ref 3434-2768-0531-3187</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/evisa-aviral-status-summary.png"><span class="de">🖼️</span><span class="dm"><span class="dt2">Aviral — eVisa status screenshot</span><span class="ds">From the UKVI account, shows the grant</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/evisa-chhavi-status-summary.png"><span class="de">🖼️</span><span class="dm"><span class="dt2">Chhavi — eVisa status screenshot</span><span class="ds">From the UKVI account</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/evisa-aariv-status-summary.png"><span class="de">🖼️</span><span class="dm"><span class="dt2">Aariv — eVisa status screenshot</span><span class="ds">From the UKVI account</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/evisa-share-code-intro.png"><span class="de">ℹ️</span><span class="dm"><span class="dt2">How the share code works</span><span class="ds">Two UKVI screens explaining the code</span></span><span class="do">Open ↗</span></a>
+</div>
+
+<h3 class="qhead" id="d-tix">🎟️ 3 · Tickets</h3>
+<div class="doclist">
+  <a class="doc" target="_blank" rel="noopener" href="tickets/flight-indigo-6e3-del-lhr.pdf"><span class="de">✈️</span><span class="dm"><span class="dt2">IndiGo 6E3 · DEL → LHR · Sat 17 Oct</span><span class="ds">10:55 → 18:10 · seats 1D/1E/1F · PNR VB97QZ</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/flight-airindia-ai2016-lhr-del.pdf"><span class="de">✈️</span><span class="dm"><span class="dt2">Air India AI2016 · LHR T2 → DEL · Sun 25 Oct</span><span class="ds">22:00 → 13:15 +1 · seats 23A/B/C · PNR EF3LZT</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf"><span class="de">🚄</span><span class="dm"><span class="dt2">LNER · King's Cross → Edinburgh · Wed 21 Oct · Aviral</span><span class="ds">11:03 → 15:34 · Coach B seat 55</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf"><span class="de">🚄</span><span class="dm"><span class="dt2">LNER · Wed 21 Oct · Chhavi</span><span class="ds">Coach B seat 56</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf"><span class="de">🚄</span><span class="dm"><span class="dt2">LNER · Wed 21 Oct · Aariv</span><span class="ds">Coach B seat 57 (own seat)</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/train-avanti-edinburgh-euston-24oct-adult1.pdf"><span class="de">🚄</span><span class="dm"><span class="dt2">Avanti · Edinburgh → Euston · Sat 24 Oct · Aviral</span><span class="ds">12:52 → 18:38 · Coach J seat 18 · Std Premium</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/train-avanti-edinburgh-euston-24oct-adult2.pdf"><span class="de">🚄</span><span class="dm"><span class="dt2">Avanti · Sat 24 Oct · Chhavi</span><span class="ds">Coach J seat 19</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/train-avanti-edinburgh-euston-24oct-aariv-child.pdf"><span class="de">🚄</span><span class="dm"><span class="dt2">Avanti · Sat 24 Oct · Aariv</span><span class="ds">Coach J seat 16 (own seat)</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/ticket-britishmuseum-18oct.pdf"><span class="de">🏛️</span><span class="dm"><span class="dt2">British Museum · Sun 18 Oct 11:10</span><span class="ds">Free timed entry · order 10909534</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/ticket-naturalhistorymuseum-19oct-main.pdf"><span class="de">🦖</span><span class="dm"><span class="dt2">Natural History Museum · Mon 19 Oct 11:00</span><span class="ds">Free timed entry · order 20260822-S17424539</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/ticket-naturalhistorymuseum-backup.pdf"><span class="de">🦖</span><span class="dm"><span class="dt2">NHM backup slot · Tue 20 Oct 14:00</span><span class="ds">Only if Monday falls through</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/ticket-sciencemuseum-19oct.pdf"><span class="de">🔬</span><span class="dm"><span class="dt2">Science Museum · Mon 19 Oct 14:30–15:00</span><span class="ds">Free timed entry · order 17875983</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-qr-1of3.jpg"><span class="de">🚢</span><span class="dm"><span class="dt2">Thames cruise · Sun 18 Oct · QR 1 of 3</span><span class="ds">Headout 33618337 · £30 paid · any boat 10:00–18:00</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-qr-2of3.jpg"><span class="de">🚢</span><span class="dm"><span class="dt2">Thames cruise · QR 2 of 3</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-qr-3of3.jpg"><span class="de">🚢</span><span class="dm"><span class="dt2">Thames cruise · QR 3 of 3</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-westminster-pier.jpg"><span class="de">📍</span><span class="dm"><span class="dt2">Cruise boarding piers</span><span class="ds">Westminster Millennium Pier (main) · Waterloo · Tower · Greenwich</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-sealife-qr-1of3.jpg"><span class="de">🐠</span><span class="dm"><span class="dt2">SEA LIFE · Tue 20 Oct · QR 1 of 3</span><span class="ds">Headout 33619404 · £96 paid · entry 11:00–18:00 · Riverside Building, County Hall</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-sealife-qr-2of3.jpg"><span class="de">🐠</span><span class="dm"><span class="dt2">SEA LIFE · QR 2 of 3</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-sealife-qr-3of3.jpg"><span class="de">🐠</span><span class="dm"><span class="dt2">SEA LIFE · QR 3 of 3</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/ticket-londoneye-20oct.pdf"><span class="de">🎡</span><span class="dm"><span class="dt2">London Eye · Tue 20 Oct 14:30 · PDF ticket</span><span class="ds">3 barcodes (2 adult + 1 under-2) · ref 121840082 · photo ID · arrive 14:15</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/ticket-edinburghcastle-22oct-voucher.pdf"><span class="de">🏰</span><span class="dm"><span class="dt2">Edinburgh Castle guided tour · Thu 22 Oct 12:15 · voucher</span><span class="ds">Scotland City Tours H527-S1151-260822-106 · meet 351 High St opp. St Giles' by 12:00 · black umbrella, yellow logo</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/headout-castle-meeting-point.jpg"><span class="de">📍</span><span class="dm"><span class="dt2">Castle tour meeting point (Headout screen)</span><span class="ds">Advocates Close · guide details</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/ticket-highland-374019708.pdf"><span class="de">🏔️</span><span class="dm"><span class="dt2">Highland Experience · Fri 23 Oct · QR tickets ×3</span><span class="ds">Loch Ness &amp; Glen Coe · booking 374019708</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/highland-tour-confirmation.pdf"><span class="de">📄</span><span class="dm"><span class="dt2">Highland Experience · confirmation</span><span class="ds">Pickup point and times</span></span><span class="do">Open ↗</span></a>
+</div>
+
+<h3 class="qhead" id="d-hotel">🏨 4 · Hotels</h3>
+<div class="doclist">
+  <a class="doc" target="_blank" rel="noopener" href="tickets/hotel-pullman-london-17-21oct.pdf"><span class="de">🏨</span><span class="dm"><span class="dt2">Pullman London St Pancras · 17–21 Oct</span><span class="ds">Superior King + sofa bed · paid · R360 45183173940800</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/hotel-mountroyal-edinburgh-21-24oct.pdf"><span class="de">🏨</span><span class="dm"><span class="dt2">Mount Royal, Edinburgh · 21–24 Oct</span><span class="ds">Superior King castle view · cot requested · 6263.527.000 · PIN 7709 · pay at hotel</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/hotel-pullman-london-24-25oct.pdf"><span class="de">🏨</span><span class="dm"><span class="dt2">Pullman London St Pancras · 24–25 Oct</span><span class="ds">Superior King + sofa bed · paid · R360 41888004013833504617</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/pullman-luggage-storage-confirmation.eml"><span class="de">🧳</span><span class="dm"><span class="dt2">Pullman — luggage storage confirmation (21–24 Oct)</span><span class="ds">Email from Georgina, 7 Sep · 2 large bags</span></span><span class="do">Open ↗</span></a>
+</div>
+
+<h3 class="qhead" id="d-other">📎 5 · Other itinerary items</h3>
+<div class="doclist">
+  <a class="doc" target="_blank" rel="noopener" href="tickets/insurance-aviral.pdf"><span class="de">🛡️</span><span class="dm"><span class="dt2">Travel insurance — HDFC ERGO · Aviral</span><span class="ds">Policy GTI0002992000106 · 24×7 helpline inside</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/insurance-chhavi.pdf"><span class="de">🛡️</span><span class="dm"><span class="dt2">Travel insurance — HDFC ERGO · Chhavi</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/insurance-aariv.pdf"><span class="de">🛡️</span><span class="dm"><span class="dt2">Travel insurance — HDFC ERGO · Aariv</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/insurance-aviral-tataaig.pdf"><span class="de">🛡️</span><span class="dm"><span class="dt2">Travel insurance — Tata AIG · Aviral</span><span class="ds">Second policy via Policybazaar</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/insurance-chhavi-tataaig.pdf"><span class="de">🛡️</span><span class="dm"><span class="dt2">Travel insurance — Tata AIG · Chhavi</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/insurance-aariv-tataaig.pdf"><span class="de">🛡️</span><span class="dm"><span class="dt2">Travel insurance — Tata AIG · Aariv</span><span class="ds"></span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/hsbc-zero-forex-offer-tnc.pdf"><span class="de">💳</span><span class="dm"><span class="dt2">HSBC Zero Forex Markup offer — T&amp;Cs</span><span class="ds">15 Aug – 31 Oct 2026 · show if a markup appears on a statement</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/trainline-phone-confirmation-546920566196.png"><span class="de">📞</span><span class="dm"><span class="dt2">Trainline — phone confirmation (seat change)</span><span class="ds">Ref 546920566196</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/lner-coachB-seatmap-55-58.png"><span class="de">💺</span><span class="dm"><span class="dt2">LNER seat map — Coach B 55–58</span><span class="ds">Where you're sitting on the 21st</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/avanti-j18-j19-seat-details.png"><span class="de">💺</span><span class="dm"><span class="dt2">Avanti seat details — J16/J18/J19</span><span class="ds">Where you're sitting on the 24th</span></span><span class="do">Open ↗</span></a>
+  <a class="doc" target="_blank" rel="noopener" href="tickets/screenshots/avanti-journey-details-stops.png"><span class="de">🚉</span><span class="dm"><span class="dt2">Avanti journey details &amp; stops</span><span class="ds">Edinburgh → Euston calling points</span></span><span class="do">Open ↗</span></a>
+</div>
+<p class="note">Need the seat maps, booking summaries and the rest of the screenshots? They're all inside the zip above, and the Tickets page shows each one next to its booking.</p>
+</section>
+
 <section class="page" id="pg-tickets">
 <h2>🎟️ Tickets &amp; Bookings</h2>
 <p class="pagesub" id="tixsub"></p>
 <div class="filters" id="tixfilters"><button type="button" class="fchip on" data-f="all">All</button><button type="button" class="fchip" data-f="todo">⏳ To do</button><button type="button" class="fchip" data-f="flight">✈️ Flights</button><button type="button" class="fchip" data-f="hotel">🏨 Hotels</button><button type="button" class="fchip" data-f="train">🚄 Trains</button><button type="button" class="fchip" data-f="attr">🎟️ Attractions</button><button type="button" class="fchip" data-f="docs">🛂 Docs &amp; insurance</button></div>
+<p class="note">📂 Passports, visas, every ticket and voucher in one place: <button type="button" class="jl" data-pg="pg-docs">Documents ↗</button> — with a one-tap “save all to this device”.</p>
 <p class="note">📴 <b>Works offline</b> — once you've opened this app one time on wifi/data (ideally before you fly), every ticket PDF below stays available even with no signal — no need to pre-download anything separately. If you ever clear your browser data, just reopen it online once to re-cache everything.</p>
 
 <h3 class="qhead">🏨 Hotel vouchers — show at check-in</h3>
@@ -1441,8 +1583,8 @@
 <div class="tkt done">
   <img class="tkt-photo" src="tickets/images/thames-cruise-photo.jpg" alt="Thames Sightseeing Cruise boat passing Big Ben" loading="lazy">
   <div class="th"><span class="tn">🚢 Thames Sightseeing Cruise</span><span class="td2">Sun 18 Oct · board 10am–6pm, flexible</span></div>
-  <div class="tr">Westminster → Greenwich, one-way flexible ticket (board any pier: Westminster/London Eye/Greenwich/Tower) · 2 adults + 1 infant · £30 total · <b>charges automatically 16 Oct</b> — not yet paid · Headout Booking ID <b>33618337</b></div>
-  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33618337">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
+  <div class="tr">Westminster → Greenwich, one-way flexible ticket (board any pier: Westminster/London Eye/Greenwich/Tower) · 2 adults + 1 infant · £30 total · <b>✅ paid</b> (Headout, 10 Oct) · Headout Booking ID <b>33618337</b> · 3 QR codes (one per person) · valid any sightseeing route 10:00–18:00 · board at <b>Westminster Millennium Pier</b> (Victoria Embankment SW1A 2JH), or Waterloo Pier by the Eye, Tower Pier, Greenwich Pier (King William Walk SE10 9HT) · bring photo ID · audio guide via the City Experiences app</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-qr-1of3.jpg">🎫 QR 1 of 3</a><a class="bk" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-qr-2of3.jpg">🎫 QR 2 of 3</a><a class="bk" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-qr-3of3.jpg">🎫 QR 3 of 3</a><a class="bk alt" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-westminster-pier.jpg">📍 Westminster Pier</a><a class="bk alt" target="_blank" rel="noopener" href="tickets/screenshots/headout-cruise-greenwich-pier.jpg">📍 Greenwich Pier</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33618337">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
 </div>
 
 <div class="tkt done">
@@ -1466,8 +1608,8 @@
 <div class="tkt done">
   <img class="tkt-photo" src="tickets/images/sea-life-photo.jpg" alt="Family at SEA LIFE London Aquarium ocean tunnel" loading="lazy">
   <div class="th"><span class="tn">🐠 SEA LIFE London Aquarium</span><span class="td2">Tue 20 Oct · 11:00 entry</span></div>
-  <div class="tr">2 adults + 1 child · £96.00 · <b>auto-charges 18 Oct 11:00am</b> — not yet paid · Headout Booking ID <b>33619404</b></div>
-  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619404">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
+  <div class="tr">2 adults + 1 child · £96.00 · <b>✅ paid</b> (Headout, 10 Oct) · Headout Booking ID <b>33619404</b> · 3 QR codes · anytime entry 11:00–18:00 · meet at the <b>Riverside Building, County Hall</b> (the Eye side) · photo ID · free cancel/reschedule until 11:00 on 19 Oct</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/screenshots/headout-sealife-qr-1of3.jpg">🎫 QR 1 of 3</a><a class="bk" target="_blank" rel="noopener" href="tickets/screenshots/headout-sealife-qr-2of3.jpg">🎫 QR 2 of 3</a><a class="bk" target="_blank" rel="noopener" href="tickets/screenshots/headout-sealife-qr-3of3.jpg">🎫 QR 3 of 3</a><a class="bk alt" target="_blank" rel="noopener" href="tickets/screenshots/headout-sealife-meeting-policy.jpg">📍 Where to go</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619404">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
 </div>
 
 <div class="tkt done">
@@ -1479,8 +1621,8 @@
 <div class="tkt done">
   <img class="tkt-photo" src="tickets/images/london-eye-photo.jpg" alt="London Eye capsule with river view" loading="lazy">
   <div class="th"><span class="tn">🎡 London Eye</span><span class="td2">Tue 20 Oct · 14:30 entry</span></div>
-  <div class="tr">2 adults + 1 infant · £58.00 · <b>auto-charges 18 Oct 7:00am</b> — not yet paid · Headout Booking ID <b>33619539</b></div>
-  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619539">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
+  <div class="tr">2 adults + 1 infant · £58.00 · <b>✅ paid</b> (Headout, 10 Oct) · Headout Booking ID <b>33619539</b> · PDF ticket with 3 barcodes (2 adult + 1 under-2), ref 121840082 · show on phone, no printing · arrive 15 min early (14:15) · photo ID · meet at the London Eye, Westminster Bridge Rd</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/ticket-londoneye-20oct.pdf">🎫 PDF ticket (3 barcodes)</a><a class="bk alt" target="_blank" rel="noopener" href="tickets/screenshots/headout-eye-meeting-point.jpg">📍 Where to go</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33619539">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
 </div>
 
 <div class="tkt done">
@@ -1506,8 +1648,8 @@
 <div class="tkt done">
   <img class="tkt-photo" src="tickets/images/edinburgh-castle-photo.jpg" alt="Guided tour group at Edinburgh Castle" loading="lazy">
   <div class="th"><span class="tn">🏰 Edinburgh Castle Guided Tour</span><span class="td2">Thu 22 Oct · 12:15pm</span></div>
-  <div class="tr">English-language guided tour · 2 adults + Aariv (infant) · £78, charged 20 Oct 4:45pm · Edinburgh Tickets by Headout · Booking ID <b>33614375</b></div>
-  <div class="tb"><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33614375">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
+  <div class="tr">English-language guided tour · 2 adults + Aariv (infant) · £78 · <b>✅ paid</b> (Headout, 10 Oct) · Scotland City Tours booking H527-S1151-260822-106 · Headout ID <b>33614375</b> · 1 hr 30 · <b>meet at 351 High Street, Royal Mile, opposite St Giles' Cathedral (Advocates Close)</b> — guide holds a black umbrella with the yellow Scotland City Tours logo · be there by <b>12:00</b>, no refund if late · Aariv free (under 6) · tour office +44 7301 020972</div>
+  <div class="tb"><a class="bk" target="_blank" rel="noopener" href="tickets/ticket-edinburghcastle-22oct-voucher.pdf">🎫 Voucher (Scotland City Tours)</a><a class="bk alt" target="_blank" rel="noopener" href="tickets/screenshots/headout-castle-meeting-point.jpg">📍 Meeting point</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33614375">Manage ↗</a><a class="bk alt" target="_blank" rel="noopener" href="https://www.headout.com/">Headout app ↗</a></div>
 </div>
 
 <div class="tkt done">
@@ -1698,8 +1840,8 @@
 
 <h2>💰 Costs (₹)</h2>
 <div class="stats">
-  <div class="stat hi"><div class="sl">Booked so far</div><div class="sv">≈ ₹7.18 L</div><div class="ss">₹5,94,933 already paid</div></div>
-  <div class="stat"><div class="sl">Still to pay</div><div class="sv">≈ ₹1.24 L</div><div class="ss">Mount Royal at hotel + 4 auto-charges</div></div>
+  <div class="stat hi"><div class="sl">Booked so far</div><div class="sv">≈ ₹7.18 L</div><div class="ss">₹6,28,833 already paid</div></div>
+  <div class="stat"><div class="sl">Still to pay</div><div class="sv">≈ ₹0.90 L</div><div class="ss">Only Mount Royal, at checkout</div></div>
   <div class="stat"><div class="sl">Likely total</div><div class="sv">₹9.0–9.5 L</div><div class="ss">excl. shopping · at ~₹129/£</div></div>
   <div class="stat"><div class="sl">Grand total</div><div class="sv">₹10.5–11 L</div><div class="ss">incl. ₹1.5 L shopping budget</div></div>
 </div>
@@ -1712,13 +1854,13 @@
   <tr><td>🏨 Mount Royal ×3 nights</td><td>₹89,593</td><td>💷 Pay at hotel (£695.70)</td></tr>
   <tr><td>🏨 Pullman St Pancras ×1 night</td><td>₹39,762</td><td>✅ Paid (cash)</td></tr>
   <tr><td>🎂 Highland Experience tour</td><td>≈ ₹27,300</td><td>✅ Paid (£211.28) — 23 Oct, birthday</td></tr>
-  <tr><td>🏰 Edinburgh Castle guided tour</td><td>≈ ₹10,100</td><td>💳 Booked (£78) — auto-charges 20 Oct</td></tr>
-  <tr><td>🚢 Thames Sightseeing Cruise</td><td>≈ ₹3,900</td><td>💳 Booked (£30) — auto-charges 16 Oct</td></tr>
-  <tr><td>🐠 SEA LIFE London Aquarium</td><td>≈ ₹12,400</td><td>💳 Booked (£96) — auto-charges 18 Oct</td></tr>
-  <tr><td>🎡 London Eye</td><td>≈ ₹7,500</td><td>💳 Booked (£58) — auto-charges 18 Oct</td></tr>
+  <tr><td>🏰 Edinburgh Castle guided tour</td><td>≈ ₹10,100</td><td>✅ Paid (£78, Headout, 10 Oct)</td></tr>
+  <tr><td>🚢 Thames Sightseeing Cruise</td><td>≈ ₹3,900</td><td>✅ Paid (£30, Headout, 10 Oct)</td></tr>
+  <tr><td>🐠 SEA LIFE London Aquarium</td><td>≈ ₹12,400</td><td>✅ Paid (£96, Headout, 10 Oct)</td></tr>
+  <tr><td>🎡 London Eye</td><td>≈ ₹7,500</td><td>✅ Paid (£58, Headout, 10 Oct)</td></tr>
   <tr><td>🚌 Big Bus Hop-on-Hop-off (48hr)</td><td>₹0</td><td>❌ Cancelled — for now, before the 17 Oct charge, nothing paid</td></tr>
   <tr><td>🩺 Travel Insurance #2 (Tata AIG, trip cancellation add-on)</td><td>₹2,733</td><td>✅ Paid — Policybazaar, all 3 (₹911 each)</td></tr>
-  <tr><td><b>Σ Booked so far</b></td><td><b>≈ ₹7,18,433</b></td><td><b>✅ ₹5,94,933 paid</b> · 💷 ₹89,593 at hotel (Mount Royal) · 💳 ₹10,100 charges 20 Oct · 💳 ₹3,900 charges 16 Oct · 💳 ₹19,900 charges 18 Oct (SEA LIFE + Eye)</td></tr>
+  <tr><td><b>Σ Booked so far</b></td><td><b>≈ ₹7,18,433</b></td><td><b>✅ ₹6,28,833 paid</b> (all four Headout bookings settled 10 Oct) · 💷 ₹89,593 still to pay at Mount Royal on checkout</td></tr>
   <tr><td>🛂 Visas ×3 + VFS premium lounge</td><td>≈ ₹74,000</td><td>✅ Paid — GRANTED 25 Aug</td></tr>
   <tr><td>🎟️ Other attractions</td><td>≈ ₹15–25,000</td><td>📊 Estimate · under-5 mostly free</td></tr>
   <tr><td>🍽️ Meals (9 days)</td><td>≈ ₹90,000–1,15,000</td><td>📊 Estimate</td></tr>
@@ -1735,8 +1877,8 @@
   <h4>Every single day (the base kit)</h4>
   <ul>
     <li>💳 One <b>Infinia each</b> (never both cards in one wallet — if one bag is lost, the other still pays)</li>
-    <li>💱 <b>BookMyForex card</b> (Visa, ending 8073) — <b>£1,001.29 loaded</b> (₹1,27,786) · zero markup, so use it first for everyday spends: tube, meals, shops. Set the PIN + enable international channels in the app before flying. Lost/blocked: BookMyForex 24×7 <b>+91-92122-19191</b> · issuer SBM Bank toll-free <b>1800-1033-817</b>.</li>
-    <li>💳 <b>HSBC Premier World Mastercard</b> (ending 3495) — better abroad than it looks: <b>0.99% forex markup</b> (~1.2% with GST, vs Infinia's ~2.4%), 3 pts/₹100 that transfer 1:1 to airline miles, and <b>unlimited international lounge access with guest visits</b> — use it at Heathrow T2 on the 25th. Keep it in the other wallet from the Infinia. 24-hr support: <b>1800 266 3456</b> / <b>1800 120 4722</b> (toll-free in India) · from overseas <b>+91-40-65118001</b>. Not valid for forex in Nepal/Bhutan only — fine for the UK.</li>
+    <li>💱 <b>BookMyForex card</b> (Visa, ending 8073) — <b>£1,101.29 loaded</b> (≈ ₹1,41,077 at today's rate; topped up £100 on 10 Oct) · locked rate, no markup — now the <b>ATM/cash and backup card</b> (HSBC's 0% offer covers card payments, not ATMs). Set the PIN + enable international channels in the app before flying. Lost/blocked: BookMyForex 24×7 <b>+91-92122-19191</b> · issuer SBM Bank toll-free <b>1800-1033-817</b>.</li>
+    <li>💳 <b>HSBC Premier World Mastercard</b> (ending 3495) — <b>zero forex markup for the whole trip</b>: HSBC's Zero Forex Markup offer waives the usual 0.99% (+GST) on every foreign-currency card payment posted 15 Aug – 31 Oct 2026, in shops and online, add-on cards included. ATM withdrawals are excluded, and the card network's small cross-border fee (if any) can still apply. <a href="tickets/hsbc-zero-forex-offer-tnc.pdf" target="_blank" rel="noopener">Offer T&amp;Cs (PDF) ↗</a>. Also 3 pts/₹100 that transfer 1:1 to airline miles, and <b>unlimited international lounge access with guest visits</b> — use it at Heathrow T2 on the 25th. Keep it in the other wallet from the Infinia. 24-hr support: <b>1800 266 3456</b> / <b>1800 120 4722</b> (toll-free in India) · from overseas <b>+91-40-65118001</b>. Not valid for forex in Nepal/Bhutan only — fine for the UK.</li>
     <li>💷 <b>£30–40 cash total</b> between you (a £20 + a £10 + coins) — 90% of days you won't touch it</li>
     <li>🪪 <b>Phone photos of passports + visas</b> — the real ones stay in the hotel safe except on travel days. Aariv's birth certificate is also on file <a target="_blank" rel="noopener" href="tickets/aariv-birth-certificate.pdf">📄 PDF ↗</a> — not usually needed since both parents travel with him, but worth having as backup proof of relationship if ever asked.</li>
     <li>🔑 Hotel key card · 📱 phone + power bank · 🎒 Aariv's snack box, sippy cup, wipes, one spare outfit</li>
@@ -1759,11 +1901,11 @@
 <div class="panel" style="margin-top:10px">
   <h4>💳 Money rules of thumb</h4>
   <ul>
-    <li>💱 Order of cards: <b>BookMyForex first</b> (£1,001 pre-loaded at a locked rate, no markup) → then either <b>HSBC Premier</b> (lowest markup, 0.99%, miles) or <b>Infinia</b> (2% markup but ~3.3% back on SmartBuy) — roughly a wash, pick by which points you value; split big bills across both so neither card trips a limit. Always choose <b>"pay in GBP"</b>, never INR (DCC rip-off), especially at hotel checkouts. Mount Royal's £695.70 is the one big card payment — Infinia for the points, or top up the forex card beforehand.</li>
+    <li>💱 Order of cards (updated for HSBC's zero-markup offer): <b>HSBC Premier first</b> for everything you tap or pay online in the UK — 0% markup until 31 Oct plus 3 pts/₹100, and the trip ends on the 25th so every payment posts inside the offer window. <b>BookMyForex</b> (£1,101 at a locked rate) becomes the <b>cash card</b> — ATMs, and the fallback if HSBC ever declines. <b>Infinia</b> only if you specifically want SmartBuy points on a big bill (2% markup); split big bills across both so neither card trips a limit. Always choose <b>"pay in GBP"</b>, never INR (DCC rip-off), especially at hotel checkouts. Mount Royal's £695.70 is the one big card payment — put it on HSBC Premier (no markup, miles) rather than Infinia.</li>
     <li>🚇 Tube: tap in/out, same card per person. Zones 1–2 single £3.10 off-peak, <b>daily cap £8.90</b>. Heathrow via Piccadilly £5.90. Aariv free everywhere.</li>
     <li>🚌 Buses £1.75 flat (cap £5.25) — cheaper + Aariv loves the top deck.</li>
     <li>🚕 Taxis only for: both airport runs (Uber ~£45–60) + tired-toddler emergencies (~£8–10). Budget ₹20–25k.</li>
-    <li>💷 Euros do NOT work in the UK — pounds only. Keep just ~£50 cash; your hotel doesn't even take cash.</li>
+    <li>💷 Euros do NOT work in the UK — pounds only. You're carrying <b>£400 cash</b> (₹52,000 at ₹130, ordered 10 Oct): keep £100 in the documents pouch as the reserve and ~£300 in the wallet — tips, markets, toilets, the odd card hiccup. Hotels and the Tube don't take cash at all, so expect to bring most of it home.</li>
   </ul>
 </div>
 </section>
@@ -1792,7 +1934,7 @@
   <div class="app"><span class="ai">🚌</span><span><span class="an">Bus &amp; Tram (Lothian Buses)</span><span class="aw">Official Edinburgh bus + tram app — live bus tracker and <b>mobile tickets</b> (Edinburgh buses don't give change; tap a contactless card or buy in the app). Needed Wed 21–Sat 24 only.</span></span><a class="bk" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/bus-tram/id6468092588">App Store ↗</a></div>
   <div class="app"><span class="ai">📍</span><span><span class="an">Google Maps</span><span class="aw">Already on your phone — every route pill in this app opens here. Before flying, <b>download offline maps</b> of London and Edinburgh (Profile → Offline maps) so walking directions work even with no signal.</span></span><a class="bk alt" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/id585027354">App Store ↗</a></div>
   <div class="app"><span class="ai">🚄</span><span><span class="an">Trainline</span><span class="aw">You booked the LNER leg here — shows <b>live platform numbers</b> at King's Cross and Waverley about 10–15 min before departure, delays, and your e-tickets. Covers the Avanti train too.</span></span><a class="bk alt" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/trainline-train-bus-tickets/id334235181">App Store ↗</a></div>
-  <div class="app"><span class="ai">🚕</span><span><span class="an">Uber</span><span class="aw">Works in both cities and also books <b>black cabs</b> in London (which can take a stroller without folding). Add the BookMyForex or HSBC card in-app before you leave India so the first ride isn't a card-verification fight.</span></span><a class="bk alt" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/id368677368">App Store ↗</a></div>
+  <div class="app"><span class="ai">🚕</span><span><span class="an">Uber</span><span class="aw">Works in both cities and also books <b>black cabs</b> in London (which can take a stroller without folding). Add the HSBC Premier card in-app (0% markup this trip) before you leave India so the first ride isn't a card-verification fight.</span></span><a class="bk alt" target="_blank" rel="noopener" href="https://apps.apple.com/gb/app/id368677368">App Store ↗</a></div>
 </div>
 <p class="note">🚇 <b>No Oyster card needed.</b> Tap in and out with the <b>same</b> contactless card or Apple Pay device every time — fares cap automatically per day (Zone 1–2 is about £8.90) and Aariv travels free. Use one card for all taps or the cap won't apply. 🚌 London buses are a flat fare, tap on entry only, and the stroller goes in the wheelchair bay unfolded.</p>
 
@@ -1826,11 +1968,11 @@
   <label class="ck"><input type="checkbox" checked> ✅ Science Museum booked — Mon 19 Oct, 14:30–15:00 entry, order 17875983</label>
   <label class="ck"><input type="checkbox" checked> ✅ British Museum booked — Sun 18 Oct, 11:10 entry, order 10909534</label>
   <label class="ck"><input type="checkbox" checked> ✅ SEA LIFE London Aquarium booked — Tue 20 Oct, 11:00 entry, ID 33619404 (Paddington Bear Experience dropped — not doing it)</label>
-  <label class="ck"><input type="checkbox" checked> ✅ London Eye booked — Tue 20 Oct, 14:30 entry, ID 33619539, £58 auto-charges 18 Oct</label>
+  <label class="ck"><input type="checkbox" checked> ✅ London Eye booked — Tue 20 Oct, 14:30 entry, ID 33619539, £58 — paid 10 Oct</label>
   <label class="ck"><input type="checkbox"> ❌ Big Bus Hop-on-Hop-off — cancelled for now (Booking ID 33924469, was £94.98). Rebook via the Headout app if plans change; nothing was charged.</label>
-  <label class="ck"><input type="checkbox" checked> ✅ Edinburgh Castle guided tour booked — Thu 22 Oct 12:15pm, ID 33614375, £78 charges 20 Oct</label>
+  <label class="ck"><input type="checkbox" checked> ✅ Edinburgh Castle guided tour booked — Thu 22 Oct 12:15pm, ID 33614375, £78 — paid 10 Oct</label>
   <label class="ck"><input type="checkbox" checked> ✅ Highland Experience Loch Ness/Glen Coe tour booked — 23 Oct, #374019708</label>
-  <label class="ck"><input type="checkbox" checked> ✅ Thames Sightseeing Cruise booked — Sun 18 Oct, Westminster→Greenwich, ID 33618337, £30 auto-charges 16 Oct</label>
+  <label class="ck"><input type="checkbox" checked> ✅ Thames Sightseeing Cruise booked — Sun 18 Oct, Westminster→Greenwich, ID 33618337, £30 — paid 10 Oct</label>
   <label class="ck"><input type="checkbox" checked> ✅ Highland Experience age-3+ policy — booking confirmation already shows child's age entered as 3 and accepted at Child fare, no call needed; just bring Aariv's birth certificate as proof of age (on file, see Wallet &amp; Bag section) in case check-in staff ask</label>
   <label class="ck"><input type="checkbox"> Buy picnic/snacks the night before (22 Oct) — no lunch stop on the Highlands tour</label>
   <label class="ck"><input type="checkbox"> Buy birthday cake on 22 Oct (M&amp;S Colin the Caterpillar or La Barantine) — no dinner table needed, you'll be back late from the Highlands tour</label>
@@ -1943,8 +2085,8 @@
 <nav>
   <button type="button" class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
   <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
+  <button type="button" data-pg="pg-docs"><span class="ni">📂</span>Docs</button>
   <button type="button" data-pg="pg-maps"><span class="ni">📍</span>Maps</button>
-  <button type="button" data-pg="pg-shopping"><span class="ni">🛍️</span>Shopping</button>
   <button type="button" id="moreBtn"><span class="ni">☰</span>More</button>
 </nav>
 
@@ -2743,11 +2885,11 @@
     const T = (href, label, alt) => ({ href, label, alt: !!alt });
     const DAY_TICKETS = {
       '2026-10-17': [T('tickets/flight-indigo-6e3-del-lhr.pdf','✈️ IndiGo e-ticket'), T('tickets/hotel-pullman-london-17-21oct.pdf','🏨 Pullman voucher'), T('tickets/pullman-luggage-storage-confirmation.eml','🧳 Storage email', true), T('tickets/share-code-aviral.pdf','🛂 Share codes', true)],
-      '2026-10-18': [T('tickets/ticket-britishmuseum-18oct.pdf','🏛️ British Museum ticket'), T('https://www.headout.com/manage-booking/?bookingId=33618337','🚢 Cruise booking', true)],
+      '2026-10-18': [T('tickets/ticket-britishmuseum-18oct.pdf','🏛️ British Museum ticket'), T('tickets/screenshots/headout-cruise-qr-1of3.jpg','🚢 Cruise QR 1'), T('tickets/screenshots/headout-cruise-qr-2of3.jpg','🚢 QR 2'), T('tickets/screenshots/headout-cruise-qr-3of3.jpg','🚢 QR 3'), T('tickets/screenshots/headout-cruise-westminster-pier.jpg','📍 Pier', true)],
       '2026-10-19': [T('tickets/ticket-naturalhistorymuseum-19oct-main.pdf','🦖 NHM ticket'), T('tickets/ticket-sciencemuseum-19oct.pdf','🔬 Science Museum ticket')],
-      '2026-10-20': [T('https://www.headout.com/manage-booking/?bookingId=33619404','🐠 SEA LIFE booking'), T('https://www.headout.com/manage-booking/?bookingId=33619539','🎡 London Eye booking')],
+      '2026-10-20': [T('tickets/screenshots/headout-sealife-qr-1of3.jpg','🐠 SEA LIFE QR 1'), T('tickets/screenshots/headout-sealife-qr-2of3.jpg','🐠 QR 2'), T('tickets/screenshots/headout-sealife-qr-3of3.jpg','🐠 QR 3'), T('tickets/ticket-londoneye-20oct.pdf','🎡 London Eye ticket')],
       '2026-10-21': [T('tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf','🚄 LNER ticket 1'), T('tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf','🚄 LNER ticket 2'), T('tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf','🚄 Aariv\'s ticket'), T('tickets/hotel-mountroyal-edinburgh-21-24oct.pdf','🏨 Mount Royal voucher')],
-      '2026-10-22': [T('https://book.edinburgh-tickets.com/','🏰 Castle tour booking')],
+      '2026-10-22': [T('tickets/ticket-edinburghcastle-22oct-voucher.pdf','🏰 Castle tour voucher'), T('tickets/screenshots/headout-castle-meeting-point.jpg','📍 Meeting point', true)],
       '2026-10-23': [T('tickets/ticket-highland-374019708.pdf','🎂 Highland QR tickets ×3'), T('tickets/highland-tour-confirmation.pdf','📄 Tour confirmation', true)],
       '2026-10-24': [T('tickets/train-avanti-edinburgh-euston-24oct-adult1.pdf','🚄 Avanti ticket 1'), T('tickets/train-avanti-edinburgh-euston-24oct-adult2.pdf','🚄 Avanti ticket 2'), T('tickets/train-avanti-edinburgh-euston-24oct-aariv-child.pdf','🚄 Aariv\'s ticket'), T('tickets/hotel-pullman-london-24-25oct.pdf','🏨 Pullman voucher')],
       '2026-10-25': [T('tickets/flight-airindia-ai2016-lhr-del.pdf','✈️ Air India e-ticket'), T('tickets/passport-aviral.pdf','🛂 Passports', true)],
@@ -3095,6 +3237,47 @@
       if(nInp) nInp.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); addList(); } });
       window.__lists = () => lists.get();
     }
+  })();
+
+  // ======================= v68: save every document as one zip (built in the browser, works offline once cached) =======================
+  (function(){
+    const btn = document.getElementById('dlAll'); if(!btn) return;
+    const DOCS = ["tickets/aariv-birth-certificate.pdf", "tickets/share-code-aviral.pdf", "tickets/share-code-chhavi.pdf", "tickets/share-code-aariv.pdf", "tickets/flight-indigo-6e3-del-lhr.pdf", "tickets/flight-airindia-ai2016-lhr-del.pdf", "tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf", "tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf", "tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf", "tickets/train-avanti-edinburgh-euston-24oct-adult1.pdf", "tickets/train-avanti-edinburgh-euston-24oct-adult2.pdf", "tickets/train-avanti-edinburgh-euston-24oct-aariv-child.pdf", "tickets/hotel-pullman-london-17-21oct.pdf", "tickets/hotel-pullman-london-24-25oct.pdf", "tickets/hotel-mountroyal-edinburgh-21-24oct.pdf", "tickets/ticket-naturalhistorymuseum-19oct-main.pdf", "tickets/ticket-naturalhistorymuseum-backup.pdf", "tickets/ticket-britishmuseum-18oct.pdf", "tickets/ticket-sciencemuseum-19oct.pdf", "tickets/screenshots/lner-seatmap-coachA-search.png", "tickets/screenshots/lner-a57-booking-summary1.png", "tickets/screenshots/lner-a57-booking-summary2.png", "tickets/screenshots/lner-55-56-confirmed.png", "tickets/screenshots/lner-seatmap-coachA-2.png", "tickets/screenshots/lner-coach-order-11-03.png", "tickets/screenshots/avanti-j18-j19-seat-details.png", "tickets/screenshots/avanti-j16-seatmap.png", "tickets/screenshots/avanti-j16-booking-summary.png", "tickets/screenshots/avanti-journey-details-stops.png", "tickets/screenshots/evisa-share-code-intro.png", "tickets/screenshots/evisa-share-code-reason.png", "tickets/screenshots/evisa-aviral-status-summary.png", "tickets/screenshots/evisa-chhavi-status-summary.png", "tickets/screenshots/evisa-aariv-status-summary.png", "tickets/images/thames-cruise-photo.jpg", "tickets/images/sea-life-photo.jpg", "tickets/images/london-eye-photo.jpg", "tickets/images/edinburgh-castle-photo.jpg", "tickets/passport-aviral.pdf", "tickets/passport-chhavi.pdf", "tickets/passport-aariv.pdf", "tickets/ticket-highland-374019708.pdf", "tickets/highland-tour-confirmation.pdf", "tickets/ticket-bigbus-hoponhopoff-19oct.pdf", "tickets/ticket-bigbus-manage-booking.pdf", "tickets/pullman-luggage-storage-confirmation.eml", "tickets/trainline-phone-confirmation-546920566196.png", "tickets/screenshots/trainline-phone-confirm-b55-56.png", "tickets/screenshots/lner-coachB-seatmap-55-58.png", "tickets/screenshots/lner-coachB-seatmap-key.png", "tickets/screenshots/lner-coachB-seatmap-full.png", "tickets/screenshots/lner-coach-order-front-to-back.png", "tickets/images/bigbus-photo.jpg", "tickets/insurance-aviral.pdf", "tickets/insurance-chhavi.pdf", "tickets/insurance-aariv.pdf", "tickets/insurance-aviral-tataaig.pdf", "tickets/insurance-chhavi-tataaig.pdf", "tickets/insurance-aariv-tataaig.pdf", "tickets/hsbc-zero-forex-offer-tnc.pdf"];
+    const hint = document.getElementById('dlHint'), label = btn.textContent;
+    // tiny "store-only" zip writer: local headers + central directory + EOCD, CRC-32 per file
+    const CRC = (() => { const t = new Uint32Array(256); for(let i = 0; i < 256; i++){ let c = i; for(let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); t[i] = c >>> 0; } return b => { let c = 0xFFFFFFFF; for(let i = 0; i < b.length; i++) c = t[(c ^ b[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }; })();
+    const dosTime = d => ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF;
+    const dosDate = d => (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+    function zip(files){
+      const enc = new TextEncoder(), parts = [], central = []; let off = 0; const now = new Date(), t = dosTime(now), dt = dosDate(now);
+      const u16 = n => [n & 255, (n >> 8) & 255], u32 = n => [n & 255, (n >> 8) & 255, (n >> 16) & 255, (n >>> 24) & 255];
+      files.forEach(f => {
+        const name = enc.encode(f.name), crc = CRC(f.data), n = f.data.length;
+        const lh = new Uint8Array([80,75,3,4, ...u16(20), ...u16(0x0800), ...u16(0), ...u16(t), ...u16(dt), ...u32(crc), ...u32(n), ...u32(n), ...u16(name.length), ...u16(0)]);
+        parts.push(lh, name, f.data);
+        central.push(new Uint8Array([80,75,1,2, ...u16(20), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(t), ...u16(dt), ...u32(crc), ...u32(n), ...u32(n), ...u16(name.length), ...u16(0), ...u16(0), ...u16(0), ...u16(0), ...u32(0), ...u32(off)]), name);
+        off += lh.length + name.length + n;
+      });
+      const cdStart = off; let cdLen = 0; central.forEach(c => cdLen += c.length);
+      const eocd = new Uint8Array([80,75,5,6, ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length), ...u32(cdLen), ...u32(cdStart), ...u16(0)]);
+      return new Blob([...parts, ...central, eocd], { type: 'application/zip' });
+    }
+    btn.addEventListener('click', async () => {
+      btn.classList.add('busy'); const files = [], missing = [];
+      for(let i = 0; i < DOCS.length; i++){
+        btn.textContent = '⏳ Collecting ' + (i + 1) + ' / ' + DOCS.length + '…';
+        try{ const r = await fetch(DOCS[i], { cache: 'force-cache' }); if(!r.ok) throw new Error(r.status); files.push({ name: 'UK trip documents/' + DOCS[i].replace(/^tickets\//, ''), data: new Uint8Array(await r.arrayBuffer()) }); }
+        catch(e){ missing.push(DOCS[i]); }
+      }
+      btn.textContent = '📦 Building zip…';
+      try{
+        const blob = zip(files), url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'UK-trip-documents.zip'; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
+        if(hint) hint.textContent = '✅ ' + files.length + ' files, ' + (blob.size / 1048576).toFixed(1) + ' MB' + (missing.length ? ' · ' + missing.length + ' could not be fetched (open the app online once and retry)' : '') + '. On iPhone/iPad: Files → Downloads → tap the zip to unzip.';
+      }catch(e){ if(hint) hint.textContent = '⚠️ Could not build the zip here (' + e.message + '). Open the app in Safari and try again.'; }
+      btn.textContent = label; btn.classList.remove('busy');
+    });
   })();
 </script>
 </body>
