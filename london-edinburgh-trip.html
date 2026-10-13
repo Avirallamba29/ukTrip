@@ -699,7 +699,7 @@
   .app .ai{width:44px;height:44px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:22px}
   .app .an{display:block;font-weight:800;font-size:15px;color:var(--ink)}
   .app .ai{align-self:center}
-  #apps{scroll-margin-top:72px}
+  #apps,#failsafe,#photos-howto{scroll-margin-top:72px}
   .app .aw{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
   .app .aw b{color:var(--ink2);font-weight:700}
   .app .bk{grid-column:2;justify-self:start;min-height:36px;padding:7px 14px;white-space:nowrap;margin-top:2px}
@@ -789,6 +789,34 @@
   details.actions[open] > summary h4 .chev{transform:rotate(180deg)}
   details.actions[open] > summary{margin-bottom:6px}
   details.actions:not([open]) .pwrap{margin:8px 0 0}
+  /* ---------- v77: daily taxi module ---------- */
+  .taxibox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0}
+  .taxibox > b{display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:2px}
+  .taxibox .tbud{display:inline-block;font-size:11.5px;font-weight:800;color:var(--gold);background:var(--gold-soft);border-radius:999px;padding:3px 9px;margin:0 0 6px}
+  .tleg{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line2)}
+  .tleg:first-of-type{border-top:0}
+  .tleg .ttxt{flex:1;min-width:0}
+  .tleg .tl1{font-size:14px;font-weight:700;color:var(--ink);line-height:1.3}
+  .tleg .tl2{font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+  .tleg .tbtns{flex:none;display:flex;flex-direction:column;gap:5px}
+  .tleg .tb1{display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:34px;padding:0 10px;border-radius:10px;font-size:12.5px;font-weight:800;text-decoration:none;background:#000;color:#fff}
+  .tleg .tb1.map{background:var(--card2);color:var(--ink2);border:1.5px solid var(--line)}
+  .tleg.worth .tl1::before{content:"✓ ";color:var(--green)}
+  .tleg.skip .tl1::before{content:"🚇 ";}
+  .tleg.skip .tl1{color:var(--muted);font-weight:600}
+  .taxinote{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+  /* ---------- v78: photos today ---------- */
+  .photobox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0}
+  .photobox > b{display:block;font-size:14px;margin-bottom:2px}
+  .photobox .plight{display:block;font-size:11.5px;font-weight:600;color:var(--muted);margin:0 0 6px}
+  .pshot{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line2)}
+  .pshot:first-of-type{border-top:0}
+  .pshot .pk{flex:none;font-size:18px;width:26px;text-align:center;padding-top:1px}
+  .pshot .pt{font-size:14px;font-weight:700;color:var(--ink);line-height:1.3}
+  .pshot .pw{font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:1px}
+  .pshot .pw b{color:var(--accent-ink);font-weight:700}
+  .pshot.fam .pt{color:var(--accent-ink)}
+  .photonote{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
 </style>
 </head>
 <body>
@@ -825,6 +853,7 @@
     <button type="button" data-pg="pg-shopping"><span class="ni">🛍️</span>Shopping</button>
     <button type="button" data-pg="pg-pack"><span class="ni">🎒</span>Pack</button>
     <button type="button" data-pg="pg-outfits"><span class="ni">👗</span>Outfits &amp; lists</button>
+    <button type="button" data-pg="pg-photos"><span class="ni">📸</span>Photos</button>
     <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
     <button type="button" data-pg="pg-docs"><span class="ni">📂</span>Documents</button>
     <button type="button" data-pg="pg-food"><span class="ni">🍕</span>Food</button>
@@ -916,7 +945,8 @@
   <div class="dbody">
     <div class="times"><b>⏰ Timings</b>Up ~05:45 · <b>leave home 06:30–06:45</b> · DEL T3 by ~07:15 (3½ hrs before, buffer for traffic + Fast Forward) · check-in closes 09:40 · fly <b>10:55</b> (revised) · land LHR 18:10 · hotel ~20:00 · lights out 20:30–21:00 UK — no matter how awake he seems.</div>
     <p><b>IndiGo 6E3</b> · <b>Stretch/Business</b> (B787-9, leased from Norse) · DEL <b>10:55</b> → LHR 18:10 (⚠️ revised by IndiGo on 30 Sep — was 11:10; arrival unchanged), non-stop 11h15m · seats 1D/1E/1F · 12kg cabin + 46kg check-in each · Fast Forward priority · check-in closes <b>09:40</b> <a target="_blank" rel="noopener" href="tickets/flight-indigo-6e3-del-lhr.pdf">📄 Ticket ↗</a>. Taxi/pre-booked cab to <b>Pullman London St Pancras, 100-110 Euston Road</b> (R360 Booking ID 45183173940800523004, Partner Ref 260825663048 — paid, non-refundable). 🧳 At check-in, remind the front desk about the 2-bag luggage storage for 21–24 Oct — confirmed by email (Georgina, Pullman) but they asked us to flag it again on arrival. Bedtime = jet-lag reset.</p>
-    <p class="tip">⚠️ <b>Timing revised by IndiGo (SMS, 30 Sep):</b> 6E 3 now departs <b>10:55</b>, not 11:10 — arrival 18:10 unchanged. Keep an eye on SMS/email for any further changes closer to the date: this route runs on 787-9s wet-leased from Norse Atlantic, and IndiGo is ending that lease and <b>suspending Heathrow flights from 25 Oct</b> (last 787 flights ~24 Oct) until its own A350s arrive. Your 17 Oct departure is a week before the cut-off, so only the timing has changed — but any further SMS from IndiGo is worth reading straight away.</p>
+    <p class="tip">⚠️ <b>Piccadilly line closed Hammersmith ↔ Heathrow on Sat 17 &amp; Sun 18 (TfL planned works)</b> — the “tube from the airport” option is off for your arrival. Take the pre-booked car or the T2 black-cab rank (£50–75, 50–70 min). If you ever had to: Elizabeth line from T2/3 to Tottenham Court Road (~35 min) + a £12 cab to the hotel. No rail or Tube strikes listed for your dates.</p>
+<p class="tip">⚠️ <b>Timing revised by IndiGo (SMS, 30 Sep):</b> 6E 3 now departs <b>10:55</b>, not 11:10 — arrival 18:10 unchanged. Keep an eye on SMS/email for any further changes closer to the date: this route runs on 787-9s wet-leased from Norse Atlantic, and IndiGo is ending that lease and <b>suspending Heathrow flights from 25 Oct</b> (last 787 flights ~24 Oct) until its own A350s arrive. Your 17 Oct departure is a week before the cut-off, so only the timing has changed — but any further SMS from IndiGo is worth reading straight away.</p>
     <p class="tip">🛒 Stroller — bring it through the airport, handy for a tired toddler on the transfer; folds down for the taxi boot or tube gates.</p>
     <div class="story"><b>📖 In short</b>You leave home between 6:30 and 6:45 AM to reach Delhi T3 by about 7:15 for the 10:55 IndiGo 6E3 flight (IndiGo moved it 15 minutes earlier on 30 Sep — same 18:10 arrival) — now booked in Stretch/Business on a 787-9, seats 1D/1E/1F, with Fast Forward priority through security, so the airport side of the day should be noticeably smoother than a standard economy departure (check-in itself now closes at 09:40, so don't relax the timing). Baggage is up to 46kg check-in + 12kg cabin each, landing at Heathrow at 18:10 local time. From the airport you'll take the Piccadilly line into town (about 55 minutes) or a taxi (around 50 minutes, £45–60) to the Pullman London St Pancras on Euston Road (R360 Booking ID 45183173940800523004, already paid in full and non-refundable) — King's Cross St Pancras station is right outside, about a 4–5 minute walk from the hotel door. Keep dinner simple tonight, since getting everyone to bed matters far more than the meal: there are cafés and grab-and-go options right around King's Cross/St Pancras, or Deliveroo straight to the room. You should be checked in by around 8 PM, with lights out by 8:30–9 PM UK time no matter how wired Aariv seems — tonight's “activity” really is just the flight and the transfer. Dress for comfort on the plane and for a cool ~12°C evening on landing — keep jackets for all three of you in the cabin bag rather than checked.</div>
     <div class="spend"><b>💰 Today ~£75 (₹9,700)</b>🚕 Airport taxi £45–60 + light dinner. Carry £40 cash + printed visas.</div>
@@ -924,7 +954,7 @@
     <div class="eat"><b>🍴 Eat tonight — pick one</b>Franco Manca pizza (2 min) · Pret grab-and-go · room delivery via Deliveroo. Keep it quick — bed matters more than dinner tonight.</div>
     <div class="wear"><b>👕 Wear</b> Comfy layers for the plane + slip-on shoes. Landing in ~12° evening: keep jackets for all three in the cabin bag. Aariv: soft joggers + hoodie + jacket on top.</div>
     <div class="routes"><span class="rlbl">🧭 Heathrow → hotel</span>
-      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+2&destination=Pullman+London+St+Pancras&travelmode=transit">🚇 Piccadilly ~55 min</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+2&destination=Pullman+London+St+Pancras&travelmode=transit">🚇 Elizabeth line ~45 min (Piccadilly closed 17th)</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+2&destination=Pullman+London+St+Pancras&travelmode=driving">🚕 ~50 min · £45–60</a>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Kings+Cross+St+Pancras+Station+London&destination=Pullman+London+St+Pancras&travelmode=walking">🚶 King's Cross St Pancras → hotel 4–5 min</a>
     </div>
@@ -1369,6 +1399,7 @@
 <!-- ============ PAGE: PACK ============ -->
 <section class="page" id="pg-pack">
 <h2>🎒 Packing</h2>
+<p class="note">📸 Camera set up for the trip? Settings, habits and the shot list are on the <button type="button" class="jl" data-pg="pg-photos">Photos ↗</button> page — do the settings and the 100 GB clear-out before you fly.</p>
 <p class="note">Ticks are remembered on this phone (each of you keeps your own), so pack over a few evenings. <button type="button" class="jl" data-pg="pg-outfits">👗 Chhavi's outfits &amp; lists ↗</button></p>
 
 <div class="panel">
@@ -1738,6 +1769,67 @@
 <div id="lsList"></div>
 </section>
 
+<section class="page" id="pg-photos">
+<h2>📸 Photos — how to capture this trip</h2>
+<p class="pagesub">Written for both of you. Each day card also has a <b>“Photos today”</b> box: 👨‍👩‍👦 = get the three of you in it · 🏞️ = just the view.</p>
+
+<h3 class="qhead">1 · Set the phone once (Settings → Camera)</h3>
+<div class="panel">
+  <ul>
+    <li><b>Formats:</b> Camera Capture <b>High Efficiency</b> · Photo Mode <b>24 MP</b> (the menu only offers 12/24 — 48 MP lives in the viewfinder control below) · ProRAW &amp; Resolution Control <b>On</b> · ProRAW Format <b>JPEG-XL Lossy</b> (same 48 MP RAW, half the size) · ProRes <b>Off</b> · Apple Log <b>Off</b> — those two fill the phone in minutes and look flat without editing.</li>
+    <li><b>In the camera, tap the RAW/MAX pill</b> (top corner) to open the Format/Resolution panel: keep it on <b>HEIF · 48 MP</b> for everything (≈5 MB a shot), switch to <b>RAW · 48 MP</b> only for the five big scenes (≈35–40 MB each), then back. Night mode and Burst drop to 12 MP on their own — fine.</li>
+    <li><b>Record Video:</b> <b>4K 30 fps</b> · HDR Video On · Auto FPS “Auto 30” · Enhanced Stabilisation On · Action Mode Lower Light On · Lock Camera Off · Lock White Balance On. Slo-mo 1080p 240 · Cinematic 4K 30 · Sound: Spatial Audio + Wind Noise Reduction On (the coach stops are windy).</li>
+    <li><b>Composition:</b> Grid On · Level On · View Outside the Frame On · Mirror Front Camera On. <b>Photo Capture:</b> Prioritise Faster Shooting <b>On</b> (Aariv doesn't pose) · Lens Correction On · Macro Control On. <b>Preserve Settings:</b> everything On. Volume Up for Burst On. Photographic Style: Standard or Amber. Live Photos On, Night mode Auto, Flash Off.</li>
+    <li><b>Storage before flying:</b> iCloud Photos with <b>Optimise iPhone Storage</b> on, and free up <b>100–150 GB</b> — a 4K day is 15–25 GB. Make a Shared Album “UK Oct 2026” so both phones land in one place.</li>
+  </ul>
+</div>
+
+<h3 class="qhead">2 · The six habits that fix 90% of phone photos</h3>
+<div class="panel">
+  <ul>
+    <li><b>Tap to focus, then drag the ☀️ down a touch.</b> Slightly darker keeps the sky and skin tones; you can always brighten later, you can't recover a white sky.</li>
+    <li><b>Step back and use 4× or 8×.</b> People look better compressed from a distance than stretched at 1×. Ultra-wide (0.5×) only for cathedrals, closes and big skies — keep the phone level or the walls lean.</li>
+    <li><b>Live Photos on, always.</b> Later you can pick a better frame (eyes open!) or turn it into a Long Exposure for fountains and traffic trails.</li>
+    <li><b>Burst for the boy.</b> Slide the shutter left or hold Volume Up; keep one of 20.</li>
+    <li><b>Night mode: brace the phone</b> on a railing, wall or the stroller handle. Tower Bridge, Big Ben and the Royal Mile after dark all need 2–3 seconds of stillness.</li>
+    <li><b>Wipe the lens.</b> Drizzle, fingers and a pocket = haze and flare. Every time you take the phone out.</li>
+  </ul>
+</div>
+
+<h3 class="qhead">3 · Family shots with a toddler (👨‍👩‍👦)</h3>
+<div class="panel">
+  <ul>
+    <li><b>Get all three of you in:</b> front camera held upright, tap the <b>⤢</b> icon for the wide landscape frame without turning the phone, and leave <b>Center Stage</b> on so it re-frames when someone leans in — this is the default family shot in front of a landmark. Shoot with <b>Volume Up</b> (half-second hold = Burst) instead of stretching for the screen button; hold the phone a little above eye level, Aariv on the hip or shoulders so his face is level with yours; front flash off always — face a window or a shop light instead. The front camera is 18 MP HEIF only (no RAW/48), nothing to set. For a better one: hand the phone to a passer-by with <b>Burst already selected</b> and say “hold it down for three seconds”.</li>
+    <li><b>Self-timer + somewhere to rest the phone:</b> 10-second timer, phone on a wall, bench or the stroller tray, 4× from 5–6 m away. Takes 10 bursts automatically. Mini tripod if you have one.</li>
+    <li><b>Never say “cheese”.</b> Give Aariv a job: “show Mumma the big clock”, “where's the boat?” — then shoot the reaction. Get down to his eye level for anything that's about him.</li>
+    <li><b>One parent + Aariv, other parent shoots at 4×</b> from a distance so he forgets the camera. Swap. These are the keepers.</li>
+    <li><b>Portrait mode isn't needed</b> on the 17 Pro — depth is captured automatically on people, so blur the background later in Photos if you want it.</li>
+    <li><b>Video of him talking</b> beats a photo on this trip — 20-second Cinematic clips at 4× of the three-year-old explaining dinosaurs are the thing you'll rewatch.</li>
+  </ul>
+</div>
+
+<h3 class="qhead">4 · Views and landmarks (🏞️)</h3>
+<div class="panel">
+  <ul>
+    <li><b>Put a person in the view.</b> A skyline with Chhavi in the bottom-left third is a better photo than the skyline alone. Red/burgundy coat = perfect against grey stone.</li>
+    <li><b>Light times:</b> London 17–24 Oct sunrise ~07:35, <b>sunset ~17:50</b>, blue hour 18:00–18:30. Edinburgh 21–24 Oct sunrise ~08:00, <b>sunset ~17:45</b>, blue hour to 18:25. <b>Sun 25 the clocks go back → London sunset ~16:45.</b> Overcast = soft light, great for faces; grey sky = shoot people, not skylines.</li>
+    <li><b>RAW only for five scenes:</b> Calton Hill at sunset · Glen Coe &amp; Loch Ness · the castle from Princes St / Grassmarket · Tower Bridge at blue hour · the cake. Tap RAW in the viewfinder, then tap it off again.</li>
+    <li><b>Panorama</b> for the Highlands and from the Eye capsule: move slowly, keep the arrow on the line, don't include people (they ghost).</li>
+    <li><b>Through glass</b> (Eye capsule, train window, SEA LIFE tunnel): lens touching the glass, flash off, black sleeve/hand around it to kill reflections.</li>
+    <li><b>Trains:</b> LNER right-hand side (seats 55–57 are on it) for Durham cathedral ~13:40 and the Angel of the North ~14:05; 4×, burst, Live Photo.</li>
+  </ul>
+</div>
+
+<h3 class="qhead">5 · Every evening (5 minutes)</h3>
+<div class="panel">
+  <ul>
+    <li>On hotel Wi-Fi: let iCloud upload, AirDrop the best 10 to the other phone, drop 5 in the Shared Album for family at home.</li>
+    <li>Charge the power bank; cold drains the phone fast with the camera open, so it rides in the day bag.</li>
+    <li>Favourite (♥) the keepers as you go — the trip album builds itself.</li>
+  </ul>
+</div>
+</section>
+
 <section class="page" id="pg-food">
 <h2>🍕 Food — cafés &amp; good eats</h2>
 <p class="note">Day-by-day meal choices live on each Day card (🍴 Eat block). Every card below opens the <b>Google Maps place page</b> — photos, reviews, menus and live "busy times" — which is exactly how locals vet a café here (Google Maps is the UK's Zomato). Prices are rough totals for 2 adults + Aariv.</p>
@@ -1928,6 +2020,7 @@
 <!-- ============ PAGE: INFO ============ -->
 <section class="page" id="pg-info">
 <h2>ℹ️ Bookings &amp; Info</h2>
+<p class="note">🛟 <b>If something goes wrong</b> — flights, trains, lost passport, card declined, Aariv unwell: <button type="button" class="jl" data-pg="pg-info" data-anchor="failsafe">Failsafes ↗</button></p>
 
 <div class="tblwrap"><table class="stack">
   <tr><th>Booking</th><th>Detail</th><th>Ref</th></tr>
@@ -2003,6 +2096,69 @@
     <li>Base stations: London = <b>Russell Square</b> (Piccadilly, 4 min from hotel) · Edinburgh = <b>Waverley</b> (5 min flat). Buses: 59/68 → Waterloo · 26/31/100 → zoo.</li>
     <li>📌 Whenever the itinerary changes, rebuild the day card with this exact pattern: plan → ⏰ timings → 👕 wear → 💰 spend → 🚶 pace → 🍴 eat (2–3 options per meal) → route bar with micro-legs.</li>
     <li>🛒/🎒 <b>Stroller marker:</b> every day tag carries 🛒 (stroller in play) or 🎒 (carrier only, no stroller) right next to the day number, plus a short <span class="tip">tip line</span> near the top of the card explaining why. No day schedules a fixed nap block anymore — Aariv's rest is called on the day, not planned in advance.</li>
+  </ul>
+</div>
+
+<h2 id="failsafe">🛟 Failsafes — if something goes wrong</h2>
+<p class="note">Read once before you fly, then forget about it. Each line is: what breaks → what you do → who you call. Numbers are UK-dialable; the Indian ones work with roaming on.</p>
+<div class="panel">
+  <h4>✈️ Flights</h4>
+  <ul>
+    <li><b>IndiGo 6E3 cancelled or re-timed (the Norse-lease wind-down):</b> IndiGo must offer a refund or re-booking; ask for the next same-day option via BA / Virgin / Air India (DEL–LHR runs ~6×/day). Keep every SMS. Tata AIG covers trip cancellation/curtailment and the HDFC ERGO policy covers delay — claim after, don't negotiate at the counter. IndiGo: <b>0124-6173838</b> (India) · from the UK dial <b>+91 124 617 3838</b>.</li>
+    <li><b>Missed the 10:55 because of Delhi traffic:</b> leaving 06:30–06:45 gives 3½ hrs; if you're still outside T3 at 09:15, phone IndiGo while in the cab — check-in closes 09:40 and they can hold a bag drop if you're inside the terminal.</li>
+    <li><b>Air India AI2016 (25th) delayed/cancelled:</b> both hotels are already checked out, so sit in the T2 lounge (HSBC Premier card) and let Air India re-book; the Tata AIG policy runs to the 26th for exactly this. Air India UK: <b>+44 20 8745 1000</b>.</li>
+    <li><b>Bag doesn't arrive at Heathrow:</b> report at the IndiGo/handling desk in T2 baggage hall <b>before</b> leaving customs, get the PIR reference, keep receipts for essentials (both policies pay out against it). The Pullman will hold a delivered bag.</li>
+  </ul>
+</div>
+<div class="panel">
+  <h4>🚄 Trains</h4>
+  <ul>
+    <li><b>Miss the 11:03 LNER:</b> your tickets are Flex, valid on any LNER 09:53–12:13 from King's Cross — just board the next one (seat reservations lapse, sit anywhere unreserved). Later than 12:13: show the ticket at the LNER desk, they'll usually endorse the next train; LNER <b>03457 225 333</b>.</li>
+    <li><b>Miss the 12:52 Avanti:</b> Standard Premium is train-specific — go to the Avanti desk at Waverley; they can put you on the next Euston train (17:52 arrival-ish) for a fee or free if the earlier delay was theirs. Worst case, LNER to King's Cross also works and lands 5 min from the hotel.</li>
+    <li><b>Strike or line closure announced:</b> check TfL Go / Trainline the night before; LNER and Avanti refund unused tickets in full on strike days, and the flight home is 2 days after the Avanti leg so there's slack.</li>
+  </ul>
+</div>
+<div class="panel">
+  <h4>🛂 Documents &amp; ID</h4>
+  <ul>
+    <li><b>eVisa not showing at check-in / the border:</b> the airline looks you up by passport; if their system fails, give the <b>share code</b> (Docs → Visas) and the UKVI screenshots. Still stuck: UKVI helpline <b>+44 300 790 6268</b> (option 2). Aariv's eVisa is "child accompanied" — he's only valid travelling with you, which he is.</li>
+    <li><b>Lost or stolen passport:</b> (1) police report online at met.police.uk (London) or 101 (Scotland) — get the crime reference; (2) High Commission of India, India House, Aldwych (Holborn tube) for an Emergency Certificate: <b>+44 20 7836 9147</b> (Mon–Fri 10:00–17:30), genuine out-of-hours emergency <b>+44 7768 765 035</b>; in Scotland, Consulate General, 17 Rutland Square, Edinburgh <b>+44 131 229 2144</b>, emergency mobile <b>+44 7983 029 591</b>; (3) Tata AIG pays up to $250 towards replacement. Passport scans and photos are in Docs — that's what makes the EC quick.</li>
+    <li><b>Phone lost/stolen:</b> the other phone has the same app, every ticket and all the QR codes; Find My → Lost Mode; the printed backup page covers share codes, PNRs and policy numbers. Call the Indian SIM's provider to block it so roaming OTPs can't be intercepted.</li>
+  </ul>
+</div>
+<div class="panel">
+  <h4>💳 Money</h4>
+  <ul>
+    <li><b>Card declined:</b> try the other card first (HSBC → BookMyForex → Infinia), then cash. HSBC from overseas <b>+91 40 6511 8001</b> · BookMyForex 24×7 <b>+91 92122 19191</b> · HDFC <b>+91 22 6160 6160</b>. Most declines are the "international" switch or a missing OTP — that's why roaming stays on.</li>
+    <li><b>Lost wallet:</b> block cards (numbers above), the £100 in the documents pouch is the reserve, BookMyForex can issue a replacement card to the hotel and you can withdraw via the app's card-less option. Tata AIG covers cash loss up to its limit with a police report.</li>
+    <li><b>ATM swallows the card / wrong PIN ×3:</b> BookMyForex app → Card → unblock / set a new PIN instantly. Don't use the Infinia at an ATM at all (cash-advance fees).</li>
+  </ul>
+</div>
+<div class="panel">
+  <h4>🩺 Health</h4>
+  <ul>
+    <li><b>Aariv unwell (fever, tummy):</b> Calpol from any Boots (no prescription), NHS <b>111</b> for advice 24×7 — they'll send you to a walk-in or GP if needed, free for children in an emergency. Anything bigger: call the insurer <b>before</b> treatment so it's cashless — HDFC ERGO <b>+800 0825 0825</b> (toll-free from the UK) / Tata AIG <b>+91 22 6822 7600</b>. A&amp;E (emergency): <b>999</b>; nearest to the Pullman is UCLH on Euston Road, 10 min walk; in Edinburgh, Royal Infirmary (taxi) or the Western General.</li>
+    <li><b>Prescription meds:</b> carry them in cabin bags in original packs; UK pharmacists can do an emergency supply of a regular medicine if you show the pack.</li>
+    <li><b>Highlands day (12½ hrs on a coach):</b> if he's ill that morning, the tour's Best Flexible Rate allows a refund/reschedule up to 1 hr before departure — call <b>+44 131 226 1414</b> by 07:00. The birthday is still the birthday: cake and Royal Mile instead.</li>
+  </ul>
+</div>
+<div class="panel">
+  <h4>🏨 Hotels &amp; bookings</h4>
+  <ul>
+    <li><b>Pullman says the room isn't ready / no record:</b> R360 refs 45183173940800523004 and 41888004013833504617 are in Docs; both are prepaid, so it's a lookup, not a payment issue. Pullman <b>+44 20 7666 9000</b>.</li>
+    <li><b>Mount Royal: no cot, or room not what was booked:</b> confirmation 6263.527.000, PIN 7709, cot &amp; child noted by email — show it. Mount Royal <b>+44 131 226 8417</b>. Free cancellation ends 19 Oct 23:59 if you ever need to switch.</li>
+    <li><b>A timed ticket is missed:</b> the museums let you in later if there's space (ask a Visitor Assistant); the Eye and SEA LIFE are Headout bookings — the Headout app has 24×7 chat, and SEA LIFE is anytime-entry anyway. Castle tour: no refund if late, so leave Mount Royal by 11:40.</li>
+    <li><b>Headout booking missing in the app:</b> every QR code and voucher is also saved in Docs and on the day card — the app never needs Headout to be reachable.</li>
+  </ul>
+</div>
+<div class="panel">
+  <h4>👨‍👩‍👦 Everyday failsafes</h4>
+  <ul>
+    <li><b>Aariv wanders off in a crowd:</b> each morning write Aviral's UK-reachable number on his arm or a wristband and take a photo of what he's wearing. In museums go straight to any staff member; at the station, the help point. Agree a "we meet here" spot at every big venue.</li>
+    <li><b>Stroller breaks / forgotten:</b> Argos (King's Cross, Princes St) sells a basic one for ~£30 same-day; the carrier is in the bag for Edinburgh anyway.</li>
+    <li><b>Weather turns:</b> every day has a rain version — museums and SEA LIFE are indoors, the castle has the Great Hall and museums, the Highlands coach is the Highlands coach. Rain cover on the stroller, and don't fight the plan; swap to Plan B timings instead.</li>
+    <li><b>App won't load / phone offline:</b> it works offline once opened on Wi-Fi (do it on the 16th); the Markdown copy of the itinerary is on both phones too; the printed page has the numbers.</li>
+    <li><b>Separated from each other:</b> WhatsApp live location sharing for the day (Chhavi ↔ Aviral) costs nothing and removes 90% of "where are you".</li>
   </ul>
 </div>
 
@@ -3309,6 +3465,121 @@
     d.addEventListener('change', () => setTimeout(paint, 0)); setTimeout(paint, 300);
     // the hero "To-dos" tile opens it
     document.querySelectorAll('.hero-stats .hs').forEach(h => { if(/To-dos/.test(h.textContent)){ h.style.cursor = 'pointer'; h.addEventListener('click', () => { d.open = true; setTimeout(() => d.scrollIntoView({behavior:'smooth', block:'start'}), 50); }); } });
+  })();
+
+  // ======================= v77: daily taxi module — fares, when it's worth it, one-tap Uber / black-cab booking =======================
+  (function(){
+    const P = {
+      lhr:   ['Heathrow Terminal 2', 51.4700, -0.4543],
+      pul:   ['Pullman London St Pancras, 100-110 Euston Rd', 51.5296, -0.1262],
+      bm:    ['British Museum, Great Russell St', 51.5194, -0.1270],
+      wpier: ['Westminster Pier', 51.5017, -0.1246],
+      gpier: ['Greenwich Pier', 51.4835, -0.0096],
+      nhm:   ['Natural History Museum, Cromwell Rd', 51.4967, -0.1764],
+      sci:   ['Science Museum, Exhibition Rd', 51.4978, -0.1745],
+      tbr:   ['Tower Bridge', 51.5055, -0.0754],
+      boro:  ['Borough Market', 51.5055, -0.0910],
+      ch:    ['County Hall (SEA LIFE / London Eye)', 51.5019, -0.1195],
+      jsm:   ['James Smith & Sons, 53 New Oxford St', 51.5165, -0.1259],
+      kgx:   ['King\'s Cross station', 51.5308, -0.1238],
+      eus:   ['Euston station', 51.5282, -0.1337],
+      oxc:   ['Regent Street / Oxford Circus', 51.5152, -0.1419],
+      mr:    ['Mount Royal Hotel, 53 Princes St, Edinburgh', 55.9519, -3.1979],
+      wav:   ['Edinburgh Waverley', 55.9520, -3.1890],
+      cas:   ['Edinburgh Castle', 55.9486, -3.1999],
+      psq:   ['Parliament Square (Caffe Nero), Royal Mile', 55.9495, -3.1907],
+      sas:   ['22 St Andrew Square, Edinburgh', 55.9541, -3.1927],
+      cal:   ['Calton Hill', 55.9553, -3.1826],
+      gra:   ['Grassmarket, Edinburgh', 55.9474, -3.1951]
+    };
+    const uber = (a, b) => 'https://m.uber.com/ul/?action=setPickup&client_id=trip&pickup[formatted_address]=' + encodeURIComponent(P[a][0]) + '&pickup[latitude]=' + P[a][1] + '&pickup[longitude]=' + P[a][2] + '&dropoff[formatted_address]=' + encodeURIComponent(P[b][0]) + '&dropoff[latitude]=' + P[b][1] + '&dropoff[longitude]=' + P[b][2];
+    const maps = (a, b) => 'https://www.google.com/maps/dir/?api=1&origin=' + P[a][1] + ',' + P[a][2] + '&destination=' + P[b][1] + ',' + P[b][2] + '&travelmode=driving';
+    const L = {
+      '2026-10-17': { budget: '£50–75', legs: [['lhr','pul','£50–75','50–70 min','worth','Two big bags, a stroller and a toddler after 11 hrs — the one taxi that is never a question. Black-cab rank outside T2 arrivals, or Uber from the Uber zone (follow signs, level 4 car park). Piccadilly line is closed to Heathrow today anyway.']] },
+      '2026-10-18': { budget: '£45–70', legs: [['pul','bm','£10–12','10 min','skip','15-min walk through Bloomsbury with the stroller — nicer than a cab.'],['bm','wpier','£14–18','15–20 min','maybe','Tube is Russell Sq → Westminster, 20 min with two escalators; a cab door-to-pier is easier with the stroller and keeps you on time for the boat.'],['gpier','pul','£35–45','35–45 min','worth','End of a long day: DLR + Jubilee + change is 45 min of standing. Take the cab home, especially if he\'s asleep.']] },
+      '2026-10-19': { budget: '£25–50', legs: [['pul','nhm','£25–30','25–35 min','skip','Piccadilly line is direct from Russell Square, 20 min — faster than a cab through Knightsbridge.'],['sci','pul','£25–30','25–35 min','maybe','If he\'s flat out after two museums, the cab home is worth it; otherwise the tube again.'],['sci','tbr','£25–30','30 min','maybe','Only for the Tower Bridge evening option; then £18–22 home from St Katharine Docks.']] },
+      '2026-10-20': { budget: '£30–60', legs: [['pul','boro','£18–22','20–25 min','maybe','Tube via London Bridge is 30 min; a cab straight to the market at 09:15 is quicker and lands you at the stalls.'],['boro','ch','£10–14','10–15 min','skip','25-min riverside walk past the Globe and Tate is the nice bit of the day — walk it.'],['ch','jsm','£14–18','15–20 min','maybe','After the Eye, cab to James Smith (umbrellas) saves a tube change; then 15-min walk home.'],['ch','pul','£18–22','20–25 min','maybe','Straight home from the Eye if skipping the umbrella stop.']] },
+      '2026-10-21': { budget: '£15–20', legs: [['pul','kgx','£6–8','3 min','worth','Bags day. It\'s a 4-min walk, but with two big cases plus the storage drop at the desk, let the cab do it.'],['wav','mr','£7–9','5 min','worth','Waverley exit to Princes St is a ramp and a hill with luggage — cab rank is at the station\'s Market St / Waverley Bridge exit.']] },
+      '2026-10-22': { budget: '£15–25', legs: [['mr','cas','£7–9','7 min','maybe','15 min uphill walk; take the cab if you\'re cutting it fine for the 12:00 meeting point — ask for \'351 High Street, St Giles\' side\', not the castle esplanade.'],['gra','mr','£7–9','5 min','maybe','After Mary\'s Milk Bar / Victoria St, a cab back down saves the climb with a tired boy.']] },
+      '2026-10-23': { budget: '£10–15', legs: [['mr','psq','£6–8','5 min','worth','07:30 with a toddler and a picnic bag — cab to Parliament Square, be there by 07:45.'],['sas','mr','£6–8','4 min','worth','Dropped at St Andrew Square ~20:30 on his birthday; a 4-min cab beats the walk.']] },
+      '2026-10-24': { budget: '£20–25', legs: [['mr','cal','£7–9','6 min','maybe','Calton Hill is a 15-min walk but it\'s the climb at the end that counts — cab up, walk down.'],['mr','wav','£7–9','4 min','worth','Bags again — cab to Waverley, ask for the Market St entrance (lifts to the platforms).'],['eus','pul','£8–10','4 min','worth','10-min walk with cases after a 6-hr train — cab from the Euston rank.']] },
+      '2026-10-25': { budget: '£80–110', legs: [['pul','oxc','£14–18','15 min','skip','Victoria line is 10 min; traffic on Sunday morning is light but the tube still wins.'],['oxc','pul','£14–18','15 min','maybe','With shopping bags and a sleepy boy at 14:30, cab back to the hotel.'],['pul','lhr','£60–80','55–75 min','worth','Final run to T2 with everything — pre-book (Uber Reserve or the hotel\'s car) for 17:30; Heathrow Express via Paddington is cheaper but means two changes with bags.']] }
+    };
+    const fareNote = { london: 'London: black cabs take contactless (HSBC, 0% markup); yellow light = free. Uber app also books black cabs ("Black Taxi"). Stroller stays open in a black cab; Aariv needs no car seat in the back. Tip = round up.', edin: 'Edinburgh: black cabs everywhere on Princes St; City Cabs app or 0131 228 1211 to pre-book (cards accepted). Uber works too but cabs are quicker to find.' };
+    document.querySelectorAll('details.day').forEach(d => {
+      const day = L[d.dataset.date]; if(!day) return;
+      const box = document.createElement('div'); box.className = 'taxibox';
+      const isEdin = d.dataset.date >= '2026-10-22' && d.dataset.date <= '2026-10-24';
+      box.innerHTML = '<b>🚕 Taxis today</b><span class="tbud">If you cab the ✓ legs: ' + day.budget + '</span>' +
+        day.legs.map(([a, b, fare, mins, v, why]) => '<div class="tleg ' + v + '"><div class="ttxt"><div class="tl1">' + P[a][0].split(',')[0] + ' → ' + P[b][0].split(',')[0] + ' · <span style="color:var(--gold)">' + fare + '</span> · ' + mins + '</div><div class="tl2">' + why + '</div></div><div class="tbtns"><a class="tb1" target="_blank" rel="noopener" href="' + uber(a, b) + '">Uber</a><a class="tb1 map" target="_blank" rel="noopener" href="' + maps(a, b) + '">Map</a></div></div>').join('') +
+        '<div class="taxinote">✓ = worth the cab · 🚇 = tube/walk is faster · ' + (isEdin ? fareNote.edin : fareNote.london) + '</div>';
+      const anchor = d.querySelector('.routes') || d.querySelector('.eat');
+      if(anchor) anchor.insertAdjacentElement('beforebegin', box); else d.querySelector('.dbody').appendChild(box);
+    });
+  })();
+
+  // ======================= v78: photos today — family shots (get all three in) vs views, with lens + time =======================
+  (function(){
+    const F = 'fam', V = 'view';
+    const S = {
+      '2026-10-17': { light: 'land 18:10 — dark by 17:50, nothing to chase today', shots: [
+        [F,'Delhi T3 before boarding','the “we’re off” shot — front camera wide, boarding passes up, Aariv on shoulders. <b>1×, timer or a passer-by.</b>'],
+        [V,'Window over the Alps / North Sea','only if the window’s clean. <b>0.5×, lens on the glass, flash off.</b>'],
+        [F,'First night, hotel bed','Aariv asleep in UK pyjamas — Live Photo, no flash, Night mode auto. The one you’ll show him when he’s 15.']] },
+      '2026-10-18': { light: 'sunset 17:50 · blue hour 18:00–18:30 at Greenwich', shots: [
+        [F,'British Museum Great Court, 11:15','under the glass roof — hand the phone to someone, <b>Burst, 0.5×</b>, you three small in the middle of the space.'],
+        [V,'Rosetta Stone / Egyptian hall','<b>2×, no flash</b>, Aariv pointing — not a family shot, just him.'],
+        [F,'On the cruise, Big Ben behind you','board, go to the open back deck, <b>front camera wide</b> as the boat pulls away ~16:05; then <b>4× on Parliament</b> for the view.'],
+        [V,'Tower Bridge from the water ~16:35','<b>video 4K</b> as you pass under it; 10 seconds, hold steady.'],
+        [F,'Greenwich pier at dusk','Cutty Sark masts behind, <b>Night mode, brace on the railing, timer 10s</b>. Blue hour starts ~18:00.']] },
+      '2026-10-19': { light: 'museums — indoor light all day', shots: [
+        [V,'T. rex','<b>video 4K 30, 20 seconds</b>, hold low at Aariv’s height so the dinosaur looms; then a Burst of his face.'],
+        [F,'Hintze Hall from the balcony','whale skeleton overhead — one of you goes up with the phone, <b>4× down on the other two</b> on the main floor; then swap.'],
+        [F,'Science Museum Garden','him playing, <b>Burst from 4×, get low</b>; one wide of all three at the entrance arch.'],
+        [V,'Tower Bridge at blue hour (if you go)','~18:00 from the north bank, <b>Night mode on the railing, RAW</b>; then a family one with the bridge lit (front wide).']] },
+      '2026-10-20': { light: 'sunset 17:50 · best family light on the South Bank 15:00–16:30', shots: [
+        [V,'Borough Market food','<b>2×</b>, the doughnut, the cheese counter — colour, not faces.'],
+        [F,'SEA LIFE tunnel','<b>Night mode, no flash, lens near the glass</b>, Aariv in silhouette against the tank — the classic.'],
+        [F,'London Eye capsule','<b>0.5× inside</b> with the three of you and the Thames behind; then <b>4× on Parliament and 0.5× panorama</b> at the top (~14:45). No people in the panorama.'],
+        [F,'Westminster Bridge, Big Ben behind','after the Eye ~15:15: the family shot of the trip — <b>front camera wide</b>, or a passer-by at <b>2×</b> with you three on the left third and the clock on the right.'],
+        [V,'James Smith &amp; Sons shopfront','Chhavi with the umbrella under the Victorian signs, <b>2×, from across the street</b>.']] },
+      '2026-10-21': { light: 'train 11:03–15:34 · Royal Mile light till 17:45', shots: [
+        [F,'Platform 9¾, 08:15','they hand you a scarf — <b>Burst</b>, Aariv on the trolley, one with the three of you (ask the attendant). Free with your own phone.'],
+        [F,'On the Azuma at the table','<b>0.5×</b> across the table seats 55–57, Aariv in his own seat — the “he had his own ticket” photo.'],
+        [V,'Durham ~13:40 · Angel of the North ~14:05','right-hand window: cathedral on the hill, then the Angel — <b>4×, Burst, lens on the glass</b>.'],
+        [F,'Royal Mile first look, ~17:00','the three of you on the cobbles with St Giles’ crown behind, <b>2× from 6 m, timer on a bollard</b>; light goes at 17:45.']] },
+      '2026-10-22': { light: 'sunset 17:45 · castle best 11:30–13:30', shots: [
+        [V,'Castle from the Grassmarket / Princes St','<b>4×, RAW</b> — the rock and the walls; morning from Princes St, afternoon from Grassmarket.'],
+        [F,'Castle esplanade, city behind','after the tour ~13:45: <b>front wide</b> with the view down to the Forth, then a passer-by at <b>2×</b>.'],
+        [V,'Advocates Close / Victoria Street','<b>0.5× vertical</b> for the close, <b>2×</b> for the curve of Victoria St — Chhavi in the coat halfway up.'],
+        [F,'Mary’s Milk Bar gelato','his face, <b>Burst at 2×, get low</b>.'],
+        [V,'St Giles’ interior','<b>Night mode, no flash, 0.5×</b>, phone braced on a pew.']] },
+      '2026-10-23': { light: '🎂 birthday · Highlands: light 08:00–17:30, changeable · RAW for the big ones', shots: [
+        [F,'Birthday morning on the coach, 08:00','<b>Cinematic 4K, 20 s</b>, “how old are you today?” — the clip of the trip.'],
+        [F,'Hairy coos, Taste Perthshire','Aariv + one parent at the fence, other parent <b>4× from 6 m, Burst</b>; then swap. Coat colour pops against the hills.'],
+        [V,'Loch Ness','<b>panorama</b> from the shore, then <b>RAW 0.5×</b> with the water as the bottom third.'],
+        [V,'Glen Coe','<b>RAW, 0.5×</b>, tap the sky and drag ☀️ down; then one with the three of you tiny at the bottom of the frame for scale (<b>timer on a rock</b>).'],
+        [F,'Cake, ~21:00','<b>Night mode off, Live Photo, candles only</b> — stay still 2 s; Burst for the blow.']] },
+      '2026-10-24': { light: 'Calton Hill 10:15–11:30 — morning light on the castle side', shots: [
+        [V,'Calton Hill: castle + Princes St','<b>4×, RAW</b> from the Dugald Stewart monument; then <b>0.5×</b> with the monument columns framing the city.'],
+        [F,'The three of you in the monument','sit on the plinth, <b>timer 10 s, phone on the step, 2×</b> — the Edinburgh family shot.'],
+        [V,'Waverley departure board','<b>2×</b>, Aariv looking up at it — end of the Scotland chapter.'],
+        [F,'On the Avanti, seats 16/18/19','<b>0.5×</b> across the table, same as the way up — the pair of photos.']] },
+      '2026-10-25': { light: 'clocks went back — sunset ~16:45, Regent St lights on by 16:30', shots: [
+        [V,'Sky Garden, 11:00','<b>0.5× panorama</b>, then <b>4× on the Shard / Tower Bridge</b>; lens on the glass.'],
+        [F,'Regent Street under the lights','the curve from Oxford Circus ~16:00: <b>2×, Chhavi with the bags, Aariv on shoulders</b>; by 16:30 it’s lit — Night mode.'],
+        [F,'Hamleys bear / birthday toy','his choice in his hands, <b>Burst at 2×</b>.'],
+        [F,'T2 lounge, last one','<b>front camera wide</b>, tired and happy — pair it with the Delhi T3 photo from Day 1.']] }
+    };
+    document.querySelectorAll('details.day').forEach(d => {
+      const day = S[d.dataset.date]; if(!day) return;
+      const box = document.createElement('div'); box.className = 'photobox';
+      box.innerHTML = '<b>📸 Photos today</b><span class="plight">☀️ ' + day.light + '</span>' +
+        day.shots.map(([k, t, w]) => '<div class="pshot ' + k + '"><span class="pk">' + (k === F ? '👨‍👩‍👦' : '🏞️') + '</span><div><div class="pt">' + t + '</div><div class="pw">' + w + '</div></div></div>').join('') +
+        '<div class="photonote">👨‍👩‍👦 = all three of you in it · 🏞️ = just the view · how-to and settings: ☰ → Photos</div>';
+      const anchor = d.querySelector('.taxibox') || d.querySelector('.routes') || d.querySelector('.eat');
+      if(anchor) anchor.insertAdjacentElement('beforebegin', box); else d.querySelector('.dbody').appendChild(box);
+    });
   })();
 </script>
 </body>
