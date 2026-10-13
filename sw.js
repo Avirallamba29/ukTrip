@@ -1,13 +1,14 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v79';
+const CACHE_NAME = 'uktrip-cache-v80';
 
 const PRECACHE_URLS = [
   './',
   './index.html',
   './london-edinburgh-trip.html',
   './spends.html',
+  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
   './tickets/aariv-birth-certificate.pdf',
   './tickets/share-code-aviral.pdf',
   './tickets/share-code-chhavi.pdf',
@@ -109,7 +110,11 @@ const PRECACHE_URLS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => {
+      const local = PRECACHE_URLS.filter((u) => u.startsWith('./'));
+      const remote = PRECACHE_URLS.filter((u) => !u.startsWith('./'));
+      return cache.addAll(local).then(() => Promise.all(remote.map((u) => cache.add(u).catch(() => null))));
+    }).then(() => self.skipWaiting())
   );
 });
 
@@ -126,10 +131,11 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   event.respondWith(
-    caches.match(event.request).then((cached) => {
+    caches.match(event.request, { ignoreVary: true }).then((cached) => {
       if (cached) return cached;
       return fetch(event.request).then((response) => {
-        if (response && response.status === 200 && response.type === 'basic') {
+        const ok = response && ((response.status === 200 && (response.type === 'basic' || response.type === 'cors')) || response.type === 'opaque');
+        if (ok) {
           const copy = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         }

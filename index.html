@@ -907,7 +907,7 @@
 <div class="hlhead"><h3>Highlights</h3><span>tap to jump to the day</span></div>
 <div class="hl" id="hl"></div>
 <div class="toast" id="toast" role="status"></div>
-<div class="a2hs" id="a2hs"><span>📲</span><span>Add to Home Screen for a full-screen app: tap <b>Share</b> → <b>Add to Home Screen</b>.</span><button type="button" class="x" aria-label="Dismiss">✕</button></div>
+<div class="a2hs" id="a2hs"><span>📲</span><span><b>Add to Home Screen</b> (Share → Add to Home Screen) — a home-screen app keeps you signed in and works offline; a Safari tab can forget the login after 7 days of not opening it.</span><button type="button" class="x" aria-label="Dismiss">✕</button></div>
 
 <div class="datestrip" id="datestrip" aria-label="Jump to a day">
   <button type="button" class="dj" data-jump="2026-10-17" data-em="✈️"><span>Sat</span><b>17</b></button>
@@ -2262,6 +2262,18 @@
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // v80: stay signed in. If the sign-in library couldn't load (offline, CDN blocked) but this phone already holds a
+  // Supabase session, keep the app open in offline mode instead of showing the login wall. Only "Log out" ends a session.
+  (function(){
+    if(window.supabase) return;
+    var hasSession = false;
+    try{ for(var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if(/^sb-.*-auth-token$/.test(k) && localStorage.getItem(k)){ hasSession = true; break; } } }catch(e){}
+    var gate = document.getElementById('authGate');
+    if(hasSession){ if(gate) gate.hidden = true; window.__offlineAuth = true; }
+    else if(gate){ gate.hidden = false; var sub = gate.querySelector('.sub'); if(sub) sub.textContent = 'No connection — connect once to sign in; after that the app works offline.'; }
+  })();
+</script>
 <script>
   // Login gate — same Supabase project as spends.html. Sessions persist in
   // this browser (localStorage) and are NOT auto-logged-out; only the
