@@ -767,6 +767,10 @@
   .dlbox .btn{width:100%;justify-content:center}
   .dlhint{font-size:12.5px;color:var(--muted);line-height:1.4}
   .dlbox .btn.busy{opacity:.8;pointer-events:none}
+  .offbox{display:flex;flex-direction:column;gap:6px;margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--card2)}
+  .offbox .ost{font-size:14px;font-weight:700;color:var(--ink)}
+  .offbox .btn{width:100%;justify-content:center;min-height:40px;font-size:14px}
+  .offbox .btn.busy{opacity:.8;pointer-events:none}
   /* ---------- v69: documents page ---------- */
   .docnav{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .docnav::-webkit-scrollbar{display:none}
@@ -1452,7 +1456,8 @@
 <section class="page" id="pg-docs">
 <h2>📂 Documents</h2>
 <p class="pagesub">Everything you might be asked to show, in the order you'll be asked for it. All files stay on the phone once the app has been opened online once.</p>
-<div class="dlbox"><button type="button" class="btn primary" id="dlAll">📦 Save all documents to this device</button><span class="dlhint" id="dlHint">One zip with every PDF, voucher, screenshot and photo; size shows once built. On iPhone/iPad it lands in Files → Downloads; tap it there to unzip.</span></div>
+<div class="dlbox"><button type="button" class="btn primary" id="dlAll">📦 Save all documents to this device (77 files)</button><span class="dlhint" id="dlHint">One zip with every PDF, voucher, screenshot and photo; size shows once built. On iPhone/iPad it lands in Files → Downloads; tap it there to unzip.</span></div>
+<div class="offbox" id="offbox"><span class="ost" id="offStat">📴 Offline copy: checking…</span><button type="button" class="btn soft" id="offFix">Make all files available offline</button><span class="dlhint" id="offHint">Everything the app shows (tickets, QR codes, vouchers, photos) is kept inside the app itself, so it opens with no signal — no need to download anything. This just confirms it.</span></div>
 <div class="docnav"><a href="#d-pass">🛂 Passports</a><a href="#d-visa">🇬🇧 Visas</a><a href="#d-tix">🎟️ Tickets</a><a href="#d-hotel">🏨 Hotels</a><a href="#d-other">📎 Other</a></div>
 
 <h3 class="qhead" id="d-pass">🛂 1 · Passports</h3>
@@ -3429,7 +3434,8 @@
   // ======================= v68: save every document as one zip (built in the browser, works offline once cached) =======================
   (function(){
     const btn = document.getElementById('dlAll'); if(!btn) return;
-    const DOCS = ["tickets/aariv-birth-certificate.pdf", "tickets/share-code-aviral.pdf", "tickets/share-code-chhavi.pdf", "tickets/share-code-aariv.pdf", "tickets/flight-indigo-6e3-del-lhr.pdf", "tickets/flight-airindia-ai2016-lhr-del.pdf", "tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf", "tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf", "tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf", "tickets/train-avanti-edinburgh-euston-24oct-adult1.pdf", "tickets/train-avanti-edinburgh-euston-24oct-adult2.pdf", "tickets/train-avanti-edinburgh-euston-24oct-aariv-child.pdf", "tickets/hotel-pullman-london-17-21oct.pdf", "tickets/hotel-pullman-london-24-25oct.pdf", "tickets/hotel-mountroyal-edinburgh-21-24oct.pdf", "tickets/ticket-naturalhistorymuseum-19oct-main.pdf", "tickets/ticket-naturalhistorymuseum-backup.pdf", "tickets/ticket-britishmuseum-18oct.pdf", "tickets/ticket-sciencemuseum-19oct.pdf", "tickets/screenshots/lner-seatmap-coachA-search.png", "tickets/screenshots/lner-a57-booking-summary1.png", "tickets/screenshots/lner-a57-booking-summary2.png", "tickets/screenshots/lner-55-56-confirmed.png", "tickets/screenshots/lner-seatmap-coachA-2.png", "tickets/screenshots/lner-coach-order-11-03.png", "tickets/screenshots/avanti-j18-j19-seat-details.png", "tickets/screenshots/avanti-j16-seatmap.png", "tickets/screenshots/avanti-j16-booking-summary.png", "tickets/screenshots/avanti-journey-details-stops.png", "tickets/screenshots/evisa-share-code-intro.png", "tickets/screenshots/evisa-share-code-reason.png", "tickets/screenshots/evisa-aviral-status-summary.png", "tickets/screenshots/evisa-chhavi-status-summary.png", "tickets/screenshots/evisa-aariv-status-summary.png", "tickets/images/thames-cruise-photo.jpg", "tickets/images/sea-life-photo.jpg", "tickets/images/london-eye-photo.jpg", "tickets/images/edinburgh-castle-photo.jpg", "tickets/passport-aviral.pdf", "tickets/passport-chhavi.pdf", "tickets/passport-aariv.pdf", "tickets/ticket-highland-374019708.pdf", "tickets/highland-tour-confirmation.pdf", "tickets/ticket-bigbus-hoponhopoff-19oct.pdf", "tickets/ticket-bigbus-manage-booking.pdf", "tickets/pullman-luggage-storage-confirmation.eml", "tickets/trainline-phone-confirmation-546920566196.png", "tickets/screenshots/trainline-phone-confirm-b55-56.png", "tickets/screenshots/lner-coachB-seatmap-55-58.png", "tickets/screenshots/lner-coachB-seatmap-key.png", "tickets/screenshots/lner-coachB-seatmap-full.png", "tickets/screenshots/lner-coach-order-front-to-back.png", "tickets/images/bigbus-photo.jpg", "tickets/insurance-aviral.pdf", "tickets/insurance-chhavi.pdf", "tickets/insurance-aariv.pdf", "tickets/insurance-aviral-tataaig.pdf", "tickets/insurance-chhavi-tataaig.pdf", "tickets/insurance-aariv-tataaig.pdf", "tickets/hsbc-zero-forex-offer-tnc.pdf"];
+    const DOCS = ["tickets/aariv-birth-certificate.pdf", "tickets/share-code-aviral.pdf", "tickets/share-code-chhavi.pdf", "tickets/share-code-aariv.pdf", "tickets/flight-indigo-6e3-del-lhr.pdf", "tickets/flight-airindia-ai2016-lhr-del.pdf", "tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf", "tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf", "tickets/train-lner-kgx-edinburgh-21oct-aariv-child.pdf", "tickets/train-avanti-edinburgh-euston-24oct-adult1.pdf", "tickets/train-avanti-edinburgh-euston-24oct-adult2.pdf", "tickets/train-avanti-edinburgh-euston-24oct-aariv-child.pdf", "tickets/hotel-pullman-london-17-21oct.pdf", "tickets/hotel-pullman-london-24-25oct.pdf", "tickets/hotel-mountroyal-edinburgh-21-24oct.pdf", "tickets/ticket-naturalhistorymuseum-19oct-main.pdf", "tickets/ticket-naturalhistorymuseum-backup.pdf", "tickets/ticket-britishmuseum-18oct.pdf", "tickets/ticket-sciencemuseum-19oct.pdf", "tickets/screenshots/lner-seatmap-coachA-search.png", "tickets/screenshots/lner-a57-booking-summary1.png", "tickets/screenshots/lner-a57-booking-summary2.png", "tickets/screenshots/lner-55-56-confirmed.png", "tickets/screenshots/lner-seatmap-coachA-2.png", "tickets/screenshots/lner-coach-order-11-03.png", "tickets/screenshots/avanti-j18-j19-seat-details.png", "tickets/screenshots/avanti-j16-seatmap.png", "tickets/screenshots/avanti-j16-booking-summary.png", "tickets/screenshots/avanti-journey-details-stops.png", "tickets/screenshots/evisa-share-code-intro.png", "tickets/screenshots/evisa-share-code-reason.png", "tickets/screenshots/evisa-aviral-status-summary.png", "tickets/screenshots/evisa-chhavi-status-summary.png", "tickets/screenshots/evisa-aariv-status-summary.png", "tickets/images/thames-cruise-photo.jpg", "tickets/images/sea-life-photo.jpg", "tickets/images/london-eye-photo.jpg", "tickets/images/edinburgh-castle-photo.jpg", "tickets/passport-aviral.pdf", "tickets/passport-chhavi.pdf", "tickets/passport-aariv.pdf", "tickets/ticket-highland-374019708.pdf", "tickets/highland-tour-confirmation.pdf", "tickets/ticket-bigbus-hoponhopoff-19oct.pdf", "tickets/ticket-bigbus-manage-booking.pdf", "tickets/pullman-luggage-storage-confirmation.eml", "tickets/trainline-phone-confirmation-546920566196.png", "tickets/screenshots/trainline-phone-confirm-b55-56.png", "tickets/screenshots/lner-coachB-seatmap-55-58.png", "tickets/screenshots/lner-coachB-seatmap-key.png", "tickets/screenshots/lner-coachB-seatmap-full.png", "tickets/screenshots/lner-coach-order-front-to-back.png", "tickets/images/bigbus-photo.jpg", "tickets/insurance-aviral.pdf", "tickets/insurance-chhavi.pdf", "tickets/insurance-aariv.pdf", "tickets/insurance-aviral-tataaig.pdf", "tickets/insurance-chhavi-tataaig.pdf", "tickets/insurance-aariv-tataaig.pdf", "tickets/hsbc-zero-forex-offer-tnc.pdf", "tickets/ticket-britishmuseum-18oct-1240.pdf", "tickets/ticket-naturalhistorymuseum-19oct-1300.pdf", "tickets/ticket-sciencemuseum-19oct-1630.png", "tickets/ticket-londoneye-20oct.pdf", "tickets/ticket-edinburghcastle-22oct-voucher.pdf", "tickets/screenshots/headout-castle-meeting-point.jpg", "tickets/screenshots/headout-eye-meeting-point.jpg", "tickets/screenshots/headout-sealife-meeting-policy.jpg", "tickets/screenshots/headout-sealife-qr-1of3.jpg", "tickets/screenshots/headout-sealife-qr-2of3.jpg", "tickets/screenshots/headout-sealife-qr-3of3.jpg", "tickets/screenshots/headout-cruise-qr-1of3.jpg", "tickets/screenshots/headout-cruise-qr-2of3.jpg", "tickets/screenshots/headout-cruise-qr-3of3.jpg", "tickets/screenshots/headout-cruise-westminster-pier.jpg", "tickets/screenshots/headout-cruise-waterloo-tower-piers.jpg", "tickets/screenshots/headout-cruise-greenwich-pier.jpg"];
+    window.__DOCS = DOCS;
     const hint = document.getElementById('dlHint'), label = btn.textContent;
     // tiny "store-only" zip writer: local headers + central directory + EOCD, CRC-32 per file
     const CRC = (() => { const t = new Uint32Array(256); for(let i = 0; i < 256; i++){ let c = i; for(let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); t[i] = c >>> 0; } return b => { let c = 0xFFFFFFFF; for(let i = 0; i < b.length; i++) c = t[(c ^ b[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }; })();
@@ -3592,6 +3598,36 @@
       const anchor = d.querySelector('.taxibox') || d.querySelector('.routes') || d.querySelector('.eat');
       if(anchor) anchor.insertAdjacentElement('beforebegin', box); else d.querySelector('.dbody').appendChild(box);
     });
+  })();
+
+  // ======================= v82: offline status — count how many of the app's files are already stored by the service worker, fetch the rest =======================
+  (function(){
+    const stat = document.getElementById('offStat'), fix = document.getElementById('offFix'), hint = document.getElementById('offHint'); if(!stat) return;
+    const DOCS = (window.__DOCS || []);
+    const ALL = ['./', './index.html', './sw.js'].concat(DOCS.map(d => './' + d));
+    async function tripCache(){ if(!('caches' in window)) return null; const names = (await caches.keys()).filter(n => n.startsWith('uktrip-cache-')).sort(); return names.length ? caches.open(names[names.length - 1]) : null; }
+    async function check(){
+      if(!('caches' in window) || !('serviceWorker' in navigator)){ stat.textContent = '📴 Offline copy: this browser can\'t store the app — use Safari / the Home Screen app.'; fix.style.display = 'none'; return []; }
+      const c = await tripCache(); if(!c){ stat.textContent = '📴 Offline copy: not ready yet — stay on this page a few seconds, then tap the button.'; return DOCS; }
+      const missing = [];
+      for(const d of DOCS){ const hit = await c.match('./' + d, { ignoreVary: true, ignoreSearch: true }); if(!hit) missing.push(d); }
+      const n = DOCS.length - missing.length;
+      stat.textContent = missing.length ? '📴 Offline copy: ' + n + ' / ' + DOCS.length + ' files stored — tap below to fetch the rest' : '✅ Offline copy complete: all ' + DOCS.length + ' files stored in the app';
+      fix.style.display = missing.length ? '' : 'none';
+      return missing;
+    }
+    fix.addEventListener('click', async () => {
+      fix.classList.add('busy'); const label = fix.textContent;
+      let missing = await check(); const c = await tripCache();
+      if(c){ let i = 0; for(const d of missing){ i++; fix.textContent = '⏳ Fetching ' + i + ' / ' + missing.length + '…'; try{ const r = await fetch('./' + d, { cache: 'reload' }); if(r.ok) await c.put('./' + d, r.clone()); }catch(e){} } }
+      fix.textContent = label; fix.classList.remove('busy');
+      const left = await check();
+      if(hint) hint.textContent = left.length ? '⚠️ ' + left.length + ' file(s) could not be fetched — check the connection and try again, or they may not be uploaded to the site yet: ' + left.slice(0, 3).join(', ') + (left.length > 3 ? '…' : '') : '✅ Everything opens offline now. (The app also keeps this up to date on its own each time it loads online.)';
+    });
+    setTimeout(check, 1500);
+    document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') check(); });
+    // after the service worker finishes installing, re-check
+    if('serviceWorker' in navigator) navigator.serviceWorker.ready.then(() => setTimeout(check, 2500)).catch(() => {});
   })();
 </script>
 </body>

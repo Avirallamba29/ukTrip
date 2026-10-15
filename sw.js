@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v80';
+const CACHE_NAME = 'uktrip-cache-v82';
 
 const PRECACHE_URLS = [
   './',
@@ -111,9 +111,9 @@ const PRECACHE_URLS = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      const local = PRECACHE_URLS.filter((u) => u.startsWith('./'));
-      const remote = PRECACHE_URLS.filter((u) => !u.startsWith('./'));
-      return cache.addAll(local).then(() => Promise.all(remote.map((u) => cache.add(u).catch(() => null))));
+      // one missing or renamed file must not stop every other file from being stored:
+      // add them one by one and let the Docs page's "offline copy" check report any gaps.
+      return Promise.all(PRECACHE_URLS.map((u) => cache.add(u).catch(() => null)));
     }).then(() => self.skipWaiting())
   );
 });
