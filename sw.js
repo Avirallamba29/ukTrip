@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v83';
+const CACHE_NAME = 'uktrip-cache-v85';
 
 const PRECACHE_URLS = [
   './',
@@ -123,13 +123,50 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((names) =>
       Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
     ).then(() => self.clients.claim())
+    // v85: any open page that doesn't answer the ping is an older version of the app (pre-v85) — reload it so the
+    // phone shows the version that was just uploaded, without the "close and reopen twice" dance.
+    .then(() => self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
+    .then((list) => Promise.all(list.map((c) => new Promise((done) => {
+      let answered = false;
+      try {
+        const ch = new MessageChannel();
+        ch.port1.onmessage = () => { answered = true; done(); };
+        c.postMessage({ type: 'uktrip-ping' }, [ch.port2]);
+      } catch (e) { return done(); }
+      setTimeout(() => { if (!answered && 'navigate' in c) { c.navigate(c.url).catch(() => {}); } done(); }, 1000);
+    }))))
   );
 });
 
 // Cache-first for everything in scope, falling back to the network
 // (and caching what it fetches) for anything not precached.
+// v85: the page itself (index.html / london-edinburgh-trip.html / a navigation) is fetched from the network first,
+// so an upload shows up on the very next open; the cached copy is used only when offline or the network is slow (>4 s).
+function networkFirstPage(req) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  const fresh = new Request(req.url, { cache: 'no-store', credentials: 'same-origin', signal: ctrl.signal });
+  return fetch(fresh).then((res) => {
+    clearTimeout(timer);
+    if (res && res.status === 200) {
+      const copy = res.clone();
+      caches.open(CACHE_NAME).then((cache) => cache.put(req.url, copy));
+    }
+    return res;
+  }).catch(() => {
+    clearTimeout(timer);
+    return caches.match(req.url, { ignoreVary: true, ignoreSearch: true })
+      .then((c) => c || caches.match('./index.html', { ignoreVary: true }))
+      .then((c) => c || new Response('Offline and no saved copy yet — open the app once on Wi-Fi.', { status: 503, headers: { 'Content-Type': 'text/plain' } }));
+  });
+}
+
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  const url = new URL(event.request.url);
+  const isPage = event.request.mode === 'navigate' ||
+    (url.origin === self.location.origin && (/\/(index|london-edinburgh-trip)\.html$/.test(url.pathname) || url.pathname.endsWith('/')));
+  if (isPage) { event.respondWith(networkFirstPage(event.request)); return; }
   event.respondWith(
     caches.match(event.request, { ignoreVary: true }).then((cached) => {
       if (cached) return cached;

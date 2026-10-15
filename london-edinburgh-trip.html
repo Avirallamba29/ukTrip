@@ -700,6 +700,8 @@
   .app .an{display:block;font-weight:800;font-size:15px;color:var(--ink)}
   .app .ai{align-self:center}
   #apps,#failsafe,#entry,#photos-howto{scroll-margin-top:72px}
+  .appver{font-weight:800;color:var(--accent-ink);background:var(--accent-soft);border-radius:999px;padding:1px 7px;font-size:10.5px;letter-spacing:.04em}
+  h2,h3{scroll-margin-top:72px}
   .app .aw{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
   .app .aw b{color:var(--ink2);font-weight:700}
   .app .bk{grid-column:2;justify-self:start;min-height:36px;padding:7px 14px;white-space:nowrap;margin-top:2px}
@@ -847,7 +849,7 @@
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <aside class="drawer" id="drawer">
   <div class="drawer-head">
-    <div><b>London &amp; Edinburgh 🇬🇧</b><span class="sub">17–25 Oct 2026</span></div>
+    <div><b>London &amp; Edinburgh 🇬🇧</b><span class="sub">17–25 Oct 2026 · <span class="appver" id="appVer2"></span></span></div>
     <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
   </div>
   <div class="drawer-links">
@@ -872,6 +874,7 @@
     <div class="dsep"></div>
     <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
     <button type="button" id="logoutBtn"><span class="ni">🚪</span>Log out</button>
+    <p class="vhint" id="verLine">App version <b id="appVer3"></b> · <button type="button" class="jl" id="verReload">Check for update ↻</button><br><span id="verNote">If this number is lower than the one in the last zip you uploaded, tap "Check for update" or swipe the app away and reopen it.</span></p>
   </div>
 </aside>
 
@@ -896,7 +899,7 @@
 <section class="page on" id="pg-days">
 
 <header class="hero">
-  <div class="hero-top"><span class="hero-kicker">Family trip · 9 days</span><span class="chip count" id="countdown">🗓️ <b>…</b></span></div>
+  <div class="hero-top"><span class="hero-kicker">Family trip · 9 days · <span class="appver" id="appVer"></span></span><span class="chip count" id="countdown">🗓️ <b>…</b></span></div>
   <h1>London &amp; Edinburgh</h1>
   <div class="hero-sub">Sat 17 – Sun 25 Oct 2026 · fly 10:55 out, 22:00 back</div>
   <div class="avatars"><span class="av">A</span><span class="av">C</span><span class="av kid">🎂</span><span class="av-names">Aviral, Chhavi &amp; Aariv — who turns 3 on Fri 23 Oct</span></div>
@@ -938,7 +941,7 @@
   <label class="ck"><input type="checkbox"> <span class="due">before 17 Oct</span> <b>Print one backup page</b>: eVisa share codes ×3 + both insurance policy numbers &amp; helplines + flight PNRs. Everything else stays on the phone. <button type="button" class="jl" data-pg="pg-tickets">Tickets ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">Fri 16 Oct</span> <b>Open this app on both phones on home Wi-Fi</b> and tap through Tickets once — that caches every ticket PDF, voucher and photo for offline use at the airport and on the trains. Keep opening it every few days before that too, so the shared-notes backend never goes idle.</label>
   <label class="ck"><input type="checkbox"> <span class="due">Sat 17 Oct</span> At Pullman check-in, remind the desk about the <b>2-bag storage for 21–24 Oct</b> (confirmed by Georgina, 7 Sep).</label>
-  <label class="ck"><input type="checkbox"> <span class="due">by 19 Oct</span> Optional — check HDFC SmartBuy points for a better Edinburgh hotel; Mount Royal is free-cancel till 19 Oct 23:59. <button type="button" class="jl" data-pg="pg-info">Info ↗</button></label>
+  <label class="ck"><input type="checkbox"> <span class="due hot">Now</span> <b>Edinburgh hotel: The Glasshouse (Autograph Collection, 2 Greenside Place) booked on SmartBuy/Cleartrip 16 Oct, ₹1,04,902 (20,394 pts + ₹84,508 Infinia), status PENDING</b> — R360 order 41779267772272981283. When it flips to <b>Confirmed</b>: (1) cancel Mount Royal (conf 6263.527.000, free till <b>19 Oct 23:59</b>); (2) email the Glasshouse (+44 131 525 8200): travelling with Aariv, 3, sharing the king bed — cot optional, high floor away from Greenside Place, birthday on the 23rd 🎂; (3) send the confirmation to the app. If it comes back <b>Failed</b>: refund in 5–7 working days, keep Mount Royal, re-check the rate. Cleartrip amendments +91 9595 333 333. Don't book anything else meanwhile.</label>
   <label class="ck"><input type="checkbox"> <span class="due">Thu 22 Oct</span> Buy the <b>picnic/snacks</b> for the Highlands coach (no lunch stop) + the <b>birthday cake</b> (M&amp;S Colin the Caterpillar or La Barantine). <button type="button" class="jl" data-pg="pg-food">Food ↗</button></label>
   <label class="ck"><input type="checkbox"> <span class="due">Fri 23 Oct</span> Air India <b>online check-in</b> opens 48 hrs before the 22:00 departure on the 25th.</label>
   <label class="ck"><input type="checkbox"> <span class="due">Fri 23 Oct</span> <b>Air Suvidha 2.0 for all three</b> (India's Ebola health declaration — mandatory for every arrival, no form needed for the UK). Fill it with the Air India check-in: one "Family" submission, 3 PDFs. Needs an OTP on the Indian number. <a class="bk" target="_blank" rel="noopener" href="https://airsuvidha.civilaviation.gov.in/">Open the portal ↗</a> <button type="button" class="jl" data-pg="pg-info" data-anchor="entry">How-to ↗</button></label>
@@ -2373,6 +2376,10 @@
   // Register service worker so the app + all ticket PDFs work offline after
   // the first visit (open this page once on wifi/data before you fly).
   if ('serviceWorker' in navigator) {
+    // v85: answer the service worker's ping so it knows this page is current and doesn't reload it
+    navigator.serviceWorker.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'uktrip-ping' && e.ports && e.ports[0]) e.ports[0].postMessage({ version: 'v85' });
+    });
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
     });
@@ -2482,6 +2489,19 @@
   const searchBarEl = document.getElementById('searchBar');
   const searchInputEl = document.getElementById('searchInput');
   const searchResultsEl = document.getElementById('searchResults');
+  // ======================= v85: visible app version + manual update check =======================
+  const APP_VERSION = 'v85';
+  ['appVer','appVer2','appVer3'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent = APP_VERSION; });
+  document.getElementById('verReload')?.addEventListener('click', async () => {
+    const n = document.getElementById('verNote'); if(n) n.textContent = 'Checking…';
+    try {
+      if('serviceWorker' in navigator){ const reg = await navigator.serviceWorker.getRegistration(); if(reg) await reg.update(); }
+      // drop the cached page so the next load is fetched fresh, then reload
+      if(window.caches){ const keys = await caches.keys(); for(const k of keys){ const c = await caches.open(k); for(const u of ['./','./index.html','./london-edinburgh-trip.html']){ try{ await c.delete(u, {ignoreSearch:true, ignoreVary:true}); }catch(e){} } } }
+    } catch(e){}
+    location.reload();
+  });
+
   let searchIndex = null;
 
   function escapeHtmlMain(s){
@@ -2493,6 +2513,17 @@
     const idx = [];
     const pageMeta = {};
     document.querySelectorAll('nav button[data-pg], .drawer-links button[data-pg]').forEach(b => { pageMeta[b.dataset.pg] = b.textContent.trim(); });
+    // v85: section headings first (so "entry forms", "failsafes", "taxis" land on the heading), with the text of the whole section
+    document.querySelectorAll('.page').forEach(page => {
+      const pageId = page.id;
+      const pageLabel = pageMeta[pageId] || pageId;
+      page.querySelectorAll('h2, h3').forEach(h => {
+        if(h.closest('details.day') || h.closest('.hero')) return;
+        let text = h.textContent, n = h.nextElementSibling;
+        while(n && !/^H[23]$/.test(n.tagName)){ text += ' ' + n.textContent; n = n.nextElementSibling; }
+        idx.push({ pageId, pageLabel, el: h, label: h.textContent.trim(), text, head: true });
+      });
+    });
     document.querySelectorAll('.page').forEach(page => {
       const pageId = page.id;
       const pageLabel = pageMeta[pageId] || pageId;
@@ -2516,6 +2547,13 @@
       page.querySelectorAll('label.ck').forEach(ck => {
         idx.push({ pageId, pageLabel, el: ck, label: ck.textContent.trim().slice(0, 70), text: ck.textContent });
       });
+      // v85: individual lines — document rows, app rows, bullet points inside panels, notes, tips
+      page.querySelectorAll('.doc, .app, .panel li, p.note, p.tip, .taxibox .tleg, .photobox .pshot').forEach(el => {
+        if(el.closest('details.day')) return;
+        const t = el.querySelector('.dt2, .an, b');
+        const label = (t ? t.textContent.trim() : el.textContent.trim()).slice(0, 70);
+        idx.push({ pageId, pageLabel, el, label, text: el.textContent });
+      });
     });
     searchIndex = idx;
     return idx;
@@ -2525,13 +2563,17 @@
     q = q.trim().toLowerCase();
     if(!q){ searchResultsEl.innerHTML = ''; return; }
     const idx = buildSearchIndex();
+    const words = q.split(/\s+/).filter(Boolean);
     const hits = [];
     for(const item of idx){
-      if(item.text.toLowerCase().includes(q)){
+      const t = item.text.toLowerCase();
+      if(words.every(w => t.includes(w))){
+        item.rank = (item.label.toLowerCase().includes(q) ? 0 : item.head ? 1 : 2);
         hits.push(item);
-        if(hits.length >= 25) break;
       }
     }
+    hits.sort((a, b) => a.rank - b.rank);
+    hits.length = Math.min(hits.length, 30);
     if(hits.length === 0){
       searchResultsEl.innerHTML = '<div class="search-empty">No matches — try another word.</div>';
       return;
