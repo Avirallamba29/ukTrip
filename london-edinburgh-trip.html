@@ -705,6 +705,30 @@
   .bagrow .bn{display:flex;flex-direction:column;gap:1px;min-width:0}
   .bagrow small{font-size:11px;color:var(--muted)}
   .bagrow .bw{display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap;flex:none}
+  .rbtn.cm{background:#e9f8ee;color:#127a3a;border-color:#bfe8cd}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .rbtn.cm{background:#123321;color:#8fe0ad;border-color:#1f5a38}}
+  :root[data-theme="dark"] .rbtn.cm{background:#123321;color:#8fe0ad;border-color:#1f5a38}
+  /* v93: £ ⇄ ₹ converter */
+  .fxfab{position:fixed;right:14px;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 14px);z-index:998;height:46px;padding:0 14px;border-radius:23px;border:1px solid var(--accent);background:var(--accent);color:#fff;font:800 14px/1 inherit;font-family:inherit;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:6px;-webkit-tap-highlight-color:transparent}
+  .fxfab:active{transform:scale(.96)}
+  body.fx-open .fxfab{display:none}
+  .fxsheet{position:fixed;inset:0;z-index:1001;display:none}
+  .fxsheet.on{display:block}
+  .fxsheet .fxbg{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+  .fxsheet .fxcard{position:absolute;left:0;right:0;bottom:0;background:var(--card);color:var(--ink);border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:var(--shadow-md);max-width:560px;margin:0 auto}
+  .fxhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .fxhead b{font-size:16px}
+  .fxx{border:0;background:var(--card2);color:var(--ink);width:34px;height:34px;border-radius:17px;font-size:16px}
+  .fxrow{display:flex;align-items:center;gap:8px;margin:6px 0}
+  .fxrow label{width:30px;font-size:20px;font-weight:800;color:var(--muted);text-align:center}
+  .fxrow input{flex:1;min-width:0;font:700 26px/1.2 inherit;font-family:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+  .fxrow input:focus{outline:none;border-color:var(--accent)}
+  .fxchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+  .fxchips button{border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:999px;padding:7px 11px;font:700 13px/1 inherit;font-family:inherit}
+  .fxrate{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+  .fxrate input{width:72px;font:700 14px/1 inherit;font-family:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+  .fxrate button{border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:8px;padding:5px 8px;font:600 12px/1 inherit;font-family:inherit}
+  .fxnote{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4}
   .appver{font-weight:800;color:var(--accent-ink);background:var(--accent-soft);border-radius:999px;padding:1px 7px;font-size:10.5px;letter-spacing:.04em}
   h2,h3{scroll-margin-top:72px}
   .app .aw{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
@@ -877,6 +901,7 @@
     <div class="themerow"><span class="ni">🔊</span><span class="tlbl">Auto-read a day when opened</span><div class="seg" id="autoSeg"><button type="button" data-auto="1">On</button><button type="button" data-auto="0">Off</button></div></div>
     <div class="themerow"><span class="ni">🌓</span><span class="tlbl">Theme</span><div class="seg" id="themeSeg"><button type="button" data-theme="system">Auto</button><button type="button" data-theme="light">Light</button><button type="button" data-theme="dark">Dark</button></div></div>
     <div class="dsep"></div>
+    <button type="button" id="fxDrawer"><span class="ni">💷</span>£ ⇄ ₹ converter</button>
     <button type="button" data-ext="spends.html"><span class="ni">💸</span>Spends</button>
     <button type="button" id="logoutBtn"><span class="ni">🚪</span>Log out</button>
     <p class="vhint" id="verLine">App version <b id="appVer3"></b> · <button type="button" class="jl" id="verReload">Check for update ↻</button><br><span id="verNote">If this number is lower than the one in the last zip you uploaded, tap "Check for update" or swipe the app away and reopen it.</span></p>
@@ -974,6 +999,7 @@
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+3&destination=Pullman+London+St+Pancras&travelmode=transit">🚇 Elizabeth line ~45 min (Piccadilly closed 17th)</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Heathrow+Terminal+3&destination=Pullman+London+St+Pancras&travelmode=driving">🚕 ~50 min · £45–60</a>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Kings+Cross+St+Pancras+Station+London&destination=Pullman+London+St+Pancras&travelmode=walking">🚶 King's Cross St Pancras → hotel 4–5 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.471%2C-0.458&amp;startname=Heathrow+T3&amp;endcoord=51.5296%2C-0.1262&amp;endname=Pullman+St+Pancras">🟢 Citymapper</a>
     </div>
   </div>
 </details>
@@ -996,14 +1022,17 @@
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=British+Museum+London&travelmode=walking">🚶 ~15 min</a>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=British+Museum+London&travelmode=transit">🚌 ~12 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=British+Museum+London&travelmode=driving">🚕 ~10 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.5194%2C-0.127&amp;endname=British+Museum">🟢 Citymapper</a>
     </div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Westminster Pier</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Westminster+Pier+London&travelmode=transit">🚇 ~25–30 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Westminster+Pier+London&travelmode=driving">🚕 ~15–20 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.5017%2C-0.1246&amp;endname=Westminster+Pier">🟢 Citymapper</a>
     </div>
     <div class="routes"><span class="rlbl">🧭 Greenwich → Hotel (evening)</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Greenwich+Pier+London&destination=Pullman+London+St+Pancras&travelmode=transit">🚇 DLR/Jubilee ~40–45 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Greenwich+Pier+London&destination=Pullman+London+St+Pancras&travelmode=driving">🚕 ~35 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.4835%2C-0.0096&amp;startname=Greenwich+Pier&amp;endcoord=51.5296%2C-0.1262&amp;endname=Pullman+St+Pancras">🟢 Citymapper</a>
     </div>
     <p class="tip">British Museum — <b>two slots held</b>: Plan A <b>11:10</b> (order 10909534) <a target="_blank" rel="noopener" href="tickets/ticket-britishmuseum-18oct.pdf">📄 A ↗</a> or Plan B <b>12:40</b> (order 11506492) <a target="_blank" rel="noopener" href="tickets/ticket-britishmuseum-18oct-1240.pdf">📄 B ↗</a> — if the jet-lag morning is slow, take B and skip the free/rest block; the cruise at ~16:00 still works. 3 free tickets each. Thames cruise booking #33618337 · one-way flexible ticket, board any pier (Westminster/London Eye/Greenwich/Tower) anytime 10am–6pm · £30 total, paid <a target="_blank" rel="noopener" href="https://www.headout.com/manage-booking/?bookingId=33618337">Manage ↗</a>.</p>
   </div>
@@ -1026,6 +1055,7 @@
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Natural+History+Museum+London&travelmode=driving">🚕 ~25 min</a>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Kings+Cross+St+Pancras+Station+London&travelmode=walking">🚶 hotel → King's Cross St Pancras 4–5 min</a>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=South+Kensington+Station+London&destination=Natural+History+Museum+London&travelmode=walking">🚶 South Ken → museum 5 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.4967%2C-0.1764&amp;endname=Natural+History+Museum">🟢 Citymapper</a>
     </div>
   </div>
 </details>
@@ -1050,11 +1080,13 @@
     <div class="routes"><span class="rlbl">🧭 Hotel → Borough Market</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Borough+Market+London&travelmode=transit">🚇 via London Bridge ~30 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Borough+Market+London&travelmode=driving">🚕 ~20–25 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.5055%2C-0.091&amp;endname=Borough+Market">🟢 Citymapper</a>
     </div>
     <div class="routes"><span class="rlbl">🧭 Borough Market → County Hall</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Borough+Market+London&destination=County+Hall+London&travelmode=walking">🚶 ~25 min riverside</a>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Borough+Market+London&destination=County+Hall+London&travelmode=transit">🚌 Bus/tube ~15 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Borough+Market+London&destination=County+Hall+London&travelmode=driving">🚕 ~10 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5055%2C-0.091&amp;startname=Borough+Market&amp;endcoord=51.5019%2C-0.1195&amp;endname=County+Hall+%28SEA+LIFE+%2F+London+Eye%29">🟢 Citymapper</a>
     </div>
   </div>
 </details>
@@ -1075,6 +1107,14 @@
     <div class="routes"><span class="rlbl">🧭 Hotel → King's Cross</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Kings+Cross+Station&travelmode=walking">🚶 4–5 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Kings+Cross+Station&travelmode=driving">🚕 3 min · with bags</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Kings+Cross+Station&travelmode=transit">🚇 Tube / bus</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.5308%2C-0.1238&amp;endname=King%27s+Cross">🟢 Citymapper</a>
+    </div>
+    <div class="routes"><span class="rlbl">🧭 Waverley → hotel (The Glasshouse)</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Edinburgh+Waverley+Station&destination=The+Glasshouse+Autograph+Collection+Edinburgh&travelmode=walking">🚶 ~7 min · gentle uphill</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Edinburgh+Waverley+Station&destination=The+Glasshouse+Autograph+Collection+Edinburgh&travelmode=driving">🚕 ~4 min · £6–8 with bags</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Edinburgh+Waverley+Station&destination=The+Glasshouse+Autograph+Collection+Edinburgh&travelmode=transit">🚌 Bus / tram</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=55.952%2C-3.189&amp;startname=Edinburgh+Waverley&amp;endcoord=55.9573%2C-3.1846&amp;endname=The+Glasshouse">🟢 Citymapper</a>
     </div>
     <p class="tip">Flex tickets valid on 09:53–12:13 departures; seats held only on the 11:03.</p>
     <p class="tip">🚉 <b>Platform:</b> King's Cross doesn't confirm the platform until roughly 20–30 min before departure (it's not bookable/knowable ahead of time) — watch the big departure boards in the main concourse once you're through the gates. <b>Coach B is the 2nd coach from the front</b> (confirmed from LNER's own coach list — A is the very front, B right behind it, then Cafe Bar/First Class further back), so once the platform's up, walk to the very front of the train. Arriving 10:40 for an 11:03 departure gives you ~20 min — enough, but don't dawdle at the 9¾ photo if the platform's already shown; head down, get settled, then finish photos from the platform if there's time.</p>
@@ -1098,6 +1138,8 @@
     <div class="routes"><span class="rlbl">🧭 Hotel → castle tour meeting point (351 High St)</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=351+High+Street+Edinburgh&travelmode=walking">🚶 ~13 min · via North Bridge</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=351+High+Street+Edinburgh&travelmode=driving">🚕 ~5 min</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=351+High+Street+Edinburgh&travelmode=transit">🚌 Bus / tram</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=55.9573%2C-3.1846&amp;startname=The+Glasshouse&amp;endcoord=55.9497%2C-3.191&amp;endname=351+High+St+%28castle+tour%29">🟢 Citymapper</a>
     </div>
   </div>
 </details>
@@ -1116,6 +1158,8 @@
     <div class="routes"><span class="rlbl">🧭 Hotel → Meeting point (Parliament Square / Caffe Nero)</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=Parliament+Square+Edinburgh&travelmode=walking">🚶 ~13 min · via North Bridge</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=Parliament+Square+Edinburgh&travelmode=driving">🚕 ~5 min · do this at 07:30</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=Parliament+Square+Edinburgh&travelmode=transit">🚌 Bus / tram</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=55.9573%2C-3.1846&amp;startname=The+Glasshouse&amp;endcoord=55.9495%2C-3.1907&amp;endname=Parliament+Square">🟢 Citymapper</a>
     </div>
     <p class="tip">Confirmed booking #374019708 · changes/cancellation: call +44 131 226 1414 (Best Flexible Rate — refund/reschedule/gift-card up to 1hr before departure, minus 10% fee) · QR tickets (×3, needed at check-in) <a target="_blank" rel="noopener" href="tickets/ticket-highland-374019708.pdf">📄 here ↗</a> · tour drops you back at 22 St Andrew Square, Edinburgh (4-minute walk to the Glasshouse — no cab needed). Route may run in reverse depending on conditions. Edinburgh Zoo is dropped from the itinerary for this trip — say the word if you'd rather try to fit it into another day instead. <a target="_blank" rel="noopener" href="https://www.highlandexperience.com/edinburgh-tours/loch-ness-scottish-highlands/">Tour details ↗</a></p>
   </div>
@@ -1136,6 +1180,15 @@
     <div class="routes"><span class="rlbl">🧭 Euston → hotel (evening)</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Euston+Station&destination=Pullman+London+St+Pancras&travelmode=walking">🚶 ~10 min</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Euston+Station&destination=Pullman+London+St+Pancras&travelmode=driving">🚕 4 min · with bags</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Euston+Station&destination=Pullman+London+St+Pancras&travelmode=transit">🚇 Tube / bus</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5282%2C-0.1337&amp;startname=Euston&amp;endcoord=51.5296%2C-0.1262&amp;endname=Pullman+St+Pancras">🟢 Citymapper</a>
+    </div>
+    <div class="routes"><span class="rlbl">🧭 Edinburgh morning → train</span>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=Calton+Hill+Edinburgh&travelmode=walking">🚶 Calton Hill ~1 min to the steps</a>
+      <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=Edinburgh+Waverley+Station&travelmode=walking">🚶 Hotel → Waverley ~6 min</a>
+      <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=Edinburgh+Waverley+Station&travelmode=driving">🚕 Hotel → Waverley ~4 min · with bags</a>
+      <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=The+Glasshouse+Autograph+Collection+Edinburgh&destination=Edinburgh+Waverley+Station&travelmode=transit">🚌 Bus / tram to Waverley</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=55.9573%2C-3.1846&amp;startname=The+Glasshouse&amp;endcoord=55.952%2C-3.189&amp;endname=Edinburgh+Waverley">🟢 Citymapper</a>
     </div>
     <p class="tip">Tickets valid ONLY on the 12:52 — be at Waverley by 12:30.</p>
   </div>
@@ -1165,15 +1218,18 @@
     <div class="routes"><span class="rlbl">🧭 Hotel → Regent Street / Coach, 200-206 Regent St (Option A)</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Oxford+Circus+Station+London&travelmode=transit">🚇 Victoria line ~10 min</a>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Oxford+Circus+Station+London&destination=200-206+Regent+Street+London+W1B+5BN&travelmode=walking">🚶 Oxford Circus → Coach ~3–4 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.5152%2C-0.1419&amp;endname=Oxford+Circus">🟢 Citymapper</a>
     </div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Oxford Street (Option C)</span>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Oxford+Street+London&travelmode=walking">🚶 ~30 min</a>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Oxford+Circus+Station+London&travelmode=transit">🚇 Victoria line ~10 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.5152%2C-0.1419&amp;endname=Oxford+Circus">🟢 Citymapper</a>
     </div>
     <div class="routes"><span class="rlbl">🧭 Hotel → Heathrow T2</span>
       <a class="rbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Heathrow+Terminal+2&travelmode=transit">🚇 Piccadilly ~55–60 min · £5.90</a>
       <a class="rbtn taxi" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Heathrow+Terminal+2&travelmode=driving">🚕 ~50 min · £45–60</a>
       <a class="rbtn walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Pullman+London+St+Pancras&destination=Kings+Cross+St+Pancras+Station+London&travelmode=walking">🚶 hotel → King's Cross St Pancras 4–5 min</a>
+      <a class="rbtn cm" target="_blank" rel="noopener" href="https://citymapper.com/directions?startcoord=51.5296%2C-0.1262&amp;startname=Pullman+St+Pancras&amp;endcoord=51.47%2C-0.4543&amp;endname=Heathrow+T2">🟢 Citymapper</a>
     </div>
   </div>
 </details>
@@ -2353,6 +2409,18 @@
 
 </div>
 
+<button type="button" class="fxfab" id="fxFab" aria-label="Pounds to rupees converter">£ ⇄ ₹</button>
+<div class="fxsheet" id="fxSheet" role="dialog" aria-label="Pounds to rupees">
+  <div class="fxbg" data-fxclose></div>
+  <div class="fxcard">
+    <div class="fxhead"><b>💷 £ ⇄ ₹ converter</b><button type="button" class="fxx" data-fxclose aria-label="Close">✕</button></div>
+    <div class="fxrow"><label for="fxGbp">£</label><input id="fxGbp" type="text" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+    <div class="fxrow"><label for="fxInr">₹</label><input id="fxInr" type="text" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+    <div class="fxchips" id="fxChips"></div>
+    <div class="fxrate">Rate £1 = ₹<input id="fxRate" type="text" inputmode="decimal"><button type="button" data-rate="130">130 cash</button><button type="button" data-rate="128">128 card</button></div>
+    <div class="fxnote">Works offline. ₹130 is what you paid for the £400 cash; ~₹128 is roughly what the HSBC Premier card charges (0% markup, mid-market). Card machines asking "pay in INR or GBP?" — always <b>GBP</b>.</div>
+  </div>
+</div>
 <nav>
   <button type="button" class="on" data-pg="pg-days"><span class="ni">📅</span>Days</button>
   <button type="button" data-pg="pg-tickets"><span class="ni">🎟️</span>Tickets</button>
@@ -2435,7 +2503,7 @@
   if ('serviceWorker' in navigator) {
     // v85: answer the service worker's ping so it knows this page is current and doesn't reload it
     navigator.serviceWorker.addEventListener('message', (e) => {
-      if (e.data && e.data.type === 'uktrip-ping' && e.ports && e.ports[0]) e.ports[0].postMessage({ version: 'v91.1' });
+      if (e.data && e.data.type === 'uktrip-ping' && e.ports && e.ports[0]) e.ports[0].postMessage({ version: 'v93' });
     });
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
@@ -2547,7 +2615,7 @@
   const searchInputEl = document.getElementById('searchInput');
   const searchResultsEl = document.getElementById('searchResults');
   // ======================= v85: visible app version + manual update check =======================
-  const APP_VERSION = 'v91.1';
+  const APP_VERSION = 'v93';
   ['appVer','appVer2','appVer3'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent = APP_VERSION; });
   document.getElementById('verReload')?.addEventListener('click', async () => {
     const n = document.getElementById('verNote'); if(n) n.textContent = 'Checking…';
@@ -2558,6 +2626,34 @@
     } catch(e){}
     location.reload();
   });
+
+  // ======================= v93: £ ⇄ ₹ converter (floating button on every page) =======================
+  (function(){
+    const fab = document.getElementById('fxFab'), sh = document.getElementById('fxSheet');
+    if(!fab || !sh) return;
+    const g = document.getElementById('fxGbp'), r = document.getElementById('fxInr'), rt = document.getElementById('fxRate'), chips = document.getElementById('fxChips');
+    let rate = 130; try{ const v = parseFloat(localStorage.getItem('fx.rate')); if(v > 50 && v < 300) rate = v; }catch(e){}
+    rt.value = rate;
+    const num = v => { const n = parseFloat(String(v).replace(/[^0-9.]/g,'')); return isFinite(n) ? n : NaN; };
+    const fmtInr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+    const fmtGbp = n => '£' + (Math.round(n * 100) / 100).toLocaleString('en-GB', {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2});
+    let last = 'g';
+    const fromG = () => { last = 'g'; const n = num(g.value); r.value = isNaN(n) ? '' : Math.round(n * rate).toLocaleString('en-IN'); };
+    const fromR = () => { last = 'r'; const n = num(r.value); g.value = isNaN(n) ? '' : (Math.round(n / rate * 100) / 100).toString(); };
+    const drawChips = () => { chips.innerHTML = [1,5,10,20,50,100,500].map(v => '<button type="button" data-g="' + v + '">£' + v + ' = ' + fmtInr(v * rate) + '</button>').join(''); };
+    g.addEventListener('input', fromG); r.addEventListener('input', fromR);
+    chips.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if(!b) return; g.value = b.dataset.g; fromG(); });
+    const setRate = v => { const n = num(v); if(!(n > 50 && n < 300)) return; rate = n; rt.value = n; try{ localStorage.setItem('fx.rate', String(n)); }catch(e){} drawChips(); last === 'g' ? fromG() : fromR(); };
+    rt.addEventListener('change', () => setRate(rt.value));
+    sh.querySelectorAll('[data-rate]').forEach(b => b.addEventListener('click', () => setRate(b.dataset.rate)));
+    const open = () => { drawChips(); sh.classList.add('on'); document.body.classList.add('fx-open'); setTimeout(() => g.focus(), 60); };
+    const close = () => { sh.classList.remove('on'); document.body.classList.remove('fx-open'); g.blur(); r.blur(); };
+    fab.addEventListener('click', open);
+    sh.querySelectorAll('[data-fxclose]').forEach(b => b.addEventListener('click', close));
+    document.addEventListener('keydown', e => { if(e.key === 'Escape' && sh.classList.contains('on')) close(); });
+    window.__fx = { open, close, toInr: n => n * rate };
+    document.getElementById('fxDrawer')?.addEventListener('click', () => { document.getElementById('drawerClose')?.click(); setTimeout(open, 150); });
+  })();
 
   let searchIndex = null;
 
@@ -3647,9 +3743,11 @@
     };
     const uber = (a, b) => 'https://m.uber.com/ul/?action=setPickup&client_id=trip&pickup[formatted_address]=' + encodeURIComponent(P[a][0]) + '&pickup[latitude]=' + P[a][1] + '&pickup[longitude]=' + P[a][2] + '&dropoff[formatted_address]=' + encodeURIComponent(P[b][0]) + '&dropoff[latitude]=' + P[b][1] + '&dropoff[longitude]=' + P[b][2];
     const maps = (a, b) => 'https://www.google.com/maps/dir/?api=1&origin=' + P[a][1] + ',' + P[a][2] + '&destination=' + P[b][1] + ',' + P[b][2] + '&travelmode=driving';
+    const cmap = (a, b) => 'https://citymapper.com/directions?startcoord=' + P[a][1] + ',' + P[a][2] + '&startname=' + encodeURIComponent(P[a][0]) + '&endcoord=' + P[b][1] + ',' + P[b][2] + '&endname=' + encodeURIComponent(P[b][0]);
+    const transit = (a, b) => 'https://www.google.com/maps/dir/?api=1&origin=' + P[a][1] + ',' + P[a][2] + '&destination=' + P[b][1] + ',' + P[b][2] + '&travelmode=transit';
     const L = {
       '2026-10-17': { budget: '£70–85', legs: [['lhr3','pul','£70–85','50–70 min','worth','Eight pieces + a toddler after 11 hrs — pre-book an MPV (Addison Lee or Uber Reserve XL); a black cab won\'t take 3 large + 3 cabin. Fallback: Uber XL from the Uber zone (level 4 car park). Piccadilly line is closed to Heathrow today anyway.']] },
-      '2026-10-18': { budget: '£45–70', legs: [['pul','bm','£10–12','10 min','skip','15-min walk through Bloomsbury with the stroller — nicer than a cab.'],['bm','wpier','£14–18','15–20 min','maybe','Tube is Russell Sq → Westminster, 20 min with two escalators; a cab door-to-pier is easier with the stroller and keeps you on time for the boat.'],['gpier','pul','£35–45','35–45 min','worth','End of a long day: DLR + Jubilee + change is 45 min of standing. Take the cab home, especially if he\'s asleep.']] },
+      '2026-10-18': { budget: '£45–70', legs: [['pul','bm','£10–12','10 min','skip','15-min walk through Bloomsbury — nicer than a cab (Aariv on shoulders or in the carrier).'],['bm','wpier','£14–18','15–20 min','maybe','Tube is Russell Sq → Westminster, 20 min with two escalators; a cab door-to-pier is easier with a toddler and keeps you on time for the boat.'],['gpier','pul','£35–45','35–45 min','worth','End of a long day: DLR + Jubilee + change is 45 min of standing. Take the cab home, especially if he\'s asleep.']] },
       '2026-10-19': { budget: '£25–50', legs: [['pul','nhm','£25–30','25–35 min','skip','Piccadilly line is direct from Russell Square, 20 min — faster than a cab through Knightsbridge.'],['sci','pul','£25–30','25–35 min','maybe','If he\'s flat out after two museums, the cab home is worth it; otherwise the tube again.'],['sci','tbr','£25–30','30 min','maybe','Only for the Tower Bridge evening option; then £18–22 home from St Katharine Docks.']] },
       '2026-10-20': { budget: '£30–60', legs: [['pul','boro','£18–22','20–25 min','maybe','Tube via London Bridge is 30 min; a cab straight to the market at 09:15 is quicker and lands you at the stalls.'],['boro','ch','£10–14','10–15 min','skip','25-min riverside walk past the Globe and Tate is the nice bit of the day — walk it.'],['ch','jsm','£14–18','15–20 min','maybe','After the Eye, cab to James Smith (umbrellas) saves a tube change; then 15-min walk home.'],['ch','pul','£18–22','20–25 min','maybe','Straight home from the Eye if skipping the umbrella stop.']] },
       '2026-10-21': { budget: '£12–16', legs: [['pul','kgx','£6–8','3 min','worth','Bags day. It\'s a 4-min walk, but with the big case plus the storage drop at the desk, let the cab do it.'],['wav','mr','£6–8','4 min','maybe','The Glasshouse is a 6-min walk from the Princes St exit, mostly flat — with one large case, a cabin bag and two packs it\'s doable; cab if Aariv is asleep in the carrier. Rank at the Market St exit.']] },
@@ -3658,13 +3756,13 @@
       '2026-10-24': { budget: '£12–18', legs: [['mr','cal','£0','1 min walk','skip','Calton Hill\'s steps start a minute from the hotel door — walk.'],['mr','wav','£6–8','4 min','maybe','Six-minute walk downhill with the case — or a cab from Greenside Place if it\'s raining.'],['eus','pul','£8–10','4 min','worth','10-min walk with cases after a 6-hr train — cab from the Euston rank.']] },
       '2026-10-25': { budget: '£95–120', legs: [['pul','oxc','£14–18','15 min','skip','Victoria line is 10 min; traffic on Sunday morning is light but the tube still wins.'],['oxc','pul','£14–18','15 min','maybe','With shopping bags and a sleepy boy at 14:30, cab back to the hotel.'],['pul','lhr','£70–85','55–75 min','worth','Final run to T2 with all eight pieces (+ bought stroller, if any) — pre-book an MPV (Uber Reserve XL or the hotel\'s car) for 17:30; Heathrow Express via Paddington is cheaper but means two changes with bags.']] }
     };
-    const fareNote = { london: 'London: black cabs take contactless (HSBC, 0% markup); yellow light = free. Uber app also books black cabs ("Black Taxi"). Stroller stays open in a black cab; Aariv needs no car seat in the back. Tip = round up.', edin: 'Edinburgh: black cabs everywhere on Princes St; City Cabs app or 0131 228 1211 to pre-book (cards accepted). Uber works too but cabs are quicker to find.' };
+    const fareNote = { london: 'London: black cabs take contactless (HSBC, 0% markup); yellow light = free. Uber app also books black cabs ("Black Taxi"). Aariv needs no car seat in the back of a black cab. Tip = round up.', edin: 'Edinburgh: black cabs everywhere on Princes St; City Cabs app or 0131 228 1211 to pre-book (cards accepted). Uber works too but cabs are quicker to find.' };
     document.querySelectorAll('details.day').forEach(d => {
       const day = L[d.dataset.date]; if(!day) return;
       const box = document.createElement('div'); box.className = 'taxibox';
       const isEdin = d.dataset.date >= '2026-10-22' && d.dataset.date <= '2026-10-24';
       box.innerHTML = '<b>🚕 Taxis today</b><span class="tbud">If you cab the ✓ legs: ' + day.budget + '</span>' +
-        day.legs.map(([a, b, fare, mins, v, why]) => '<div class="tleg ' + v + '"><div class="ttxt"><div class="tl1">' + P[a][0].split(',')[0] + ' → ' + P[b][0].split(',')[0] + ' · <span style="color:var(--gold)">' + fare + '</span> · ' + mins + '</div><div class="tl2">' + why + '</div></div><div class="tbtns"><a class="tb1" target="_blank" rel="noopener" href="' + uber(a, b) + '">Uber</a><a class="tb1 map" target="_blank" rel="noopener" href="' + maps(a, b) + '">Map</a></div></div>').join('') +
+        day.legs.map(([a, b, fare, mins, v, why]) => '<div class="tleg ' + v + '"><div class="ttxt"><div class="tl1">' + P[a][0].split(',')[0] + ' → ' + P[b][0].split(',')[0] + ' · <span style="color:var(--gold)">' + fare + '</span> · ' + mins + '</div><div class="tl2">' + why + '</div></div><div class="tbtns"><a class="tb1" target="_blank" rel="noopener" href="' + uber(a, b) + '">Uber</a><a class="tb1 map" target="_blank" rel="noopener" href="' + transit(a, b) + '">🚇 Bus/Tube</a><a class="tb1 map" target="_blank" rel="noopener" href="' + cmap(a, b) + '">🟢 Citymapper</a><a class="tb1 map" target="_blank" rel="noopener" href="' + maps(a, b) + '">Map</a></div></div>').join('') +
         '<div class="taxinote">✓ = worth the cab · 🚇 = tube/walk is faster · ' + (isEdin ? fareNote.edin : fareNote.london) + '</div>';
       const anchor = d.querySelector('.routes') || d.querySelector('.eat');
       if(anchor) anchor.insertAdjacentElement('beforebegin', box); else d.querySelector('.dbody').appendChild(box);
