@@ -2435,7 +2435,7 @@
   if ('serviceWorker' in navigator) {
     // v85: answer the service worker's ping so it knows this page is current and doesn't reload it
     navigator.serviceWorker.addEventListener('message', (e) => {
-      if (e.data && e.data.type === 'uktrip-ping' && e.ports && e.ports[0]) e.ports[0].postMessage({ version: 'v91' });
+      if (e.data && e.data.type === 'uktrip-ping' && e.ports && e.ports[0]) e.ports[0].postMessage({ version: 'v91.1' });
     });
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
@@ -2547,7 +2547,7 @@
   const searchInputEl = document.getElementById('searchInput');
   const searchResultsEl = document.getElementById('searchResults');
   // ======================= v85: visible app version + manual update check =======================
-  const APP_VERSION = 'v91';
+  const APP_VERSION = 'v91.1';
   ['appVer','appVer2','appVer3'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent = APP_VERSION; });
   document.getElementById('verReload')?.addEventListener('click', async () => {
     const n = document.getElementById('verNote'); if(n) n.textContent = 'Checking…';

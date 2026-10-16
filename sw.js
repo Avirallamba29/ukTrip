@@ -1,7 +1,7 @@
 // Service worker for offline access to the trip app + all ticket PDFs.
 // Bump CACHE_NAME (e.g. v1 -> v2) whenever tickets/ or the HTML changes,
 // so returning visitors pick up the new files instead of stale cached ones.
-const CACHE_NAME = 'uktrip-cache-v91';
+const CACHE_NAME = 'uktrip-cache-v91-1';
 
 const PRECACHE_URLS = [
   './',
@@ -167,8 +167,11 @@ function networkFirstPage(req) {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
+  // v91.1: never touch the backend. Supabase reads (shared outfits/lists, voice notes, sign-in) must always go to the
+  // network — caching them made every phone replay its first answer forever, so changes never showed up.
+  if (/(^|\.)supabase\.(co|in)$/.test(url.hostname) || url.pathname.startsWith('/realtime/')) return;
   const isPage = event.request.mode === 'navigate' ||
-    (url.origin === self.location.origin && (/\/(index|london-edinburgh-trip)\.html$/.test(url.pathname) || url.pathname.endsWith('/')));
+    (url.origin === self.location.origin && (/\/(index|london-edinburgh-trip|spends)\.html$/.test(url.pathname) || url.pathname.endsWith('/')));
   if (isPage) { event.respondWith(networkFirstPage(event.request)); return; }
   event.respondWith(
     caches.match(event.request, { ignoreVary: true }).then((cached) => {
