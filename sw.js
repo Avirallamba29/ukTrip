@@ -14,6 +14,7 @@ const PRECACHE_URLS = [
   './tickets/share-code-chhavi.pdf',
   './tickets/share-code-aariv.pdf',
   './tickets/flight-indigo-6e3-del-lhr.pdf',
+  './tickets/boarding-indigo-6e3-17oct.pdf',
   './tickets/flight-airindia-ai2016-lhr-del.pdf',
   './tickets/train-lner-kgx-edinburgh-21oct-adult1.pdf',
   './tickets/train-lner-kgx-edinburgh-21oct-adult2.pdf',
